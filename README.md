@@ -13,24 +13,24 @@
 
   This seed integrates a bunch of popular modern web frameworks and libraries.
 
-  * Angular
-  * Bower
-  * Bootstrap
-  * Compass (SCSS)
-  * Express
-  * Grunt
-  * Handlebars
-  * jQuery
-  * JSHint
-  * Karma w/ Jasmine
-  * Livereload
-  * Lodash (Underscore)
-  * Mocha
-  * Modernizr
-  * Mongoose
-  * Redis
-  * SocketIO
-  * Uglify
+  * [Angular](http://angularjs.org/)
+  * [Bower](http://twitter.github.com/bower/)
+  * [Bootstrap](http://twitter.github.com/bootstrap/)
+  * [Compass](http://compass-style.org/) ([SCSS](http://sass-lang.com/))
+  * [Express](http://expressjs.com/)
+  * [Grunt](http://gruntjs.com/)
+  * [Handlebars](http://handlebarsjs.com/)
+  * [jQuery](http://jquery.com/)
+  * [JSHint](http://www.jshint.com/)
+  * [Karma](http://karma-runner.github.com/) w/ [Jasmine](http://pivotal.github.com/jasmine/)
+  * [Livereload](http://livereload.com/)
+  * [Lodash](http://lodash.com/) ([Underscore](http://underscorejs.org/))
+  * [Mocha](http://visionmedia.github.com/mocha/)
+  * [Modernizr](http://modernizr.com/)
+  * [Mongoose](http://www.mongoose.com/)
+  * [Redis](http://redis.io/)
+  * [SocketIO](http://socket.io/)
+  * [Uglify](http://lisperator.net/uglifyjs/)
 
 ## Creating New Project
 
@@ -47,7 +47,7 @@
     $ grunt server              # start server
     $ grunt test                # run tests
     $ grunt                     # jshint, test, then build
-    $ grunt clean               # clean dist/ and .tmp/
+    $ grunt clean               # clean grunt grenerated files
 
 ## Directory Structure
 
