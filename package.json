@@ -15,14 +15,25 @@
   "dependencies": {
     "async": "~0.2.6",
     "colors": "~0.6.0-1",
+    "connect-redis": "~1.4.5",
     "express": "~3.1.0",
     "hbs": "~2.1.0",
     "lodash": "1.0.0",
     "mkdirp": "~0.3.5",
     "mongoose": "~3.6.0",
+    "mongoose-types": "~1.0.3",
+    "nodemailer": "~0.3.44",
+    "passport": "~0.1.16",
+    "passport-facebook": "~0.1.5",
+    "passport-google-oauth": "~0.1.5",
+    "passport-local": "~0.1.6",
+    "passport-twitter": "~0.1.4",
+    "passport": "~0.1.16",
+    "qs": "~0.5.5",
     "redis": "~0.8.2",
     "request": "~2.16.6",
-    "socket.io": "~0.9.13"
+    "socket.io": "~0.9.13",
+    "xml2js": "~0.2.6"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
