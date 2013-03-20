@@ -1,3 +1,4 @@
+
 /*
  * Gruntfile.js
  */
@@ -5,12 +6,6 @@
 'use strict';
 
 var path = require('path');
-
-// Livereload
-var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
-var mountToConnect = function (connect, point) {
-  return connect.static(path.resolve(point));
-};
 
 module.exports = function (grunt) {
   // load all grunt tasks
@@ -52,42 +47,6 @@ module.exports = function (grunt) {
       server: {
         options: {
           debugInfo: true
-        }
-      }
-    },
-    connect: {  // grunt-contrib-connect
-      options: {
-        port: '<%= process.env.PORT || project.server.port %>'
-      },
-      livereload: {
-        options: {
-          middleware: function (connect, options) {
-            return [
-              lrSnippet,
-              mountToConnect(connect, '<%= project.path.temp %>'),
-              mountToConnect(connect, '<%= project.path.client %>'),
-              mountToConnect(connect, options.base)
-            ];
-          }
-        }
-      },
-      test: {
-        options: {
-          middleware: function (connect) {
-            return [
-              mountToConnect(connect, '<%= project.path.temp %>'),
-              mountToConnect(connect, '<%= project.path.test %>')
-            ];
-          }
-        }
-      },
-      dist: {
-        options: {
-          middleware: function (connect) {
-            return [
-              mountToConnect(connect, '<%= project.path.dist %>')
-            ];
-          }
         }
       }
     },
