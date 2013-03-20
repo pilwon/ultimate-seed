@@ -1,0 +1,18 @@
+Hello, {{hello}}!
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect();
+  socket.on('hello', function (data) {
+    console.log(data);
+    socket.emit('test', { my: 'data' });
+  });
+</script>
+
+<!-- Livereload begins -->
+<script>
+  document.write('<script src="http://'
+   + (location.host || 'localhost').split(':')[0]
+   + ':35729/livereload.js?snipver=1"><\/script>');
+</script>
+<!-- Livereload ends -->

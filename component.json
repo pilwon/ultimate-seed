@@ -1,0 +1,31 @@
+{
+  "name": "ultimate-seed",
+  "description": "the ultimate full-stack seed to make web developers insanely productive",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": {
+    "name": "Pilwon Huh",
+    "email": "pilwon@gmail.com"
+  },
+  "homepage": "https://github.com/pilwon/ultimate-seed",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pilwon/ultimate-seed.git"
+  },
+  "dependencies": {
+    "angular": "~1.0.5",
+    "angular-cookies": "~1.0.5",
+    "angular-resource": "~1.0.5",
+    "angular-sanitize": "~1.0.5",
+    "es5-shim": "~2.0.5",
+    "jquery": "~1.8.3",
+    "json3": "~3.2.4",
+    "lodash": "~1.0.1",
+    "modernizr": "~2.6.2",
+    "sass-bootstrap": "~2.3.1"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.0.5",
+    "angular-scenario": "~1.0.5"
+  }
+}

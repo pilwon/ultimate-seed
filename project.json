@@ -1,0 +1,14 @@
+{
+  "path": {
+    "bower": "client/components",
+    "client": "client",
+    "config": "config",
+    "dist": "dist",
+    "server": "server",
+    "test": "test",
+    "temp": ".tmp"
+  },
+  "server": {
+    "port": 5000
+  }
+}

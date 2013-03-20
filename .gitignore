@@ -1,0 +1,5 @@
+.sass-cache
+.tmp
+client/components
+dist
+node_modules
