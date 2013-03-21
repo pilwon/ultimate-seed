@@ -1,4 +1,3 @@
-
 /*
  * Gruntfile.js
  */
@@ -114,17 +113,18 @@ module.exports = function (grunt) {
         jshintrc: '.jshintrc'
       },
       server: [
-        'Gruntfile.js',
         '<%= project.path.client %>/js/{,*/}*.js',
-        '!<%= project.path.client %>/js/vendor/*',
+        '!<%= project.path.client %>/js/vendor/**/*',
         '<%= project.path.server %>/{,*/}*.js',
+        '<%= project.path.test %>/server/**/*.js'
       ],
       all: [
         'Gruntfile.js',
         '<%= project.path.client %>/js/**/*.js',
         '!<%= project.path.client %>/js/vendor/**/*',
         '<%= project.path.server %>/**/*.js',
-        '<%= project.path.test %>/client/**/*.js'
+        '<%= project.path.test %>/client/**/*.js',
+        '<%= project.path.test %>/server/**/*.js'
       ]
     },
     karma: {  // grunt-karma
@@ -132,7 +132,7 @@ module.exports = function (grunt) {
         configFile: '<%= project.path.config %>/karma.conf.js',
         singleRun: true
       },
-      unit: {
+      all: {
         configFile: '<%= project.path.config %>/karma.conf.js',
         singleRun: false
       }
@@ -222,8 +222,14 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('test', [
-    'karma'
+    'jshint:all',
+    'karma:all'
   ]);
+
+  // Shortcuts
+  grunt.registerTask('b', 'default');
+  grunt.registerTask('s', 'server');
+  grunt.registerTask('t', 'test');
 
   grunt.registerTask('default', [
     'jshint:all',

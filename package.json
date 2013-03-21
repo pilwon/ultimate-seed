@@ -20,7 +20,6 @@
     "hbs": "~2.1.0",
     "hiredis": "~0.1.15",
     "lodash": "1.0.0",
-    "mkdirp": "~0.3.5",
     "mongoose": "~3.6.0",
     "mongoose-types": "~1.0.3",
     "nodemailer": "~0.3.44",
@@ -34,9 +33,12 @@
     "redis": "~0.8.2",
     "request": "~2.16.6",
     "socket.io": "~0.9.13",
+    "ultimate": "~0.1.0",
+    "wrench": "~1.4.4",
     "xml2js": "~0.2.6"
   },
   "devDependencies": {
+    "chai": "~1.5.0",
     "grunt": "~0.4.1",
     "grunt-bower-hooks": "~0.3.0",
     "grunt-contrib-clean": "~0.4.0",

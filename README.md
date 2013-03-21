@@ -9,6 +9,8 @@
 
 `ultimate-seed` is the ultimate full-stack seed that makes web developers insanely productive.
 
+This project uses [ultimate](https://github.com/pilwon/ultimate) dependency library.
+
 ## What's Included?
 
   This seed integrates a bunch of popular modern web frameworks and libraries.
@@ -22,10 +24,10 @@
   * [Handlebars](http://handlebarsjs.com/)
   * [jQuery](http://jquery.com/)
   * [JSHint](http://www.jshint.com/)
-  * [Karma](http://karma-runner.github.com/) w/ [Jasmine](http://pivotal.github.com/jasmine/)
+  * [Karma](http://karma-runner.github.com/)
   * [Livereload](http://livereload.com/)
   * [Lodash](http://lodash.com/) ([Underscore](http://underscorejs.org/))
-  * [Mocha](http://visionmedia.github.com/mocha/)
+  * [Mocha](http://visionmedia.github.com/mocha/) w/ [Chai](http://chaijs.com/)
   * [Modernizr](http://modernizr.com/)
   * [Mongoose](http://www.mongoose.com/)
   * [Redis](http://redis.io/)
@@ -73,6 +75,7 @@
 ├── server/
 │   ├── controllers/
 │   ├── helpers/
+│   ├── lib/
 │   ├── models/
 │   ├── partials/
 │   └── views/
@@ -94,4 +97,4 @@
 
 ## License
 
-  `ultime-seed` is released under the MIT License.
+  `ultimate-seed` is released under the MIT License.
