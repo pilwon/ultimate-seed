@@ -29,8 +29,8 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
   * [Lodash](http://lodash.com/) ([Underscore](http://underscorejs.org/))
   * [Mocha](http://visionmedia.github.com/mocha/) w/ [Chai](http://chaijs.com/)
   * [Modernizr](http://modernizr.com/)
-  * [Mongoose](http://www.mongoose.com/)
-  * [Redis](http://redis.io/)
+  * [MongoDB](http://www.mongodb.org/) w/ [Mongoose](http://www.mongoose.com/)
+  * [Redis](http://redis.io/) w/ [Hiredis](https://github.com/redis/hiredis)
   * [SocketIO](http://socket.io/)
   * [Uglify](http://lisperator.net/uglifyjs/)
 

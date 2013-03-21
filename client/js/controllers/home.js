@@ -22,8 +22,8 @@ angular.module('mainApp')
       'Lodash (Underscore)',
       'Mocha w/ Chai',
       'Modernizr',
-      'Mongoose',
-      'Redis',
+      'MongoDB w/ Mongoose',
+      'Redis w/ Hiredis',
       'SocketIO',
       'Uglify'
     ];
