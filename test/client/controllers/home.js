@@ -11,7 +11,7 @@ describe('HomeCtrl', function () {
   var scope;
 
   beforeEach(inject(function ($controller) {
-    $controller('HomeCtrl', { $scope: scope = {} });
+    $controller('HomeController', { $scope: scope = {} });
   }));
 
   it('should create "items" model with 18 items', function () {

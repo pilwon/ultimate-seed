@@ -3,4 +3,4 @@
  */
 
 /* globals beforeEach */
-beforeEach(module('mainApp'));
+beforeEach(module('ngApp'));
