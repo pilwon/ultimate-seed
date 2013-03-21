@@ -7,7 +7,7 @@
                                                                            
 ```
 
-`ultimate-seed` is the ultimate full-stack seed that makes web developers insanely productive.
+`ultimate-seed` is the ultimate JavaScript/Node.js full-stack seed that makes web developers insanely productive.
 
 This project uses [ultimate](https://github.com/pilwon/ultimate) dependency library.
 
