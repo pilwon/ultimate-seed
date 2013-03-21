@@ -13,7 +13,6 @@ files = [
   MOCHA_ADAPTER,
   'client/components/chai/chai.js',
   'client/components/angular/angular.js',
-  'test/lib/angular/angular-mocks.js',
   'client/components/angular-cookies/angular-cookies.js',
   'client/components/angular-resource/angular-resource.js',
   'client/components/angular-sanitize/angular-sanitize.js',
