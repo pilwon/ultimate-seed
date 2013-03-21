@@ -2,9 +2,11 @@
  * test/client/controllers/home.js
  */
 
+/* globals beforeEach, chai, describe, inject, it */
 'use strict';
 
-/* globals beforeEach, describe, expect, inject, it */
+chai.should();
+
 describe('HomeCtrl', function () {
   var scope;
 
@@ -13,6 +15,6 @@ describe('HomeCtrl', function () {
   }));
 
   it('should create "items" model with 18 items', function () {
-    expect(scope.items.length).toBe(18);
+    scope.items.length.should.equal(18);
   });
 });

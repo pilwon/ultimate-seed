@@ -2,9 +2,9 @@
  * client/js/app.js
  */
 
+/* globals angular */
 'use strict';
 
-/* globals angular */
 angular.module('mainApp', [])
   .config(function ($locationProvider, $routeProvider) {
     $locationProvider.html5Mode(true);

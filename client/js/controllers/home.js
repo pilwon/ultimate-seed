@@ -2,9 +2,9 @@
  * client/js/controllers/home.js
  */
 
+/* globals angular */
 'use strict';
 
-/* globals angular */
 angular.module('mainApp')
   .controller('HomeCtrl', function ($scope) {
     $scope.items = [
@@ -20,7 +20,7 @@ angular.module('mainApp')
       'Karma',
       'Livereload',
       'Lodash (Underscore)',
-      'Mocha',
+      'Mocha w/ Chai',
       'Modernizr',
       'Mongoose',
       'Redis',
