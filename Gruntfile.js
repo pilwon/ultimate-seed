@@ -115,7 +115,7 @@ module.exports = function (grunt) {
       server: [
         '<%= project.path.client %>/js/{,*/}*.js',
         '!<%= project.path.client %>/js/vendor/**/*',
-        '<%= project.path.server %>/{,*/}*.js',
+        '<%= project.path.server %>/**/*.js',
         '<%= project.path.test %>/server/**/*.js'
       ],
       all: [
