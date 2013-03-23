@@ -24,10 +24,18 @@
           <th style="width: 50%;"><strong>Profile</strong></th>
         </tr>
         {{#eachKV user.auth}}
+        {{#if v.username}}
+        <tr>
+          <td><strong>{{k}}</strong></td>
+          <td>{{v.username}}</td>
+          <td colspan="2"><strong>Encrypted password:</strong> {{v.password}}</td>
+        </tr>
+        {{/if}}
         {{#if v.id}}
         <tr>
           <td><strong>{{k}}</strong></td>
-          <td>{{v.id}}</td>
+          {{#if v.id}}<td>{{v.id}}</td>{{/if}}
+          {{#if v.username}}<td>{{v.username}}</td>{{/if}}
           <td>{{v.token}}</td>
           <td>
             <table class="table table-striped table-bordered table-hover table-condensed" style="table-layout: fixed; word-wrap: break-word;">
