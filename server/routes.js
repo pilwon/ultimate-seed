@@ -16,7 +16,7 @@ exports.register = function (app) {
       s = app.servers.express.getServer();
 
   // home
-	s.get('/express', c.home.express);
+  s.get('/express', c.home.express);
 
   // Account
   s.get('/account', ensureLoggedIn, c.account.index);
