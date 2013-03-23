@@ -211,15 +211,18 @@ module.exports = function (grunt) {
     'uglify'
   ]);
 
-  grunt.registerTask('server', [
-    'jshint:server',
-    'clean:server',
-    'compass:server',
-    'livereload-start',
-    'express',
-    'open',
-    'watch'
-  ]);
+  grunt.registerTask('server', function () {
+    process.env.LIVERELOAD = 35729;
+    grunt.task.run([
+      'jshint:server',
+      'clean:server',
+      'compass:server',
+      'livereload-start',
+      'express',
+      'open',
+      'watch'
+    ]);
+  });
 
   grunt.registerTask('test', [
     'jshint:all',

@@ -1,0 +1,81 @@
+<style type="text/css">
+  body {
+    background-color: #f5f5f5;
+  }
+  .form-login {
+    max-width: 350px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+       -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+  }
+  .form-login .form-login-heading,
+  .form-login .checkbox {
+    margin-bottom: 10px;
+  }
+  .form-login input[type='text'],
+  .form-login input[type='password'] {
+    font-size: 16px;
+    height: auto;
+    margin-bottom: 15px;
+    padding: 7px 9px;
+  }
+</style>
+
+<div class="form-login">
+  {{#if messages}}
+  <div class="alert alert-error">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{#each messages}}
+      <p>{{{this}}}</p>
+    {{/each}}
+  </div>
+  {{/if}}
+
+  <form method="post">
+    <input type="hidden" name="_csrf" value="{{csrf}}"></input>
+    <h2 class="form-login-heading">Please log in</h2>
+    <input type="text" class="input-block-level" name="username" placeholder="e-mail address" value="{{form.username}}"></input>
+    <input type="password" class="input-block-level" name="password" placeholder="password"></input>
+    <label class="checkbox">
+      <input type="checkbox" name="rememberMe">Remember me</input>
+    </label>
+    <p>
+      <div class="row-fluid">
+        <div class="span12">
+          <button class="span6 btn btn-large btn-primary" type="submit">Login</button>
+          <a class="span6 btn btn-large btn-info" href="/register">Register</a>
+        </div>
+      </div>
+    </p>
+    <!-- <p>
+      <a class="btn btn-large btn-block btn-inverse" href="/lost-password">Lost password</a>
+    </p> -->
+  </form>
+
+  <hr>
+
+  <p class="text-center">
+    <a class="btn btn-large btn-block" href="/auth/facebook">Login with Facebook</a>
+  </p>
+
+  <p class="text-center">
+    <a class="btn btn-large btn-block" href="/auth/google">Login with Google</a>
+  </p>
+
+  <p class="text-center">
+    <a class="btn btn-large btn-block" href="/auth/twitter">Login with Twitter</a>
+  </p>
+</div>
+
+<script>
+  window.onload = function () {
+    $('.form-login > form input[name="{{focus}}"]').focus();
+  }
+</script>

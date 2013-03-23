@@ -4,11 +4,11 @@
 
 'use strict';
 
-function hello(req, res) {
-  res.render('hello', {
+function express(req, res) {
+  res.render('home/express', {
     hello: 'world'
   });
 }
 
 // Public API
-exports.hello = hello;
+exports.express = express;

@@ -5,7 +5,15 @@
 /* globals ngApp */
 'use strict';
 
-ngApp.controller('HomeController', function ($scope) {
+ngApp.controller('HomeController', function ($scope, $cookies) {
+  $scope.livereload = $cookies.livereload;
+
+  $scope.user = {
+    name: {
+      full: $cookies['user.name.full']
+    }
+  };
+
   $scope.items = [
     'Angular',
     'Bower',
@@ -24,6 +32,6 @@ ngApp.controller('HomeController', function ($scope) {
     'MongoDB w/ Mongoose',
     'Redis w/ Hiredis',
     'SocketIO',
-    'Uglify'
+    'Uglify',
   ];
 });

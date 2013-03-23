@@ -1,7 +1,55 @@
-/*
- * config/development.json
- */
-
 {
-
+  "auth": {
+    "facebook": {
+      "id": "@@@@@",
+      "secret": "@@@@@"
+    },
+    "google": {
+      "key": "@@@@@",
+      "secret": "@@@@@"
+    },
+    "twitter": {
+      "key": "@@@@@",
+      "secret": "@@@@@"
+    }
+  },
+  "cookie": {
+    "secret": "ultimate-seed"
+  },
+  "db": {
+    "mongo": {
+      "host": "localhost",
+      "port": 27017,
+      "username": null,
+      "password": null,
+      "db": "ultimate"
+    },
+    "redis": {
+      "host": "localhost",
+      "port": 6379,
+      "password": null
+    }
+  },
+  "session": {
+    "key": "sid",
+    "secret": "ultimate-seed",
+    "store": {
+      "_use": "mongo",
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "username": null,
+        "password": null,
+        "db": "ultimate",
+        "collection": "sessions"
+      },
+      "redis": {
+        "host": "localhost",
+        "port": 6379,
+        "password": null,
+        "db": "ultimate",
+        "prefix": "sess"
+      }
+    }
+  }
 }

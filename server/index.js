@@ -4,4 +4,4 @@
 
 'use strict';
 
-exports = module.exports = require('./app');
+exports = module.exports = require('./app').run();

@@ -67,18 +67,28 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 │   │   └── vendor/
 │   ├── scss/
 │   └── tpl/
+│       └── _partials/
 ├── config/
 │   ├── development.json
 │   ├── karma.conf.js
-│   ├── production.json
+│   └── production.json
 ├── node_modules/
 ├── server/
 │   ├── controllers/
-│   ├── helpers/
 │   ├── lib/
 │   ├── models/
-│   ├── partials/
-│   └── views/
+│   ├── views/
+│   │   ├── _errors/
+│   │   ├── _helpers/
+│   │   ├── _layouts/
+│   │   ├── _partials/
+│   │   ├── account/
+│   │   ├── admin/
+│   │   └── auth/
+│   ├── app.js
+│   ├── index.js
+│   ├── routes.js
+│   └── socketio.js
 ├── test/
 │   ├── client/
 │   │   ├── controllers/

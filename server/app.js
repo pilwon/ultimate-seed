@@ -4,68 +4,132 @@
 
 'use strict';
 
-// System modules.
-var http = require('http'),
-    path = require('path');
+var path = require('path'),
+    util = require('util');
 
-// Installed modules.
-var express = require('express'),
-    hbs = require('hbs'),
-    socketio = require('socket.io');
+var _ = require('lodash'),
+    mongoose = require('mongoose'),
+    passport = require('passport'),
+    ultimate = require('ultimate');
 
-// Project modules.
-var project = require('../project'),
-    routes = require('./routes');
+// Set default NODE_ENV
+if (!_.isString(process.env.NODE_ENV)) {
+  process.env.NODE_ENV = 'development';
+}
 
-// Module variables.
-var app = express(),
-    server = http.createServer(app),
-    io = socketio.listen(server);
-
-// SocketIO.
-io.sockets.on('connection', function (socket) {
-  socket.emit('hello', { hello: 'world' });
-  socket.on('test', function (data) {
-    console.log(data);
-  });
-});
-
-// Express configuration.
-app.configure(function () {
-  app.set('port', process.env.PORT || project.server.port);
-  app.engine('html', hbs.__express);
-  app.set('view engine', 'html');
-  app.set('views', __dirname + '/views');
-  app.use(express.favicon());
-  app.use(express.logger('dev'));
-  app.use(express.static(path.join(__dirname, '..', project.path.temp)));
-  app.use(express.static(path.join(__dirname, '..', project.path.client)));
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(app.router);
-});
-
-// Express configuration for development.
-app.configure('development', function () {
-  app.use(express.errorHandler());
-});
-
-// Express configuration for production.
-app.configure('production', function () {
-  app.use(express.errorHandler());
-});
-
-// Register routes.
-routes.registerRoutes(app);
-
-server.listen(app.get('port'), function () {
-  console.log('Server listening on port ' + app.get('port'));
-});
-
-// Proxy use() for grunt-express.
-server.use = function () {
-  app.use.apply(app, arguments);
+// Create an app
+var app = {
+  config: require(path.join('../config', process.env.NODE_ENV)),
+  dir: __dirname,
+  project: require('../project'),
+  routes: require('./routes'),
+  servers: {}
 };
 
-// Public API
-exports = module.exports = server;
+// Assign app to exports
+exports = module.exports = app;
+
+// Debug
+console.log('app.project:'.cyan);
+console.log(JSON.stringify(app.project, null, 2).bold);
+console.log(util.format('app.config (%s):', process.env.NODE_ENV).cyan);
+console.log(JSON.stringify(app.config, null, 2).bold);
+
+// Defaults for config
+_.defaults(app.config, {
+  url: app.config.url || 'http://localhost:' + app.project.server.port
+});
+
+// Patch mongoose for convenient access.
+mongoose.customPlugin = ultimate.db.mongoose.plugin;
+mongoose.customType = ultimate.db.mongoose.type;
+
+// Load modules
+app.m = app.models = ultimate.require(app.dir + '/models');
+app.v = app.views = ultimate.fs.globSync(app.dir + '/views/**/*.html');
+app.c = app.controllers = ultimate.require(app.dir + '/controllers');
+app.l = app.lib = ultimate.require(app.dir + '/lib');
+
+// Attach middlewares called by app.servers.express
+app.attachMiddlewares = function () {
+  // Attach session middleware
+  if (_.isObject(app.config.session) && _.isObject(app.config.session.store)) {
+    switch (ultimate.server.middleware.session._use(app.config, ['mongo', 'redis'])) {
+    case 'mongo':
+      console.log('app.config.session.store.mongo:'.cyan);
+      console.log(JSON.stringify(app.config.session.store.mongo, null, 2).bold);
+      ultimate.server.middleware.session.mongo.attach(app);
+      break;
+    case 'redis':
+      console.log('app.config.session.store.redis:'.cyan);
+      console.log(JSON.stringify(app.config.session.store.redis, null, 2).bold);
+      ultimate.server.middleware.session.redis.attach(app);
+      break;
+    default:
+      throw new Error('Missing session.store.{mongo,redis} in config');
+    }
+  } else {
+    throw new Error('Missing object in config: session.store');
+  }
+
+  // Method override
+  ultimate.server.middleware.methodOverride.attach(app);
+
+  // Passport
+  app.servers.express.getServer().use(passport.initialize());
+  app.servers.express.getServer().use(passport.session());
+
+  // Passport strategies
+  ultimate.server.middleware.passport.facebook.attach(app);
+  ultimate.server.middleware.passport.google.attach(app);
+  ultimate.server.middleware.passport.local.attach(app);
+  ultimate.server.middleware.passport.twitter.attach(app);
+
+  // Hide Powered-by header
+  ultimate.server.middleware.hidePoweredByHeader.attach(app);
+
+  // Custom
+  app.servers.express.getServer().use(function (req, res, next) {
+    // Locals
+    res.locals.livereload = process.env.LIVERELOAD;
+    res.locals.csrf = req.session._csrf;
+    res.locals.user = req.user;
+    res.locals.role = {
+      admin: false
+    };
+
+    // User cookie
+    if (!req.user) {
+      app.lib.cookie.clearUserCookie(req, res);
+    } else {
+      app.lib.cookie.setUserCookie(req, res);
+    }
+
+    // Live reload
+    if (process.env.LIVERELOAD) {
+      res.cookie('livereload', process.env.LIVERELOAD);
+    } else {
+      res.clearCookie('livereload');
+    }
+
+    next();
+  });
+};
+
+// Run app.servers
+app.run = function () {
+  // Connect to DB
+  ultimate.db.mongo.connect(app);
+  ultimate.db.redis.connect(app);
+
+  // Start servers
+  ultimate.server.express.run(app);
+  ultimate.server.http.run(app);
+  ultimate.server.socketio.run(app);
+
+  // Register socket.io handlers
+  require('./socketio').register(app);
+
+  // Return HTTP server
+  return app.servers.http.getServer();
+};

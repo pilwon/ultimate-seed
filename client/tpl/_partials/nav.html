@@ -1,0 +1,30 @@
+<!-- nav begins -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="//github.com/pilwon/ultimate-seed">ultimate-seed</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><a href="/">Angular</a></li>
+          <li><a href="/express">Express</a></li>
+        </ul>
+        <div class="pull-right">
+          <ul class="navbar-text nav" ng-show="user.name.full">
+            <li><a href="/account">Logged in as <strong>{{user.name.full}}</strong></a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+          <ul class="navbar-text nav" ng-hide="user.name.full">
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- nav ends -->
