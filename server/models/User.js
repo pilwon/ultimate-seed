@@ -46,10 +46,10 @@ var schema = new mongoose.Schema({
 
 // Indexes
 schema.path('email').index({ unique: true });
-schema.path('auth.local.username').index({ unique: true });
-schema.path('auth.facebook.id').index({ unique: true });
-schema.path('auth.google.id').index({ unique: true });
-schema.path('auth.twitter.id').index({ unique: true });
+schema.path('auth.local.username').index({ index: true });
+schema.path('auth.facebook.id').index({ index: true });
+schema.path('auth.google.id').index({ index: true });
+schema.path('auth.twitter.id').index({ index: true });
 
 // Virtuals
 schema.virtual('name.full').get(function () {
