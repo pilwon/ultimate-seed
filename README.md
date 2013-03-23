@@ -34,17 +34,29 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
   * [SocketIO](http://socket.io/)
   * [Uglify](http://lisperator.net/uglifyjs/)
 
-## Creating New Project
+## How to Use
 
-  Download and install dependencies:
+  First of all, you need the following dependencies:
+
+| Dependency                                | Installation                                 |
+|:------------------------------------------|:---------------------------------------------|
+| [Node.js](http://nodejs.org/)             | [download](http://nodejs.org/download/)      |
+| [Grunt](http://gruntjs.com/)              | `npm install grunt-cli -g`                   |
+| [Bower](http://twitter.github.com/bower/) | `npm install bower -g`                       |
+| [MongoDB](http://www.mongodb.org/)        | [download](http://www.mongodb.org/downloads) |
+| [Redis](http://redis.io/)                 | [download](http://redis.io/download)         |
+
+  Then, make sure `MongoDB` server is running somewhere (or use free services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/)). Update configuration information in `config/{development,production}.json`.
+
+  `Redis` server is optional but it is highly recommended. Modify `session.store._use` variable as well as Redis connection information in the configuration file if you wish to use Redis as session backend. There is also a free Redis hosting provider, [Redis To Go](http://redistogo.com/).
+
+  Now run the following commands to download `ultimate-seed` and its dependencies:
 
     $ git clone https://github.com/pilwon/ultimate-seed.git
     $ cd ultimate-seed
     $ npm install && bower install
 
-## Grunt Tasks
-
-  Available commands:
+  Finally, use the following commands to start, test, and build your app:
 
     $ grunt server              # start server
     $ grunt test                # run tests
