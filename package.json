@@ -98,8 +98,5 @@
     "build": "grunt",
     "start": "grunt server",
     "test": "grunt test"
-  },
-  "engine": {
-    "node": ">=0.8.0"
   }
 }
