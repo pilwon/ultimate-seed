@@ -40,10 +40,11 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 
 | Dependency                                | Installation                                 |
 |:------------------------------------------|:---------------------------------------------|
-| [Node.js](http://nodejs.org/)             | [download](http://nodejs.org/download/)      |
-| [Grunt](http://gruntjs.com/)              | `npm install grunt-cli -g`                   |
 | [Bower](http://twitter.github.com/bower/) | `npm install bower -g`                       |
+| [Compass](http://compass-style.org/)      | `gem install compass`                        |
+| [Grunt](http://gruntjs.com/)              | `npm install grunt-cli -g`                   |
 | [MongoDB](http://www.mongodb.org/)        | [download](http://www.mongodb.org/downloads) |
+| [Node.js](http://nodejs.org/)             | [download](http://nodejs.org/download/)      |
 | [Redis](http://redis.io/)                 | [download](http://redis.io/download)         |
 
   Then, make sure `MongoDB` server is running somewhere (or use free services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/)). Update configuration information in `config/{development,production}.json`.
