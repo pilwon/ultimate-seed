@@ -49,7 +49,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 
   Then, make sure `MongoDB` server is running somewhere (or use free services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/)). Update configuration information in `config/{development,production}.json`.
 
-  `Redis` server is optional but it is highly recommended. Modify `session.store._use` variable as well as Redis connection information in the configuration file if you wish to use Redis as session backend. There is also a free Redis hosting provider, [Redis To Go](http://redistogo.com/).
+  `Redis` server is optional but it is highly recommended. Modify *session.store._use* variable as well as Redis connection information in the configuration file if you wish to use Redis as session backend. There is also a free Redis hosting provider, [Redis To Go](http://redistogo.com/).
 
   Now run the following commands to download `ultimate-seed` and its dependencies:
 
@@ -117,6 +117,10 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 ├── package.json
 └── project.json
 ```
+
+## Screenshot
+
+![screenshot](https://raw.github.com/pilwon/ultimate-seed/master/client/img/screenshot.png)
 
 ## License
 
