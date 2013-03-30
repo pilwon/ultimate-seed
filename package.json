@@ -58,7 +58,6 @@
     "passport-google-oauth": "~0.1.5",
     "passport-local": "~0.1.6",
     "passport-twitter": "~0.1.4",
-    "passport": "~0.1.16",
     "qs": "~0.5.5",
     "redis": "~0.8.2",
     "request": "~2.16.6",
