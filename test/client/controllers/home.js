@@ -14,7 +14,7 @@ describe('HomeCtrl', function () {
     $controller('HomeController', { $scope: scope = {} });
   }));
 
-  it('should create "items" model with 18 items', function () {
-    scope.items.length.should.equal(18);
+  it('should create "items" model with 22 items', function () {
+    scope.items.length.should.equal(22);
   });
 });
