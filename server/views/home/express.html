@@ -1,3 +1,9 @@
 <h1>Express</h1>
 
 <p>Hello, {{hello}}!</p>
+
+{{#extend "scripts"}}
+<script>
+  console.log('script injected from home/express.html');
+</script>
+{{/extend}}
