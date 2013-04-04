@@ -49,6 +49,25 @@ module.exports = function (grunt) {
         }
       }
     },
+    less: {
+      server: {
+        options: {
+          paths: ['<%= project.path.client %>/less']
+        },
+        files: {
+          '<%= project.path.temp %>/css/less.css': '<%= project.path.client %>/less/app.less'
+        }
+      },
+      dist: {
+        options: {
+          paths: ['<%= project.path.client %>/less'],
+          yuicompress: true
+        },
+        files: {
+          '<%= project.path.temp %>/css/less.css': '<%= project.path.client %>/less/app.less'
+        }
+      }
+    },
     copy: {  // grunt-contrib-copy
       dist: {
         files: [{
@@ -179,6 +198,10 @@ module.exports = function (grunt) {
         files: ['<%= project.path.client %>/scss/{,*/}*.scss'],
         tasks: ['compass']
       },
+      less: {
+        files: ['<%= project.path.client %>/less/{,*/}*.less'],
+        tasks: ['less:server']
+      },
       livereload: {
         files: [
           '<%= project.path.client %>/**.html',
@@ -199,6 +222,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'compass:dist',
+    'less:dist',
     'useminPrepare',
     'imagemin',
     'htmlmin',
@@ -217,6 +241,7 @@ module.exports = function (grunt) {
       'jshint:server',
       'clean:server',
       'compass:server',
+      'less:server',
       'livereload-start',
       'express',
       'open',
