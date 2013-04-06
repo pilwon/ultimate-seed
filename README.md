@@ -83,7 +83,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 │   │   ├── services/
 │   │   └── vendor/
 │   ├── scss/
-│   └── tpl/
+│   └── views/
 │       └── _partials/
 ├── config/
 │   ├── development.json

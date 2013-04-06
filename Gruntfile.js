@@ -59,7 +59,7 @@ module.exports = function (grunt) {
           src: [
             '../<%= project.path.bower %>/**/*',
             'fonts/**/*',
-            'tpl/**/*',
+            'views/**/*',
             '*.{ico,txt}'
           ]
         }]
@@ -92,7 +92,7 @@ module.exports = function (grunt) {
           cwd: '<%= project.path.client %>',
           src: [
             '*.html',
-            'tpl/*.html'
+            'views/*.html'
           ],
           dest: '<%= project.path.dist %>'
         }]
@@ -184,7 +184,7 @@ module.exports = function (grunt) {
           '<%= project.path.client %>/**.html',
           '{<%= project.path.temp %>,<%= project.path.client %>}/css/**/*.css',
           '{<%= project.path.temp %>,<%= project.path.client %>}/js/**/*.js',
-          '{<%= project.path.temp %>,<%= project.path.client %>}/tpl/**/*.html',
+          '{<%= project.path.temp %>,<%= project.path.client %>}/views/**/*.html',
           '<%= project.path.client %>/img/{,*/}*.{png,jpg,jpeg}',
           '<%= project.path.server %>/partials/**/*.html',
           '<%= project.path.server %>/views/**/*.html'
