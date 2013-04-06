@@ -5,6 +5,10 @@
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'sass-bootstrap/variables.scss';
 
+body {
+  padding-top: 60px;
+}
+
 .hero-unit {
   margin: 10px auto 30px auto;
   padding: 30px;
