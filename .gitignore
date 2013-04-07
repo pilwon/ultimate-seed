@@ -2,4 +2,6 @@
 .tmp
 client/components
 client-built
+config/development.json
+config/production.json
 node_modules

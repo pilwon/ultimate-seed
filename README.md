@@ -65,10 +65,12 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 
   Finally, use the following commands to start, build, and deploy your app:
 
-    $ grunt server                     # start server
-    $ grunt                            # jshint & build
-    $ grunt clean                      # clean grenerated files
-    $ NODE_ENV=production node server  # run server in production mode
+    $ grunt server                          # start server
+    $ grunt                                 # jshint & build
+    $ grunt clean                           # clean grenerated files
+    $ NODE_ENV=production node server       # run server in production mode
+
+  * NOTE: Run `grunt` before starting the server in production environment.
 
 ## Directory Structure
 

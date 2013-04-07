@@ -55,7 +55,7 @@
     "express": "~3.1.0",
     "express3-handlebars": "~0.3.2",
     "hiredis": "~0.1.15",
-    "lodash": "~1.1.1",
+    "lodash": "~1.0.0",
     "mongoose": "~3.6.0",
     "mongoose-types": "~1.0.3",
     "nodemailer": "~0.3.44",
@@ -100,6 +100,7 @@
   },
   "scripts": {
     "build": "grunt",
+    "postinstall": "grunt copy-config-files",
     "start": "grunt server"
   }
 }
