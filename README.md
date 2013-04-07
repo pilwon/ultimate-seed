@@ -63,11 +63,12 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
     $ cd ultimate-seed
     $ npm install && bower install
 
-  Finally, use the following commands to start and build your app:
+  Finally, use the following commands to start, build, and deploy your app:
 
-    $ grunt server              # start server
-    $ grunt                     # jshint & build
-    $ grunt clean               # clean grenerated files
+    $ grunt server                     # start server
+    $ grunt                            # jshint & build
+    $ grunt clean                      # clean grenerated files
+    $ NODE_ENV=production node server  # run server in production mode
 
 ## Directory Structure
 
