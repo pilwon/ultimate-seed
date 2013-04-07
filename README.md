@@ -63,12 +63,11 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
     $ cd ultimate-seed
     $ npm install && bower install
 
-  Finally, use the following commands to start, test, and build your app:
+  Finally, use the following commands to start and build your app:
 
     $ grunt server              # start server
-    $ grunt test                # run tests
-    $ grunt                     # jshint, test, then build
-    $ grunt clean               # clean grunt grenerated files
+    $ grunt                     # jshint & build
+    $ grunt clean               # clean grenerated files
 
 ## Directory Structure
 
@@ -116,13 +115,6 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 │   ├── index.js
 │   ├── routes.js
 │   └── socketio.js
-├── test/
-│   ├── client/
-│   │   ├── controllers/
-│   │   ├── directives/
-│   │   ├── filters/
-│   │   └── services/
-│   └── server/
 ├── .bowerrc
 ├── .editorconfig
 ├── .jshintrc

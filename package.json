@@ -100,7 +100,6 @@
   },
   "scripts": {
     "build": "grunt",
-    "start": "grunt server",
-    "test": "grunt test"
+    "start": "grunt server"
   }
 }
