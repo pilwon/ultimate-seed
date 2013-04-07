@@ -85,11 +85,14 @@ require.config({
 });
 
 require([
+  'jquery',
   'app',
   'socketio'
-], function (app, socketio) {
+], function ($, app, socketio) {
   'use strict';
 
-  app.start();
-  socketio.connect();
+  $(function () {
+    app.start();
+    socketio.connect();
+  });
 });
