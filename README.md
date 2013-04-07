@@ -15,7 +15,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 
   This seed integrates a bunch of popular modern web frameworks and libraries.
 
-  * [Angular](http://angularjs.org/)
+  * [Backbone](http://backbonejs.org/)
   * [Bower](http://twitter.github.com/bower/)
   * [Bootstrap](http://twitter.github.com/bootstrap/)
   * [Compass](http://compass-style.org/) ([SCSS](http://sass-lang.com/))
@@ -27,6 +27,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
   * [Karma](http://karma-runner.github.com/)
   * [Livereload](http://livereload.com/)
   * [Lodash](http://lodash.com/) ([Underscore](http://underscorejs.org/))
+  * [Marionette](http://marionettejs.com/)
   * [Mocha](http://visionmedia.github.com/mocha/) w/ [Chai](http://chaijs.com/)
   * [Modernizr](http://modernizr.com/)
   * [MongoDB](http://www.mongodb.org/) w/ [Mongoose](http://www.mongoose.com/)
@@ -35,6 +36,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
   * [Passport-Google](https://github.com/jaredhanson/passport-google-oauth)
   * [Passport-Twitter](https://github.com/jaredhanson/passport-twitter)
   * [Redis](http://redis.io/) w/ [Hiredis](https://github.com/redis/hiredis)
+  * [RequireJS](http://requirejs.org/)
   * [SocketIO](http://socket.io/)
   * [Uglify](http://lisperator.net/uglifyjs/)
 
@@ -44,12 +46,12 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 
 | Dependency                                | Installation                                 |
 |:------------------------------------------|:---------------------------------------------|
+| [Node.js](http://nodejs.org/)             | [download](http://nodejs.org/download/)      |
+| [MongoDB](http://www.mongodb.org/)        | [download](http://www.mongodb.org/downloads) |
+| [Redis](http://redis.io/)                 | [download](http://redis.io/download)         |
 | [Bower](http://twitter.github.com/bower/) | `npm install bower -g`                       |
 | [Compass](http://compass-style.org/)      | `gem install compass`                        |
 | [Grunt](http://gruntjs.com/)              | `npm install grunt-cli -g`                   |
-| [MongoDB](http://www.mongodb.org/)        | [download](http://www.mongodb.org/downloads) |
-| [Node.js](http://nodejs.org/)             | [download](http://nodejs.org/download/)      |
-| [Redis](http://redis.io/)                 | [download](http://redis.io/download)         |
 
   Then, make sure `MongoDB` server is running somewhere (or use free services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/)). Update configuration information in `config/{development,production}.json`.
 
@@ -74,17 +76,25 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 .
 ├── client/
 │   ├── components/
-│   ├── fonts/
 │   ├── img/
 │   ├── js/
+│   │   ├── collections/
 │   │   ├── controllers/
-│   │   ├── directives/
-│   │   ├── filters/
-│   │   ├── services/
-│   │   └── vendor/
+│   │   ├── models/
+│   │   ├── nls/
+│   │   ├── routers/
+│   │   ├── templates/
+│   │   │   ├── _helpers/
+│   │   │   ├── _i18n/
+│   │   │   └── _partials/
+│   │   ├── vendor/
+│   │   └── views/
 │   ├── scss/
-│   └── views/
-│       └── _partials/
+│   │   └── sass-bootstrap/
+│   ├── 404.html
+│   ├── favicon.ico
+│   ├── index.html
+│   └── robots.txt
 ├── config/
 │   ├── development.json
 │   ├── karma.conf.js

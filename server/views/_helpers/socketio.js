@@ -9,8 +9,8 @@ exports = module.exports = function () {
     '<script src="/socket.io/socket.io.js"></script>',
     '<script>',
     '  var socket = io.connect();',
-    '  socket.on(\'hello\', function (data) {',
-    '    console.log(data);',
+    '  socket.on(\'test\', function (data) {',
+    '    console.log(\'socketio:received - \' + JSON.stringify(data));',
     '    socket.emit(\'test\', { hello: \'world\' });',
     '  });',
     '</script>'

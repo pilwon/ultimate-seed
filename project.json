@@ -3,7 +3,7 @@
     "bower": "client/components",
     "client": "client",
     "config": "config",
-    "dist": "dist",
+    "dist": "client-built",
     "server": "server",
     "test": "test",
     "temp": ".tmp"

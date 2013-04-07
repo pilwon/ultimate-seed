@@ -15,7 +15,7 @@ module.exports = function (grunt) {
     project: grunt.file.readJSON('project.json'),
     bower: {  // grunt-bower-hooks
       all: {
-        rjsConfig: '<%= project.path.client %>/js/app.js'
+        rjsConfig: '<%= project.path.client %>/js/main.js'
       }
     },
     cdnify: {  // grunt-google-cdn
@@ -38,7 +38,6 @@ module.exports = function (grunt) {
         cssDir: '<%= project.path.temp %>/css',
         imagesDir: '<%= project.path.client %>/img',
         javascriptsDir: '<%= project.path.client %>/js',
-        fontsDir: '<%= project.path.client %>/fonts',
         importPath: '<%= project.path.bower %>',
         relativeAssets: true
       },
@@ -58,7 +57,6 @@ module.exports = function (grunt) {
           dest: '<%= project.path.dist %>',
           src: [
             '../<%= project.path.bower %>/**/*',
-            'fonts/**/*',
             'views/**/*',
             '*.{ico,txt}'
           ]
@@ -68,7 +66,7 @@ module.exports = function (grunt) {
     cssmin: {  // grunt-contrib-mincss
       dist: {
         files: {
-          '<%= project.path.dist %>/css/app.css': [
+          '<%= project.path.dist %>/css/main.css': [
             '<%= project.path.temp %>/css/{,*/}*.css',
             '<%= project.path.client %>/css/{,*/}*.css'
           ]
@@ -152,14 +150,21 @@ module.exports = function (grunt) {
         url: 'http://localhost:<%= process.env.PORT || project.server.port %>'
       }
     },
-    uglify: {  // grunt-contrib-uglify
+    requirejs: {  // grunt-requirejs
       dist: {
-        files: {
-          '<%= project.path.dist %>/js/app.js': [
-            '<%= project.path.client %>/js/{,*/}*.js'
-          ]
+        // https://github.com/jrburke/r.js/blob/master/build/example.build.js
+        options: {
+          // `name` and `out` are set by grunt-usemin
+          mainConfigFile: '<%= project.path.client %>/js/main.js',
+          optimize: 'uglify',
+          preserveLicenseComments: false,
+          useStrict: true,
+          wrap: true
         }
       }
+    },
+    uglify: {  // grunt-contrib-uglify
+      dist: {}
     },
     usemin: {  // grunt-usemin
       html: ['<%= project.path.dist %>/{,*/}*.html'],
@@ -175,17 +180,29 @@ module.exports = function (grunt) {
       }
     },
     watch: {  // grunt-regarde (task renamed from regarde to watch)
-      compass: {
-        files: ['<%= project.path.client %>/scss/{,*/}*.scss'],
+      'compass': {
+        files: [
+          '<%= project.path.client %>/scss/**/*.scss'
+        ],
         tasks: ['compass']
       },
-      livereload: {
+      'livereload-development': {
         files: [
-          '<%= project.path.client %>/**.html',
-          '{<%= project.path.temp %>,<%= project.path.client %>}/css/**/*.css',
-          '{<%= project.path.temp %>,<%= project.path.client %>}/js/**/*.js',
-          '{<%= project.path.temp %>,<%= project.path.client %>}/views/**/*.html',
+          '<%= project.path.temp %>/css/**/*.css',
+          '<%= project.path.client %>/**/*.html',
+          '<%= project.path.client %>/js/**/*.js',
           '<%= project.path.client %>/img/{,*/}*.{png,jpg,jpeg}',
+          '<%= project.path.server %>/partials/**/*.html',
+          '<%= project.path.server %>/views/**/*.html'
+        ],
+        tasks: ['livereload']
+      },
+      'livereload-production': {
+        files: [
+          '<%= project.path.dist %>/css/**/*.css',
+          '<%= project.path.dist %>/**/*.html',
+          '<%= project.path.dist %>/js/**/*.js',
+          '<%= project.path.dist %>/img/{,*/}*.{png,jpg,jpeg}',
           '<%= project.path.server %>/partials/**/*.html',
           '<%= project.path.server %>/views/**/*.html'
         ],
@@ -200,15 +217,14 @@ module.exports = function (grunt) {
     'clean:dist',
     'compass:dist',
     'useminPrepare',
+    'requirejs',
     'imagemin',
     'htmlmin',
     'concat',
     'cssmin',
+    'uglify',
     'copy',
-    'cdnify',
-    'usemin',
-    'ngmin',
-    'uglify'
+    'usemin'
   ]);
 
   grunt.registerTask('server', function () {
@@ -219,9 +235,13 @@ module.exports = function (grunt) {
       'compass:server',
       'livereload-start',
       'express',
-      'open',
-      'watch'
+      'open'
     ]);
+    if (process.env.NODE_ENV === 'production') {
+      grunt.task.run('watch:livereload-production');
+    } else {
+      grunt.task.run('watch');
+    }
   });
 
   grunt.registerTask('test', [

@@ -1,0 +1,117 @@
+/*
+ * client/js/views/main.js
+ */
+
+/* global define */
+
+define([
+  'jquery',
+  'backbone',
+  'collections/features',
+  'hbs!templates/home/index'
+], function ($, Backbone, Features, template) {
+  'use strict';
+
+  return Backbone.Marionette.ItemView.extend({
+    template: template,
+    collection: new Features([
+      {
+        text: 'Backbone',
+        url: 'http://backbonejs.org/'
+      },
+      {
+        text: 'Bower',
+        url: 'http://twitter.github.com/bower/'
+      },
+      {
+        text: 'Bootstrap',
+        url: 'http://twitter.github.com/bootstrap/'
+      },
+      {
+        text: 'Compass (SCSS)',
+        url: 'http://compass-style.org/'
+      },
+      {
+        text: 'Express',
+        url: 'http://expressjs.com/'
+      },
+      {
+        text: 'Grunt',
+        url: 'http://gruntjs.com/'
+      },
+      {
+        text: 'Handlebars',
+        url: 'http://handlebarsjs.com/'
+      },
+      {
+        text: 'jQuery',
+        url: 'http://jquery.com/'
+      },
+      {
+        text: 'JSHint',
+        url: 'http://www.jshint.com/'
+      },
+      {
+        text: 'Karma',
+        url: 'http://karma-runner.github.com/'
+      },
+      {
+        text: 'Livereload',
+        url: 'http://livereload.com/'
+      },
+      {
+        text: 'Lodash (Underscore)',
+        url: 'http://lodash.com/'
+      },
+      {
+        text: 'Marionette',
+        url: 'http://marionettejs.com/'
+      },
+      {
+        text: 'Mocha w/ Chai',
+        url: 'http://visionmedia.github.com/mocha/'
+      },
+      {
+        text: 'Modernizr',
+        url: 'http://modernizr.com/'
+      },
+      {
+        text: 'MongoDB w/ Mongoose',
+        url: 'http://www.mongodb.org/'
+      },
+      {
+        text: 'Passport',
+        url: 'http://passportjs.org/'
+      },
+      {
+        text: 'Passport for Facebook',
+        url: 'https://github.com/jaredhanson/passport-facebook'
+      },
+      {
+        text: 'Passport for Google',
+        url: 'https://github.com/jaredhanson/passport-google-oauth'
+      },
+      {
+        text: 'Passport for Twitter',
+        url: 'https://github.com/jaredhanson/passport-twitter'
+      },
+      {
+        text: 'Redis w/ Hiredis',
+        url: 'http://redis.io/'
+      },
+      {
+        text: 'RequireJS',
+        url: 'http://requirejs.org/'
+      },
+      {
+        text: 'SocketIO',
+        url: 'http://socket.io/'
+      },
+      {
+        text: 'Uglify',
+        url: 'http://lisperator.net/uglifyjs/'
+      }
+    ])
+  });
+
+});

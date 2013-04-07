@@ -19,7 +19,7 @@
         <!-- #nav-right BEGIN -->
         <div id="nav-right" class="pull-right">
           <ul class="nav">
-          {{#if user}}
+          {{#if user.name.full}}
             <li><a href="/account">Logged in as <strong>{{user.name.full}}</strong></a></li>
             <li><a href="/logout">Logout</a></li>
           {{else}}

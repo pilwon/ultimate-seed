@@ -1,5 +1,5 @@
 .sass-cache
 .tmp
 client/components
-dist
+client-built
 node_modules

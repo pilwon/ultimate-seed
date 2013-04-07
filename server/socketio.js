@@ -8,7 +8,12 @@ exports.register = function (app) {
   var s = app.servers.socketio.getServer();
 
   s.sockets.on('connection', function (socket) {
-    socket.emit('hello', { hello: 'world' });
+    // Server -> Client
+    socket.emit('test', {
+      hello: 'world'
+    });
+
+    // Client -> Server
     socket.on('test', function (data) {
       console.log(data);
     });

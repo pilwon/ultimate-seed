@@ -10,19 +10,23 @@
   <title></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-  <link rel="stylesheet" href="css/app.css">
-  <style>
-    body {
-      padding-top: 60px;
-    }
-  </style>
-  <!-- build:js js/vendor/modernizr.js -->
+  <link rel="stylesheet" href="css/main.css">
   <script src="components/modernizr/modernizr.js"></script>
-  <!-- endbuild -->
 </head>
 
 <body>
+
+{{>nav}}
+
+<div class="container">
+  {{{body}}}
+</div>
+
+{{{socketio}}}
+
+{{>livereload}}
+
+{{{block "scripts"}}}
 
 <!--[if lt IE 7]>
   <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
@@ -33,46 +37,25 @@
   <script src="components/json3/lib/json3.min.js"></script>
 <![endif]-->
 
-<!-- Add your site or application content here -->
-<div class="container">
-
-{{> nav}}
-
-{{{body}}}
-
-</div>
-
-{{{socketio}}}
-
-{{>livereload}}
-
-{{{block "scripts"}}}
-
-<!-- build:js js/lib.js -->
 <script src="components/jquery/jquery.js"></script>
-<script src="components/lodash/dist/lodash.js"></script>
-<!-- <script src="components/sass-bootstrap/js/bootstrap-affix.js"></script> -->
-<script src="components/sass-bootstrap/js/bootstrap-alert.js"></script>
-<!-- <script src="components/sass-bootstrap/js/bootstrap-dropdown.js"></script> -->
-<!-- <script src="components/sass-bootstrap/js/bootstrap-tooltip.js"></script> -->
-<!-- <script src="components/sass-bootstrap/js/bootstrap-modal.js"></script> -->
-<!-- <script src="components/sass-bootstrap/js/bootstrap-transition.js"></script> -->
-<!-- <script src="components/sass-bootstrap/js/bootstrap-button.js"></script> -->
-<!-- <script src="components/sass-bootstrap/js/bootstrap-popover.js"></script> -->
-<!-- <script src="components/sass-bootstrap/js/bootstrap-typeahead.js"></script> -->
-<!-- <script src="components/sass-bootstrap/js/bootstrap-carousel.js"></script> -->
-<!-- <script src="components/sass-bootstrap/js/bootstrap-scrollspy.js"></script> -->
-<!-- <script src="components/sass-bootstrap/js/bootstrap-collapse.js"></script> -->
-<!-- <script src="components/sass-bootstrap/js/bootstrap-tab.js"></script> -->
-<!-- endbuild -->
+<script src="components/underscore-amd/underscore.js"></script>
+<script src="components/sass-bootstrap/docs/assets/js/bootstrap.js"></script>
 
-<script>
-  // Google Analytics
-  var _gaq=[['_setAccount','UA-XXXXXX'],['_trackPageview']];
-  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-  s.parentNode.insertBefore(g,s)}(document,'script'));
+<!-- Google Analytics BEGIN -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXX-X']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
 </script>
+<!-- Google Analytics END -->
 
 </body>
 
