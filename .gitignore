@@ -1,3 +1,7 @@
+#
+# .gitignore
+#
+
 .sass-cache
 .tmp
 client/components
