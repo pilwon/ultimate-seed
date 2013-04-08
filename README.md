@@ -70,7 +70,20 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
     $ grunt clean                           # clean grenerated files
     $ NODE_ENV=production node server       # run server in production mode
 
-  * NOTE: Run `grunt` before starting the server in production environment.
+  You need to run `grunt` before starting app in production environment.
+
+### Deployment to Heroku
+
+  `ultimate-seed` supports deployment of your app to [Heroku](https://www.heroku.com/) servers.
+
+  1. Run `grunt` to build the project.
+  2. Comment out all entries in `.gitignore` (or temporarily hide/remove this file)
+  3. Commit all files to a local git repository created at the project root.
+  4. Add git remote pointing to Heroku:
+    * New Heroku app: `heroku create APP_NAME`
+    * Existing Heroku app: `heroku git:remote -a APP_NAME`
+  5. Set the environment variable: `NODE_ENV=heroku`
+  6. Deploy application to Heroku using `git push heroku +master`
 
 ## Directory Structure
 
