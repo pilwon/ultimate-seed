@@ -42,7 +42,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 
 ## How to Use
 
-  First of all, you need the following dependencies:
+### Dependencies
 
 | Dependency                                | Installation                                 |
 |:------------------------------------------|:---------------------------------------------|
@@ -53,23 +53,29 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 | [Compass](http://compass-style.org/)      | `gem install compass`                        |
 | [Grunt](http://gruntjs.com/)              | `npm install grunt-cli -g`                   |
 
-  Then, make sure `MongoDB` server is running somewhere (or use free services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/)). Update configuration information in `config/{development,production}.json`.
+  Make sure `MongoDB` server is running somewhere (or use free services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/)). Update configuration information in `config/{development,production}.json`.
 
   `Redis` server is optional but it is highly recommended. Modify *session.store._use* variable as well as Redis connection information in the configuration file if you wish to use Redis as session backend. There is also a free Redis hosting provider, [Redis To Go](http://redistogo.com/).
 
-  Now run the following commands to download `ultimate-seed` and its dependencies:
+### Installation
+
+  Download `ultimate-seed` and install dependency modules:
 
     $ git clone https://github.com/pilwon/ultimate-seed.git
     $ cd ultimate-seed
     $ npm install && bower install
 
-  Finally, use the following commands to start, build, and deploy your app:
+### Development
 
-    $ grunt server                          # start server
-    $ grunt                                 # jshint & build
-    $ grunt clean                           # clean grenerated files
+  [Grunt](http://gruntjs.com/) tasks to build your app:
 
-### Deployment to a production server
+    $ grunt server             # start server
+    $ grunt                    # jshint & build
+    $ grunt clean              # clean grenerated files
+
+## Deployment
+
+### Production Server
 
   First, prepare and optimize all files used in production environment:
 
@@ -84,7 +90,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
     $ npm install forever -g
     $ NODE_ENV=production PORT=3000 forever start server
 
-### Deployment to Heroku
+### Heroku
 
   `ultimate-seed` supports deployment of your app to [Heroku](https://www.heroku.com/) servers.
 
