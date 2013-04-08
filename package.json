@@ -99,8 +99,7 @@
     "matchdep": "~0.1.1"
   },
   "scripts": {
-    "build": "grunt",
     "postinstall": "grunt copy-config-files",
-    "start": "grunt server"
+    "start": "node server"
   }
 }
