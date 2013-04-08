@@ -121,6 +121,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 ├── .bowerrc
 ├── .editorconfig
 ├── .jshintrc
+├── .slugignore
 ├── Gruntfile.js
 ├── component.json
 ├── npm-scripts.js
