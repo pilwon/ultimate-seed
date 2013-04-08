@@ -53,7 +53,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 | [Compass](http://compass-style.org/)      | `gem install compass`                        |
 | [Grunt](http://gruntjs.com/)              | `npm install grunt-cli -g`                   |
 
-  Make sure `MongoDB` server is running somewhere (or use free services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/)). Update configuration information in `config/{development,production}.json`.
+  Make sure `MongoDB` server is running somewhere (or use free services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/)). Update configuration information in `config/{development,heroku,production}.json`.
 
   `Redis` server is optional but it is highly recommended. Modify *session.store._use* variable as well as Redis connection information in the configuration file if you wish to use Redis as session backend. There is also a free Redis hosting provider, [Redis To Go](http://redistogo.com/).
 
@@ -65,7 +65,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
     $ cd ultimate-seed
     $ npm install && bower install
 
-### Development
+### Development (`config/development.json`)
 
   [Grunt](http://gruntjs.com/) tasks to build your app:
 
@@ -75,7 +75,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 
 ## Deployment
 
-### Production Server
+### Production Server (`config/production.json`)
 
   First, prepare and optimize all files used in production environment:
 
@@ -90,7 +90,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
     $ npm install forever -g
     $ NODE_ENV=production PORT=3000 forever start server
 
-### Heroku
+### Heroku (`config/heroku.json`)
 
   `ultimate-seed` supports deployment of your app to [Heroku](https://www.heroku.com/) servers.
 
