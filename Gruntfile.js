@@ -224,7 +224,7 @@ module.exports = function (grunt) {
       'express',
       'open'
     ]);
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'heroku' || process.env.NODE_ENV === 'production') {
       grunt.task.run('watch:livereload-production');
     } else {
       grunt.task.run('watch');

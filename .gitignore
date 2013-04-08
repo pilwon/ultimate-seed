@@ -3,5 +3,7 @@
 client/components
 client-built
 config/development.json
+config/heroku.json
 config/production.json
 node_modules
+npm-debug.log

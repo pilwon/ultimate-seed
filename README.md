@@ -99,7 +99,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 │   └── robots.txt
 ├── config/
 │   ├── development.json
-│   ├── karma.conf.js
+│   ├── heroku.json
 │   └── production.json
 ├── node_modules/
 ├── server/

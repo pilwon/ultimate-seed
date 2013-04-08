@@ -1,0 +1,54 @@
+{
+  "auth": {
+    "facebook": {
+      "id": "@@@@@",
+      "secret": "@@@@@"
+    },
+    "google": {
+      "key": "@@@@@",
+      "secret": "@@@@@"
+    },
+    "twitter": {
+      "key": "@@@@@",
+      "secret": "@@@@@"
+    }
+  },
+  "cookie": {
+    "secret": "ultimate-seed"
+  },
+  "db": {
+    "mongo": {
+      "host": "@@@@@",
+      "port": 00000,
+      "username": "@@@@@",
+      "password": "@@@@@",
+      "db": "@@@@@"
+    },
+    "redis": {
+      "host": "@@@@@",
+      "port": 00000,
+      "password": "@@@@@"
+    }
+  },
+  "session": {
+    "key": "sid",
+    "secret": "ultimate-seed",
+    "store": {
+      "_use": "mongo",
+      "mongo": {
+        "host": "@@@@@",
+        "port": 00000,
+        "username": "@@@@@",
+        "password": "@@@@@",
+        "db": "@@@@@",
+        "collection": "sessions"
+      },
+      "redis": {
+        "host": "@@@@@",
+        "port": 00000,
+        "password": "@@@@@",
+        "prefix": "ultimate:sessions"
+      }
+    }
+  }
+}
