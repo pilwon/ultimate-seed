@@ -20,11 +20,6 @@ module.exports = function (grunt) {
         rjsConfig: '<%= project.path.client %>/js/main.js'
       }
     },
-    cdnify: {  // grunt-google-cdn
-      dist: {
-        html: ['<%= project.path.dist %>/*.html']
-      }
-    },
     clean: {  // grunt-contrib-clean
       dist: [
         '<%= project.path.temp %>',
@@ -135,16 +130,6 @@ module.exports = function (grunt) {
       all: {
         configFile: '<%= project.path.config %>/karma.conf.js',
         singleRun: false
-      }
-    },
-    ngmin: {  // grunt-ngmin
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= project.path.dist %>/js',
-          src: '*.js',
-          dest: '<%= project.path.dist %>/js'
-        }]
       }
     },
     open: {  // grunt-open
