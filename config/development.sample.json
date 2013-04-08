@@ -47,8 +47,7 @@
         "host": "localhost",
         "port": 6379,
         "password": null,
-        "db": "ultimate",
-        "prefix": "sess"
+        "prefix": "ultimate:sessions"
       }
     }
   }
