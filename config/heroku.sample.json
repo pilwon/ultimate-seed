@@ -36,17 +36,9 @@
     "store": {
       "_use": "mongo",
       "mongo": {
-        "host": "@@@@@",
-        "port": 00000,
-        "username": "@@@@@",
-        "password": "@@@@@",
-        "db": "@@@@@",
         "collection": "sessions"
       },
       "redis": {
-        "host": "@@@@@",
-        "port": 00000,
-        "password": "@@@@@",
         "prefix": "ultimate:sessions"
       }
     }
