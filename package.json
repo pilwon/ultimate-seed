@@ -41,8 +41,8 @@
     "google",
     "twitter",
     "redis",
-    "requirejs",
     "hiredis",
+    "requirejs",
     "socket.io",
     "uglify"
   ],
