@@ -123,6 +123,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 ├── .jshintrc
 ├── Gruntfile.js
 ├── component.json
+├── npm-scripts.js
 ├── package.json
 └── project.json
 ```

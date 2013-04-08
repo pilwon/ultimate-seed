@@ -4,10 +4,7 @@
 
 'use strict';
 
-var exec = require('child_process').exec,
-    fs = require('fs'),
-    path = require('path'),
-    util = require('util');
+var path = require('path');
 
 var project = require('./project');
 
@@ -231,25 +228,6 @@ module.exports = function (grunt) {
     'copy:dist',
     'usemin'
   ]);
-
-  grunt.registerTask('copy-config-files', function () {
-    [{
-      from: path.join(__dirname, project.path.config, 'development.sample.json'),
-      to: path.join(__dirname, project.path.config, 'development.json')
-    }, {
-      from: path.join(__dirname, project.path.config, 'production.sample.json'),
-      to: path.join(__dirname, project.path.config, 'production.json')
-    }].forEach(function (fileCopy) {
-      if (!fs.existsSync(fileCopy.to)) {
-        exec(util.format('cp -n %s %s', fileCopy.from, fileCopy.to), function (err) {
-          if (err) {
-            console.error(err);
-            process.exit(1);
-          }
-        });
-      }
-    });
-  });
 
   grunt.registerTask('server', function () {
     process.env.LIVERELOAD = 35729;

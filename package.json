@@ -99,7 +99,14 @@
     "matchdep": "~0.1.1"
   },
   "scripts": {
-    "postinstall": "grunt copy-config-files",
+    "prepublish": "node npm-scripts prepublish",
+    "postpublish": "node npm-scripts postpublish",
+    "preinstall": "node npm-scripts preinstall",
+    "postinstall": "node npm-scripts postinstall",
+    "preuninstall": "node npm-scripts preuninstall",
+    "postuninstall": "node npm-scripts postuninstall",
+    "preupdate": "node npm-scripts preupdate",
+    "postupdate": "node npm-scripts postupdate",
     "start": "node server"
   }
 }
