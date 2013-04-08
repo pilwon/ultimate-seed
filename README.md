@@ -68,9 +68,21 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
     $ grunt server                          # start server
     $ grunt                                 # jshint & build
     $ grunt clean                           # clean grenerated files
-    $ NODE_ENV=production node server       # run server in production mode
 
-  You need to run `grunt` before starting app in production environment.
+### Deployment to a production server
+
+  First, prepare and optimize all files used in production environment:
+
+    $ grunt
+
+  Then your app can be started in production mode using this command:
+
+    $ NODE_ENV=production node server
+
+  It is recommended to use a tool like [forever](https://github.com/nodejitsu/forever) to ensure your app running continuously:
+
+    $ npm install forever -g
+    $ NODE_ENV=production PORT=3000 forever start server
 
 ### Deployment to Heroku
 
