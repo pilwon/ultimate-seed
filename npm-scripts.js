@@ -9,8 +9,6 @@ var exec = require('child_process').exec,
     path = require('path'),
     util = require('util');
 
-var _ = require('lodash');
-
 var project = require('./project');
 
 var commands = {
@@ -78,7 +76,7 @@ function usage() {
   console.error();
   console.error('  Usage:');
   console.error();
-  _.keys(commands).forEach(function (command) {
+  Object.keys(commands).forEach(function (command) {
     console.error(grey(util.format('    node %s %s',
                   path.basename(__filename, '.js'),
                   command)));
@@ -88,7 +86,7 @@ function usage() {
 }
 
 function main() {
-  if (process.argv.length !== 3 || !_.has(commands, process.argv[2])) {
+  if (process.argv.length !== 3 || !commands.hasOwnProperty(process.argv[2])) {
     usage();
   }
   commands[process.argv[2]]();
