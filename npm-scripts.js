@@ -9,8 +9,6 @@ var exec = require('child_process').exec,
     path = require('path'),
     util = require('util');
 
-require('colors');
-
 var _ = require('lodash');
 
 var project = require('./project');
@@ -26,16 +24,20 @@ var commands = {
   postupdate: postupdate
 };
 
+var grey = function (text) {
+  return '\x1B[90m' + text + '\x1B[39m';
+}
+
 function prepublish() {
-  console.log('npm prepublish script executed'.grey);
+  console.log(grey('npm prepublish script executed'));
 }
 
 function postpublish() {
-  console.log('npm postpublish script executed'.grey);
+  console.log(grey('npm postpublish script executed'));
 }
 
 function preinstall() {
-  console.log('npm preinstall script executed'.grey);
+  console.log(grey('npm preinstall script executed'));
 }
 
 function postinstall() {
@@ -53,23 +55,23 @@ function postinstall() {
     }
   });
 
-  console.log('npm postinstall script executed'.grey);
+  console.log(grey('npm postinstall script executed'));
 }
 
 function preuninstall() {
-  console.log('npm preuninstall script executed'.grey);
+  console.log(grey('npm preuninstall script executed'));
 }
 
 function postuninstall() {
-  console.log('npm postuninstall script executed'.grey);
+  console.log(grey('npm postuninstall script executed'));
 }
 
 function preupdate() {
-  console.log('npm preupdate script executed'.grey);
+  console.log(grey('npm preupdate script executed'));
 }
 
 function postupdate() {
-  console.log('npm postupdate script executed'.grey);
+  console.log(grey('npm postupdate script executed'));
 }
 
 function usage() {
@@ -77,9 +79,9 @@ function usage() {
   console.error('  Usage:');
   console.error();
   _.keys(commands).forEach(function (command) {
-    console.error(util.format('    node %s %s',
+    console.error(grey(util.format('    node %s %s',
                   path.basename(__filename, '.js'),
-                  command).grey);
+                  command)));
   });
   console.error();
   process.exit(1);
