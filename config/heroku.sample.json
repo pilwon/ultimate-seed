@@ -1,17 +1,17 @@
 {
   "url": "http://@@@@@",
-  "auth": {
+  "api": {
     "facebook": {
-      "id": "@@@@@",
-      "secret": "@@@@@"
+      "appId": "@@@@@",
+      "appSecret": "@@@@@"
     },
     "google": {
-      "key": "@@@@@",
-      "secret": "@@@@@"
+      "clientId": "@@@@@",
+      "clientSecret": "@@@@@"
     },
     "twitter": {
-      "key": "@@@@@",
-      "secret": "@@@@@"
+      "consumerKey": "@@@@@",
+      "consumerSecret": "@@@@@"
     }
   },
   "cookie": {
