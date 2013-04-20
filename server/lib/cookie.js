@@ -9,7 +9,7 @@ function clearUserCookie(req, res) {
 }
 
 function setUserCookie(req, res) {
-  res.cookie('user.name.full', req.user.name.full);
+  res.cookie('user.name.full', (req.user ? req.user.name.full : null));
 }
 
 // Public API
