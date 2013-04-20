@@ -86,8 +86,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= project.path.client %>',
           src: [
-            '*.html',
-            'views/*.html'
+            '*.html'
           ],
           dest: '<%= project.path.dist %>'
         }]
