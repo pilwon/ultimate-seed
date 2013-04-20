@@ -4,15 +4,16 @@
 
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'sass-bootstrap/lib/responsive';
-@import 'sass-bootstrap/variables.scss';
+@import 'sass-bootstrap/variables';
+@import 'compass';
 
-body > .container {
+#content {
   margin: 70px auto 30px auto;
-}
 
-.hero-unit {
-  margin: 0 auto;
-  padding: 20px 40px;
-  width: 250px;
-  border-radius: 30px;
+  .hero-unit {
+    margin: 0 auto;
+    padding: 20px 40px;
+    width: 250px;
+    border-radius: 30px;
+  }
 }
