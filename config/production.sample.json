@@ -2,8 +2,8 @@
   "url": "http://@@@@@",
   "api": {
     "facebook": {
-      "id": "@@@@@",
-      "secret": "@@@@@"
+      "appId": "@@@@@",
+      "appSecret": "@@@@@"
     },
     "google": {
       "clientId": "@@@@@",
