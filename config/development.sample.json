@@ -13,8 +13,17 @@
       "consumerSecret": "@@@@@"
     }
   },
+  "aws": {
+    "key": "@@@@@",
+    "secret": "@@@@@",
+    "s3": {
+      "buckets": {
+        "main": "ultimate"
+      }
+    }
+  },
   "cookie": {
-    "secret": "ultimate-seed"
+    "secret": "ultimate"
   },
   "db": {
     "mongo": {
@@ -32,7 +41,7 @@
   },
   "session": {
     "key": "sid",
-    "secret": "ultimate-seed",
+    "secret": "ultimate",
     "store": {
       "_use": "mongo",
       "mongo": {

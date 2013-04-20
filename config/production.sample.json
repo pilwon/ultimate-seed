@@ -14,26 +14,35 @@
       "consumerSecret": "@@@@@"
     }
   },
+  "aws": {
+    "key": "@@@@@",
+    "secret": "@@@@@",
+    "s3": {
+      "buckets": {
+        "main": "ultimate"
+      }
+    }
+  },
   "cookie": {
-    "secret": "ultimate-seed"
+    "secret": "ultimate"
   },
   "db": {
     "mongo": {
-      "host": "localhost",
+      "host": "@@@@@",
       "port": 27017,
       "username": null,
       "password": null,
       "db": "ultimate"
     },
     "redis": {
-      "host": "localhost",
+      "host": "@@@@@",
       "port": 6379,
       "password": null
     }
   },
   "session": {
     "key": "sid",
-    "secret": "ultimate-seed",
+    "secret": "ultimate",
     "store": {
       "_use": "mongo",
       "mongo": {
