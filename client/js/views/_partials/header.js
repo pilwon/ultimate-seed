@@ -1,5 +1,5 @@
 /*
- * client/js/views/header.js
+ * client/js/views/_partials/header.js
  */
 
 /* global define */
@@ -10,7 +10,7 @@ define([
 ], function (Backbone, template) {
   'use strict';
 
-  return Backbone.Marionette.ItemView.extend({
+  return Backbone.Marionette.Layout.extend({
     template: template
   });
 });

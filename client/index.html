@@ -11,6 +11,11 @@
   <meta name="description" content="">
   <meta name="fragment" content="!">
   <meta name="viewport" content="width=device-width">
+  <meta property="og:title" content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://" />
+  <meta property="og:image" content="http://" />
   <link rel="stylesheet" href="css/main.css">
   <!-- build:js js/vendor/modernizr.js -->
   <script src="components/modernizr/modernizr.js"></script>
@@ -19,12 +24,7 @@
 
 <body>
 
-<div id="header"></div>
-<div id="nav"></div>
-<div class="container">
-  <div id="main"></div>
-</div>
-<div id="footer"></div>
+<div id="main"></div>
 
 <!--[if lt IE 7]>
   <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
@@ -34,6 +34,12 @@
   <script src="components/es5-shim/es5-shim.js"></script>
   <script src="components/json3/lib/json3.min.js"></script>
 <![endif]-->
+
+<script>
+  var require = {
+    urlArgs : 'v=' + new Date().getTime()
+  };
+</script>
 
 <!-- build:js js/main.js -->
 <script data-main="js/main" src="components/requirejs/require.js"></script>

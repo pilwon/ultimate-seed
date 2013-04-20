@@ -1,5 +1,5 @@
 /*
- * client/js/views/nav.js
+ * client/js/views/_partials/nav.js
  */
 
 /* global define */
@@ -11,7 +11,7 @@ define([
 ], function ($, Backbone, template) {
   'use strict';
 
-  return Backbone.Marionette.ItemView.extend({
+  return Backbone.Marionette.Layout.extend({
     template: template,
 
     serializeData: function () {

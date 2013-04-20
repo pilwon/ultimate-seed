@@ -10,9 +10,8 @@ define([
 ], function (Backbone, Feature) {
   'use strict';
 
-  var Collection = Backbone.Collection.extend({
+  return Backbone.Collection.extend({
     model: Feature
   });
 
-  return Collection;
 });

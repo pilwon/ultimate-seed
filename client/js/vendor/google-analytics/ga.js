@@ -4,12 +4,14 @@
 
 /* global define */
 
-define(function () {
+require([
+
+], function () {
   'use strict';
 
   function _init() {
     window._gaq = window._gaq || [];
-    window._gaq.push(['_setAccount', 'UA-XXXXX-X']);
+    window._gaq.push(['_setAccount', 'UA-XXXXXX-X']);
     window._gaq.push(['_trackPageview']);
 
     // Create script tag.

@@ -5,43 +5,42 @@
 /* global define */
 
 define([
+  'jquery',
   'backbone',
   'backbone.marionette',
-  'routers/main',
-  'controllers/main',
+  'router',
   'vent',
-  'views/header',
-  'views/nav',
-  'views/main',
-  'views/footer'
-], function (Backbone, Marionette, MainRouter, mainController, vent,
-             HeaderView, NavView, MainView, FooterView) {
+  'views/main'
+], function ($, Backbone, Marionette, Router, vent, MainView) {
   'use strict';
 
   var app = new Marionette.Application();
 
   app.addRegions({
-    headerRegion: '#header',
-    navRegion: '#nav',
-    mainRegion: '#main',
-    footerRegion: '#footer'
+    mainRegion: '#main'
   });
 
   app.addInitializer(function () {
-    app.headerRegion.show(new HeaderView());
-    app.navRegion.show(new NavView());
     app.mainRegion.show(new MainView());
-    app.footerRegion.show(new FooterView());
   });
 
   app.on('initialize:after', function () {
-    new MainRouter({
-      controller: mainController
-    });
+    // Initialize router
+    new Router();
 
-    if (Backbone.history){
-      Backbone.history.start();
-    }
+    // Begin monitoring hash changes.
+    Backbone.history.start({ pushState: true });
+
+    // Snatch all click events on anchor tags.
+    $(document).on('click', 'a:not([target])', function (event) {
+      var href = $(this).attr('href');
+      var protocol = this.protocol + '//';
+
+      if (href.slice(protocol.length) !== protocol) {
+        event.preventDefault();
+        Backbone.history.navigate(href, { trigger: true });
+      }
+    });
   });
 
   vent.on('vent:test', function () {
