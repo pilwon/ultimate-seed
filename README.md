@@ -98,10 +98,11 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
   2. Comment out all entries in `.gitignore` (or temporarily hide/remove this file)
   3. Commit all files to a local git repository created at the project root.
   4. Add git remote pointing to Heroku:
-    * New Heroku app: `heroku create APP_NAME`
-    * Existing Heroku app: `heroku git:remote -a APP_NAME`
-  5. Set the environment variable: `NODE_ENV=heroku`
+    * New Heroku app: `heroku create APPID`
+    * Existing Heroku app: `heroku git:remote -a APPID`
+  5. Set the environment variable: `heroku config:set NODE_ENV=heroku ERROR_PAGE_URL=http://APPID.herokuapp.com/404.html -a APPID`
   6. Deploy application to Heroku using `git push heroku +master`
+  7. Deployed at [http://APPID.herokuapp.com/](http://ultimate-seed.herokuapp.com/)
 
 ## Directory Structure
 
