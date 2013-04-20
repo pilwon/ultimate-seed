@@ -45,11 +45,11 @@ require.config({
         'backbone.routefilter',
         'bootstrap',
         'jquery.cookie',
-        'jquery.fitvids',
+        // 'jquery.fitvids',
         'vendor/debug/ba-debug',
-        'vendor/google-analytics/ga',
-        'vendor/kissmetrics/kissmetrics',
-        'vendor/sprintf/sprintf'
+        // 'vendor/google-analytics/ga',
+        // 'vendor/kissmetrics/kissmetrics',
+        // 'vendor/sprintf/sprintf'
       ]
     },
     'backbone': {
