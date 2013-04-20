@@ -61,8 +61,7 @@ function loginPOST(req, res, next) {
 
     // Remember me
     if (req.body.rememberMe) {
-      // 30 days = 30 * 24 * 60 * 60 * 1000 = 2592000000
-      req.session.cookie.maxAge = 2592000000;
+      req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 30;  // 1 month
     } else {
       req.session.cookie.expires = false;
     }
@@ -172,13 +171,11 @@ function facebookCallback(req, res, next) {
     successRedirect: '/auth/facebook/success',
     failureRedirect: '/login',
     failureFlash: true
-  })(req, res, function () {
-    app.lib.cookie.setUserCookie(req, res);
-    next();
-  });
+  })(req, res, next);
 }
 
 function facebookSuccess(req, res) {
+  app.lib.cookie.setUserCookie(req, res);
   res.redirect('/');
 }
 
@@ -196,13 +193,11 @@ function googleCallback(req, res, next) {
     successRedirect: '/auth/google/success',
     failureRedirect: '/login',
     failureFlash: true
-  })(req, res, function () {
-    app.lib.cookie.setUserCookie(req, res);
-    next();
-  });
+  })(req, res, next);
 }
 
 function googleSuccess(req, res) {
+  app.lib.cookie.setUserCookie(req, res);
   res.redirect('/');
 }
 
@@ -219,13 +214,11 @@ function twitterCallback(req, res, next) {
     successRedirect: '/auth/twitter/success',
     failureRedirect: '/login',
     failureFlash: true
-  })(req, res, function () {
-    app.lib.cookie.setUserCookie(req, res);
-    next();
-  });
+  })(req, res, next);
 }
 
 function twitterSuccess(req, res) {
+  app.lib.cookie.setUserCookie(req, res);
   res.redirect('/');
 }
 
