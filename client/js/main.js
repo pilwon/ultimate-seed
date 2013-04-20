@@ -48,6 +48,7 @@ require.config({
         'jquery.fitvids',
         'vendor/debug/ba-debug',
         'vendor/google-analytics/ga',
+        'vendor/kissmetrics/kissmetrics',
         'vendor/sprintf/sprintf'
       ]
     },
