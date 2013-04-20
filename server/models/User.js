@@ -4,8 +4,12 @@
 
 'use strict';
 
-var bcrypt = require('bcrypt'),
-    mongoose = require('mongoose');
+var util = require('util');
+
+var _ = require('lodash'),
+    bcrypt = require('bcrypt'),
+    mongoose = require('mongoose'),
+    ultimate = require('ultimate');
 
 var plugin = mongoose.customPlugin,
     type = mongoose.customType;
@@ -46,10 +50,11 @@ var schema = new mongoose.Schema({
 
 // Indexes
 schema.path('email').index({ unique: true });
-schema.path('auth.local.username').index({ index: true });
-schema.path('auth.facebook.id').index({ index: true });
-schema.path('auth.google.id').index({ index: true });
-schema.path('auth.twitter.id').index({ index: true });
+schema.path('accessToken').index({ unique: true });
+schema.path('auth.local.username').index({ unique: true });
+schema.path('auth.facebook.id').index({ unique: true });
+schema.path('auth.google.id').index({ unique: true });
+schema.path('auth.twitter.id').index({ unique: true });
 
 // Virtuals
 schema.virtual('name.full').get(function () {
@@ -111,12 +116,13 @@ schema.methods.generateRandomToken = function () {
   return token;
 };
 
-// Facebook auth
+/**
+ * Facebook auth
+ */
 schema.statics.findOrCreateFacebook = function (accessToken, refreshToken, profile, cb) {
   // console.log(profile._json);
-  app.models.User.findOneAndUpdate({
-    email: profile._json.email || 'facebook:' + profile.id
-  }, {
+  var data = {
+    email: profile._json.email,
     name: {
       /* jshint camelcase: false */
       first: profile._json.first_name,
@@ -128,15 +134,28 @@ schema.statics.findOrCreateFacebook = function (accessToken, refreshToken, profi
       token: accessToken,
       profile: profile._json
     }
-  }, { upsert: true }, cb);
+  };
+  app.models.User.findOneAndUpdate({
+    email: data.email
+  }, _.omit(data, ['email', 'name']), function (err, user) {
+    if (err) { return cb(err); }
+    if (user) {
+      // Updated existing account.
+      return cb(null, user);
+    } else {
+      // Create new account.
+      app.models.User.create(data, cb);
+    }
+  });
 };
 
-// Google auth
+/**
+ * Google auth
+ */
 schema.statics.findOrCreateGoogle = function (accessToken, refreshToken, profile, cb) {
   // console.log(profile._json);
-  app.models.User.findOneAndUpdate({
-    email: profile._json.email || 'google:' + profile.id
-  }, {
+  var data = {
+    email: profile._json.email,
     name: {
       /* jshint camelcase: false */
       first: profile._json.given_name,
@@ -148,14 +167,35 @@ schema.statics.findOrCreateGoogle = function (accessToken, refreshToken, profile
       token: accessToken,
       profile: profile._json
     }
-  }, { upsert: true }, cb);
+  };
+  app.models.User.findOneAndUpdate({
+    email: data.email
+  }, _.omit(data, ['email', 'name']), function (err, user) {
+    if (err) { return cb(err); }
+    if (user) {
+      // Updated existing account.
+      return cb(null, user);
+    } else {
+      // Create new account.
+      app.models.User.create(data, cb);
+    }
+  });
 };
 
-// Twitter auth
+/**
+ * Twitter auth
+ *
+ * Twitter API doesn't provide e-mail, therefore
+ * a fake e-mail address is generated in order to
+ * pass field requirement validation.
+ * E-mail may be updated by other auth strategies.
+ */
 schema.statics.findOrCreateTwitter = function (token, tokenSecret, profile, cb) {
   // console.log(profile._json);
-  app.models.User.findOneAndUpdate({ 'auth.twitter.uid': profile.id }, {
-    email: 'twitter:' + profile.id,  // Twitter API doesn't provide e-mail.
+  var data = {
+    email: util.format('%s@%s.twitter.id',
+                       ultimate.util.uuid({ dash: false }),
+                       profile.id),
     name: {
       first: profile._json.name.split(' ').slice(0, -1).join(' '),
       last: profile._json.name.split(' ').slice(-1).join(' ')
@@ -165,7 +205,19 @@ schema.statics.findOrCreateTwitter = function (token, tokenSecret, profile, cb) 
       token: token,
       profile: profile._json
     }
-  }, { upsert: true }, cb);
+  };
+  app.models.User.findOneAndUpdate({
+    'auth.twitter.id': profile.id
+  }, _.omit(data, ['email', 'name']), function (err, user) {
+    if (err) { return cb(err); }
+    if (user) {
+      // Updated existing account.
+      return cb(null, user);
+    } else {
+      // Create new account.
+      app.models.User.create(data, cb);
+    }
+  });
 };
 
 // Model
