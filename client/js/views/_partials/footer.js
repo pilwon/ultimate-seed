@@ -12,27 +12,6 @@ define([
   'use strict';
 
   return Backbone.Marionette.Layout.extend({
-    template: template,
-
-    serializeData: function () {
-      var data = {};
-
-      if (this.model) {
-        data = this.model.toJSON();
-      } else if (this.collection) {
-        data = {
-          items: this.collection.toJSON()
-        };
-      }
-
-      if ($.cookie('livereload')) {
-        data.livereload = {
-          host: location.host.split(':')[0] || 'localhost',
-          port: $.cookie('livereload')
-        };
-      }
-
-      return data;
-    }
+    template: template
   });
 });
