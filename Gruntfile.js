@@ -54,6 +54,7 @@ module.exports = function (grunt) {
           dest: '<%= project.path.dist %>',
           src: [
             '../<%= project.path.bower %>/**/*',
+            'fonts/**/*',
             'json/**/*.json',
             '*.{ico,txt}'
           ]
@@ -176,9 +177,10 @@ module.exports = function (grunt) {
         files: [
           '<%= project.path.temp %>/css/**/*.css',
           '<%= project.path.client %>/**/*.html',
+          '<%= project.path.client %>/fonts/**/*',
+          '<%= project.path.client %>/img/{,*/}*.{png,jpg,jpeg}',
           '<%= project.path.client %>/js/**/*.js',
           '<%= project.path.client %>/json/**/*.json',
-          '<%= project.path.client %>/img/{,*/}*.{png,jpg,jpeg}',
           '<%= project.path.server %>/partials/**/*.html',
           '<%= project.path.server %>/views/**/*.html'
         ],
@@ -186,11 +188,12 @@ module.exports = function (grunt) {
       },
       'livereload-production': {
         files: [
-          '<%= project.path.dist %>/css/**/*.css',
           '<%= project.path.dist %>/**/*.html',
+          '<%= project.path.dist %>/css/**/*.css',
+          '<%= project.path.dist %>/fonts/**/*',
+          '<%= project.path.dist %>/img/{,*/}*.{png,jpg,jpeg}',
           '<%= project.path.dist %>/js/**/*.js',
           '<%= project.path.dist %>/json/**/*.json',
-          '<%= project.path.dist %>/img/{,*/}*.{png,jpg,jpeg}',
           '<%= project.path.server %>/partials/**/*.html',
           '<%= project.path.server %>/views/**/*.html'
         ],
