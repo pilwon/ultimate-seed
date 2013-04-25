@@ -2,10 +2,11 @@
  * client/scss/main.scss
  */
 
+@import 'compass';
+
+@import 'sass-bootstrap/variables';
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'sass-bootstrap/lib/responsive';
-@import 'sass-bootstrap/variables';
-@import 'compass';
 
 #content {
   margin: 70px auto 30px auto;
