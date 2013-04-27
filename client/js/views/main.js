@@ -7,13 +7,12 @@
 define([
   'jquery',
   'backbone',
-  'vent',
   'views/_partials/header',
   'views/_partials/nav',
   'views/_layouts/home',
   'views/_partials/footer',
   'hbs!templates/main'
-], function ($, Backbone, vent, HeaderView, NavView, HomeView,
+], function ($, Backbone, HeaderView, NavView, HomeView,
              FooterView, template) {
   'use strict';
 

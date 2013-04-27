@@ -9,9 +9,9 @@ define([
   'backbone',
   'backbone.marionette',
   'router',
-  'vent',
+  'wreqr',
   'views/main'
-], function ($, Backbone, Marionette, Router, vent, MainView) {
+], function ($, Backbone, Marionette, Router, wreqr, MainView) {
   'use strict';
 
   var app = new Marionette.Application();
@@ -43,15 +43,15 @@ define([
     });
   });
 
-  vent.on('vent:test', function () {
+  wreqr.vent.on('vent:test', function () {
     console.log('test:vent event received.');
   });
 
-  vent.on('socketio:received', function (data) {
+  wreqr.vent.on('socketio:received', function (data) {
     console.log('socketio:received - ' + JSON.stringify(data));
   });
 
-  vent.trigger('vent:test');
+  wreqr.vent.trigger('vent:test');
 
   return app;
 });

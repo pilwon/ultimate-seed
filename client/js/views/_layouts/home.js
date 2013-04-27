@@ -7,10 +7,9 @@
 define([
   'jquery',
   'backbone',
-  'vent',
   'views/home/features',
   'hbs!templates/_layouts/home'
-], function ($, Backbone, vent, FeaturesView, template) {
+], function ($, Backbone, FeaturesView, template) {
   'use strict';
 
   return Backbone.Marionette.Layout.extend({

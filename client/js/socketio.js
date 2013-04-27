@@ -6,8 +6,8 @@
 
 define([
   'underscore',
-  'vent'
-], function (_, vent) {
+  'wreqr'
+], function (_, wreqr) {
   'use strict';
 
   var _socket = null;
@@ -30,7 +30,7 @@ define([
 
     // Server -> Client
     socket.on('test', function (data) {
-      vent.trigger('socketio:received', data);
+      wreqr.vent.trigger('socketio:received', data);
 
       // Client -> Server
       socket.emit('test', {
