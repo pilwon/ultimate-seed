@@ -110,21 +110,29 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 .
 ├── client/
 │   ├── components/
+│   ├── fonts/
 │   ├── img/
 │   ├── js/
 │   │   ├── collections/
 │   │   ├── controllers/
+│   │   ├── lib/
 │   │   ├── models/
 │   │   ├── nls/
-│   │   ├── routers/
+│   │   ├── partials/
+│   │   │   └── livereload.html
 │   │   ├── templates/
 │   │   │   ├── _helpers/
 │   │   │   ├── _i18n/
-│   │   │   └── _partials/
+│   │   │   ├── _layouts/
+│   │   │   ├── footer.html
+│   │   │   ├── header.html
+│   │   │   ├── main.html
+│   │   │   └── nav.html
 │   │   ├── vendor/
 │   │   └── views/
+│   │       └── _layouts/
 │   ├── scss/
-│   │   └── sass-bootstrap/
+│   │   └── bootstrap/
 │   ├── 404.html
 │   ├── favicon.ico
 │   ├── index.html
