@@ -19,7 +19,7 @@ define([
       featuresRegion: '#features'
     },
 
-    onRender: function () {
+    onShow: function () {
       this.featuresRegion.show(new FeaturesView());
     }
   });

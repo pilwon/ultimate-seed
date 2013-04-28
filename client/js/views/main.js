@@ -27,7 +27,7 @@ define([
       footerRegion: '#footer'
     },
 
-    onRender: function () {
+    onShow: function () {
       this.headerRegion.show(new HeaderView());
       this.navRegion.show(new NavView());
       this.contentRegion.show(new HomeLayoutView());
