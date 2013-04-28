@@ -1,12 +1,12 @@
 /*
- * client/js/views/_partials/header.js
+ * client/js/views/footer.js
  */
 
 /* global define */
 
 define([
   'backbone',
-  'hbs!templates/_partials/header'
+  'hbs!templates/footer'
 ], function (Backbone, template) {
   'use strict';
 

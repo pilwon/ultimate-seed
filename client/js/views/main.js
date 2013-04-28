@@ -7,13 +7,14 @@
 define([
   'jquery',
   'backbone',
-  'views/_partials/header',
-  'views/_partials/nav',
   'views/_layouts/home',
-  'views/_partials/footer',
+  'views/footer',
+  'views/header',
+  'views/nav',
   'hbs!templates/main'
-], function ($, Backbone, HeaderView, NavView, HomeView,
-             FooterView, template) {
+], function ($, Backbone, HomeLayoutView,
+             FooterView, HeaderView, NavView,
+             template) {
   'use strict';
 
   return Backbone.Marionette.Layout.extend({
@@ -29,7 +30,7 @@ define([
     onRender: function () {
       this.headerRegion.show(new HeaderView());
       this.navRegion.show(new NavView());
-      this.contentRegion.show(new HomeView());
+      this.contentRegion.show(new HomeLayoutView());
       this.footerRegion.show(new FooterView());
     },
 

@@ -1,14 +1,13 @@
 /*
- * client/js/views/_partials/footer.js
+ * client/js/views/header.js
  */
 
 /* global define */
 
 define([
-  'jquery',
   'backbone',
-  'hbs!templates/_partials/footer'
-], function ($, Backbone, template) {
+  'hbs!templates/header'
+], function (Backbone, template) {
   'use strict';
 
   return Backbone.Marionette.Layout.extend({

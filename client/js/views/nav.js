@@ -1,5 +1,5 @@
 /*
- * client/js/views/_partials/nav.js
+ * client/js/views/nav.js
  */
 
 /* global define */
@@ -7,7 +7,7 @@
 define([
   'jquery',
   'backbone',
-  'hbs!templates/_partials/nav'
+  'hbs!templates/nav'
 ], function ($, Backbone, template) {
   'use strict';
 
