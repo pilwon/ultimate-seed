@@ -72,6 +72,14 @@ app.attachMiddlewares = function () {
     throw new Error('Missing object in config: session.store');
   }
 
+  // Generate CSRF token
+  app.servers.express.getServer().use(function (req, res, next) {
+    if (!req.session._csrf) {
+      req.session._csrf = ultimate.util.uuid({ length: 24, dash: false });
+    }
+    next();
+  });
+
   // Method override
   ultimate.server.middleware.methodOverride.attach(app);
 
