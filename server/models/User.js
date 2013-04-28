@@ -51,10 +51,10 @@ var schema = new mongoose.Schema({
 // Indexes
 schema.path('email').index({ unique: true });
 schema.path('accessToken').index({ unique: true });
-schema.path('auth.local.username').index({ unique: true });
-schema.path('auth.facebook.id').index({ unique: true });
-schema.path('auth.google.id').index({ unique: true });
-schema.path('auth.twitter.id').index({ unique: true });
+schema.path('auth.local.username').index({ unique: true, sparse: true });
+schema.path('auth.facebook.id').index({ unique: true, sparse: true });
+schema.path('auth.google.id').index({ unique: true, sparse: true });
+schema.path('auth.twitter.id').index({ unique: true, sparse: true });
 
 // Virtuals
 schema.virtual('name.full').get(function () {
@@ -101,19 +101,6 @@ schema.methods.comparePassword = function (candidatePassword, cb) {
     if (err) { return cb(err); }
     cb(null, isMatch);
   });
-};
-
-// Remember Me implementation helper method
-schema.methods.generateRandomToken = function () {
-  var chars = '_!abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890',
-      token = new Date().getTime() + '_';
-
-  for (var x = 0; x < 16; ++x) {
-    var i = Math.floor(Math.random() * 62);
-    token += chars.charAt(i);
-  }
-
-  return token;
 };
 
 /**
