@@ -65,6 +65,8 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
     $ cd ultimate-seed
     $ npm install && bower install
 
+  Alternatively, [Yeoman generator for ultimate-seed](https://github.com/pilwon/ultimate-seed-generator) can be used to clone the seed project.
+
 ### Development (`config/development.json`)
 
   [Grunt](http://gruntjs.com/) tasks to build your app:
