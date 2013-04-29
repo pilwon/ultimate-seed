@@ -58,6 +58,7 @@
     "express3-handlebars": "~0.3.3",
     "hiredis": "~0.1.15",
     "lodash": "~1.0.1",
+    "mkdirp": "~0.3.5",
     "mongoose": "~3.6.4",
     "mongoose-types": "~1.0.3",
     "nodemailer": "~0.3.44",

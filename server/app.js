@@ -8,6 +8,7 @@ var path = require('path'),
     util = require('util');
 
 var _ = require('lodash'),
+    mkdirp = require('mkdirp'),
     mongoose = require('mongoose'),
     passport = require('passport'),
     ultimate = require('ultimate');
@@ -30,6 +31,7 @@ var app = {
 exports = module.exports = app;
 
 // Attach winston logger
+mkdirp.sync(app.project.path.log);
 require('./winston').attach(app);
 
 // Debug
