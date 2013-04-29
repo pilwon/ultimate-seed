@@ -2,6 +2,8 @@
 # .slugignore
 #
 
+.git.real
+.gitignore.real
 node_modules/chai
 node_modules/grunt
 node_modules/grunt-bower-hooks
