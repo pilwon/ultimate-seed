@@ -39,6 +39,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
   * [RequireJS](http://requirejs.org/)
   * [SocketIO](http://socket.io/)
   * [Uglify](http://lisperator.net/uglifyjs/)
+  * [Winston](https://github.com/flatiron/winston)
 
 ## How to Use
 
@@ -159,7 +160,8 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 │   ├── app.js
 │   ├── index.js
 │   ├── routes.js
-│   └── socketio.js
+│   ├── socketio.js
+│   └── winston.js
 ├── .bowerrc
 ├── .editorconfig
 ├── .jshintrc

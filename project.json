@@ -4,6 +4,7 @@
     "client": "client",
     "config": "config",
     "dist": "client-built",
+    "log": "log",
     "server": "server",
     "test": "test",
     "temp": ".tmp"

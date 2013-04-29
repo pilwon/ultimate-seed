@@ -29,15 +29,18 @@ var app = {
 // Assign app to exports
 exports = module.exports = app;
 
+// Attach winston logger
+require('./winston').attach(app);
+
 // Debug
-console.log('app.project:'.cyan);
-console.log(JSON.stringify(app.project, null, 2).bold);
-console.log(util.format('app.config (%s):', process.env.NODE_ENV).cyan);
-console.log(JSON.stringify(app.config, null, 2).bold);
+app.logger.debug('app.project: '.cyan +
+                 JSON.stringify(app.project, null, 2));
+app.logger.debug(util.format('app.config (%s): ', process.env.NODE_ENV).cyan +
+                 JSON.stringify(app.config, null, 2));
 
 // Defaults for config
 _.defaults(app.config, {
-  url: app.config.url || 'http://localhost:' + app.project.server.port
+  url: app.config.url || 'http://localhost: ' + app.project.server.port
 });
 
 // Patch mongoose for convenient access.
@@ -56,13 +59,13 @@ app.attachMiddlewares = function () {
   if (_.isObject(app.config.session) && _.isObject(app.config.session.store)) {
     switch (ultimate.server.middleware.session._use(app.config, ['mongo', 'redis'])) {
     case 'mongo':
-      console.log('app.config.session.store.mongo:'.cyan);
-      console.log(JSON.stringify(app.config.session.store.mongo, null, 2).bold);
+      app.logger.debug('app.config.session.store.mongo: '.cyan +
+                       JSON.stringify(app.config.session.store.mongo, null, 2));
       ultimate.server.middleware.session.mongo.attach(app);
       break;
     case 'redis':
-      console.log('app.config.session.store.redis:'.cyan);
-      console.log(JSON.stringify(app.config.session.store.redis, null, 2).bold);
+      app.logger.debug('app.config.session.store.redis: '.cyan +
+                       JSON.stringify(app.config.session.store.redis, null, 2));
       ultimate.server.middleware.session.redis.attach(app);
       break;
     default:

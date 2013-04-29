@@ -94,5 +94,9 @@
   {
     "text": "Uglify",
     "url": "http://lisperator.net/uglifyjs/"
+  },
+  {
+    "text": "Winston",
+    "url": "https://github.com/flatiron/winston"
   }
 ]

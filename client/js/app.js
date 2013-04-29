@@ -32,15 +32,15 @@ define([
     Backbone.history.start({ pushState: true });
 
     // Snatch all click events on anchor tags.
-    $(document).on('click', 'a:not([target])', function (event) {
-      var href = $(this).attr('href');
-      var protocol = this.protocol + '//';
+    // $(document).on('click', 'a:not([target])', function (event) {
+    //   var href = $(this).attr('href');
+    //   var protocol = this.protocol + '//';
 
-      if (href.slice(protocol.length) !== protocol) {
-        event.preventDefault();
-        Backbone.history.navigate(href, { trigger: true });
-      }
-    });
+    //   if (href.slice(protocol.length) !== protocol) {
+    //     event.preventDefault();
+    //     Backbone.history.navigate(href, { trigger: true });
+    //   }
+    // });
   });
 
   wreqr.vent.on('vent:test', function () {
