@@ -175,6 +175,8 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 
 ![screenshot](https://raw.github.com/pilwon/ultimate-seed/master/client/img/screenshot.png)
 
+[Demo on Heroku](http://ultimate-seed.herokuapp.com/)
+
 ## License
 
   `ultimate-seed` is released under the MIT License.
