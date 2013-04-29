@@ -9,6 +9,5 @@ client-built
 config/development.json
 config/heroku.json
 config/production.json
-log
 node_modules
 npm-debug.log
