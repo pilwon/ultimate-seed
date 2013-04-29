@@ -4,9 +4,7 @@
 
 /* global define */
 
-require([
-
-], function () {
+define(function () {
   'use strict';
 
   function _init() {

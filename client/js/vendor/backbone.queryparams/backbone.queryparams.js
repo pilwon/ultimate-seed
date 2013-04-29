@@ -4,7 +4,7 @@
 
 /* global define */
 
-require([
+define([
   'underscore',
   'backbone'
 ], function (_, Backbone) {
