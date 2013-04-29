@@ -13,7 +13,6 @@ exports.register = function (app) {
       ensureRole = ultimate.server.controller.ensureRole;
 
   var error404 = ultimate.server.route.error404,
-      removeTrailingSlash = ultimate.server.route.removeTrailingSlash,
       restify = ultimate.server.route.restify;
 
   var c = app.controllers,
@@ -54,6 +53,5 @@ exports.register = function (app) {
   s.get('/auth/twitter/success', c.auth.twitterSuccess);
 
   // Extra routes
-  removeTrailingSlash.register(s);
   error404.register(s);
 };

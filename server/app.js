@@ -57,6 +57,9 @@ app.l = app.lib = ultimate.require(app.dir + '/lib');
 
 // Attach middlewares called by app.servers.express
 app.attachMiddlewares = function () {
+  // Remove trailing slashes
+  ultimate.server.middleware.removeTrailingSlashes.attach(app);
+
   // Attach session middleware
   if (_.isObject(app.config.session) && _.isObject(app.config.session.store)) {
     switch (ultimate.server.middleware.session._use(app.config, ['mongo', 'redis'])) {
