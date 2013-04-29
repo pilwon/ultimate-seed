@@ -8,11 +8,11 @@ define([
   'jquery',
   'backbone',
   'hbs!templates/nav'
-], function ($, Backbone, template) {
+], function ($, Backbone, navTpl) {
   'use strict';
 
   return Backbone.Marionette.Layout.extend({
-    template: template,
+    template: navTpl,
 
     serializeData: function () {
       var data = {};

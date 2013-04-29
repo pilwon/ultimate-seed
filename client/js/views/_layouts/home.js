@@ -5,22 +5,25 @@
 /* global define */
 
 define([
-  'jquery',
   'backbone',
+  'collections/features',
   'views/home/features',
   'hbs!templates/_layouts/home'
-], function ($, Backbone, FeaturesView, template) {
+], function (Backbone, Features, FeaturesView, homeLayoutTpl) {
   'use strict';
 
   return Backbone.Marionette.Layout.extend({
-    template: template,
+    template: homeLayoutTpl,
 
     regions: {
       featuresRegion: '#features'
     },
 
     onShow: function () {
-      this.featuresRegion.show(new FeaturesView());
+      var features = new Features();
+      this.featuresRegion.show(new FeaturesView({
+        collection: features
+      }));
     }
   });
 

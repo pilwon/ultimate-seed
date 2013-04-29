@@ -11,7 +11,8 @@ define([
   'use strict';
 
   return Backbone.Collection.extend({
-    model: Feature
+    model: Feature,
+    url: '/api/features'
   });
 
 });

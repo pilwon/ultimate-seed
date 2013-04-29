@@ -5,26 +5,52 @@
 /* global define */
 
 define([
-  'jquery',
   'backbone',
-  'lib/util',
-  'collections/features',
+  'handlebars',
+  'hbs!templates/home/feature',
   'hbs!templates/home/features'
-], function ($, Backbone, util, Features, template) {
+], function (Backbone, Handlebars, featureTpl, featuresTpl) {
   'use strict';
 
-  var features = new Features();
+  var LoadingView = Backbone.Marionette.ItemView.extend({
+    template: Handlebars.compile(
+      '<div style="height: 50px;">' +
+      '<i class="icon-spinner icon-spin icon-3x pull-left"></i>' +
+      '</div>'
+    )
+  });
 
-  return Backbone.Marionette.ItemView.extend({
-    template: template,
-    collection: features,
+  var EmptyView = Backbone.Marionette.ItemView.extend({
+    template: Handlebars.compile('<em>N/A</em>')
+  });
+
+  var FeatureView = Backbone.Marionette.ItemView.extend({
+    template: featureTpl,
+    itemViewContainer: 'ul',
+    tagName: 'li'
+  });
+
+  return Backbone.Marionette.CompositeView.extend({
+    template: featuresTpl,
+    itemViewContainer: 'div.features',
+    itemView: FeatureView,
+    emptyView: EmptyView,
 
     initialize: function() {
-      this.listenTo(this.collection, 'all', this.render, this);
+      this.listenTo(this.collection, 'request', this.onRequest);
+      this.listenTo(this.collection, 'sync', this.onSync);
 
-      $.getJSON('/json/features.json', function (data) {
-        features.add(data);
-      });
+      this.collection.fetch();
+    },
+
+    onRequest: function () {
+      this.emptyView = LoadingView;
+      this.render();
+    },
+
+    onSync: function () {
+      this.emptyView = EmptyView;
+      this.render();
     }
   });
 

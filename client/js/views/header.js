@@ -7,10 +7,10 @@
 define([
   'backbone',
   'hbs!templates/header'
-], function (Backbone, template) {
+], function (Backbone, headerTpl) {
   'use strict';
 
   return Backbone.Marionette.Layout.extend({
-    template: template
+    template: headerTpl
   });
 });

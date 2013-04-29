@@ -12,10 +12,14 @@ exports.register = function (app) {
       ensureLoggedOut = ultimate.server.controller.ensureLoggedOut,
       ensureRole = ultimate.server.controller.ensureRole;
 
+  var error404 = ultimate.server.route.error404,
+      removeTrailingSlash = ultimate.server.route.removeTrailingSlash,
+      restify = ultimate.server.route.restify;
+
   var c = app.controllers,
       s = app.servers.express.getServer();
 
-  // home
+  // Home
   s.get('/express', c.home.express);
 
   // Account
@@ -23,6 +27,12 @@ exports.register = function (app) {
 
   // Admin
   s.get('/admin', ensureLoggedIn, ensureRole('admin'), c.admin.index);
+
+  // API
+  restify.any(s, '/api/features', c.api.features, ['list', 'get']);
+  restify.guest(s, '/api/guest/features', c.api.features, ['list', 'get']);
+  restify.user(s, '/api/user/features', c.api.features, ['list', 'get']);
+  restify.admin(s, '/api/admin/features', c.api.features);
 
   // Auth
   s.get('/login', ensureLoggedOut, c.auth.login);
@@ -44,6 +54,6 @@ exports.register = function (app) {
   s.get('/auth/twitter/success', c.auth.twitterSuccess);
 
   // Extra routes
-  ultimate.server.route.removeTrailingSlash.register(s);
-  ultimate.server.route.error404.register(s);
+  removeTrailingSlash.register(s);
+  error404.register(s);
 };

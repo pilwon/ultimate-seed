@@ -14,11 +14,11 @@ define([
   'hbs!templates/main'
 ], function ($, Backbone, HomeLayoutView,
              FooterView, HeaderView, NavView,
-             template) {
+             mainTpl) {
   'use strict';
 
   return Backbone.Marionette.Layout.extend({
-    template: template,
+    template: mainTpl,
 
     regions: {
       headerRegion: '#header',
