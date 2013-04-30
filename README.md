@@ -20,6 +20,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
   * [Bootstrap](http://twitter.github.com/bootstrap/)
   * [Compass](http://compass-style.org/) ([SCSS](http://sass-lang.com/))
   * [Express](http://expressjs.com/)
+  * [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
   * [Grunt](http://gruntjs.com/)
   * [Handlebars](http://handlebarsjs.com/)
   * [jQuery](http://jquery.com/)
@@ -135,7 +136,8 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 │   │   └── views/
 │   │       └── _layouts/
 │   ├── scss/
-│   │   └── bootstrap/
+│   │   ├── bootstrap/
+│   │   └── fontawesome/
 │   ├── 404.html
 │   ├── favicon.ico
 │   ├── index.html

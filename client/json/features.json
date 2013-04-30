@@ -26,101 +26,106 @@
   },
   {
     "id": 6,
+    "text": "Font Awesome",
+    "url": "http://fortawesome.github.io/Font-Awesome/"
+  },
+  {
+    "id": 7,
     "text": "Grunt",
     "url": "http://gruntjs.com/"
   },
   {
-    "id": 7,
+    "id": 8,
     "text": "Handlebars",
     "url": "http://handlebarsjs.com/"
   },
   {
-    "id": 8,
+    "id": 9,
     "text": "jQuery",
     "url": "http://jquery.com/"
   },
   {
-    "id": 9,
+    "id": 10,
     "text": "JSHint",
     "url": "http://www.jshint.com/"
   },
   {
-    "id": 10,
+    "id": 11,
     "text": "Karma",
     "url": "http://karma-runner.github.com/"
   },
   {
-    "id": 11,
+    "id": 12,
     "text": "Livereload",
     "url": "http://livereload.com/"
   },
   {
-    "id": 12,
+    "id": 13,
     "text": "Lodash (Underscore)",
     "url": "http://lodash.com/"
   },
   {
-    "id": 13,
+    "id": 14,
     "text": "Marionette",
     "url": "http://marionettejs.com/"
   },
   {
-    "id": 14,
+    "id": 15,
     "text": "Mocha w/ Chai",
     "url": "http://visionmedia.github.com/mocha/"
   },
   {
-    "id": 15,
+    "id": 16,
     "text": "Modernizr",
     "url": "http://modernizr.com/"
   },
   {
-    "id": 16,
+    "id": 17,
     "text": "MongoDB w/ Mongoose",
     "url": "http://www.mongodb.org/"
   },
   {
-    "id": 17,
+    "id": 18,
     "text": "Passport",
     "url": "http://passportjs.org/"
   },
   {
-    "id": 18,
+    "id": 19,
     "text": "Passport for Facebook",
     "url": "https://github.com/jaredhanson/passport-facebook"
   },
   {
-    "id": 19,
+    "id": 20,
     "text": "Passport for Google",
     "url": "https://github.com/jaredhanson/passport-google-oauth"
   },
   {
-    "id": 20,
+    "id": 21,
     "text": "Passport for Twitter",
     "url": "https://github.com/jaredhanson/passport-twitter"
   },
   {
-    "id": 21,
+    "id": 22,
     "text": "Redis w/ Hiredis",
     "url": "http://redis.io/"
   },
   {
-    "id": 22,
+    "id": 23,
     "text": "RequireJS",
     "url": "http://requirejs.org/"
   },
   {
-    "id": 23,
+    "id": 24,
     "text": "SocketIO",
     "url": "http://socket.io/"
   },
   {
-    "id": 24,
+    "id": 25,
     "text": "Uglify",
     "url": "http://lisperator.net/uglifyjs/"
   },
   {
-    "id": 25,
+    "id": 26,
     "text": "Winston",
     "url": "https://github.com/flatiron/winston"
   }

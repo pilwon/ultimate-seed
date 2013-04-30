@@ -21,6 +21,7 @@
     "bootstrap",
     "compass",
     "scss",
+    "font-awesome",
     "express",
     "grunt",
     "handlebars",
