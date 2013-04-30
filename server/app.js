@@ -153,11 +153,22 @@ app.attachREPL = function() {
       socket.end();
     });
 
-    // Expose some variables to the REPL.
+    // Expose some variables/functions to the REPL.
     replInst.context.app = app;
     // Named it 'ld' because '_' contains the result of the last expression in REPL
     replInst.context.ld = _;
     replInst.context.ultimate = ultimate;
+    replInst.context.showRoutes = function() {
+      var server = app.servers.express.getServer();
+      var routes = _(server.routes)
+          .map(function(item) { return item; })
+          .flatten()
+          .map(function(route) {
+            return route.method.toUpperCase() + ' ' + route.path;
+          })
+          .value();
+      return routes;
+    };
   }).listen(app.config.repl.socket);
 };
 
