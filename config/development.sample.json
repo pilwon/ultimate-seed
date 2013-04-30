@@ -9,6 +9,8 @@
       "clientSecret": "@@@@@"
     },
     "twitter": {
+      "accessToken": "@@@@@",
+      "accessTokenSecret": "@@@@@",
       "consumerKey": "@@@@@",
       "consumerSecret": "@@@@@"
     }
