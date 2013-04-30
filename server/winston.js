@@ -163,8 +163,7 @@ function attach(app) {
         db: db,
         collection: 'log-app'
       })
-    ],
-    exitOnError: false
+    ]
   });
 
   _app.registerWinstonLogger = _attachExpressLogger;
