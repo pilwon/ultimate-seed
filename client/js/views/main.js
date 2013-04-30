@@ -7,12 +7,12 @@
 define([
   'jquery',
   'backbone',
-  'views/_layouts/home',
+  'views/home/layout',
   'views/footer',
   'views/header',
   'views/nav',
   'hbs!templates/main'
-], function ($, Backbone, HomeLayoutView,
+], function ($, Backbone, HomeLayout,
              FooterView, HeaderView, NavView,
              mainTpl) {
   'use strict';
@@ -30,7 +30,7 @@ define([
     onShow: function () {
       this.headerRegion.show(new HeaderView());
       this.navRegion.show(new NavView());
-      this.contentRegion.show(new HomeLayoutView());
+      this.contentRegion.show(new HomeLayout());
       this.footerRegion.show(new FooterView());
     },
 

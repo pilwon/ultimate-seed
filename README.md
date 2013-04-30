@@ -127,14 +127,12 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 │   │   ├── templates/
 │   │   │   ├── _helpers/
 │   │   │   ├── _i18n/
-│   │   │   ├── _layouts/
 │   │   │   ├── footer.html
 │   │   │   ├── header.html
 │   │   │   ├── main.html
 │   │   │   └── nav.html
 │   │   ├── vendor/
 │   │   └── views/
-│   │       └── _layouts/
 │   ├── scss/
 │   │   ├── bootstrap/
 │   │   └── fontawesome/

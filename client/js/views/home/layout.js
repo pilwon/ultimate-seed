@@ -1,5 +1,5 @@
 /*
- * client/js/views/_layouts/home.js
+ * client/js/views/home/layout.js
  */
 
 /* global define */
@@ -8,7 +8,7 @@ define([
   'backbone',
   'collections/features',
   'views/home/features',
-  'hbs!templates/_layouts/home'
+  'hbs!templates/home/layout'
 ], function (Backbone, Features, FeaturesView, homeLayoutTpl) {
   'use strict';
 
