@@ -42,6 +42,9 @@
       "password": "@@@@@"
     }
   },
+  "repl": {
+    "socket": "/tmp/ultimate-repl"
+  },
   "session": {
     "key": "sid",
     "secret": "ultimate",
