@@ -2,8 +2,8 @@
 # .gitignore
 #
 
-.git.heroku
-.gitignore.heroku
+.git.*
+.gitignore.*
 .sass-cache
 .tmp
 client/components
