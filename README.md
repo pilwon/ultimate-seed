@@ -9,7 +9,7 @@
 
 `ultimate-seed` is the ultimate JavaScript/Node.js full-stack seed that makes web developers insanely productive.
 
-This project uses [ultimate](https://github.com/pilwon/ultimate) dependency library.
+This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency library.
 
 ## What's Included?
 
@@ -63,11 +63,11 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 
   Download `ultimate-seed` and install dependency modules:
 
-    $ git clone https://github.com/pilwon/ultimate-seed.git
+    $ git clone https://github.com/pilwon/node-ultimate-seed.git ultimate-seed
     $ cd ultimate-seed
     $ npm install && bower install
 
-  Alternatively, [Yeoman generator for ultimate-seed](https://github.com/pilwon/ultimate-seed-generator) can be used to clone the seed project.
+  Alternatively, [Yeoman generator for ultimate-seed](https://github.com/pilwon/node-ultimate-seed-generator) can be used to clone the seed project.
 
 ### Development (`config/development.json`)
 
@@ -200,7 +200,7 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
 
 ## Screenshot
 
-![screenshot](https://raw.github.com/pilwon/ultimate-seed/master/client/img/screenshot.png)
+![screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot.png)
 
 [Demo on Heroku](http://ultimate-seed.herokuapp.com/)
 
