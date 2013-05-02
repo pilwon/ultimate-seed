@@ -4,7 +4,10 @@
 
 'use strict';
 
-var path = require('path'),
+var fs = require('fs'),
+    net = require('net'),
+    path = require('path'),
+    repl = require('repl'),
     util = require('util');
 
 var _ = require('lodash'),
@@ -132,6 +135,43 @@ app.attachMiddlewares = function () {
   });
 };
 
+// Attach REPL to the process so that server admin can be ready for chaos.
+// It's called by app.run
+app.attachREPL = function() {
+  // If the unix socket still exists, delete it before listening to it.
+  // Otherwise, you will get 'Error: listen EADDRINUSE'.
+  if (fs.existsSync(app.config.repl.socket)) {
+    fs.unlinkSync(app.config.repl.socket);
+  }
+
+  net.createServer(function(socket) {
+    var replInst = repl.start({
+      input: socket,
+      output: socket,
+      prompt: 'ultimate> '
+    }).on('exit', function() {
+      socket.end();
+    });
+
+    // Expose some variables/functions to the REPL.
+    replInst.context.app = app;
+    // Named it 'ld' because '_' contains the result of the last expression in REPL
+    replInst.context.ld = _;
+    replInst.context.ultimate = ultimate;
+    replInst.context.showRoutes = function() {
+      var server = app.servers.express.getServer();
+      var routes = _(server.routes)
+          .map(function(item) { return item; })
+          .flatten()
+          .map(function(route) {
+            return route.method.toUpperCase() + ' ' + route.path;
+          })
+          .value();
+      return routes;
+    };
+  }).listen(app.config.repl.socket);
+};
+
 // Run app.servers
 app.run = function () {
   // Connect to DB
@@ -145,6 +185,9 @@ app.run = function () {
 
   // Register socket.io handlers
   require('./socketio').register(app);
+
+  // Attach REPL
+  app.attachREPL();
 
   // Return HTTP server
   return app.servers.http.getServer();
