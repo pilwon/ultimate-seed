@@ -108,6 +108,31 @@ This project uses [ultimate](https://github.com/pilwon/ultimate) dependency libr
   6. Deploy application to Heroku using `git push heroku +master`
   7. Deployed at [http://APPID.herokuapp.com/](http://ultimate-seed.herokuapp.com/)
 
+## Using REPL (read-eval-print loop)
+
+  This is helpful when you need to debug problems on the production server. You can connect to REPL of the running server via UNIX socket. By default, it creates UNIX socket at /tmp/ultimate-repl but you can configure it in `config/{development,heroku,production}.json`. In order to connect to it, simply run:
+  
+    $ nc -U /tmp/ultimate-repl
+    ultimate>
+    
+  or if you want readline's line editing and persistent history (i.e. using up/down arrow key to see the command history), then install rlwrap (on Mac, `brew install rlwrap`) and run:
+  
+    $ rlwrap nc -U /tmp/ultimate-repl
+    ultimate>
+    
+  Once you are connected, you can evaluate Javascript expression.
+
+    ultimate> 3 + 3
+    6
+    ultimate>
+
+  For your convenience, several variables/functions are exposed. Try the followings:
+  
+    ultimate> app  // ultimate app object
+    ultimate> ld  // lodash (underscore) object (couldn't use _ because it has special meaning in REPL i.e. the result of the last expression)
+    ultimate> ultimate  // ultimate object that ultimate-seed utilizes
+    ultimate> showRoutes()  // shows an array of all routes (e.g. [ ..., 'GET /api/user/features/:id', ...])
+
 ## Directory Structure
 
 ```
