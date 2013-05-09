@@ -210,4 +210,4 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 ## License
 
-  `ultimate-seed` is released under the MIT License.
+  `ultimate-seed` is released under the [MIT License](http://opensource.org/licenses/MIT).
