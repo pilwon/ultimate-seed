@@ -124,12 +124,16 @@ module.exports = function (grunt) {
     },
     karma: {  // grunt-karma
       single: {
-        configFile: '<%= project.path.config %>/karma.conf.js',
+        configFile: '<%= project.path.config %>/karma-unit.conf.js',
         singleRun: true
       },
-      all: {
-        configFile: '<%= project.path.config %>/karma.conf.js',
+      multi: {
+        configFile: '<%= project.path.config %>/karma-unit.conf.js',
         singleRun: false
+      },
+      e2e: {
+        configFile: '<%= project.path.config %>/karma-e2e.conf.js',
+        singleRun: true
       }
     },
     open: {  // grunt-open
@@ -231,7 +235,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'jshint:all',
-    'karma:all'
+    'karma:multi'
   ]);
 
   // Shortcuts

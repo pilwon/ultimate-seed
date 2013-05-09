@@ -14,3 +14,4 @@ config/production.json
 log
 node_modules
 npm-debug.log
+test_out
