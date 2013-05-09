@@ -202,7 +202,11 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 ![screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot.png)
 
-[Demo on Heroku](http://ultimate-seed.herokuapp.com/)
+  [Demo on Heroku](http://ultimate-seed.herokuapp.com/)
+
+## Credits
+
+  See the [contributors](https://github.com/pilwon/node-ultimate-seed/graphs/contributors).
 
 ## License
 
