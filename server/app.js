@@ -45,7 +45,7 @@ app.logger.debug(util.format('app.config (%s): ', process.env.NODE_ENV).cyan +
 
 // Defaults for config
 _.defaults(app.config, {
-  url: app.config.url || 'http://localhost: ' + app.project.server.port
+  url: app.config.url || 'http://localhost:' + app.project.server.port
 });
 
 // Patch mongoose for convenient access.
