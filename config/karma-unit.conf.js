@@ -1,7 +1,7 @@
 /*
  * config/karma.conf.js
  *
- * Karma configuration
+ * Karma unit testing configuration
  */
 
 // base path, that will be used to resolve files and exclude
