@@ -2,17 +2,41 @@
  * client/js/controllers/home.js
  */
 
-/* global define */
+/* globals ngApp */
+'use strict';
 
-define([
+ngApp.controller('HomeController', function ($scope, $window, $cookies) {
+  $scope.livereload = $cookies.livereload;
+  $scope.location = ($window.location.host || 'localhost').split(':')[0];
 
-], function () {
-  'use strict';
-
-  return {
-    index: function () {
-      console.log('home/index');
+  $scope.user = {
+    name: {
+      full: $cookies['user.name.full']
     }
   };
 
+  $scope.items = [
+    'Angular',
+    'Bower',
+    'Bootstrap',
+    'Compass (SCSS)',
+    'Express',
+    'Grunt',
+    'Handlebars',
+    'jQuery',
+    'JSHint',
+    'Karma',
+    'Livereload',
+    'Lodash (Underscore)',
+    'Mocha w/ Chai',
+    'Modernizr',
+    'MongoDB w/ Mongoose',
+    'Passport',
+    'Passport for Facebook',
+    'Passport for Google',
+    'Passport for Twitter',
+    'Redis w/ Hiredis',
+    'SocketIO',
+    'Uglify',
+  ];
 });

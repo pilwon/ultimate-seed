@@ -229,19 +229,19 @@ module.exports = function (grunt) {
     }
   });
 
-  // grunt.registerTask('test', [
-  //   'jshint:all',
-  //   'karma:all'
-  // ]);
+  grunt.registerTask('test', [
+    'jshint:all',
+    'karma:all'
+  ]);
 
   // Shortcuts
   grunt.registerTask('b', 'default');
   grunt.registerTask('s', 'server');
-  // grunt.registerTask('t', 'test');
+  grunt.registerTask('t', 'test');
 
   grunt.registerTask('default', [
     'jshint:all',
-    // 'karma:single',
+    'karma:single',
     'build'
   ]);
 };
