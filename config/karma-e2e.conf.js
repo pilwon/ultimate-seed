@@ -11,6 +11,12 @@ basePath = '..';
 files = [
   ANGULAR_SCENARIO,
   ANGULAR_SCENARIO_ADAPTER,
+  'client/components/chai/chai.js',
+  'client/components/angular/angular.js',
+  'client/components/angular-cookies/angular-cookies.js',
+  'client/components/angular-resource/angular-resource.js',
+  'client/components/angular-sanitize/angular-sanitize.js',
+  'client/js/**/*.js',
   'test/client/e2e/**/*.js'
 ];
 
