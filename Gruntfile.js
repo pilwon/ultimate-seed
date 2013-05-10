@@ -56,6 +56,7 @@ module.exports = function (grunt) {
             '../<%= project.path.bower %>/**/*',
             'fonts/**/*',
             'json/**/*.json',
+            'views/**/*',
             '*.{ico,txt}'
           ]
         }]
@@ -136,6 +137,16 @@ module.exports = function (grunt) {
         singleRun: true
       }
     },
+    ngmin: {  // grunt-ngmin
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= project.path.dist %>/js',
+          src: '*.js',
+          dest: '<%= project.path.dist %>/js'
+        }]
+      }
+    },
     open: {  // grunt-open
       server: {
         url: 'http://localhost:<%= process.env.PORT || project.server.port %>'
@@ -155,7 +166,17 @@ module.exports = function (grunt) {
       }
     },
     uglify: {  // grunt-contrib-uglify
-      dist: {}
+      dist: {
+        // TODO: Figure out a way to specify sourceMap option to grunt-usemin.
+        // files: {
+        //   '<%= project.path.dist %>/js/app.js': [
+        //     '<%= project.path.dist %>/js/app.js'
+        //   ]
+        // },
+        // options: {
+        //   sourceMap: '<%= project.path.dist %>/js/sourceMap.js'
+        // }
+      }
     },
     usemin: {  // grunt-usemin
       html: ['<%= project.path.dist %>/{,*/}*.html'],
@@ -206,14 +227,15 @@ module.exports = function (grunt) {
     'clean:dist',
     'compass:dist',
     'useminPrepare',
-    'requirejs',
+    // 'requirejs',
     'imagemin',
+    'cssmin',
     'htmlmin',
     'concat',
-    'cssmin',
-    'uglify',
-    'copy:dist',
-    'usemin'
+    'copy',
+    'usemin',
+    'ngmin',
+    'uglify'
   ]);
 
   grunt.registerTask('server', function () {
