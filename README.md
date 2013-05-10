@@ -191,8 +191,8 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 ├── .editorconfig
 ├── .jshintrc
 ├── .slugignore
+├── bower.json
 ├── Gruntfile.js
-├── component.json
 ├── npm-scripts.js
 ├── package.json
 └── project.json
