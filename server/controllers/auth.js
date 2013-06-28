@@ -6,10 +6,11 @@
 
 var util = require('util');
 
-var passport = require('passport'),
-    string = require('string');
+var string = require('string'),
+    ultimate = require('ultimate');
 
-var app = require('../app');
+var app = require('../app'),
+    passport = ultimate.lib.passport;
 
 function login(req, res) {
   if (req.isAuthenticated()) {

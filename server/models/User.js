@@ -8,11 +8,11 @@ var util = require('util');
 
 var _ = require('lodash'),
     bcrypt = require('bcrypt'),
-    mongoose = require('mongoose'),
     ultimate = require('ultimate');
 
-var plugin = mongoose.customPlugin,
-    type = mongoose.customType;
+var mongoose = ultimate.lib.mongoose,
+    plugin = ultimate.db.mongoose.plugin,
+    type = ultimate.db.mongoose.type;
 
 var app = require('../app');
 

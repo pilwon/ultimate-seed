@@ -8,8 +8,6 @@ var util = require('util');
 
 var _ = require('lodash'),
     mkdirp = require('mkdirp'),
-    mongoose = require('mongoose'),
-    passport = require('passport'),
     ultimate = require('ultimate');
 
 var config = ultimate.config(__dirname + '/../config');
@@ -40,10 +38,6 @@ app.logger.debug(util.format('app.config (%s): ', process.env.NODE_ENV).cyan +
 _.defaults(app.config, {
   url: app.config.url || 'http://localhost:' + app.project.server.port
 });
-
-// Patch mongoose for convenient access.
-mongoose.customPlugin = ultimate.db.mongoose.plugin;
-mongoose.customType = ultimate.db.mongoose.type;
 
 // Load modules
 app.m = app.models = ultimate.require(app.dir + '/models');
@@ -88,8 +82,8 @@ app.attachMiddlewares = function () {
   ultimate.server.middleware.methodOverride.attach(app);
 
   // Passport
-  app.servers.express.getServer().use(passport.initialize());
-  app.servers.express.getServer().use(passport.session());
+  app.servers.express.getServer().use(ultimate.lib.passport.initialize());
+  app.servers.express.getServer().use(ultimate.lib.passport.session());
 
   // Passport strategies
   ultimate.server.middleware.passport.facebook.attach(app);
@@ -136,7 +130,7 @@ app.attachREPLContext = function (context) {
 // Run app.servers
 app.run = function () {
   // Connect to DB
-  ultimate.db.mongo.connect(app.config.db.mongo);
+  ultimate.db.mongoose.connect(app.config.db.mongo);
   ultimate.db.redis.connect(app.config.db.redis);
 
   // Start servers
