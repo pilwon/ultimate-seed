@@ -1,7 +1,7 @@
 {
   "name": "ultimate-seed",
   "description": "The ultimate JavaScript/Node.js full-stack seed that makes web developers insanely productive.",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "license": "MIT",
   "author": {
     "name": "Pilwon Huh",
@@ -72,7 +72,7 @@
     "request": "~2.16.6",
     "socket.io": "~0.9.14",
     "string": "~1.3.0",
-    "ultimate": "~0.1.5",
+    "ultimate": "~0.2.0",
     "winston": "~0.7.1",
     "winston-mongodb": "~0.4.0",
     "wrench": "~1.4.4",

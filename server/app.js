@@ -136,8 +136,8 @@ app.attachREPLContext = function (context) {
 // Run app.servers
 app.run = function () {
   // Connect to DB
-  ultimate.db.mongo.connect(app);
-  ultimate.db.redis.connect(app);
+  ultimate.db.mongo.connect(app.config.db.mongo);
+  ultimate.db.redis.connect(app.config.db.redis);
 
   // Start servers
   ultimate.server.express.run(app);
