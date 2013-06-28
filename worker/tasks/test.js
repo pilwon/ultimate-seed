@@ -7,9 +7,10 @@ require('colors');
 var path = require('path');
 
 var _ = require('lodash'),
-    async = require('async');
+    async = require('async'),
+    ultimate = require('ultimate');
 
-var config = require(path.join('../../config', process.env.NODE_ENV || 'development'));
+var config = ultimate.config(__dirname + '/../../config');
 
 var DEBUG = false || parseInt(process.env.DEBUG);
 

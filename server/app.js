@@ -4,8 +4,7 @@
 
 'use strict';
 
-var path = require('path'),
-    util = require('util');
+var util = require('util');
 
 var _ = require('lodash'),
     mkdirp = require('mkdirp'),
@@ -13,14 +12,11 @@ var _ = require('lodash'),
     passport = require('passport'),
     ultimate = require('ultimate');
 
-// Set default NODE_ENV
-if (!_.isString(process.env.NODE_ENV)) {
-  process.env.NODE_ENV = 'development';
-}
+var config = ultimate.config(__dirname + '/../config');
 
 // Create an app
 var app = {
-  config: require(path.join('../config', process.env.NODE_ENV)),
+  config: config,
   dir: __dirname,
   project: require('../project'),
   routes: require('./routes'),
