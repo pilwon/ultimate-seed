@@ -7,6 +7,8 @@
                                                                            
 ```
 
+[![NPM](https://nodei.co/npm/ultimate-seed.png?downloads=false&stars=false)](https://npmjs.org/package/ultimate-seed) [![NPM](https://nodei.co/npm-dl/ultimate.png?months=6)](https://npmjs.org/package/ultimate-seed)
+
 `ultimate-seed` is the ultimate JavaScript/Node.js full-stack seed that makes web developers insanely productive.
 
 This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency library.
