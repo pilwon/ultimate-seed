@@ -5,11 +5,19 @@
 /* globals angular */
 'use strict';
 
-var ngApp = angular.module('ngApp', ['ngCookies']);
+var ngApp = angular.module('ngApp', [
+  'ngCookies',
+  'ui.bootstrap',
+  'ui.compat'
+]);
 
-ngApp.config(function ($locationProvider, $routeProvider) {
-  // $locationProvider.html5Mode(true);
-  $routeProvider
-      .when('/', { templateUrl: 'views/home/index.html', controller: 'HomeController' })
-      .otherwise({ redirectTo: '/' });
+ngApp.config(function ($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider
+      .otherwise('/');
+
+  $stateProvider.state('index', {
+    url: '/',
+    templateUrl: 'views/home/index.html',
+    controller: 'HomeController'
+  });
 });

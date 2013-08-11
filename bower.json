@@ -16,6 +16,8 @@
     "angular": "~1.0.7",
     "angular-cookies": "~1.0.7",
     "angular-sanitize": "~1.0.7",
+    "angular-ui-router": "~0.0.1",
+    "angular-ui-bootstrap": "gh-pages",
     "es5-shim": "~2.1.0",
     "jquery": "~2.0.3",
     "json3": "~3.2.5",
