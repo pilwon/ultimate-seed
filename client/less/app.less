@@ -1,0 +1,47 @@
+/*
+ * client/less/app.less
+ */
+
+@import 'pure';
+@import 'flat-ui-colors';
+@import 'variables';
+@import 'variables-custom';
+@import 'mixins';
+@import 'tooltip';
+@import 'navs';
+
+
+
+//
+// Base Styles
+//
+
+html,
+a {
+  color: #555;
+}
+
+html {
+  background: @body-bg;
+}
+
+a {
+  text-decoration: none;
+}
+
+input, select, textarea{
+  color: #555;
+}
+
+.ng-cloak {
+  display: none !important;
+}
+
+
+//
+// Pure Extras
+//
+
+.pure-button-secondary {
+  background: @peter-river;
+}

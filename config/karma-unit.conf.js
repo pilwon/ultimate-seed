@@ -4,61 +4,77 @@
  * Karma unit testing configuration
  */
 
-// base path, that will be used to resolve files and exclude
-basePath = '..';
 
-// list of files / patterns to load in the browser
-files = [
-  MOCHA,
-  MOCHA_ADAPTER,
-  'client/components/chai/chai.js',
-  'client/components/angular/angular.js',
-  'client/components/angular-cookies/angular-cookies.js',
-  'client/components/angular-resource/angular-resource.js',
-  'client/components/angular-sanitize/angular-sanitize.js',
-  'client/components/angular-mocks/angular-mocks.js',
-  'client/js/**/*.js',
-  'test/client/unit/**/*.js'
-];
+module.exports = function(config) {
+  config.set({
+    // base path, that will be used to resolve files and exclude
+    basePath: '..',
 
-// list of files to exclude
-exclude = [
-];
+    frameworks: ['mocha'],
 
-// test results reporter to use
-// possible values: 'dots', 'progress', 'junit'
-reporters = ['progress'];
+    // list of files / patterns to load in the browser
+    files: [
+      'client/components/chai/chai.js',
+      'client/components/angular/angular.js',
+      'client/components/angular-cookies/angular-cookies.js',
+      'client/components/angular-sanitize/angular-sanitize.js',
+      'client/components/angular-mocks/angular-mocks.js',
+      'client/js/**/*.js',
+      'test/client/unit/**/*.js'
+    ],
 
-// web server port
-port = 9876;
+    // list of files to exclude
+    exclude: [],
 
-// cli runner port
-runnerPort = 9100;
+    // use dots reporter, as travis terminal does not support escaping sequences
+    // possible values: 'dots', 'progress'
+    // CLI --reporters progress
+    reporters: ['progress'],
 
-// enable / disable colors in the output (reporters and logs)
-colors = true;
+    // web server port
+    // CLI --port 9876
+    port: 9876,
 
-// level of logging
-// possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-logLevel = LOG_DEBUG;
+    // enable / disable colors in the output (reporters and logs)
+    // CLI --colors --no-colors
+    colors: true,
 
-// enable / disable watching file and executing tests whenever any file changes
-autoWatch = true;
+    // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    // CLI --log-level debug
+    logLevel: config.LOG_DEBUG,
 
-// Start these browsers, currently available:
-// - Chrome
-// - ChromeCanary
-// - Firefox
-// - Opera
-// - Safari (only Mac)
-// - PhantomJS
-// - IE (only Windows)
-//browsers = ['Chrome', 'Firefox', 'Safari', 'PhantomJS'];
-browsers = ['Chrome'];
+    // enable / disable watching file and executing tests whenever any file changes
+    // CLI --auto-watch --no-auto-watch
+    autoWatch: true,
 
-// If browser does not capture in given timeout [ms], kill it.
-captureTimeout = 60000;
+    // Start these browsers, currently available:
+    // - Chrome
+    // - ChromeCanary
+    // - Firefox
+    // - Opera
+    // - Safari (only Mac)
+    // - PhantomJS
+    // - IE (only Windows)
+    // CLI --browsers Chrome,Firefox,Safari
+    browsers: [process.env.TRAVIS ? 'Firefox' : 'Chrome'],
 
-// Continuous Integration mode
-// If true, it capture browsers, run tests and exit.
-singleRun = false;
+    // If browser does not capture in given timeout [ms], kill it
+    // CLI --capture-timeout 5000
+    captureTimeout: 60000,
+
+    // Auto run tests on start (when browsers are captured) and exit
+    // CLI --single-run --no-single-run
+    singleRun: false,
+
+    // report which specs are slower than 500ms
+    // CLI --report-slower-than 500
+    reportSlowerThan: 500,
+
+    plugins: [
+      'karma-mocha',
+      'karma-chrome-launcher',
+      'karma-firefox-launcher'
+    ]
+  });
+};

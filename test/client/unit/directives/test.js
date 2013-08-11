@@ -1,5 +1,5 @@
 /*
- * test/client/directives/home.js
+ * test/client/directives/test.js
  */
 
 /* globals chai, describe, it */

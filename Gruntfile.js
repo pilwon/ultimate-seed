@@ -15,11 +15,6 @@ module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
     project: project,
-    bower: {  // grunt-bower-hooks
-      all: {
-        rjsConfig: '<%= project.path.client %>/js/main.js'
-      }
-    },
     clean: {  // grunt-contrib-clean
       dist: [
         '<%= project.path.temp %>',
@@ -28,22 +23,6 @@ module.exports = function (grunt) {
       server: [
         '<%= project.path.temp %>'
       ]
-    },
-    compass: {  // grunt-contrib-compass
-      options: {
-        sassDir: '<%= project.path.client %>/scss',
-        cssDir: '<%= project.path.temp %>/css',
-        imagesDir: '<%= project.path.client %>/img',
-        javascriptsDir: '<%= project.path.client %>/js',
-        importPath: '<%= project.path.bower %>',
-        relativeAssets: true
-      },
-      dist: {},
-      server: {
-        options: {
-          debugInfo: true
-        }
-      }
     },
     copy: {  // grunt-contrib-copy
       dist: {
@@ -65,7 +44,7 @@ module.exports = function (grunt) {
     cssmin: {  // grunt-contrib-mincss
       dist: {
         files: {
-          '<%= project.path.dist %>/css/main.css': [
+          '<%= project.path.dist %>/css/app.css': [
             '<%= project.path.temp %>/css/{,*/}*.css',
             '<%= project.path.client %>/css/{,*/}*.css'
           ]
@@ -123,6 +102,20 @@ module.exports = function (grunt) {
         '<%= project.path.test %>/server/**/*.js'
       ]
     },
+    less: {  // grunt-contrib-less
+      all: {
+        options: {
+          paths: [
+            '<%= project.path.client %>/less',
+            '<%= project.path.client %>/less/third-party'
+          ],
+          report: 'gzip'
+        },
+        files: {
+          '<%= project.path.temp %>/css/app.css': '<%= project.path.client %>/less/app.less'
+        }
+      }
+    },
     karma: {  // grunt-karma
       single: {
         configFile: '<%= project.path.config %>/karma-unit.conf.js',
@@ -152,19 +145,6 @@ module.exports = function (grunt) {
         url: 'http://localhost:<%= process.env.PORT || project.server.port %>'
       }
     },
-    requirejs: {  // grunt-requirejs
-      dist: {
-        // https://github.com/jrburke/r.js/blob/master/build/example.build.js
-        options: {
-          // `name` and `out` are set by grunt-usemin
-          mainConfigFile: '<%= project.path.client %>/js/main.js',
-          optimize: 'uglify',
-          preserveLicenseComments: false,
-          useStrict: true,
-          wrap: true
-        }
-      }
-    },
     uglify: {  // grunt-contrib-uglify
       dist: {
         // TODO: Figure out a way to specify sourceMap option to grunt-usemin.
@@ -191,14 +171,12 @@ module.exports = function (grunt) {
         dest: '<%= project.path.dist %>'
       }
     },
-    watch: {  // grunt-regarde (task renamed from regarde to watch)
-      'compass': {
-        files: [
-          '<%= project.path.client %>/scss/**/*.scss'
-        ],
-        tasks: ['compass']
+    watch: {  // grunt-contrib-watch
+      less: {
+        files: ['<%= project.path.client %>/less/**/*.less'],
+        tasks: ['less']
       },
-      'livereload-development': {
+      production: {
         files: [
           '<%= project.path.temp %>/css/**/*.css',
           '<%= project.path.client %>/**/*.html',
@@ -206,28 +184,17 @@ module.exports = function (grunt) {
           '<%= project.path.client %>/img/{,*/}*.{png,jpg,jpeg}',
           '<%= project.path.server %>/**/*.html'
         ],
-        tasks: ['livereload']
-      },
-      'livereload-production': {
-        files: [
-          '<%= project.path.dist %>/css/**/*.css',
-          '<%= project.path.dist %>/**/*.html',
-          '<%= project.path.dist %>/{fonts,js,json}/**/*',
-          '<%= project.path.dist %>/img/{,*/}*.{png,jpg,jpeg}',
-          '<%= project.path.server %>/**/*.html'
-        ],
-        tasks: ['livereload']
+        options: {
+          livereload: true
+        }
       }
     }
   });
 
-  grunt.renameTask('regarde', 'watch');
-
   grunt.registerTask('build', [
     'clean:dist',
-    'compass:dist',
+    'less',
     'useminPrepare',
-    // 'requirejs',
     'imagemin',
     'cssmin',
     'htmlmin',
@@ -243,13 +210,12 @@ module.exports = function (grunt) {
     grunt.task.run([
       'jshint:server',
       'clean:server',
-      'compass:server',
-      'livereload-start',
+      'less',
       'express',
       'open'
     ]);
     if (process.env.NODE_ENV === 'heroku' || process.env.NODE_ENV === 'production') {
-      grunt.task.run('watch:livereload-production');
+      grunt.task.run('watch:production');
     } else {
       grunt.task.run('watch');
     }

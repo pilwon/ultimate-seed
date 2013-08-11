@@ -30,9 +30,9 @@ require('./winston').attach(app);
 
 // Debug
 app.logger.debug('app.project: '.cyan +
-                 JSON.stringify(app.project, null, 2));
+    JSON.stringify(app.project, null, 2));
 app.logger.debug(util.format('app.config (%s): ', process.env.NODE_ENV).cyan +
-                 JSON.stringify(app.config, null, 2));
+    JSON.stringify(app.config, null, 2));
 
 // Defaults for config
 _.defaults(app.config, {
@@ -55,12 +55,12 @@ app.attachMiddlewares = function () {
     switch (ultimate.server.middleware.session._use(app.config, ['mongo', 'redis'])) {
     case 'mongo':
       app.logger.debug('app.config.session.store.mongo: '.cyan +
-                       JSON.stringify(app.config.session.store.mongo, null, 2));
+          JSON.stringify(app.config.session.store.mongo, null, 2));
       ultimate.server.middleware.session.mongo.attach(app);
       break;
     case 'redis':
       app.logger.debug('app.config.session.store.redis: '.cyan +
-                       JSON.stringify(app.config.session.store.redis, null, 2));
+          JSON.stringify(app.config.session.store.redis, null, 2));
       ultimate.server.middleware.session.redis.attach(app);
       break;
     default:
