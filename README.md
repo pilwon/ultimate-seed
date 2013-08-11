@@ -1,11 +1,13 @@
 ```sh
-                _      _    _____   _   _       ____   _____   _____        ____   _____  _____  ____ 
-               / \ /\ / \  /__ __\ / \ / \__/| /  _ \ /__ __\ /  __/       / ___\ /  __/ /  __/ /  _ \
-               | | || | |    / \   | | | |\/|| | / \ |  / \   |  \  _____  |    \ |  \   |  \   | | \|
-               | \_/| | |_/\ | |   | | | |  || | |-| |  | |   |  /_ \____\ \___ | |  /_  |  /_  | |_/|
-               \____/ \____/ \_/   \_/ \_/  \| \_/ \ |  \_/   \____\       \____/ \____\ \____\ \____/
+       _      _    _____   _   _       ____   _____   _____        ____   _____  _____  ____ 
+      / \ /\ / \  /__ __\ / \ / \__/| /  _ \ /__ __\ /  __/       / ___\ /  __/ /  __/ /  _ \
+      | | || | |    / \   | | | |\/|| | / \ |  / \   |  \  _____  |    \ |  \   |  \   | | \|
+      | \_/| | |_/\ | |   | | | |  || | |-| |  | |   |  /_ \____\ \___ | |  /_  |  /_  | |_/|
+      \____/ \____/ \_/   \_/ \_/  \| \_/ \ |  \_/   \____\       \____/ \____\ \____\ \____/
                                                                            
 ```
+
+[![NPM](https://nodei.co/npm/ultimate-seed.png?downloads=false&stars=false)](https://npmjs.org/package/ultimate-seed) [![NPM](https://nodei.co/npm-dl/ultimate.png?months=6)](https://npmjs.org/package/ultimate-seed)
 
 `ultimate-seed` is the ultimate JavaScript/Node.js full-stack seed that makes web developers insanely productive.
 
@@ -192,7 +194,8 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 ├── .jshintrc
 ├── .slugignore
 ├── Gruntfile.js
-├── component.json
+├── Procfile
+├── bower.json
 ├── npm-scripts.js
 ├── package.json
 └── project.json
@@ -202,8 +205,12 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 ![screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot.png)
 
-[Demo on Heroku](http://ultimate-seed.herokuapp.com/)
+  [Demo on Heroku](http://ultimate-seed.herokuapp.com/)
+
+## Credits
+
+  See the [contributors](https://github.com/pilwon/node-ultimate-seed/graphs/contributors).
 
 ## License
 
-  `ultimate-seed` is released under the MIT License.
+  `ultimate-seed` is released under the [MIT License](http://opensource.org/licenses/MIT).

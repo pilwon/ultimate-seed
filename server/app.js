@@ -4,26 +4,17 @@
 
 'use strict';
 
-var fs = require('fs'),
-    net = require('net'),
-    path = require('path'),
-    repl = require('repl'),
-    util = require('util');
+var util = require('util');
 
 var _ = require('lodash'),
     mkdirp = require('mkdirp'),
-    mongoose = require('mongoose'),
-    passport = require('passport'),
     ultimate = require('ultimate');
 
-// Set default NODE_ENV
-if (!_.isString(process.env.NODE_ENV)) {
-  process.env.NODE_ENV = 'development';
-}
+var config = ultimate.config(__dirname + '/../config');
 
 // Create an app
 var app = {
-  config: require(path.join('../config', process.env.NODE_ENV)),
+  config: config,
   dir: __dirname,
   project: require('../project'),
   routes: require('./routes'),
@@ -47,10 +38,6 @@ app.logger.debug(util.format('app.config (%s): ', process.env.NODE_ENV).cyan +
 _.defaults(app.config, {
   url: app.config.url || 'http://localhost:' + app.project.server.port
 });
-
-// Patch mongoose for convenient access.
-mongoose.customPlugin = ultimate.db.mongoose.plugin;
-mongoose.customType = ultimate.db.mongoose.type;
 
 // Load modules
 app.m = app.models = ultimate.require(app.dir + '/models');
@@ -95,8 +82,8 @@ app.attachMiddlewares = function () {
   ultimate.server.middleware.methodOverride.attach(app);
 
   // Passport
-  app.servers.express.getServer().use(passport.initialize());
-  app.servers.express.getServer().use(passport.session());
+  app.servers.express.getServer().use(ultimate.lib.passport.initialize());
+  app.servers.express.getServer().use(ultimate.lib.passport.session());
 
   // Passport strategies
   ultimate.server.middleware.passport.facebook.attach(app);
@@ -135,59 +122,25 @@ app.attachMiddlewares = function () {
   });
 };
 
-// Attach REPL to the process so that server admin can be ready for chaos.
-// It's called by app.run
-app.attachREPL = function() {
-  // If the unix socket still exists, delete it before listening to it.
-  // Otherwise, you will get 'Error: listen EADDRINUSE'.
-  if (fs.existsSync(app.config.repl.socket)) {
-    fs.unlinkSync(app.config.repl.socket);
-  }
-
-  net.createServer(function(socket) {
-    var replInst = repl.start({
-      input: socket,
-      output: socket,
-      prompt: 'ultimate> '
-    }).on('exit', function() {
-      socket.end();
-    });
-
-    // Expose some variables/functions to the REPL.
-    replInst.context.app = app;
-    // Named it 'ld' because '_' contains the result of the last expression in REPL
-    replInst.context.ld = _;
-    replInst.context.ultimate = ultimate;
-    replInst.context.showRoutes = function() {
-      var server = app.servers.express.getServer();
-      var routes = _(server.routes)
-          .map(function(item) { return item; })
-          .flatten()
-          .map(function(route) {
-            return route.method.toUpperCase() + ' ' + route.path;
-          })
-          .value();
-      return routes;
-    };
-  }).listen(app.config.repl.socket);
+app.attachREPLContext = function (context) {
+  context.ld = _;  // _ is taken by REPL.
+  context.ultimate = ultimate;
 };
 
 // Run app.servers
 app.run = function () {
   // Connect to DB
-  ultimate.db.mongo.connect(app);
-  ultimate.db.redis.connect(app);
+  ultimate.db.mongoose.connect(app.config.db.mongo);
+  ultimate.db.redis.connect(app.config.db.redis);
 
   // Start servers
   ultimate.server.express.run(app);
   ultimate.server.http.run(app);
   ultimate.server.socketio.run(app);
+  ultimate.server.repl.run(app);
 
   // Register socket.io handlers
   require('./socketio').register(app);
-
-  // Attach REPL
-  app.attachREPL();
 
   // Return HTTP server
   return app.servers.http.getServer();
