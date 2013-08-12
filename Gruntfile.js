@@ -227,7 +227,7 @@ module.exports = function (grunt) {
   ]);
 
   // Shortcuts
-  grunt.registerTask('b', 'default');
+  grunt.registerTask('b', 'build');
   grunt.registerTask('s', 'server');
   grunt.registerTask('t', 'test');
 

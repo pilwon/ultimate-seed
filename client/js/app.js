@@ -5,6 +5,7 @@
 /* globals angular */
 'use strict';
 
+
 var ngApp = angular.module('ngApp', [
   'ngCookies',
   'ui.bootstrap',
@@ -17,7 +18,11 @@ ngApp.config(function ($stateProvider, $urlRouterProvider) {
 
   $stateProvider.state('index', {
     url: '/',
-    templateUrl: 'views/home/index.html',
-    controller: 'HomeController'
+    views: {
+      '': {
+        templateUrl: 'views/home/index.html',
+        controller: 'HomeController'
+      }
+    }
   });
 });

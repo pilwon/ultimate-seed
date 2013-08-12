@@ -14,16 +14,13 @@ ngApp.controller('HomeController', function ($scope, $window, $cookies) {
 
   $scope.items = [
     'Angular',
-    'Bower',
-    'Bootstrap',
-    'Compass (SCSS)',
     'Express',
     'Grunt',
     'Handlebars',
     'jQuery',
     'JSHint',
     'Karma',
-    'Livereload',
+    'Less',
     'Lodash (Underscore)',
     'Mocha w/ Chai',
     'Modernizr',
@@ -34,6 +31,6 @@ ngApp.controller('HomeController', function ($scope, $window, $cookies) {
     'Passport for Twitter',
     'Redis w/ Hiredis',
     'SocketIO',
-    'Uglify',
+    'Uglify'
   ];
 });
