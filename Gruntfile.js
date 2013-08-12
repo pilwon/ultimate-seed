@@ -52,7 +52,7 @@ module.exports = function (grunt) {
       }
     },
     express: {  // grunt-express
-      livereload: {
+      all: {
         options: {
           bases: [],
           debug: true,
@@ -88,7 +88,7 @@ module.exports = function (grunt) {
         jshintrc: '.jshintrc'
       },
       server: [
-        '<%= project.path.client %>/js/{,*/}*.js',
+        '<%= project.path.client %>/js/**/*.js',
         '!<%= project.path.client %>/js/vendor/**/*',
         '<%= project.path.server %>/**/*.js',
         '<%= project.path.test %>/server/**/*.js'

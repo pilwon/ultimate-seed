@@ -6,9 +6,6 @@
 'use strict';
 
 ngApp.controller('HomeController', function ($scope, $window, $cookies) {
-  $scope.livereload = $cookies.livereload;
-  $scope.location = ($window.location.host || 'localhost').split(':')[0];
-
   $scope.user = {
     name: {
       full: $cookies['user.name.full']
