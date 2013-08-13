@@ -4,6 +4,10 @@
 
 'use strict';
 
+function index(req, res) {
+  res.render('home/index');
+}
+
 function express(req, res) {
   res.render('home/express', {
     hello: 'Hello from express world!'
@@ -11,4 +15,5 @@ function express(req, res) {
 }
 
 // Public API
+exports.index = index;
 exports.express = express;

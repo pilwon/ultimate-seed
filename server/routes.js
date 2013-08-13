@@ -52,6 +52,9 @@ exports.register = function (app) {
   s.get('/auth/twitter/callback', c.auth.twitterCallback);
   s.get('/auth/twitter/success', c.auth.twitterSuccess);
 
-  // Extra routes
+  // Known URLs
+  s.get('/test', c.home.index);
+
+  // Unknown URLs
   error404.register(s, app);
 };
