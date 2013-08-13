@@ -7,11 +7,13 @@
                                                                            
 ```
 
-[![NPM](https://nodei.co/npm/ultimate-seed.png?downloads=false&stars=false)](https://npmjs.org/package/ultimate-seed) [![NPM](https://nodei.co/npm-dl/ultimate.png?months=6)](https://npmjs.org/package/ultimate-seed)
+[![NPM](https://nodei.co/npm/ultimate-seed.png?downloads=false&stars=false)](https://npmjs.org/package/ultimate-seed)
+[![NPM](https://nodei.co/npm-dl/ultimate.png?months=9)](https://npmjs.org/package/ultimate-seed)
 
 #### [Demo hosted on Heroku](http://ultimate-seed.herokuapp.com/)
 
-[![Screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot.png)](http://ultimate-seed.herokuapp.com/)
+[![Screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot1.png)](http://ultimate-seed.herokuapp.com/)
+[![Screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot2.png)](http://ultimate-seed.herokuapp.com/)
 
 `ultimate-seed` is the ultimate JavaScript/Node.js full-stack seed that makes web developers insanely productive.
 
