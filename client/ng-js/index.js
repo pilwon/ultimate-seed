@@ -5,7 +5,6 @@
  /* globals app */
  'use strict';
 
-
 // Globalize app.
 global.app = require('./app');
 

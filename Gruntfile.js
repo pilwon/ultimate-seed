@@ -177,27 +177,21 @@ module.exports = function (grunt) {
     less: {  // grunt-contrib-less
       dev: {
         options: {
-          paths: [
-            '<%= project.path.client %>/less',
-            '<%= project.path.client %>/less/third-party'
-          ]
+          paths: ['<%= project.path.client %>/less']
         },
         files: {
-          '<%= project.path.temp %>/css/main.css': '<%= project.path.client %>/less/index.less'
+          '<%= project.path.temp %>/css/main.css': '<%= project.path.client %>/less/app.less'
         }
       },
       dist: {
         options: {
-          paths: [
-            '<%= project.path.client %>/less',
-            '<%= project.path.client %>/less/third-party'
-          ],
+          paths: ['<%= project.path.client %>/less'],
           report: 'gzip',
           compress: true,
           yuicompress: true
         },
         files: {
-          '<%= project.path.dist %>/css/main.css': '<%= project.path.client %>/less/index.less'
+          '<%= project.path.dist %>/css/main.css': '<%= project.path.client %>/less/app.less'
         }
       }
     },

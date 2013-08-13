@@ -2,6 +2,7 @@
  * client/js/app.js
  */
 
+/* global angular */
 'use strict';
 
 require('angular');
