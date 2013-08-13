@@ -128,7 +128,7 @@ module.exports = function (grunt) {
       }
     },
     express: {  // grunt-express
-      livereload: {
+      server: {
         options: {
           bases: [],
           debug: true,
@@ -163,12 +163,14 @@ module.exports = function (grunt) {
       options: {
         jshintrc: '.jshintrc'
       },
-      all: [
-        'Gruntfile.js',
+      client: [
         '<%= project.path.client %>/js/**/*.js',
         '!<%= project.path.client %>/js/node_modules/**/*.js',
         '<%= project.path.client %>/js/node_modules/*.js',
         '<%= project.path.client %>/node_modules/*.js',
+      ],
+      server: [
+        'Gruntfile.js',
         '<%= project.path.server %>/**/*.js'
       ]
     },
@@ -267,13 +269,20 @@ module.exports = function (grunt) {
         files: ['<%= project.path.client %>/less/**/*.less'],
         tasks: ['less:dev']
       },
-      js: {
+      jsClient: {
         options: {
           interrupt: true,
           livereload: true
         },
-        files: ['<%= jshint.all %>'],
+        files: ['<%= jshint.client %>'],
         tasks: ['browserify2:dev']
+      },
+      js: {
+        options: {
+          interrupt: true
+        },
+        files: ['<%= jshint.server %>'],
+        tasks: ['express']
       },
       dist: {
         options: {
