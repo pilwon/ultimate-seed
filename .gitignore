@@ -11,5 +11,6 @@
 /config/production.json
 /log/
 node_modules/
-!/client/js/node_modules/bower_components
+!/client/js/node_modules
+/client/js/node_modules/bower_components
 npm-debug.log

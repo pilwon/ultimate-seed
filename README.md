@@ -118,6 +118,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
     * `/client-built/`
     * `/config/heroku.json`
     * `node_modules/`
+    * `/client/js/node_modules/bower_components`
   2. Run `grunt build` to build the project.
   3. Commit all files to a local git repository created at the project root.
   4. Add git remote pointing to Heroku:
