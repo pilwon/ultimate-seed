@@ -234,14 +234,13 @@ module.exports = function (grunt) {
           livereload: true
         },
         files: [
-          '<%= project.path.temp %>/css/**/*.css',
-          '<%= project.path.temp %>/**/*.html',
-          '<%= project.path.client %>/**/*.html',
+          '{<%= project.path.temp %>,<%= project.path.client %>}/{,*/}*.html',
           '!<%= project.path.client %>/index.html',
-          '<%= project.path.client %>/**/*.hbs',
-          '<%= project.path.client %>/{fonts,js,json}/**/*',
-          '<%= project.path.client %>/img/**/*.{png,jpg,jpeg}',
-          '<%= project.path.server %>/**/*.hbs'
+          '<%= project.path.client %>/fonts/{,*/}*',
+          '<%= project.path.client %>/img/{,*/}*.png',
+          '<%= project.path.client %>/js/**/*.js',
+          '<%= project.path.client %>/js/{handlebars/partials,modules/**}/*.hbs',
+          '<%= project.path.server %>/views/{,*/}*.hbs'
         ]
       },
       html: {
@@ -260,13 +259,13 @@ module.exports = function (grunt) {
         options: {
           livereload: true
         },
-        files: ['<%= project.path.temp %>/css/**/*.css']
+        files: ['<%= project.path.temp %>/css/{,*/}*.css']
       },
       less: {
         options: {
           interrupt: true
         },
-        files: ['<%= project.path.client %>/less/**/*.less'],
+        files: ['<%= project.path.client %>/less/{,*/}*.less'],
         tasks: ['less:dev']
       },
       jsClient: {
@@ -282,19 +281,6 @@ module.exports = function (grunt) {
         },
         files: ['<%= jshint.server %>'],
         tasks: ['express']
-      },
-      dist: {
-        options: {
-          interrupt: true,
-          livereload: true
-        },
-        files: [
-          '<%= project.path.dist %>/css/**/*.css',
-          '<%= project.path.dist %>/**/*.html',
-          '<%= project.path.dist %>/{fonts,js,json}/**/*',
-          '<%= project.path.dist %>/img/**/*.{png,jpg,jpeg}',
-          '<%= project.path.server %>/**/*.html'
-        ]
       }
     }
   });
@@ -328,9 +314,7 @@ module.exports = function (grunt) {
       'express',
       'open'
     ]);
-    if (process.env.NODE_ENV === 'heroku' || process.env.NODE_ENV === 'production') {
-      grunt.task.run('watch:dist');
-    } else {
+    if (process.env.NODE_ENV !== 'heroku' && process.env.NODE_ENV !== 'production') {
       grunt.task.run('watch');
     }
   });
