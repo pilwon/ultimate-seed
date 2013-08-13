@@ -40,10 +40,10 @@ _.defaults(app.config, {
 });
 
 // Load modules
+app.l = app.lib = ultimate.require(app.dir + '/lib');
 app.m = app.models = ultimate.require(app.dir + '/models');
 app.v = app.views = ultimate.fs.globSync(app.dir + '/views/**/*.html');
 app.c = app.controllers = ultimate.require(app.dir + '/controllers');
-app.l = app.lib = ultimate.require(app.dir + '/lib');
 
 // Attach middlewares called by app.servers.express
 app.attachMiddlewares = function () {
