@@ -42,6 +42,22 @@ module.exports = function (grunt) {
         }
       }
     },
+    cacheBust: {
+      dev: {
+        files: {
+          src: [
+            '<%= project.path.temp %>/index.html'
+          ]
+        }
+      },
+      dist: {
+        files: {
+          src: [
+            '<%= project.path.dist %>/index.html'
+          ]
+        }
+      }
+    },
     clean: {  // grunt-contrib-clean
       dev: [
         '<%= project.path.temp %>'
@@ -54,7 +70,6 @@ module.exports = function (grunt) {
       dev: {
         files: [
           {
-            dot: true,
             expand: true,
             flatten: true,
             cwd: '<%= project.path.bower %>',
@@ -64,26 +79,20 @@ module.exports = function (grunt) {
               'json3/lib/json3.js',
               'modernizr/modernizr.js'
             ]
+          },
+          {
+            expand: true,
+            cwd: '<%= project.path.client %>',
+            dest: '<%= project.path.temp %>',
+            src: [
+              'index.html'
+            ]
           }
         ]
       },
       dist: {
         files: [
           {
-            dot: true,
-            expand: true,
-            cwd: '<%= project.path.client %>',
-            dest: '<%= project.path.dist %>',
-            src: [
-              '../<%= project.path.bower %>/**/*',
-              '../<%= project.path.bower %>/**/*',
-              'fonts/**/*',
-              'json/**/*.json',
-              '*.{ico,txt}'
-            ]
-          },
-          {
-            dot: true,
             expand: true,
             flatten: true,
             cwd: '<%= project.path.bower %>',
@@ -92,6 +101,17 @@ module.exports = function (grunt) {
               'es5-shim/es5-shim.js',
               'json3/lib/json3.js',
               'modernizr/modernizr.js'
+            ]
+          },
+          {
+            expand: true,
+            cwd: '<%= project.path.client %>',
+            dest: '<%= project.path.dist %>',
+            src: [
+              '../<%= project.path.bower %>/**/*',
+              'fonts/**/*',
+              'json/**/*.json',
+              '*.{ico,txt}'
             ]
           }
         ]
@@ -213,11 +233,25 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= project.path.temp %>/css/**/*.css',
+          '<%= project.path.temp %>/**/*.html',
           '<%= project.path.client %>/**/*.html',
+          '!<%= project.path.client %>/index.html',
           '<%= project.path.client %>/**/*.hbs',
           '<%= project.path.client %>/{fonts,js,json}/**/*',
           '<%= project.path.client %>/img/**/*.{png,jpg,jpeg}',
           '<%= project.path.server %>/**/*.hbs'
+        ]
+      },
+      html: {
+        options: {
+          interrupt: true
+        },
+        files: [
+          '<%= project.path.client %>/index.html'
+        ],
+        tasks: [
+          'copy:dev',
+          'cacheBust:dev'
         ]
       },
       css: {
@@ -257,6 +291,14 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.registerTask('devBuild', [
+    'clean:dev',
+    'browserify2:dev',
+    'less:dev',
+    'copy:dev',
+    'cacheBust:dev'
+  ]);
+
   grunt.registerTask('build', [
     'jshint',
     'clean:dist',
@@ -267,17 +309,14 @@ module.exports = function (grunt) {
     'htmlmin:dist',
     'cssmin:dist',
     'copy:dist',
+    'cacheBust:dist',
     'usemin',
     'uglify:dist'
   ]);
 
-  grunt.registerTask('develop', function () {
+  grunt.registerTask('devServer', function () {
     process.env.LIVERELOAD = 35729;
     grunt.task.run([
-      'clean:dev',
-      'browserify2:dev',
-      'less:dev',
-      'copy:dev',
       'express',
       'open'
     ]);
@@ -288,9 +327,13 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.registerTask('develop', ['devBuild', 'devServer']);
+
   // Shortcuts
   grunt.registerTask('b', 'build');
   grunt.registerTask('c', 'clean');
+  grunt.registerTask('d', 'devBuild');
+  grunt.registerTask('s', 'devServer');
 
   // Default
   grunt.registerTask('default', 'develop');

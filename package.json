@@ -78,6 +78,7 @@
     "coffeeify": "~0.5.1",
     "grunt": "~0.4.1",
     "grunt-browserify2": "~0.1.8",
+    "grunt-cache-bust": "0.0.2",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-connect": "~0.3.0",
     "grunt-contrib-copy": "~0.4.1",
