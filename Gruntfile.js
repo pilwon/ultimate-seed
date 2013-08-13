@@ -271,13 +271,12 @@ module.exports = function (grunt) {
       },
       jsClient: {
         options: {
-          interrupt: true,
-          livereload: true
+          interrupt: true
         },
         files: ['<%= jshint.client %>'],
         tasks: ['browserify2:dev']
       },
-      js: {
+      jsServer: {
         options: {
           interrupt: true
         },

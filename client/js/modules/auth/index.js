@@ -10,34 +10,27 @@ var _ = require('lodash'),
     Backbone = require('backbone');
 
 var API = {
-  register: function () {
+  // register: function () {
 
-  },
-  login: function () {
+  // },
+  // login: function () {
 
-  },
-  logout: function () {
+  // },
+  // logout: function () {
 
-  },
-  facebook: function () {
-
-  },
-  google: function () {
-
-  },
-  twitter: function () {
-
+  // },
+  facebookCallback: function () {
+    app.navigate('/', { trigger: true, replace: true });
   }
 };
 
 var Router = Backbone.Marionette.AppRouter.extend({
   appRoutes: {
-    'register': 'register',
-    'login': 'login',
-    'logout': 'logout',
-    'auth/facebook': 'facebook',
-    'auth/google': 'google',
-    'auth/twitter': 'twitter'
+    // 'register': 'register',
+    // 'login': 'login',
+    // 'logout': 'logout'
+
+    '_=_': 'facebookCallback'
   },
   controller: API
 });
