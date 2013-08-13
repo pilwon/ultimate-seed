@@ -4,13 +4,12 @@
 
 .git.*
 .gitignore.*
-.sass-cache
-.tmp
-client/components
-client-built
-config/development.json
-config/heroku.json
-config/production.json
-log
-node_modules
+/.tmp/
+/client-built/
+/config/development.json
+/config/heroku.json
+/config/production.json
+/log/
+node_modules/
+!/client/js/node_modules/bower_components
 npm-debug.log

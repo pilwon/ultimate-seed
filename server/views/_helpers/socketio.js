@@ -10,8 +10,8 @@ exports = module.exports = function () {
     '<script>',
     '  var socket = io.connect();',
     '  socket.on(\'test\', function (data) {',
-    '    console.log(\'socketio:received - \' + JSON.stringify(data));',
-    '    socket.emit(\'test\', { hello: \'world\' });',
+    '    console.log(data);',
+    '    socket.emit(\'test\', { hello: \'from browser world\' });',
     '  });',
     '</script>'
   ].join('');

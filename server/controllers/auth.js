@@ -48,7 +48,6 @@ function loginPOST(req, res, next) {
     badRequestMessage: 'Invalid input'
   }, function (err, user, info) {
     if (err) { return next(err); }
-    console.log(user);
     if (!user) {
       req.flash('error', util.format('<strong>%s</strong>', info.message));
       if (!req.body.username) {
