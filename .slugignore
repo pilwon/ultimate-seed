@@ -5,7 +5,7 @@
 .git.*
 .gitignore.*
 /.tmp/
-/config/*.json
-!/config/heroku.json
+/config/development.json
+/config/production.json
 /log/
 npm-debug.log

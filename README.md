@@ -112,8 +112,11 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   `ultimate-seed` supports deployment of your app to [Heroku](https://www.heroku.com/) servers.
 
-  1. Run `grunt build` to build the project.
-  2. Comment out all entries in `.gitignore` (or temporarily hide/remove this file)
+  1. Comment out the following lines in `.gitignore`.
+    * `/client-built/`
+    * `/config/heroku.json`
+    * `node_modules/`
+  2. Run `grunt build` to build the project.
   3. Commit all files to a local git repository created at the project root.
   4. Add git remote pointing to Heroku:
     * New Heroku app: `heroku create APPID`
