@@ -262,10 +262,9 @@ module.exports = function (grunt) {
         files: [
           '{<%= project.path.temp %>,<%= project.path.client %>}/{,*/}*.html',
           '!<%= project.path.client %>/index.html',
-          '<%= project.path.client %>/fonts/{,*/}*',
           '<%= project.path.client %>/img/{,*/}*.png',
           '<%= project.path.client %>/js/**/*.js',
-          '<%= project.path.client %>/js/{handlebars/partials,modules/**}/*.hbs',
+          '<%= project.path.client %>/js/views/**/*.tmpl',
           '<%= project.path.server %>/views/{,*/}*.hbs'
         ]
       },
