@@ -4,18 +4,19 @@
 
 'use strict';
 
-var _socketio = null,
-    _connected = false;
+var util = require('util');
+
+var _socketio = null;
 
 function _test(socket) {
   // Server -> Client
   socket.emit('test', {
-    hello: 'world'
+    hello: 'from server world'
   });
 
   // Client -> Server
   socket.on('test', function (data) {
-    console.log(data);
+    console.log('[%s] %s', socket.ip, JSON.stringify(data, null, 2));
   });
 }
 
@@ -26,15 +27,19 @@ exports.register = function (app) {
   _socketio.enable('browser client etag');
   _socketio.enable('browser client gzip');
   _socketio.set('log level', 2);
-  _socketio.set('transports', [
-    'flashsocket',
-    'htmlfile',
-    'xhr-polling',
-    'jsonp-polling'
-  ]);
 
   _socketio.sockets.on('connection', function (socket) {
-    _connected = true;
+    socket.ip = util.format(
+      '%s:%s',
+      socket.handshake.address.address,
+      socket.handshake.address.port
+    );
+
+    console.log('[%s] CONNECTED', socket.ip);
+
+    socket.on('disconnect', function () {
+      console.log('[%s] DISCONNECTED', socket.ip);
+    });
 
     _test(socket);
   });

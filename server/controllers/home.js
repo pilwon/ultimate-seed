@@ -6,7 +6,7 @@
 
 function express(req, res) {
   res.render('home/express', {
-    hello: 'world'
+    hello: 'Hello from express world!'
   });
 }
 

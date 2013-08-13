@@ -2,28 +2,10 @@
 # .slugignore
 #
 
-.git.real
-.gitignore.real
-node_modules/chai
-node_modules/grunt
-node_modules/grunt-bower-hooks
-node_modules/grunt-contrib-clean
-node_modules/grunt-contrib-compass
-node_modules/grunt-contrib-concat
-node_modules/grunt-contrib-connect
-node_modules/grunt-contrib-copy
-node_modules/grunt-contrib-cssmin
-node_modules/grunt-contrib-htmlmin
-node_modules/grunt-contrib-imagemin
-node_modules/grunt-contrib-jshint
-node_modules/grunt-contrib-livereload
-node_modules/grunt-contrib-uglify
-node_modules/grunt-express
-node_modules/grunt-karma
-node_modules/grunt-mocha
-node_modules/grunt-open
-node_modules/grunt-regarde
-node_modules/grunt-requirejs
-node_modules/grunt-usemin
-node_modules/karma
-node_modules/matchdep
+.git.*
+.gitignore.*
+/.tmp/
+/config/development.json
+/config/production.json
+/log/
+npm-debug.log

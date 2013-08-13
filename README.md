@@ -7,7 +7,13 @@
                                                                            
 ```
 
-[![NPM](https://nodei.co/npm/ultimate-seed.png?downloads=false&stars=false)](https://npmjs.org/package/ultimate-seed) [![NPM](https://nodei.co/npm-dl/ultimate.png?months=6)](https://npmjs.org/package/ultimate-seed)
+[![NPM](https://nodei.co/npm/ultimate-seed.png?downloads=false&stars=false)](https://npmjs.org/package/ultimate-seed)
+[![NPM](https://nodei.co/npm-dl/ultimate.png?months=9)](https://npmjs.org/package/ultimate-seed)
+
+#### [Demo hosted on Heroku](http://ultimate-seed.herokuapp.com/)
+
+[![Screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot1.png)](http://ultimate-seed.herokuapp.com/)
+[![Screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot2.png)](http://ultimate-seed.herokuapp.com/)
 
 `ultimate-seed` is the ultimate JavaScript/Node.js full-stack seed that makes web developers insanely productive.
 
@@ -18,20 +24,19 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   This seed integrates a bunch of popular modern web frameworks and libraries.
 
   * [Backbone](http://backbonejs.org/)
+  * [Backbone.Marionette](http://marionettejs.com/)
+  * [Bootstrap](http://getbootstrap.com/)
   * [Bower](http://twitter.github.com/bower/)
-  * [Bootstrap](http://twitter.github.com/bootstrap/)
-  * [Compass](http://compass-style.org/) ([SCSS](http://sass-lang.com/))
+  * [Browserify](https://github.com/substack/node-browserify)
   * [Express](http://expressjs.com/)
   * [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
   * [Grunt](http://gruntjs.com/)
   * [Handlebars](http://handlebarsjs.com/)
   * [jQuery](http://jquery.com/)
   * [JSHint](http://www.jshint.com/)
-  * [Karma](http://karma-runner.github.com/)
+  * [LESS](http://lesscss.org/) w/ [LESS Hat](http://lesshat.com/)
   * [Livereload](http://livereload.com/)
   * [Lodash](http://lodash.com/) ([Underscore](http://underscorejs.org/))
-  * [Marionette](http://marionettejs.com/)
-  * [Mocha](http://visionmedia.github.com/mocha/) w/ [Chai](http://chaijs.com/)
   * [Modernizr](http://modernizr.com/)
   * [MongoDB](http://www.mongodb.org/) w/ [Mongoose](http://www.mongoose.com/)
   * [Passport](http://passportjs.org/)
@@ -39,8 +44,8 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   * [Passport-Google](https://github.com/jaredhanson/passport-google-oauth)
   * [Passport-Twitter](https://github.com/jaredhanson/passport-twitter)
   * [Redis](http://redis.io/) w/ [Hiredis](https://github.com/redis/hiredis)
-  * [RequireJS](http://requirejs.org/)
   * [SocketIO](http://socket.io/)
+  * [Source Maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/)
   * [Uglify](http://lisperator.net/uglifyjs/)
   * [Winston](https://github.com/flatiron/winston)
 
@@ -75,8 +80,8 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   [Grunt](http://gruntjs.com/) tasks to build your app:
 
-    $ grunt server             # start server
-    $ grunt                    # jshint & build
+    $ grunt                    # start server
+    $ grunt build              # jshint & build
     $ grunt clean              # clean grenerated files
 
 ## Deployment
@@ -85,7 +90,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   First, prepare and optimize all files used in production environment:
 
-    $ grunt
+    $ grunt build
 
   Then your app can be started in production mode using this command:
 
@@ -96,12 +101,25 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
     $ npm install forever -g
     $ NODE_ENV=production PORT=3000 forever start server
 
+  You can alternatively use a system-wide process control system such as [Supervisor](http://supervisord.org/) with the following configuration (`supervisord.conf`):
+
+    [program:ultimate-3000]
+    directory = <absolute-path-of-project-root>
+    environment = NODE_ENV=production, PORT=3000
+    command = node server
+    autostart = true
+    autorestart = true
+
 ### Heroku (`config/heroku.json`)
 
   `ultimate-seed` supports deployment of your app to [Heroku](https://www.heroku.com/) servers.
 
-  1. Run `grunt` to build the project.
-  2. Comment out all entries in `.gitignore` (or temporarily hide/remove this file)
+  1. Comment out the following lines in `.gitignore`.
+    * `/client-built/`
+    * `/config/heroku.json`
+    * `node_modules/`
+    * `/client/js/node_modules/bower_components`
+  2. Run `grunt build` to build the project.
   3. Commit all files to a local git repository created at the project root.
   4. Add git remote pointing to Heroku:
     * New Heroku app: `heroku create APPID`
@@ -142,27 +160,36 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 ├── client/
 │   ├── components/
 │   ├── fonts/
+│   │   └── font-awesome/
 │   ├── img/
 │   ├── js/
-│   │   ├── collections/
-│   │   ├── controllers/
+│   │   ├── entities/
+│   │   │   └── config.js
+│   │   ├── handlebars/
+│   │   │   ├── helpers/
+│   │   │   └── partials/
 │   │   ├── lib/
-│   │   ├── models/
-│   │   ├── nls/
-│   │   ├── partials/
-│   │   │   └── livereload.html
-│   │   ├── templates/
-│   │   │   ├── _helpers/
-│   │   │   ├── _i18n/
-│   │   │   ├── footer.html
-│   │   │   ├── header.html
-│   │   │   ├── main.html
-│   │   │   └── nav.html
-│   │   ├── vendor/
-│   │   └── views/
-│   ├── scss/
+│   │   ├── modules/
+│   │   │   ├── {{module}}/
+│   │   │   │   └── {{action}}/
+│   │   │   │       ├── templates/
+│   │   │   │       ├── controller.js
+│   │   │   │       └── views.js
+│   │   │   └── ...
+│   │   ├── node_modules/
+│   │   │   ├── bower_components/
+│   │   │   └── custom_components/
+│   │   ├── setup/
+│   │   │   └── backbone/
+│   │   │       └── marionette/
+│   │   ├── test/
+│   │   ├── app.js
+│   │   └── index.js
+│   ├── less/
 │   │   ├── bootstrap/
-│   │   └── fontawesome/
+│   │   ├── font-awesome/
+│   │   ├── lesshat/
+│   │   └── social-buttons/
 │   ├── 404.html
 │   ├── favicon.ico
 │   ├── index.html
@@ -177,7 +204,6 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 │   ├── lib/
 │   ├── models/
 │   ├── views/
-│   │   ├── _errors/
 │   │   ├── _helpers/
 │   │   ├── _layouts/
 │   │   ├── _partials/
@@ -200,12 +226,6 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 ├── package.json
 └── project.json
 ```
-
-## Screenshot
-
-![screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot.png)
-
-  [Demo on Heroku](http://ultimate-seed.herokuapp.com/)
 
 ## Credits
 

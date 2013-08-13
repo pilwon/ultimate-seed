@@ -1,6 +1,6 @@
 {
   "path": {
-    "bower": "client/components",
+    "bower": "client/js/node_modules/bower_components",
     "client": "client",
     "config": "config",
     "dist": "client-built",

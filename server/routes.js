@@ -53,5 +53,5 @@ exports.register = function (app) {
   s.get('/auth/twitter/success', c.auth.twitterSuccess);
 
   // Extra routes
-  error404.register(s);
+  error404.register(s, app);
 };
