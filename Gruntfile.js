@@ -239,7 +239,6 @@ module.exports = function (grunt) {
           '<%= project.path.client %>/fonts/{,*/}*',
           '<%= project.path.client %>/img/{,*/}*.png',
           '<%= project.path.client %>/js/**/*.js',
-          '<%= project.path.client %>/js/{handlebars/partials,modules/**}/*.hbs',
           '<%= project.path.server %>/views/{,*/}*.hbs'
         ]
       },
@@ -270,9 +269,13 @@ module.exports = function (grunt) {
       },
       jsClient: {
         options: {
-          interrupt: true
+          interrupt: true,
+          livereload: true
         },
-        files: ['<%= jshint.client %>'],
+        files: [
+          '<%= jshint.client %>',
+          '<%= project.path.client %>/js/{handlebars/partials,modules/**}/*.hbs'
+        ],
         tasks: ['browserify2:dev']
       },
       jsServer: {
