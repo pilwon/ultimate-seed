@@ -15,14 +15,6 @@ var app = new Backbone.Marionette.Application();
 // Attach `lib` to `app`.
 app.lib = require('./lib');
 
-// Add regions.
-app.addRegions({
-  navRegion: '#nav',
-  headerRegion: '#header',
-  mainRegion: '#main',
-  footerRegion: '#footer'
-});
-
 // Handle `initialize:before` event.
 app.on('initialize:before', function (options) {
   // Save app options to `app.config`.
@@ -79,9 +71,33 @@ app.on('initialize:after', function () {
     if (href.slice(0, 2) !== '//' && !/^[^?]+:\/\//.test(href) && !$this.attr('target')) {
       // Internal link w/o target.
       e.preventDefault();
-      Backbone.history.navigate(href, { trigger: true });
+      app.navigate(href, { trigger: true });
     }
   });
+});
+
+// Add regions.
+app.addRegions({
+  navRegion: '#nav',
+  headerRegion: '#header',
+  mainRegion: '#main',
+  footerRegion: '#footer'
+});
+
+// Handle `set:layout` command.
+app.commands.setHandler('set:layout', function (layout) {
+  switch (layout) {
+    case 'fullscreen':
+      app.navRegion.$el.hide();
+      app.headerRegion.$el.hide();
+      app.footerRegion.$el.hide();
+      break;
+    case 'standard':
+    default:
+      app.navRegion.$el.show();
+      app.headerRegion.$el.show();
+      app.footerRegion.$el.show();
+  }
 });
 
 // Handle `register:instance` command.
@@ -98,6 +114,7 @@ app.commands.setHandler('unregister:instance', function (instance, id) {
   }
 });
 
+// Handle `when:fetched` command.
 app.commands.setHandler('when:fetched', function (entities, cb) {
   var xhrs = _.chain([entities]).flatten().pluck('_fetch').value();
   $.when(xhrs).done(function () {
