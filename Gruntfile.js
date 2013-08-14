@@ -170,13 +170,16 @@ module.exports = function (grunt) {
         '<%= project.path.client %>/node_modules/*.js',
       ],
       server: [
-        'Gruntfile.js',
         '<%= project.path.server %>/**/*.js'
+      ],
+      grunt: [
+        'Gruntfile.js'
       ]
     },
     less: {
       dev: {
         options: {
+          dumpLineNumbers: 'comments',
           paths: ['<%= project.path.client %>/less']
         },
         files: {
