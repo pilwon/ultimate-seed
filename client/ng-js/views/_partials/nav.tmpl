@@ -1,17 +1,28 @@
 <!-- nav begins -->
-<div class="pure-g-r">
-  <div class="pure-u-1">
-    <div class="pure-menu pure-menu-open pure-menu-horizontal">
-      <a href="//github.com/pilwon/ultimate-seed" class="pure-menu-heading">Ultimate-Seed</a>
+<div id="nav" class="navbar navbar-fixed-top" ng-controller="NavController">
+  <div class="container">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
 
-      <ul>
-        <li><a href="#">Angular</a></li>
-        <li><a href="/express">Express</a></li>
-        <li><a href="/account">Account</a></li>
-        <li><a href="/logout" ng-show="user.name.full">Logout</a></li>
-        <li><a href="/login" ng-hide="user.name.full">Login</a></li>
-        <li><a href="/register" ng-hide="user.name.full">Register</a></li>
+    <a class="navbar-brand" href="//github.com/pilwon/ultimate-seed">ultimate-seed</a>
+
+    <div class="nav-collapse collapse">
+      <!-- #nav-left BEGIN -->
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Angular</a></li>
+        <li class=""><a href="/express" target="_self">Express</a></li>
       </ul>
+      <!-- #nav-left END -->
+
+      <!-- #nav-right BEGIN -->
+      <ul class="nav navbar-nav pull-right">
+          <li class=""><a href="/login" target="_self">Login</a></li>
+          <li class=""><a href="/register" target="_self">Register</a></li>
+      </ul>
+      <!-- #nav-right END -->
     </div>
   </div>
 </div>

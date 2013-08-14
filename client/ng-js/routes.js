@@ -1,9 +1,9 @@
 /*
-* client/js/routes.js
+ * client/js/routes.js
  */
 
- /* globals app */
- 'use strict';
+/* globals app */
+'use strict';
 
 
 app.config(function ($stateProvider, $urlRouterProvider) {

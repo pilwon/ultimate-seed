@@ -1,5 +1,5 @@
 /*
- * client/js/controllers/home.js
+ * client/js/controllers/homeController.js
  */
 
 /* globals app */
@@ -7,23 +7,21 @@
 
 
 app.controller('HomeController', function ($scope, $window, $cookies) {
-  $scope.user = {
-    name: {
-      full: $cookies['user.name.full']
-    }
-  };
-
   $scope.items = [
     'Angular',
+    'Bootstrap',
+    'Bower',
+    'Browserify',
     'Express',
+    'Font Awesome',
     'Grunt',
     'Handlebars',
     'jQuery',
     'JSHint',
-    'Karma',
-    'Less',
+    'LESS',
+    'LESS Hat',
+    'Livereload',
     'Lodash (Underscore)',
-    'Mocha w/ Chai',
     'Modernizr',
     'MongoDB w/ Mongoose',
     'Passport',
@@ -32,6 +30,8 @@ app.controller('HomeController', function ($scope, $window, $cookies) {
     'Passport for Twitter',
     'Redis w/ Hiredis',
     'SocketIO',
-    'Uglify'
+    'Source Maps',
+    'Uglify',
+    'Winston'
   ];
 });

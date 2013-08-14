@@ -2,4 +2,5 @@
  * client/js/controllers/index.js
  */
 
-require('./home');
+require('./homeController');
+require('./navController');
