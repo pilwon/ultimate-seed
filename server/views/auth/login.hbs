@@ -2,12 +2,12 @@
   <input type="hidden" name="_csrf" value="{{csrf}}"></input>
 
   {{#if messages}}
-  <div class="alert alert-danger">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    {{#each messages}}
-    <div>{{{this}}}</div>
-    {{/each}}
-  </div>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {{#each messages}}
+      <div>{{{this}}}</div>
+      {{/each}}
+    </div>
   {{/if}}
 
   <h2>Please log in</h2>
