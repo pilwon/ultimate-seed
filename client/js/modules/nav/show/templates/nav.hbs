@@ -13,18 +13,18 @@
     <!-- #nav-left BEGIN -->
     <ul class="nav navbar-nav">
       <li class="{{classBackbone}}"><a href="/">Backbone</a></li>
-      <li class="{{classExpress}}"><a href="/express" target="_self">Express</a></li>
+      <li class="{{classExpress}}"><a href="/express">Express</a></li>
     </ul>
     <!-- #nav-left END -->
 
     <!-- #nav-right BEGIN -->
     <ul class="nav navbar-nav pull-right">
       {{#if user.name.full}}
-        <li class="{{classAccount}}"><a href="/account" target="_self">Logged in as <strong>{{user.name.full}}</strong></a></li>
-        <li class="{{classLogout}}"><a href="/logout" target="_self">Logout</a></li>
+        <li class="{{classAccount}}"><a href="/account">Logged in as <strong>{{user.name.full}}</strong></a></li>
+        <li class="{{classLogout}}"><a href="/logout">Logout</a></li>
       {{else}}
-        <li class="{{classLogin}}"><a href="/login" target="_self">Login</a></li>
-        <li class="{{classRegister}}"><a href="/register" target="_self">Register</a></li>
+        <li class="{{classLogin}}"><a href="/login">Login</a></li>
+        <li class="{{classRegister}}"><a href="/register">Register</a></li>
       {{/if}}
     </ul>
     <!-- #nav-right END -->

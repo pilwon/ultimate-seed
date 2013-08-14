@@ -6,19 +6,16 @@
 
 'use strict';
 
-var S = require('string'),
-    $ = require('jquery'),
-    Backbone = require('backbone');
+var S = require('string');
 
 var navTpl = require('./templates/nav.hbs');
 
 var NavView = app.lib.Backbone.Marionette.ItemView.extend({
   template: navTpl,
 
-  initialize: function () {
-    Backbone.history.on('route', function () {
-      this.render();
-    }, this);
+  triggers: {
+    'click a[href="/login"]': 'clicked:login',
+    'click a[href="/register"]': 'clicked:register'
   },
 
   serializeData: function () {
@@ -32,16 +29,8 @@ var NavView = app.lib.Backbone.Marionette.ItemView.extend({
       };
     }
 
-    if ($.cookie('user.name.full')) {
-      data.user = {
-        name: {
-          full: $.cookie('user.name.full')
-        }
-      };
-    }
-
     // Attach class="active" to link to current route.
-    var classVar = S('class_' + app.getUrl().pathname.replace(/\//g, '_')).camelize().s;
+    var classVar = S('class_' + app.getRoute().replace(/\//g, '_')).camelize().s;
     if (classVar === 'class') { classVar += 'Backbone'; }
     data[classVar] = 'active';
 

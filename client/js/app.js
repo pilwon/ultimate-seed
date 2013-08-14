@@ -87,16 +87,15 @@ app.addRegions({
 // Handle `set:layout` command.
 app.commands.setHandler('set:layout', function (layout) {
   switch (layout) {
-    case 'fullscreen':
-      app.navRegion.$el.hide();
-      app.headerRegion.$el.hide();
-      app.footerRegion.$el.hide();
-      break;
-    case 'standard':
-    default:
-      app.navRegion.$el.show();
-      app.headerRegion.$el.show();
-      app.footerRegion.$el.show();
+  case 'fullscreen':
+    app.navRegion.$el.hide();
+    app.headerRegion.$el.hide();
+    app.footerRegion.$el.hide();
+    break;
+  default:
+    app.navRegion.$el.show();
+    app.headerRegion.$el.show();
+    app.footerRegion.$el.show();
   }
 });
 
