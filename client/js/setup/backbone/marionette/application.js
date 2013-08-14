@@ -4,7 +4,8 @@
 
 'use strict';
 
-var url = require('url');
+var path = require('path'),
+    url = require('url');
 
 var _ = require('lodash'),
     Backbone = require('backbone');
@@ -12,16 +13,15 @@ var _ = require('lodash'),
 _.extend(Backbone.Marionette.Application.prototype, {
   navigate: function (route, options) {
     if (!_.isObject(options)) { options = {}; }
-    route = route.replace(/#$/, '');
+    route = route.replace(/^([^\/])(.*)([\/#?]?)$/, '/$1$2');
     Backbone.history.navigate(route, options);
   },
 
   getRoute: function () {
-    var frag = Backbone.history.fragment;
-    return (_.isEmpty(frag) ? '' : frag);
+    return path.join('/', Backbone.history.fragment);
   },
 
-  getUrl: function () {
+  getParsedUrl: function () {
     return url.parse(location.href);
   },
 

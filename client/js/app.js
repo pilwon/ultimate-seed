@@ -63,14 +63,14 @@ app.on('initialize:after', function () {
   $(document).on('click', 'a', function (e) {
     var $this = $(this),
         href = $this.attr('href');
-    if (href[0] === '#') {
-      href = app.getUrl().path + href;
-    } else {
-      href = path.join(path.dirname(app.getUrl().pathname), href);
-    }
-    if (href.slice(0, 2) !== '//' && !/^[^?]+:\/\//.test(href) && !$this.attr('target')) {
-      // Internal link w/o target.
+    app.globalConfig.fromServer = false;
+    if (href.slice(0, 2) !== '//' && !/^[^?]+:\/\//.test(href)) {
       e.preventDefault();
+      if (href[0] === '#' || href[0] === '?') {
+        href = app.getRoute() + href;
+      } else if (href[0] === '.') {
+        href = path.join(path.dirname(app.getRoute()), href);
+      }
       app.navigate(href, { trigger: true });
     }
   });
