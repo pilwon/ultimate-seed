@@ -75,6 +75,7 @@ app.attachMiddlewares = function () {
     if (!req.session._csrf) {
       req.session._csrf = ultimate.util.uuid({ length: 24, dash: false });
     }
+    res.cookie('csrf', req.session._csrf);
     next();
   });
 

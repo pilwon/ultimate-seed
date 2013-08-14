@@ -110,7 +110,6 @@ module.exports = function (grunt) {
             src: [
               '../<%= project.path.bower %>/**/*',
               'fonts/**/*',
-              'json/**/*.json',
               '*.{ico,txt}'
             ]
           }
@@ -170,13 +169,16 @@ module.exports = function (grunt) {
         '<%= project.path.client %>/node_modules/*.js',
       ],
       server: [
-        'Gruntfile.js',
         '<%= project.path.server %>/**/*.js'
+      ],
+      grunt: [
+        'Gruntfile.js'
       ]
     },
     less: {  // grunt-contrib-less
       dev: {
         options: {
+          dumpLineNumbers: 'comments',
           paths: ['<%= project.path.client %>/less']
         },
         files: {
@@ -295,9 +297,13 @@ module.exports = function (grunt) {
       },
       jsClient: {
         options: {
-          interrupt: true
+          interrupt: true,
+          livereload: true
         },
-        files: ['<%= jshint.client %>'],
+        files: [
+          '<%= jshint.client %>',
+          '<%= project.path.client %>/js/{handlebars/partials,modules/**}/*.hbs'
+        ],
         tasks: ['browserify2:dev']
       },
       jsServer: {

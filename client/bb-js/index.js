@@ -34,15 +34,19 @@ require('./modules/nav');
 
 // Launch app.
 $(function () {
-  var globalConfig = global.config || {};
+  app.globalConfig = global.config || {};
 
   // Start routers.
   new (Backbone.Router.extend({
     routes: {
       '*notFound': function () {
-        if (!globalConfig.static ||
-            app.config.get('originalUrl') !== app.getUrl().pathname) {
-          location.replace(location.href);
+
+        if (!app.globalConfig.fromServer) {
+          location.replace(app.getRoute());
+        } else if (app.globalConfig.notFoundOnServer) {
+          location.replace('/404.html');
+        } else {
+          app.globalConfig.fromServer = false;
         }
       }
     }

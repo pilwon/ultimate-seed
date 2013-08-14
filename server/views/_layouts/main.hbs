@@ -44,7 +44,8 @@
 
   <script>
     window.config = {
-      static: true
+      notFoundOnServer: {{#if notFoundOnServer}}true{{else}}false{{/if}},
+      fromServer: true
     };
   </script>
 

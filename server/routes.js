@@ -52,6 +52,12 @@ exports.register = function (app) {
   s.get('/auth/twitter/callback', c.auth.twitterCallback);
   s.get('/auth/twitter/success', c.auth.twitterSuccess);
 
-  // Extra routes
+  // Blacklist (404.html)
+  s.get(/^\/api(?:[\/#?].*)?$/, c.home.error404);
+
+  // Whitelist (index.html)
+  s.get('*', c.home.index);
+
+  // Catch all (404.html)
   error404.register(s, app);
 };

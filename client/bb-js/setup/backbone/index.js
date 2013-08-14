@@ -4,5 +4,6 @@
 
 'use strict';
 
+require('./history');
 require('./marionette');
 require('./sync');

@@ -70,7 +70,7 @@
     "request": "~2.26.0",
     "socket.io": "~0.9.16",
     "string": "~1.5.0",
-    "ultimate": "~0.2.2",
+    "ultimate": "~0.2.3",
     "winston": "~0.7.2",
     "winston-mongodb": "~0.4.0",
     "wrench": "~1.5.1",
