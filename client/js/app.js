@@ -71,7 +71,11 @@ app.on('initialize:after', function () {
   $(document).on('click', 'a', function (e) {
     var $this = $(this),
         href = $this.attr('href');
-    href = path.join(path.dirname(app.getUrl().pathname), href);
+    if (href[0] === '#') {
+      href = app.getUrl().path + href;
+    } else {
+      href = path.join(path.dirname(app.getUrl().pathname), href);
+    }
     if (href.slice(0, 2) !== '//' && !/^[^?]+:\/\//.test(href) && !$this.attr('target')) {
       // Internal link w/o target.
       e.preventDefault();
