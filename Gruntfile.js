@@ -110,7 +110,6 @@ module.exports = function (grunt) {
             src: [
               '../<%= project.path.bower %>/**/*',
               'fonts/**/*',
-              'json/**/*.json',
               '*.{ico,txt}'
             ]
           }
