@@ -12,9 +12,7 @@ var _ = require('lodash'),
 _.extend(Backbone.Marionette.Application.prototype, {
   navigate: function (route, options) {
     if (!_.isObject(options)) { options = {}; }
-    // if (route.charAt(0) === '/') {
-    //   route = '#' + route;
-    // }
+    route = route.replace(/#$/, '');
     Backbone.history.navigate(route, options);
   },
 
