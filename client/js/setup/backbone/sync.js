@@ -5,13 +5,16 @@
 'use strict';
 
 var _ = require('lodash'),
+    $ = require('jquery'),
     Backbone = require('backbone');
 
 var _sync = Backbone.sync;
 
 var methods = {
-  beforeSend: function () {
+  beforeSend: function (xhr) {
     this.trigger('sync:start', this);
+
+    xhr.setRequestHeader('x-csrf-token', $.cookie('csrf'));
   },
 
   complete: function () {
