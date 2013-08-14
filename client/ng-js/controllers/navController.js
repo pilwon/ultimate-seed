@@ -6,6 +6,10 @@
 'use strict';
 
 
-app.controller('NavController', function ($scope) {
-  console.log('nav');
+app.controller('NavController', function ($scope, $cookies) {
+  $scope.user = {
+    name: {
+      full: $cookies['user.name.full']
+    }
+  };
 });

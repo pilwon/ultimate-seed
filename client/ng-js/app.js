@@ -15,6 +15,11 @@ var app = angular.module('ngApp', [
   'ui.compat'
 ]);
 
+app.run(function ($rootScope, $state, $stateParams) {
+  $rootScope.$state = $state;
+  $rootScope.$stateParams = $stateParams;
+});
+
 
 // Public API
 exports = module.exports = app;

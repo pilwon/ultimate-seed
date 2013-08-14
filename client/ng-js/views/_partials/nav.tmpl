@@ -12,15 +12,40 @@
     <div class="nav-collapse collapse">
       <!-- #nav-left BEGIN -->
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Angular</a></li>
-        <li class=""><a href="/express" target="_self">Express</a></li>
+        <li ng-class="{
+          'active': $state.is('index')
+        }">
+          <a ng-href="#{{ $state.href('index') }}">Angular</a>
+        </li>
       </ul>
       <!-- #nav-left END -->
 
       <!-- #nav-right BEGIN -->
-      <ul class="nav navbar-nav pull-right">
-          <li class=""><a href="/login" target="_self">Login</a></li>
-          <li class=""><a href="/register" target="_self">Register</a></li>
+      <ul class="nav navbar-nav pull-right"
+          ng-if="user.name.full">
+        <li ng-class="{
+              'active': $state.is('account')
+            }">
+          <a ng-href="#{{ $state.href('account') }}">
+            Logged in as <strong>{{ user.name.full }}</strong>
+          </a>
+        </li>
+        <li>
+          <a ng-href="/logout">Logout</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav pull-right"
+          ng-if="user.name.full">
+        <li ng-class="{
+              'active': $state.is('login')
+            }">
+          <a ng-href="#{{ $state.href('login') }}">Login</a>
+        </li>
+        <li ng-class="{
+              'active': $state.is('register')
+            }">
+          <a ng-href="#{{ $state.href('register') }}">Register</a>
+        </li>
       </ul>
       <!-- #nav-right END -->
     </div>

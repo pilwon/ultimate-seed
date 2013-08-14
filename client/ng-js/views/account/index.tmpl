@@ -1,0 +1,54 @@
+<div class="container">
+  <h1>Account</h1>
+
+  <table class="table table-striped table-bordered">
+    <tr>
+      <td style="width: 120px;"><strong>Name:</strong></td>
+      <td>{{user.name.full}}</td>
+    </tr>
+    <tr>
+      <td><strong>Email:</strong></td>
+      <td>{{user.email}}</td>
+    </tr>
+    <tr>
+      <td><strong>Access Token:</strong></td>
+      <td>{{user.accessToken}}</td>
+    </tr>
+    <tr>
+      <td><strong>Auth:</strong></td>
+      <td>
+        <table class="table table-striped table-bordered table-condensed" style="table-layout: fixed; word-wrap: break-word;">
+          <tr>
+            <th><strong>Service</strong></th>
+            <th><strong>Id</strong></th>
+            <th><strong>Token</strong></th>
+            <th style="width: 50%;"><strong>Profile</strong></th>
+          </tr>
+          <tr ng-repeat-start="(k, v) in user.auth" ng-if="v.username">
+            <td><strong>{{k}}</strong></td>
+            <td>{{v.username}}</td>
+            <td colspan="2"><strong>Encrypted password:</strong> {{v.password}}</td>
+          </tr>
+          <tr ng-repeat-end ng-if="v.id">
+            <td><strong>{{k}}</strong></td>
+            <td ng-if="v.id">{{v.id}}</td>
+            <td ng-if="v.username">{{v.username}}</td>
+            <td>{{v.token}}</td>
+            <td>
+              <table class="table table-striped table-bordered table-hover table-condensed" style="table-layout: fixed; word-wrap: break-word;">
+                <tr>
+                  <th>Key</th>
+                  <th style="width: 70%;">Value</th>
+                </tr>
+                <tr ng-repeat="(k, v) in v.profile">
+                  <td><strong>{{k}}</strong></td>
+                  <td>{{v}}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -19,4 +19,34 @@ app.config(function ($stateProvider, $urlRouterProvider) {
       }
     }
   });
+
+  $stateProvider.state('login', {
+    url: '/login',
+    views: {
+      '': {
+        templateUrl: 'js/views/auth/login.tmpl',
+        controller: 'AuthController'
+      }
+    }
+  });
+
+  $stateProvider.state('register', {
+    url: '/register',
+    views: {
+      '': {
+        templateUrl: 'js/views/auth/register.tmpl',
+        controller: 'AuthController'
+      }
+    }
+  });
+
+  $stateProvider.state('account', {
+    url: '/account',
+    views: {
+      '': {
+        templateUrl: 'js/views/account/index.tmpl',
+        controller: 'AccountController'
+      }
+    }
+  });
 });

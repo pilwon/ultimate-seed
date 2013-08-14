@@ -1,0 +1,58 @@
+<form class="login form-horizontal">
+  <input type="hidden" name="_csrf" value="{{csrf}}" />
+
+  <div class="alert alert-danger"
+      ng-show="messages">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <div ng-repeat="message in messages">
+      {{ message}}
+    </div>
+  </div>
+
+  <h2>Please log in</h2>
+
+  <div class="row form-group">
+    <div class="col-lg-11">
+      <input type="text" class="form-control" name="username" placeholder="e-mail address" value="{{form.username}}" />
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-lg-11">
+      <input type="password" class="form-control" name="password" placeholder="password" />
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-lg-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="rememberMe"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <button class="btn btn-default btn-large" type="submit">Login</button>
+      <button class="btn btn-large" onclick="location.href='/register'; return false;">Register</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <p class="text-center">
+    <a class="btn btn-block btn-facebook" href="/auth/facebook"><i class="icon-facebook"></i> | Connect with Facebook</a>
+  </p>
+
+  <p class="text-center">
+    <a class="btn btn-block btn-google-plus" href="/auth/google"><i class="icon-google-plus"></i> | Connect with Google+</a>
+  </p>
+
+  <p class="text-center">
+    <a class="btn btn-block btn-twitter" href="/auth/twitter"><i class="icon-twitter"></i> | Connect with Twitter</a>
+  </p>
+</form>
