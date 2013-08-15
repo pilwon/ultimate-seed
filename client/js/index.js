@@ -40,7 +40,6 @@ $(function () {
   new (Backbone.Router.extend({
     routes: {
       '*notFound': function () {
-
         if (!app.globalConfig.fromServer) {
           location.replace(app.getRoute());
         } else if (app.globalConfig.notFoundOnServer) {

@@ -6,14 +6,14 @@
 
 var ultimate = require('ultimate');
 
-exports.register = function (app) {
+// Register controllers to routes.
+exports.register = function (app, restify) {
   var csrf = ultimate.server.controller.csrf,
       ensureAdmin = ultimate.server.controller.ensureAdmin,
       ensureGuest = ultimate.server.controller.ensureGuest,
       ensureUser = ultimate.server.controller.ensureUser;
 
-  var error404 = ultimate.server.route.error404,
-      restify = ultimate.server.route.restify;
+  var error404 = ultimate.server.route.error404;
 
   var c = app.controllers,
       s = app.servers.express.getServer();
@@ -28,10 +28,14 @@ exports.register = function (app) {
   s.get('/admin', ensureAdmin, c.admin.index);
 
   // API
-  restify.any(s, '/api/features', c.api.features, ['list', 'get']);
-  restify.guest(s, '/api/guest/features', c.api.features, ['list', 'get']);
-  restify.user(s, '/api/user/features', c.api.features, ['list', 'get']);
-  restify.admin(s, '/api/admin/features', c.api.features);
+  restify.model('/api/features', 'Feature');
+  restify.model('/api/users', 'User');
+  restify.any('/api/login', c.api.auth.login, ['post']);
+  restify.any('/api/logout', c.api.auth.logout, ['post']);
+  restify.any('/api/register', c.api.auth.register, ['post']);
+  restify.guest('/api/test', c.api.test, ['list', 'get']);
+  restify.user('/api/test/user', c.api.test, ['list', 'get']);
+  restify.admin('/api/test/admin', c.api.test);
 
   // Auth
   s.get('/login', ensureGuest, c.auth.login);

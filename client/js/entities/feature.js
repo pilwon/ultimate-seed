@@ -7,12 +7,9 @@
 'use strict';
 
 var Feature = app.lib.Backbone.Model.extend({
-  urlRoot: 'feature',
   defaults: {
-    email: null,
-    name: null,
-    googleId: null,
-    googleToken: null,
+    text: null,
+    url: null,
     createdAt: null,
     updatedAt: null
   }
