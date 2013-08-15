@@ -41,6 +41,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
   });
 
   $stateProvider.state('account', {
+    onEnter: function() {
+      console.log('account entered');
+    },
     url: '/account',
     views: {
       '': {

@@ -5,6 +5,8 @@
  /* globals app */
  'use strict';
 
+require('bootstrap');
+
 // Globalize app.
 global.app = require('./app');
 

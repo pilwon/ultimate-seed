@@ -6,5 +6,5 @@
 'use strict';
 
 
-app.controller('AccountController', function ($scope) {
+app.controller('AccountController', function ($scope, Auth) {
 });
