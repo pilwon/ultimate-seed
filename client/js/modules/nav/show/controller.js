@@ -6,9 +6,7 @@
 
 'use strict';
 
-var _ = require('lodash'),
-    $ = require('jquery'),
-    Backbone = require('backbone');
+var Backbone = require('backbone');
 
 var views = require('./views');
 

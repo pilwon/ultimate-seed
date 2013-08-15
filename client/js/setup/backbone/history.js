@@ -4,9 +4,7 @@
 
 'use strict';
 
-var _ = require('lodash'),
-    $ = require('jquery'),
-    Backbone = require('backbone');
+var Backbone = require('backbone');
 
 var _navigate = Backbone.History.prototype.navigate;
 

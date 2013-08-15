@@ -6,7 +6,7 @@
 
 var util = require('util');
 
-var string = require('string'),
+var S = require('string'),
     ultimate = require('ultimate');
 
 var app = require('../app'),
@@ -29,7 +29,7 @@ function loginPOST(req, res, next) {
 
   // Validation
   var errors;
-  req.body.username = string(req.body.username).trim().s;
+  req.body.username = S(req.body.username).trim().s;
   req.assert('username', '<strong>E-mail</strong> is required.').notEmpty();
   req.assert('username', '<strong>E-mail</strong> must be valid.').isEmail();
   req.assert('password', '<strong>Password</strong> is required.').notEmpty();
@@ -111,9 +111,9 @@ function registerPOST(req, res, next) {
 
   // Validation
   var errors;
-  req.body.username = string(req.body.username).trim().s;
-  req.body.firstName = string(req.body.firstName).trim().capitalize().s;
-  req.body.lastName = string(req.body.lastName).trim().capitalize().s;
+  req.body.username = S(req.body.username).trim().s;
+  req.body.firstName = S(req.body.firstName).trim().capitalize().s;
+  req.body.lastName = S(req.body.lastName).trim().capitalize().s;
   req.assert('username', '<strong>E-mail</strong> is required.').notEmpty();
   req.assert('username', '<strong>E-mail</strong> must be valid.').isEmail();
   req.assert('password', '<strong>Password</strong> is required.').notEmpty();

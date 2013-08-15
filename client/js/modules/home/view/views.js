@@ -55,13 +55,6 @@ var Layout = app.lib.Backbone.Marionette.Layout.extend({
 
   regions: {
     featuresRegion: 'div.features'
-  },
-
-  onShow: function () {
-    var features = app.request('feature:entities');
-    this.featuresRegion.show(new FeaturesView({
-      collection: features
-    }));
   }
 });
 
