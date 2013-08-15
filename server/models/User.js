@@ -118,10 +118,7 @@ schema.pre('save', function (next) {
 // Password verification
 schema.methods.comparePassword = function (candidatePassword, cb) {
   var user = this;
-  bcrypt.compare(candidatePassword, user.auth.local.password, function (err, isMatch) {
-    if (err) { return cb(err); }
-    cb(null, isMatch);
-  });
+  bcrypt.compare(candidatePassword, user.auth.local.password, cb);
 };
 
 /**
