@@ -15,7 +15,7 @@
 [![Screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot1.png)](http://ultimate-seed.herokuapp.com/)
 [![Screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot2.png)](http://ultimate-seed.herokuapp.com/login)
 
-`ultimate-seed` is the ultimate JavaScript/Node.js full-stack seed that makes web developers insanely productive.
+`ultimate-seed` is the ultimate full-stack JavaScript/Node.js seed that makes web developers insanely productive.
 
 This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency library.
 

@@ -117,6 +117,9 @@ module.exports = function (grunt) {
       }
     },
     cssmin: {  // grunt-contrib-cssmin
+      options: {
+        keepSpecialComments: 0
+      },
       dist: {
         files: {
           '<%= project.path.dist %>/css/main.css': [
@@ -258,7 +261,6 @@ module.exports = function (grunt) {
     watch: {  // grunt-contrib-watch
       assets: {
         options: {
-          interrupt: true,
           livereload: true
         },
         files: [
@@ -272,7 +274,6 @@ module.exports = function (grunt) {
       },
       html: {
         options: {
-          interrupt: true
         },
         files: [
           '<%= project.path.client %>/index.html'
@@ -290,14 +291,12 @@ module.exports = function (grunt) {
       },
       less: {
         options: {
-          interrupt: true
         },
         files: ['<%= project.path.client %>/less/{,*/}*.less'],
         tasks: ['less:dev']
       },
       jsClient: {
         options: {
-          interrupt: true,
           livereload: true
         },
         files: [
@@ -308,7 +307,6 @@ module.exports = function (grunt) {
       },
       jsServer: {
         options: {
-          interrupt: true
         },
         files: ['<%= jshint.server %>'],
         tasks: ['express']

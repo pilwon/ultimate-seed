@@ -6,8 +6,7 @@
 
 'use strict';
 
-var _ = require('lodash'),
-    $ = require('jquery'),
+var $ = require('jquery'),
     Backbone = require('backbone');
 
 var views = require('./views');
@@ -24,11 +23,11 @@ var Controller = app.lib.Backbone.Marionette.Controller.extend({
       })
     });
 
-    view.on('clicked:login', function (args) {
+    view.on('clicked:login', function () {
       app.navigate('login', { trigger: true, refresh: true });
     });
 
-    view.on('clicked:register', function (args) {
+    view.on('clicked:register', function () {
       app.navigate('register', { trigger: true, refresh: true });
     });
 

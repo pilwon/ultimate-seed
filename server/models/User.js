@@ -48,6 +48,27 @@ var schema = new mongoose.Schema({
   roles: [{ type: String }]
 });
 
+// Restify
+schema.restify = {
+  'list': {
+    'admin': '*',
+    'user': ['name.first']
+  },
+  'get': {
+    'admin': '*',
+    'user': ['name.first']
+  },
+  'post': {
+    'admin': '*',
+  },
+  'put': {
+    'admin': '*',
+  },
+  'delete': {
+    'admin': '*'
+  }
+};
+
 // Indexes
 schema.path('email').index({ unique: true });
 schema.path('accessToken').index({ unique: true });
