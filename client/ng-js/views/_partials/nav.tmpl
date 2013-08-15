@@ -21,27 +21,26 @@
       <!-- #nav-left END -->
 
       <!-- #nav-right BEGIN -->
-      <ul class="nav navbar-nav pull-right"
-          ng-if="user.name.full">
-        <li ng-class="{
+      <ul class="nav navbar-nav pull-right">
+        <li ng-if="user.name.full"
+            ng-class="{
               'active': $state.is('account')
             }">
           <a ng-href="#{{ $state.href('account') }}">
             Logged in as <strong>{{ user.name.full }}</strong>
           </a>
         </li>
-        <li>
+        <li ng-if="user.name.full">
           <a ng-href="/logout">Logout</a>
         </li>
-      </ul>
-      <ul class="nav navbar-nav pull-right"
-          ng-if="user.name.full">
-        <li ng-class="{
+        <li ng-if="!user.name.full"
+            ng-class="{
               'active': $state.is('login')
             }">
           <a ng-href="#{{ $state.href('login') }}">Login</a>
         </li>
-        <li ng-class="{
+        <li ng-if="!user.name.full"
+            ng-class="{
               'active': $state.is('register')
             }">
           <a ng-href="#{{ $state.href('register') }}">Register</a>
