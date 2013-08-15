@@ -173,10 +173,10 @@ function registerPOST(req, cb) {
       if (err) { return cb(err); }
       req.logIn(user, function (err) {
         if (err) { return cb(err); }
-        app.lib.cookie.setUserCookie(req, res);
+        app.lib.cookie.setUserCookie(req, req.res);
         return cb(null, {
           success: true
-        })
+        });
       });
     });
   });
