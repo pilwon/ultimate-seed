@@ -10,7 +10,7 @@ var views = require('./views');
 
 var Controller = app.lib.Backbone.Marionette.Controller.extend({
   initialize: function () {
-    this.layout = new views.Layout(),
+    this.layout = new views.Layout();
 
     this.listenTo(this.layout, 'show', function () {
       this.showFeaturesRegion();

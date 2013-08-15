@@ -7,10 +7,10 @@
 var ultimate = require('ultimate');
 
 var mongoose = ultimate.lib.mongoose,
-    plugin = ultimate.db.mongoose.plugin,
-    type = ultimate.db.mongoose.type;
+    plugin = ultimate.db.mongoose.plugin;
+    // type = ultimate.db.mongoose.type;
 
-var app = require('../app');
+// var app = require('../app');
 
 // Schema
 var schema = new mongoose.Schema({
@@ -144,7 +144,7 @@ var data = [
   }
 ];
 model.remove(function (err) {
-  if (err) { throw error; }
+  if (err) { throw err; }
   model.create(data, function (err) {
     if (err) { throw err; }
   });
