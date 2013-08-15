@@ -117,6 +117,9 @@ module.exports = function (grunt) {
       }
     },
     cssmin: {  // grunt-contrib-cssmin
+      options: {
+        keepSpecialComments: 0
+      },
       dist: {
         files: {
           '<%= project.path.dist %>/css/main.css': [
