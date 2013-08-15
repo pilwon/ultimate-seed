@@ -13,10 +13,21 @@ exports.register = function (app, restify) {
       ensureGuest = ultimate.server.controller.ensureGuest,
       ensureUser = ultimate.server.controller.ensureUser;
 
-  var error404 = ultimate.server.route.error404;
-
   var c = app.controllers,
-      s = app.servers.express.getServer();
+      s = app.servers.express.getServer(),
+      error404 = app.lib.controller.error404;
+
+  // API
+  restify.model('/api/features', 'Feature');
+  restify.model('/api/users', 'User');
+  restify.any  ('/api/login', c.api.auth.login, ['post']);
+  restify.any  ('/api/logout', c.api.auth.logout, ['post']);
+  restify.any  ('/api/register', c.api.auth.register, ['post']);
+  restify.any  ('/api/test/any', c.api.test, ['list', 'get']);
+  restify.guest('/api/test/guest', c.api.test, ['list', 'get']);
+  restify.user ('/api/test/user', c.api.test, ['list', 'get']);
+  restify.admin('/api/test/admin', c.api.test);
+  s.get(/^\/api(?:[\/#?].*)?$/, error404);
 
   // Home
   s.get('/express', c.home.express);
@@ -26,16 +37,7 @@ exports.register = function (app, restify) {
 
   // Admin
   s.get('/admin', ensureAdmin, c.admin.index);
-
-  // API
-  restify.model('/api/features', 'Feature');
-  restify.model('/api/users', 'User');
-  restify.any('/api/login', c.api.auth.login, ['post']);
-  restify.any('/api/logout', c.api.auth.logout, ['post']);
-  restify.any('/api/register', c.api.auth.register, ['post']);
-  restify.guest('/api/test', c.api.test, ['list', 'get']);
-  restify.user('/api/test/user', c.api.test, ['list', 'get']);
-  restify.admin('/api/test/admin', c.api.test);
+  s.get(/^\/admin(?:[\/#?].*)?$/, error404);
 
   // Auth
   s.get('/login', ensureGuest, c.auth.login);
@@ -56,12 +58,6 @@ exports.register = function (app, restify) {
   s.get('/auth/twitter/callback', c.auth.twitterCallback);
   s.get('/auth/twitter/success', c.auth.twitterSuccess);
 
-  // Blacklist (404.html)
-  s.get(/^\/api(?:[\/#?].*)?$/, c.home.error404);
-
-  // Whitelist (index.html)
+  // Catch all
   s.get('*', c.home.index);
-
-  // Catch all (404.html)
-  error404.register(s, app);
 };

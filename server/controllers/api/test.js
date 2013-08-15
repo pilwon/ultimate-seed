@@ -6,29 +6,12 @@
 
 var _ = require('lodash');
 
-// var app = require('../../app');
-
 var _testDB = [
-  {
-    id: 1,
-    hello: 'World'
-  },
-  {
-    id: 2,
-    hello: 'Backbone'
-  },
-  {
-    id: 3,
-    hello: 'Marionette'
-  },
-  {
-    id: 4,
-    hello: 'Node.js'
-  },
-  {
-    id: 5,
-    hello: 'ultimate-seed'
-  }
+  { id: '1', hello: 'Thanks' },
+  { id: '2', hello: 'For' },
+  { id: '3', hello: 'Using' },
+  { id: '4', hello: 'ultimate-seed' },
+  { id: '5', hello: ':)' }
 ];
 
 function LIST(req, cb) {
@@ -36,18 +19,11 @@ function LIST(req, cb) {
 }
 
 function GET(req, id, cb) {
-  var item = null;
-  if (_.isArray(_testDB) && _testDB.length) {
-    if (_.isNumber(_testDB[0].id)) {
-      item = _.find(_testDB, {'id': +id});
-    } else {
-      item = _.find(_testDB, {'id': id});
-    }
-  }
+  var item = _.find(_testDB, { id: id });
   if (item) {
     return cb(null, item);
   } else {
-    return cb('invalid id - ' + id);
+    return cb(new Error('Invalid ID: ' + id));
   }
 }
 
@@ -64,7 +40,6 @@ function DELETE(req, id, cb) {
 }
 
 // Public API
-exports.__filename = __filename;
 exports.LIST = LIST;
 exports.GET = GET;
 exports.POST = POST;
