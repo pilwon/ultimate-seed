@@ -14,6 +14,14 @@ function loginPOST(req, cb) {
   var errMsgs = [],
       focus = null;
 
+  function _sendError(err) {
+    cb(err, {
+      focus: focus,
+      form: _.omit(req.body, 'password'),
+      messages: errMsgs
+    });
+  }
+
   // Validation.
   if (_.isEmpty(req.body.username)) {
     errMsgs.push('<strong>Username</strong> is required.');
@@ -36,23 +44,19 @@ function loginPOST(req, cb) {
     focus = focus || 'password';
   }
 
-  // Return error w/ useful information.
+  // Return error.
   if (errMsgs.length) {
-    return cb(new Error(S(errMsgs[0] || '').stripTags().s), {
-      focus: focus,
-      form: _.omit(req.body, 'password'),
-      messages: errMsgs
-    });
+    return _sendError(new Error(S(errMsgs[0] || '').stripTags().s));
   }
 
   // Transform data.
-  req.body.username = req.body.username.toLowerCase();
+  req.body.username = (req.body.username || '').toLowerCase();
 
   // Authentication.
   ultimate.lib.passport.authenticate('local', {
     badRequestMessage: 'Invalid input'
   }, function (err, user, info) {
-    if (err) { return cb(err); }
+    if (err) { return _sendError(err); }
 
     // Check values.
     if (!user) {
@@ -65,10 +69,7 @@ function loginPOST(req, cb) {
       if (_.isEmpty(req.body.password)) {
         errMsgs.push('Missing <strong>password</strong>.');
       }
-      return cb(new Error(S(errMsgs[0] || 'Username/password combination not found.').stripTags().s), {
-        form: _.omit(req.body, 'password'),
-        messages: errMsgs
-      });
+      return _sendError(new Error(S(errMsgs[0] || 'Username/password combination not found.').stripTags().s));
     }
 
     // Remember me.
@@ -80,11 +81,9 @@ function loginPOST(req, cb) {
 
     // Log in.
     req.logIn(user, function (err) {
-      if (err) { return cb(err); }
+      if (err) { return _sendError(err); }
       app.lib.cookie.setUserCookie(req, req.res);
-      return cb(null, {
-        success: true
-      });
+      return cb(null, user.getSafeJSON());
     });
   })(req, req.res, req.next);
 }
@@ -101,6 +100,14 @@ function logoutPOST(req, cb) {
 function registerPOST(req, cb) {
   var errMsgs = [],
       focus = null;
+
+  function _sendError(err) {
+    cb(err, {
+      focus: focus,
+      form: _.omit(req.body, 'password', 'passwordRepeat'),
+      messages: errMsgs
+    });
+  }
 
   // Validation.
   if (_.isEmpty(req.body.username)) {
@@ -127,57 +134,31 @@ function registerPOST(req, cb) {
     errMsgs.push('<strong>Password repeat</strong> is required.');
     focus = focus || 'passwordRepeat';
   } else if (req.body.password !== req.body.passwordRepeat) {
-    errMsgs.push('<strong>Passwords</strong> must match.');
+    errMsgs.push('<strong>Passwords</strong> do not match.');
     focus = focus || 'passwordRepeat';
   }
   if (_.isEmpty(req.body.firstName)) {
     errMsgs.push('<strong>First name</strong> is required.');
     focus = focus || 'firstName';
   }
-  if (_.isEmpty(req.body.lastName)) {
-    errMsgs.push('<strong>Last name</strong> is required.');
-    focus = focus || 'lastName';
-  }
 
-  // Return error w/ useful information.
+  // Return error.
   if (errMsgs.length) {
-    return cb(new Error(S(errMsgs[0] || '').stripTags().s), {
-      focus: focus,
-      form: _.omit(req.body, 'password', 'passwordRepeat'),
-      messages: errMsgs
-    });
+    return _sendError(new Error(S(errMsgs[0] || '').stripTags().s));
   }
 
   // Transform data.
-  req.body.username = S(req.body.username).trim().s.toLowerCase();
-  req.body.firstName = S(req.body.firstName).trim().capitalize().s;
-  req.body.lastName = S(req.body.lastName).trim().capitalize().s;
+  req.body.username = S(req.body.username || '').trim().s.toLowerCase();
+  req.body.firstName = S(req.body.firstName || '').trim().capitalize().s;
+  req.body.lastName = S(req.body.lastName || '').trim().capitalize().s;
 
   // Registeration.
-  app.models.User.findOne({
-    'auth.local.username': req.body.username
-  }, function (err, user) {
-    if (err) {
-      return cb(err);
-    }
-    if (user) {
-      return cb(new Error('Account already exists.'));
-    }
-    new app.models.User({
-      'email': req.body.username,
-      'name.first': req.body.firstName,
-      'name.last': req.body.lastName,
-      'auth.local.username': req.body.username,
-      'auth.local.password': req.body.password
-    }).save(function (err, user) {
-      if (err) { return cb(err); }
-      req.logIn(user, function (err) {
-        if (err) { return cb(err); }
-        app.lib.cookie.setUserCookie(req, req.res);
-        return cb(null, {
-          success: true
-        });
-      });
+  app.models.User.findOrCreateLocal(req.body, function (err, user) {
+    if (err) { return _sendError(err); }
+    req.logIn(user, function (err) {
+      if (err) { return _sendError(err); }
+      app.lib.cookie.setUserCookie(req, req.res);
+      return cb(null, user.getSafeJSON());
     });
   });
 }
