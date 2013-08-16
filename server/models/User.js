@@ -21,7 +21,7 @@ var schema = new mongoose.Schema({
   email: { type: type.Email, required: true },
   name: {
     first: { type: String, required: true },
-    last: { type: String, required: true }
+    last: { type: String }
   },
   accessToken: { type: String },
   auth: {
@@ -83,12 +83,8 @@ schema.virtual('name.full').get(function () {
 });
 schema.virtual('name.full').set(function (name) {
   var split = name.split(' ');
-  if (split.length >= 2) {
-    this.name.last = split.splice(split.length - 1).join(' ');
-  } else {
-    this.name.last = '';
-  }
-  this.name.first = split.join(' ');
+  this.name.first = name.slice(0, Math.max(1, name.length - 1)).join(' ');
+  this.name.last = name.slice(Math.max(1, name.length - 1)).join(' ');
 });
 
 // Plugins
@@ -119,6 +115,67 @@ schema.pre('save', function (next) {
 schema.methods.comparePassword = function (candidatePassword, cb) {
   var user = this;
   bcrypt.compare(candidatePassword, user.auth.local.password, cb);
+};
+
+// Safe JSON (internal data removed)
+schema.methods.getSafeJSON = function () {
+  var result = this.toJSON();
+
+  delete result.__v;
+  delete result.accessToken;
+
+  if (result.auth.local) {
+    delete result.auth.local.password;
+  }
+  if (result.auth.facebook) {
+    delete result.auth.facebook.token;
+  }
+  if (result.auth.google) {
+    delete result.auth.google.token;
+  }
+  if (result.auth.twitter) {
+    delete result.auth.twitter.token;
+  }
+
+  return result;
+};
+
+/**
+ * Local auth
+ */
+schema.statics.findOrCreateLocal = function (profile, cb) {
+  var data = {
+    email: profile.username,
+    name: {
+      first: profile.firstName,
+      last: profile.lastName
+    },
+    'auth.local': {
+      username: profile.username,
+      password: profile.password
+    }
+  };
+  app.models.User.findOne({
+    email: data.email
+  }, function (err, user) {
+    if (err) { return cb(err); }
+    if (user) {
+      user.comparePassword(profile.password, function (err, matched) {
+        if (err) { return cb(err); }
+        if (matched) {
+          // Update existing account.
+          user.name = data.name;
+          user.save(cb);
+        } else {
+          // Account created by someone else or using non-local.
+          return cb(new Error('Account already exists.'));
+        }
+      });
+    } else {
+      // Create new account.
+      app.models.User.create(data, cb);
+    }
+  });
 };
 
 /**
