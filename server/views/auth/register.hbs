@@ -1,5 +1,5 @@
 <form class="register form-horizontal" method="post">
-  <input type="hidden" name="_csrf" value="{{csrf}}"></input>
+  <input type="hidden" name="_csrf" value="{{csrf}}" />
 
   {{#if messages}}
     <div class="alert alert-danger">
@@ -14,29 +14,29 @@
 
   <div class="row form-group">
     <div class="col-lg-11">
-      <input type="text" class="form-control" name="username" placeholder="e-mail address" value="{{form.username}}"></input>
+      <input type="text" class="form-control" name="username" placeholder="e-mail address" value="{{form.username}}" />
     </div>
   </div>
 
   <div class="row form-group">
     <div class="col-lg-11">
-      <input type="password" class="form-control" name="password" placeholder="password"></input>
+      <input type="password" class="form-control" name="password" placeholder="password" />
     </div>
   </div>
 
   <div class="row form-group">
     <div class="col-lg-11">
-      <input type="password" class="form-control" name="passwordRepeat" placeholder="repeat password"></input>
+      <input type="password" class="form-control" name="passwordRepeat" placeholder="repeat password" />
     </div>
   </div>
 
   <div class="row form-group">
     <div class="row col-lg-11">
       <div class="col-6" style="padding-right: 0;">
-        <input type="text" class="form-control" name="firstName" placeholder="first name" value="{{form.firstName}}"></input>
+        <input type="text" class="form-control" name="firstName" placeholder="first name" value="{{form.firstName}}" />
       </div>
       <div class="col-6" style="padding-right: 0;">
-        <input type="text" class="form-control" name="lastName" placeholder="last name" value="{{form.lastName}}"></input>
+        <input type="text" class="form-control" name="lastName" placeholder="last name" value="{{form.lastName}}" />
       </div>
     </div>
   </div>
