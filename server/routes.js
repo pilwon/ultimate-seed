@@ -24,12 +24,12 @@ exports.register = function (app, restify) {
   restify.any  ('/api/logout', c.api.auth.logout, ['post']);
   restify.any  ('/api/register', c.api.auth.register, ['post']);
   restify.any  ('/api/test/any', c.api.test, ['list', 'get']);
-  restify.guest('/api/test/guest', c.api.test, ['list', 'get']);
   restify.user ('/api/test/user', c.api.test, ['list', 'get']);
   restify.admin('/api/test/admin', c.api.test);
   s.get(/^\/api(?:[\/#?].*)?$/, error404);
 
   // Home
+  s.get('/', app.lib.controller.index);
   s.get('/express', c.home.express);
 
   // Account
@@ -41,13 +41,13 @@ exports.register = function (app, restify) {
 
   // Auth
   s.get('/login', ensureGuest, c.auth.login);
-  s.post('/login', ensureGuest, csrf, c.auth.loginPOST);
+  s.post('/login', csrf, c.auth.loginPOST);
   s.get('/logout', c.auth.logout);
   s.post('/logout', c.auth.logoutPOST);
   s.get('/lost-password', ensureGuest, c.auth.lostPassword);
-  s.post('/lost-password', ensureGuest, csrf, c.auth.lostPasswordPOST);
+  s.post('/lost-password', csrf, c.auth.lostPasswordPOST);
   s.get('/register', ensureGuest, c.auth.register);
-  s.post('/register', ensureGuest, csrf, c.auth.registerPOST);
+  s.post('/register', csrf, c.auth.registerPOST);
   s.get('/auth/facebook', c.auth.facebook);
   s.get('/auth/facebook/callback', c.auth.facebookCallback);
   s.get('/auth/facebook/success', c.auth.facebookSuccess);
