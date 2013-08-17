@@ -59,7 +59,6 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 | [MongoDB](http://www.mongodb.org/)        | [download](http://www.mongodb.org/downloads) |
 | [Redis](http://redis.io/)                 | [download](http://redis.io/download)         |
 | [Bower](http://twitter.github.com/bower/) | `npm install bower -g`                       |
-| [Compass](http://compass-style.org/)      | `gem install compass`                        |
 | [Grunt](http://gruntjs.com/)              | `npm install grunt-cli -g`                   |
 
   Make sure both `MongoDB` and `Redis` servers running somewhere. (You can use free hosting services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/) for `MongoDB` and [Redis To Go](http://redistogo.com/) for `Redis`.) Then, update configuration information in `config/{development,heroku,production}.json`.
