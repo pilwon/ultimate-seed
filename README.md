@@ -15,13 +15,13 @@
 [![Screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot1.png)](http://ultimate-seed.herokuapp.com/)
 [![Screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot2.png)](http://ultimate-seed.herokuapp.com/login)
 
-`ultimate-seed` is the ultimate full-stack JavaScript/Node.js seed that makes web developers insanely productive.
+`ultimate-seed` is the ultimate full-stack JavaScript/Node.js seed (batteries included!) that makes web developers insanely productive.
 
 This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency library.
 
-## What's Included?
+## Batteries Included
 
-  This seed integrates a bunch of popular modern web frameworks and libraries.
+  `ultimate-seed` comes with many of popular, battle-tested modern web frameworks and libraries. All these parts are already wired together for you using best practices! :) Don't waste time writing boilerplate code.
 
   * [Backbone](http://backbonejs.org/)
   * [Backbone.Marionette](http://marionettejs.com/)
@@ -63,10 +63,10 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   Make sure both `MongoDB` and `Redis` servers running somewhere. (You can use free hosting services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/) for `MongoDB` and [Redis To Go](http://redistogo.com/) for `Redis`.) Then, update configuration information in `config/{development,heroku,production}.json`.
 
-  If you find any reason not to use `Redis` in your project, you can easily achieve it by following these simple steps:
+  If you find any reason not to use `Redis` in your project, you can easily achieve it by following this instruction:
 
-    1. Change *session.store._use* variable to `mongo` in `config/{development,heroku,production}.json`. This lets `ultimate-seed` use MongoDB as session backend.
-    2. Comment out the line `ultimate.db.redis.connect(app.config.db.redis);` in `server/app.js`.
+  1. Change *session.store._use* variable to `mongo` in `config/{development,heroku,production}.json`. This lets `ultimate-seed` use MongoDB as session backend.
+  2. Comment out the line `ultimate.db.redis.connect(app.config.db.redis);` in `server/app.js`.
 
 ### Installation
 
