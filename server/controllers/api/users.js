@@ -23,7 +23,7 @@
 //   cb(new Error('Not yet implemented.'));
 // }
 
-// function DELETE(req,id, cb) {
+// function DELETE(req, id, cb) {
 //   cb(new Error('Not yet implemented.'));
 // }
 
