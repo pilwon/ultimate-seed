@@ -232,7 +232,10 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 ## Credits
 
-  See the [contributors](https://github.com/pilwon/node-ultimate-seed/graphs/contributors).
+  * [Pilwon Huh](https://github.com/pilwon) (creator, maintainer)
+  * [Brian Park](https://github.com/yaru22) (collaborator)
+
+  Thanks to [all the other contributors](https://github.com/pilwon/node-ultimate-seed/graphs/contributors) as well! :)
 
 ## License
 
