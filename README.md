@@ -62,9 +62,12 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 | [Compass](http://compass-style.org/)      | `gem install compass`                        |
 | [Grunt](http://gruntjs.com/)              | `npm install grunt-cli -g`                   |
 
-  Make sure `MongoDB` server is running somewhere (or use free services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/)). Update configuration information in `config/{development,heroku,production}.json`.
+  Make sure both `MongoDB` and `Redis` servers running somewhere. (You can use free hosting services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/) for `MongoDB` and [Redis To Go](http://redistogo.com/) for `Redis`.) Then, update configuration information in `config/{development,heroku,production}.json`.
 
-  `Redis` server is optional but it is highly recommended. Modify *session.store._use* variable as well as Redis connection information in the configuration file if you wish to use Redis as session backend. There is also a free Redis hosting provider, [Redis To Go](http://redistogo.com/).
+  If you find any reason not to use `Redis` in your project, you can easily achieve it by following these simple steps:
+
+    1. Change *session.store._use* variable to `mongo` in `config/{development,heroku,production}.json`. This lets `ultimate-seed` use MongoDB as session backend.
+    2. Comment out the line `ultimate.db.redis.connect(app.config.db.redis);` in `server/app.js`.
 
 ### Installation
 
