@@ -12,8 +12,8 @@
 
 #### [Demo hosted on Heroku](http://ultimate-seed.herokuapp.com/)
 
-[![Screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot1.png)](http://ultimate-seed.herokuapp.com/)
-[![Screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot2.png)](http://ultimate-seed.herokuapp.com/login)
+[![Screenshot](https://raw.github.com/pilwon/ultimate-seed/master/client/img/screenshot1.png)](http://ultimate-seed.herokuapp.com/)
+[![Screenshot](https://raw.github.com/pilwon/ultimate-seed/master/client/img/screenshot2.png)](http://ultimate-seed.herokuapp.com/login)
 
 `ultimate-seed` is the ultimate full-stack JavaScript/Node.js seed (batteries included!) that makes web developers insanely productive.
 
@@ -72,11 +72,11 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   Download `ultimate-seed` and install dependency modules:
 
-    $ git clone https://github.com/pilwon/node-ultimate-seed.git ultimate-seed
+    $ git clone https://github.com/pilwon/ultimate-seed.git ultimate-seed
     $ cd ultimate-seed
     $ npm install && bower install
 
-  Alternatively, [Yeoman generator for ultimate-seed](https://github.com/pilwon/node-ultimate-seed-generator) can be used to clone the seed project.
+  Alternatively, [Yeoman generator for ultimate-seed](https://github.com/pilwon/ultimate-seed-generator) can be used to clone the seed project.
 
 ### Development (`config/development.json`)
 
@@ -234,7 +234,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   * [Pilwon Huh](https://github.com/pilwon) (creator, maintainer)
   * [Brian Park](https://github.com/yaru22) (collaborator)
 
-  Thanks to [all the other contributors](https://github.com/pilwon/node-ultimate-seed/graphs/contributors) as well! :)
+  Thanks to [all the other contributors](https://github.com/pilwon/ultimate-seed/graphs/contributors) as well! :)
 
 ## License
 

@@ -16,10 +16,10 @@
       "url" : "https://github.com/yaru22"
     }
   ],
-  "homepage": "https://github.com/pilwon/node-ultimate-seed",
+  "homepage": "https://github.com/pilwon/ultimate-seed",
   "repository": {
     "type": "git",
-    "url": "git://github.com/pilwon/node-ultimate-seed.git"
+    "url": "git://github.com/pilwon/ultimate-seed.git"
   },
   "keywords": [
     "javascript",
