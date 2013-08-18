@@ -7,8 +7,10 @@
                                                                            
 ```
 
+[![Build Status](https://travis-ci.org/pilwon/node-ultimate-seed.png)](https://travis-ci.org/pilwon/node-ultimate-seed)
+
+[![NPM](https://nodei.co/npm-dl/ultimate.png?months=8)](https://npmjs.org/package/ultimate-seed)
 [![NPM](https://nodei.co/npm/ultimate-seed.png?downloads=false&stars=false)](https://npmjs.org/package/ultimate-seed)
-[![NPM](https://nodei.co/npm-dl/ultimate.png?months=9)](https://npmjs.org/package/ultimate-seed)
 
 #### [Demo hosted on Heroku](http://ultimate-seed.herokuapp.com/)
 
