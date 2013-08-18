@@ -110,6 +110,7 @@ module.exports = function (grunt) {
             src: [
               '../<%= project.path.bower %>/**/*',
               'fonts/**/*',
+              'img/**/*',
               '*.{ico,txt}'
             ]
           }
@@ -148,16 +149,6 @@ module.exports = function (grunt) {
             '*.html'
           ],
           dest: '<%= project.path.dist %>'
-        }]
-      }
-    },
-    imagemin: {  // grunt-contrib-imagemin
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= project.path.client %>/img',
-          src: '**/*.{png,jpg,jpeg}',
-          dest: '<%= project.path.dist %>/img'
         }]
       }
     },
@@ -302,7 +293,6 @@ module.exports = function (grunt) {
     'browserify2:dist',
     'less:dist',
     'useminPrepare',
-    'imagemin:dist',
     'htmlmin:dist',
     'cssmin:dist',
     'copy:dist',
