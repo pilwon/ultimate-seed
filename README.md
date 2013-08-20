@@ -235,7 +235,9 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 ├── config/
 │   ├── development.json
 │   ├── heroku.json
+│   ├── nginx.conf
 │   └── production.json
+├── log/
 ├── node_modules/
 ├── server/
 │   ├── controllers/
