@@ -74,6 +74,11 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   [Yeoman generator for ultimate-seed](https://github.com/pilwon/ultimate-seed-generator) can be used to clone the seed project.
 
+    $ npm install -g yo
+    $ npm install -g generator-ultimate
+    $ yo ultimate
+    $ npm install && bower install
+
 #### Method 2: Git Clone
 
   Download `ultimate-seed` and install dependency modules:
@@ -103,6 +108,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
     $ git checkout dev
     $ git merge seed
+    $ npm install && bower install
 
   Resolve merge conflicts then push to `origin/dev`:
 
