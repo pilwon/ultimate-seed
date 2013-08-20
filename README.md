@@ -70,13 +70,43 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 ### Installation
 
+#### Method 1: Yeoman Generator
+
+  [Yeoman generator for ultimate-seed](https://github.com/pilwon/ultimate-seed-generator) can be used to clone the seed project.
+
+#### Method 2: Git Clone
+
   Download `ultimate-seed` and install dependency modules:
 
     $ git clone https://github.com/pilwon/ultimate-seed.git ultimate-seed
     $ cd ultimate-seed
     $ npm install && bower install
 
-  Alternatively, [Yeoman generator for ultimate-seed](https://github.com/pilwon/ultimate-seed-generator) can be used to clone the seed project.
+#### Method 3: Git Branch Tracking Remote
+
+  In a git repository, create `dev` branch:
+
+    $ git checkout -b dev
+    $ git push -u origin dev
+
+  Now create `seed` branch that tracks remote branch `ultimate-seed/master`:
+
+    $ git remote add seed git@github.com:pilwon/ultimate-seed.git
+    $ git fetch seed
+    $ git checkout -b seed seed/master
+
+  Push a copy of `seed` to `origin/seed`:
+
+    $ git push -u origin seed
+
+  Merge `seed` to `dev` branch:
+
+    $ git checkout dev
+    $ git merge seed
+
+  Resolve merge conflicts then push to `origin/dev`:
+
+    $ git push
 
 ### Development (`config/development.json`)
 
