@@ -8,20 +8,20 @@
 ```
 
 [![NPM](https://nodei.co/npm/ultimate-seed.png?downloads=false&stars=false)](https://npmjs.org/package/ultimate-seed)
-[![NPM](https://nodei.co/npm-dl/ultimate.png?months=9)](https://npmjs.org/package/ultimate-seed)
+[![NPM](https://nodei.co/npm-dl/ultimate.png?months=8)](https://npmjs.org/package/ultimate-seed)
 
 #### [Demo hosted on Heroku](http://ultimate-seed.herokuapp.com/)
 
-[![Screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot1.png)](http://ultimate-seed.herokuapp.com/)
-[![Screenshot](https://raw.github.com/pilwon/node-ultimate-seed/master/client/img/screenshot2.png)](http://ultimate-seed.herokuapp.com/login)
+[![Screenshot](https://raw.github.com/pilwon/ultimate-seed/master/client/img/screenshot1.png)](http://ultimate-seed.herokuapp.com/)
+[![Screenshot](https://raw.github.com/pilwon/ultimate-seed/master/client/img/screenshot2.png)](http://ultimate-seed.herokuapp.com/login)
 
-`ultimate-seed` is the ultimate full-stack JavaScript/Node.js seed that makes web developers insanely productive.
+`ultimate-seed` is the ultimate full-stack JavaScript/Node.js seed (batteries included!) that makes web developers insanely productive.
 
 This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency library.
 
-## What's Included?
+## Batteries Included
 
-  This seed integrates a bunch of popular modern web frameworks and libraries.
+  `ultimate-seed` comes with many of popular, battle-tested modern web frameworks and libraries. All these parts are already wired together for you using best practices! :) Don't waste time writing boilerplate code.
 
   * [Backbone](http://backbonejs.org/)
   * [Backbone.Marionette](http://marionettejs.com/)
@@ -59,22 +59,60 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 | [MongoDB](http://www.mongodb.org/)        | [download](http://www.mongodb.org/downloads) |
 | [Redis](http://redis.io/)                 | [download](http://redis.io/download)         |
 | [Bower](http://twitter.github.com/bower/) | `npm install bower -g`                       |
-| [Compass](http://compass-style.org/)      | `gem install compass`                        |
 | [Grunt](http://gruntjs.com/)              | `npm install grunt-cli -g`                   |
 
-  Make sure `MongoDB` server is running somewhere (or use free services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/)). Update configuration information in `config/{development,heroku,production}.json`.
+  Make sure both `MongoDB` and `Redis` servers running somewhere. (You can use free hosting services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/) for `MongoDB` and [Redis To Go](http://redistogo.com/) for `Redis`.) Then, update configuration information in `config/{development,heroku,production}.json`.
 
-  `Redis` server is optional but it is highly recommended. Modify *session.store._use* variable as well as Redis connection information in the configuration file if you wish to use Redis as session backend. There is also a free Redis hosting provider, [Redis To Go](http://redistogo.com/).
+  If you find any reason not to use `Redis` in your project, you can easily achieve it by following this instruction:
+
+  1. Change the value of `session.store._use` to `mongo` in `config/{development,heroku,production}.json`. (This lets `ultimate-seed` use MongoDB as session backend.)
+  2. Comment out the line `ultimate.db.redis.connect(app.config.db.redis);` in `server/app.js`. (This prevents server connecting to `Redis` server.)
 
 ### Installation
 
+#### Method 1: Yeoman Generator
+
+  [Yeoman generator for ultimate-seed](https://github.com/pilwon/ultimate-seed-generator) can be used to clone the seed project.
+
+    $ npm install -g yo
+    $ npm install -g generator-ultimate
+    $ yo ultimate
+    $ npm install && bower install
+
+#### Method 2: Git Clone
+
   Download `ultimate-seed` and install dependency modules:
 
-    $ git clone https://github.com/pilwon/node-ultimate-seed.git ultimate-seed
+    $ git clone https://github.com/pilwon/ultimate-seed.git ultimate-seed
     $ cd ultimate-seed
     $ npm install && bower install
 
-  Alternatively, [Yeoman generator for ultimate-seed](https://github.com/pilwon/node-ultimate-seed-generator) can be used to clone the seed project.
+#### Method 3: Git Branch Tracking Remote
+
+  In a git repository, create `dev` branch:
+
+    $ git checkout -b dev
+    $ git push -u origin dev
+
+  Now create `seed` branch that tracks remote branch `ultimate-seed/master`:
+
+    $ git remote add seed git@github.com:pilwon/ultimate-seed.git
+    $ git fetch seed
+    $ git checkout -b seed seed/master
+
+  Push a copy of `seed` to `origin/seed`:
+
+    $ git push -u origin seed
+
+  Merge `seed` to `dev` branch:
+
+    $ git checkout dev
+    $ git merge seed
+    $ npm install && bower install
+
+  Resolve merge conflicts then push to `origin/dev`:
+
+    $ git push
 
 ### Development (`config/development.json`)
 
@@ -229,7 +267,10 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 ## Credits
 
-  See the [contributors](https://github.com/pilwon/node-ultimate-seed/graphs/contributors).
+  * [Pilwon Huh](https://github.com/pilwon) (creator, maintainer)
+  * [Brian Park](https://github.com/yaru22) (collaborator)
+
+  Thanks to [all the other contributors](https://github.com/pilwon/ultimate-seed/graphs/contributors) as well! :)
 
 ## License
 

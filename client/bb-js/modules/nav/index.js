@@ -9,7 +9,7 @@
 var ShowController = require('./show/controller');
 
 var API = {
-  showHeader: function () {
+  showNav: function () {
     new ShowController({
       region: app.navRegion
     });
@@ -17,5 +17,5 @@ var API = {
 };
 
 app.commands.setHandler('show:nav', function () {
-  API.showHeader();
+  API.showNav();
 });

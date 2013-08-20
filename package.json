@@ -1,16 +1,25 @@
 {
   "name": "ultimate-seed",
-  "description": "The ultimate full-stack JavaScript/Node.js seed that makes web developers insanely productive.",
+  "description": "The ultimate full-stack JavaScript/Node.js seed (batteries included!) that makes web developers insanely productive.",
   "version": "0.2.7",
   "license": "MIT",
-  "author": {
-    "name": "Pilwon Huh",
-    "email": "pilwon@gmail.com"
-  },
-  "homepage": "https://github.com/pilwon/node-ultimate-seed",
+  "author": "Pilwon Huh <pilwon@gmail.com>",
+  "contributors": [
+    {
+      "name": "Pilwon Huh",
+      "email": "pilwon@gmail.com",
+      "url": "https://github.com/pilwon"
+    },
+    {
+      "name": "Brian Park",
+      "email": "yaru22@gmail.com",
+      "url": "https://github.com/yaru22"
+    }
+  ],
+  "homepage": "https://github.com/pilwon/ultimate-seed",
   "repository": {
     "type": "git",
-    "url": "git://github.com/pilwon/node-ultimate-seed.git"
+    "url": "git://github.com/pilwon/ultimate-seed.git"
   },
   "keywords": [
     "javascript",

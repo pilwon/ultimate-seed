@@ -45,7 +45,7 @@
     "key": "sid",
     "secret": "ultimate",
     "store": {
-      "_use": "mongo",
+      "_use": "redis",
       "mongo": {
         "collection": "sessions"
       },

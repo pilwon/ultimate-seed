@@ -9,18 +9,21 @@
 var _ = require('lodash'),
     Backbone = require('backbone');
 
+var LoginController = require('./login/controller'),
+    RegisterController = require('./register/controller');
+
 var API = {
-  // register: function () {
-
-  // },
-  // login: function () {
-
-  // },
-  // logout: function () {
-
-  // },
+  register: function () {
+    new RegisterController();
+  },
+  login: function () {
+    new LoginController();
+  },
+  logout: function () {
+    location.href = '/logout?_method=post';
+  },
   facebookCallback: function () {
-    app.navigate('/', { trigger: true, replace: true });
+    app.navigate('', { trigger: true, replace: true });
   }
 };
 
@@ -28,8 +31,7 @@ var Router = Backbone.Marionette.AppRouter.extend({
   appRoutes: {
     // 'register': 'register',
     // 'login': 'login',
-    // 'logout': 'logout'
-
+    // 'logout': 'logout',
     '_=_': 'facebookCallback'
   },
   controller: API
