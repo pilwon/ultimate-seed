@@ -96,7 +96,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   Now create `seed` branch that tracks remote branch `ultimate-seed/master`:
 
-    $ git remote add seed git@github.com:pilwon/ultimate-seed.git
+    $ git remote add seed https://github.com/pilwon/ultimate-seed.git
     $ git fetch seed
     $ git checkout -b seed seed/master
 
