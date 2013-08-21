@@ -82,7 +82,6 @@ schema.virtual('name.full').get(function () {
   return this.name.first + ' ' + this.name.last;
 });
 schema.virtual('name.full').set(function (name) {
-  var split = name.split(' ');
   this.name.first = name.slice(0, Math.max(1, name.length - 1)).join(' ');
   this.name.last = name.slice(Math.max(1, name.length - 1)).join(' ');
 });

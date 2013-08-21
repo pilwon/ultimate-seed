@@ -4,14 +4,14 @@
 
 'use strict';
 
-var LANGUAGES = {
-  'de': 'German',
-  'en': 'English',
-  'es': 'Spanish',
-  'fr': 'French',
-  'it': 'Italian',
-  'jp': 'Japanese',
-  'ko': 'Korean',
-  'ru': 'Russian',
-  'zh': 'Chinese'
-};
+// var LANGUAGES = {
+//   'de': 'German',
+//   'en': 'English',
+//   'es': 'Spanish',
+//   'fr': 'French',
+//   'it': 'Italian',
+//   'jp': 'Japanese',
+//   'ko': 'Korean',
+//   'ru': 'Russian',
+//   'zh': 'Chinese'
+// };
