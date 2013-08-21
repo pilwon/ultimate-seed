@@ -61,18 +61,19 @@ app.on('initialize:after', function () {
 
   // Snatch all click events on anchor tags.
   $(document).on('click', 'a', function (e) {
-    var $this = $(this),
-        href = $this.attr('href');
-    app.globalConfig.fromServer = false;
-    if (href.slice(0, 2) !== '//' && !/^[^?]+:\/\//.test(href)) {
+    var href = $(this).attr('href'), i;
+    if (href[0] === '#' || href[0] === '?') {
+      i = app.getRoute().indexOf(href[0]);
+      if (i === -1) { i = href.length; }
+      href = app.getRoute().slice(0, i) + href;
+    } else if (href[0] === '.') {
+      href = path.join(path.dirname(app.getRoute()), href);
+    }
+    if (href.slice(0, 2) !== '//' && !/^[^?\/]+:/.test(href)) {
       e.preventDefault();
-      if (href[0] === '#' || href[0] === '?') {
-        href = app.getRoute() + href;
-      } else if (href[0] === '.') {
-        href = path.join(path.dirname(app.getRoute()), href);
-      }
       app.navigate(href, { trigger: true });
     }
+    app.globalConfig.fromServer = false;
   });
 });
 
