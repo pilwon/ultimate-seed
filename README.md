@@ -89,11 +89,6 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 #### Method 3: Git Branch Tracking Remote
 
-  In a git repository, create `dev` branch:
-
-    $ git checkout -b dev
-    $ git push -u origin dev
-
   Now create `seed` branch that tracks remote branch `ultimate-seed/master`:
 
     $ git remote add seed https://github.com/pilwon/ultimate-seed.git
@@ -102,15 +97,15 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   Push a copy of `seed` to `origin/seed`:
 
-    $ git push -u origin seed
+    $ git push origin seed
 
-  Merge `seed` to `dev` branch:
+  Merge `seed` to `master` branch:
 
-    $ git checkout dev
+    $ git checkout master
     $ git merge seed
     $ npm install && bower install
 
-  Resolve merge conflicts then push to `origin/dev`:
+  Resolve merge conflicts then push to `origin/master`:
 
     $ git push
 
