@@ -2,6 +2,7 @@
 # .gitignore
 #
 
+/.gitignore.*
 /.tmp/
 /client-built/
 /config/development.json
