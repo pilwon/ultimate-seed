@@ -1,6 +1,6 @@
 {
   "name": "ultimate-seed",
-  "description": "The ultimate full-stack JavaScript/Node.js seed (batteries included!) that makes web developers insanely productive.",
+  "description": "The ultimate full-stack Node.js seed (batteries included!) that makes web developers insanely productive.",
   "version": "0.2.8",
   "license": "MIT",
   "author": "Pilwon Huh <pilwon@gmail.com>",
