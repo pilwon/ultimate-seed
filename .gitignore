@@ -2,8 +2,6 @@
 # .gitignore
 #
 
-.git.*
-.gitignore.*
 /.tmp/
 /client-built/
 /config/development.json
@@ -13,4 +11,4 @@
 node_modules/
 !/client/js/node_modules
 /client/js/node_modules/bower_components
-npm-debug.log
+/npm-debug.log
