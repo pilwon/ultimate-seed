@@ -7,12 +7,16 @@ body {
   height: 100%;
 }
 
+body {
+  padding-top: 60px;
+}
+
 body > .wrap {
   min-height: 100%;
   height: auto !important;
   height: 100%;
   margin: 0 auto -60px;
-  padding: 0 0 100px;
+  padding: 0 0 80px;
 }
 
 a {
@@ -26,7 +30,7 @@ code {
 }
 
 .container {
-  @media (min-width: 728px) {
-    max-width: 728px;
+  @media (min-width: @container-tablet) {
+    max-width: @container-tablet;
   }
 }
