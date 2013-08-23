@@ -31,15 +31,15 @@
   "db": {
     "mongo": {
       "host": "@@@@@",
-      "port": 00000,
-      "username": "@@@@@",
-      "password": "@@@@@",
+      "port": 27017,
+      "username": null,
+      "password": null,
       "db": "@@@@@"
     },
     "redis": {
       "host": "@@@@@",
-      "port": 00000,
-      "password": "@@@@@"
+      "port": 6379,
+      "password": null
     }
   },
   "session": {

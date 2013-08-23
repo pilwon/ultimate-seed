@@ -2,12 +2,8 @@
 # .slugignore
 #
 
-.git.*
-.gitignore.*
-/.tmp/
 /config/development.json
 /config/production.json
-/log/
 /node_modules/coffeeify/
 /node_modules/grunt/
 /node_modules/grunt-browserify2/
@@ -28,4 +24,3 @@
 /node_modules/hbsfy/
 /node_modules/matchdep/
 /node_modules/uglify-js/
-npm-debug.log
