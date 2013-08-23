@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="ngApp"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -23,7 +23,7 @@
   <script src="/js/vendor/modernizr.js"></script>
 </head>
 
-<body ng-app="ngApp">
+<body>
 <!--[if lt IE 7]>
   <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 <![endif]-->
@@ -34,13 +34,13 @@
 <![endif]-->
 
   <div class="wrap">
-    <div ng-include="'js/views/_partials/nav.tmpl'"></div>
+    <div ng-include="'js/modules/nav/nav.tmpl'"></div>
     <div class="content">
       <div id="header"></div>
       <div id="main" ui-view></div>
     </div>
   </div>
-  <div ng-include="'js/views/_partials/footer.tmpl'"></div>
+  <div ng-include="'js/modules/footer/footer.tmpl'"></div>
 
   <script src="/js/main.js"></script>
   <script src="http://localhost:35729/livereload.js?snipver=1"></script>

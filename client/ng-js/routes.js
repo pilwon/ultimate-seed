@@ -14,7 +14,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     url: '/',
     views: {
       '': {
-        templateUrl: 'js/views/home/index.tmpl',
+        templateUrl: 'js/modules/home/index.tmpl',
         controller: 'HomeController'
       }
     }
@@ -24,7 +24,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     url: '/login',
     views: {
       '': {
-        templateUrl: 'js/views/auth/login.tmpl',
+        templateUrl: 'js/modules/auth/login.tmpl',
         controller: 'AuthController'
       }
     }
@@ -34,20 +34,17 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     url: '/register',
     views: {
       '': {
-        templateUrl: 'js/views/auth/register.tmpl',
+        templateUrl: 'js/modules/auth/register.tmpl',
         controller: 'AuthController'
       }
     }
   });
 
   $stateProvider.state('account', {
-    onEnter: function() {
-      console.log('account entered');
-    },
     url: '/account',
     views: {
       '': {
-        templateUrl: 'js/views/account/index.tmpl',
+        templateUrl: 'js/modules/account/index.tmpl',
         controller: 'AccountController'
       }
     }

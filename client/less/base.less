@@ -7,16 +7,16 @@ body {
   height: 100%;
 }
 
-body > div.wrap {
+body {
+  padding-top: @navbar-height + 10px;
+}
+
+body > .wrap {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto -60px;
-  padding: 0 0 60px;
-
-  > div.content {
-    padding: 60px 15px 30px;
-  }
+  margin: 0 auto -@navbar-height;
+  padding: 0 0 80px;
 }
 
 a {
@@ -30,7 +30,22 @@ code {
 }
 
 .container {
-  @media (min-width: 728px) {
-    max-width: 728px;
+  @media (min-width: @container-tablet) {
+    max-width: @container-tablet;
+  }
+}
+
+.btn-inverse {
+  background-color: #555;
+  border-color: #555;
+  color: #fff;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    background-color: #000;
+    border-color: #000;
+    color: #fff;
   }
 }

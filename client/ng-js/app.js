@@ -6,6 +6,7 @@
 'use strict';
 
 require('angular');
+var _ = require('lodash');
 
 
 
@@ -16,6 +17,7 @@ var app = angular.module('ngApp', [
 ]);
 
 app.run(function ($rootScope, $state, $stateParams) {
+  $rootScope._ = _;
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
 });
