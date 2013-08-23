@@ -38,7 +38,6 @@
     "jshint",
     "karma",
     "mocha",
-    "chai",
     "less",
     "less-hat",
     "livereload",
@@ -86,7 +85,6 @@
     "xml2js": "~0.2.8"
   },
   "devDependencies": {
-    "chai": "~1.7.2",
     "coffeeify": "~0.5.1",
     "grunt": "~0.4.1",
     "grunt-browserify2": "~0.1.8",
@@ -108,7 +106,9 @@
     "grunt-usemin": "~0.1.12",
     "hbsfy": "~0.1.5",
     "karma": "~0.10.1",
+    "karma-chrome-launcher": "*",
     "karma-mocha": "~0.1",
+    "karma-ng-html2js-preprocessor": "~0.1",
     "matchdep": "~0.1.2",
     "uglify-js": "~2.3.6"
   },
