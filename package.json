@@ -58,7 +58,7 @@
   "dependencies": {
     "async": "~0.2.9",
     "bcrypt": "~0.7.6",
-    "colors": "~0.6.1",
+    "colors": "~0.6.2",
     "connect-mongo": "~0.3.3",
     "connect-redis": "~1.4.5",
     "express": "~3.3.5",
@@ -76,7 +76,7 @@
     "redis": "~0.8.4",
     "request": "~2.26.0",
     "socket.io": "~0.9.16",
-    "string": "~1.5.0",
+    "string": "~1.5.1",
     "ultimate": "0.2.8",
     "winston": "~0.7.2",
     "winston-mongodb": "~0.4.0",
