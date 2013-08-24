@@ -22,5 +22,6 @@
 /node_modules/grunt-open/
 /node_modules/grunt-usemin/
 /node_modules/hbsfy/
+/node_modules/intern/
 /node_modules/matchdep/
 /node_modules/uglify-js/

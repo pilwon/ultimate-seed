@@ -16,6 +16,7 @@ var project = require('./project');
 module.exports = function (grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+  grunt.loadNpmTasks('intern');
 
   // Project configuration.
   grunt.initConfig({
@@ -159,6 +160,25 @@ module.exports = function (grunt) {
           src: '**/*.{png,jpg,jpeg}',
           dest: '<%= project.path.dist %>/img'
         }]
+      }
+    },
+    intern: {  // intern
+      client: {
+        options: {
+          config: 'test/intern'
+        }
+      },
+      clientSuiteGet: {
+        options: {
+          config: 'test/intern',
+          suites: ['test/lib/get']
+        }
+      },
+      runner: {
+        options: {
+          config: 'test/intern',
+          runType: 'runner'
+        }
       }
     },
     jshint: {  // grunt-contrib-jshint
@@ -323,6 +343,8 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('develop', ['devBuild', 'devServer']);
+
+  grunt.registerTask('test', ['intern:client']);
 
   // Shortcuts
   grunt.registerTask('b', 'build');

@@ -102,6 +102,7 @@
     "grunt-open": "~0.2.2",
     "grunt-usemin": "~0.1.12",
     "hbsfy": "~0.1.5",
+    "intern": "~1.2.1",
     "matchdep": "~0.1.2",
     "uglify-js": "~2.3.6"
   },
