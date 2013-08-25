@@ -22,6 +22,10 @@ var Controller = app.lib.Backbone.Marionette.Controller.extend({
   showFeaturesRegion: function () {
     var features = app.request('feature:entities');
 
+    features.comparator = function (feature) {
+      return feature.get('text');
+    };
+
     var featuresView = new views.FeaturesView({
       collection: features
     });

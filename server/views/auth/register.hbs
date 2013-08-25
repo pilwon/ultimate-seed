@@ -1,5 +1,5 @@
-<form class="register form-horizontal" method="post">
-  <input type="hidden" name="_csrf" value="{{csrf}}" />
+<form class="form-horizontal form-register" method="post">
+  <input type="hidden" name="_csrf" value="{{csrf}}"/>
 
   {{#if messages}}
     <div class="alert alert-danger">
@@ -13,46 +13,42 @@
   <h2>New account</h2>
 
   <div class="row form-group">
-    <div class="col-lg-11">
-      <input type="text" class="form-control" name="username" placeholder="e-mail address" value="{{form.username}}" />
+    <div class="col-md-12">
+      <input type="text" class="form-control" name="username" placeholder="e-mail address" value="{{username}}"/>
     </div>
   </div>
 
   <div class="row form-group">
-    <div class="col-lg-11">
-      <input type="password" class="form-control" name="password" placeholder="password" />
+    <div class="col-md-12">
+      <input type="password" class="form-control" name="password" placeholder="password"/>
     </div>
   </div>
 
   <div class="row form-group">
-    <div class="col-lg-11">
-      <input type="password" class="form-control" name="passwordRepeat" placeholder="repeat password" />
+    <div class="col-md-12">
+      <input type="password" class="form-control" name="passwordRepeat" placeholder="repeat password"/>
     </div>
   </div>
 
   <div class="row form-group">
-    <div class="row col-lg-11">
-      <div class="col-6" style="padding-right: 0;">
-        <input type="text" class="form-control" name="firstName" placeholder="first name" value="{{form.firstName}}" />
-      </div>
-      <div class="col-6" style="padding-right: 0;">
-        <input type="text" class="form-control" name="lastName" placeholder="last name" value="{{form.lastName}}" />
-      </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" name="firstName" placeholder="first name" value="{{firstName}}"/>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" name="lastName" placeholder="last name" value="{{lastName}}"/>
     </div>
   </div>
 
   <hr>
 
-  <div class="row form-group">
-    <div class="col-lg-offset-2 col-lg-10">
-      <button class="btn btn-default btn-large" type="submit">Register</button>
-      <button class="login btn btn-large" onclick="location.href='/login'; return false;">Login</button>
-    </div>
-  </div>
+  <p>
+    <button class="btn btn-inverse btn-lg btn-register" type="submit">Register</button>
+    <button class="btn btn-default btn-lg btn-login" onclick="location.href='/login'; return false;">Login</button>
+  </p>
 </form>
 
 <script>
   window.onload = function () {
-    $('form.register input[name="{{focus}}"]').focus();
-  };
+    $('.form-register input[name="{{focus}}"]').focus();
+  }
 </script>

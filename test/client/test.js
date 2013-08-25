@@ -1,5 +1,5 @@
 /*
- * test/server/test.js
+ * test/client/test.js
  */
 
 define([
@@ -7,11 +7,10 @@ define([
   'intern/chai!expect'
 ], function (bdd, expect) {
   with (bdd) {
-    describe('server', function () {
+    describe('client', function () {
       it('should pass', function () {
         expect(true).to.equal(true);
       });
     });
   }
 });
-
