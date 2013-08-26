@@ -2,9 +2,13 @@
  * client/js/index.js
  */
 
-/* globals app */
 'use strict';
 
+var angular = require('angular');
 
 
-app.constant('VERSION', '1.0');
+
+var values = angular.module('ngApp.values', [
+]);
+
+values.constant('VERSION', '1.0');

@@ -6,7 +6,7 @@
 'use strict';
 
 
-app.config(function ($stateProvider, $urlRouterProvider) {
+app.config(function ($stateProvider, $urlRouterProvider, securityProvider) {
   $urlRouterProvider
       .otherwise('/');
 
@@ -42,6 +42,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
   $stateProvider.state('account', {
     url: '/account',
+    resolve: {
+      user: securityProvider.requireUser
+    },
     views: {
       '': {
         templateUrl: 'js/modules/account/index.tmpl',

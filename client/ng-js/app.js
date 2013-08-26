@@ -2,16 +2,31 @@
  * client/js/app.js
  */
 
-/* global angular */
 'use strict';
 
-require('angular');
-var _ = require('lodash');
+var _       = require('lodash');
+var angular = require('angular');
+
+require('./values');
+require('./directives');
+require('./filters');
+require('./services');
+require('./modules');
 
 
 
 var app = angular.module('ngApp', [
+  // Angular modules (alphabetical order)
   'ngCookies',
+
+  // Custom modules (alphabetical order)
+  'ngApp.directives',
+  'ngApp.filters',
+  'ngApp.modules',
+  'ngApp.services',
+  'ngApp.values',
+
+  // Third-party modules (alphabetical order)
   'ui.bootstrap',
   'ui.compat'
 ]);

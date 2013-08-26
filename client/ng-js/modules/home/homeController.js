@@ -2,11 +2,17 @@
  * client/js/controllers/homeController.js
  */
 
-/* globals app */
 'use strict';
 
+var angular = require('angular');
 
-app.controller('HomeController', function ($scope, $window, $cookies) {
+
+
+// NOTE: Do not have [] as a second argument because it creates a new module.
+// We already created the module in index.js.
+var home = angular.module('ngApp.modules.home');
+
+home.controller('HomeController', function ($scope) {
   $scope.items = [
     'Angular',
     'Bootstrap',

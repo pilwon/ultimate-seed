@@ -2,9 +2,15 @@
  * client/js/controllers/accountController.js
  */
 
-/* globals app */
 'use strict';
 
+var angular = require('angular');
 
-app.controller('AccountController', function ($scope, Auth) {
+
+
+// NOTE: Do not have [] as a second argument because it creates a new module.
+// We already created the module in index.js.
+var account = angular.module('ngApp.modules.account');
+
+account.controller('AccountController', function () {
 });

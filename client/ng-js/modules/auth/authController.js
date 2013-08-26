@@ -2,16 +2,24 @@
  * client/js/controllers/authController.js
  */
 
-/* globals app */
 'use strict';
 
+var angular = require('angular');
 
-app.controller('AuthController', function ($scope) {
-  $scope.login = function(formData) {
-    console.log(formData);
+
+
+// NOTE: Do not have [] as a second argument because it creates a new module.
+// We already created the module in index.js.
+var auth = angular.module('ngApp.modules.auth');
+
+auth.controller('AuthController', function ($http, $scope, security) {
+  $scope.login = function (formData) {
+    security.login(formData, function () {
+      console.log('Error logging in.');
+    });
   };
 
-  $scope.register = function(formData) {
+  $scope.register = function (formData) {
     console.log(formData);
   };
 });
