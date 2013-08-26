@@ -1,6 +1,10 @@
 {
   "url": "http://@@@@@",
   "api": {
+    "aws": {
+      "key": "@@@@@",
+      "secret": "@@@@@"
+    },
     "facebook": {
       "appId": "@@@@@",
       "appSecret": "@@@@@"
@@ -9,6 +13,10 @@
       "clientId": "@@@@@",
       "clientSecret": "@@@@@"
     },
+    "rackspace": {
+      "username": "@@@@@",
+      "apiKey": "@@@@@"
+    },
     "twitter": {
       "accessToken": "@@@@@",
       "accessTokenSecret": "@@@@@",
@@ -16,17 +24,8 @@
       "consumerSecret": "@@@@@"
     }
   },
-  "aws": {
-    "key": "@@@@@",
-    "secret": "@@@@@",
-    "s3": {
-      "buckets": {
-        "main": "ultimate"
-      }
-    }
-  },
   "cookie": {
-    "secret": "ultimate"
+    "secret": "UlTiMaTeSeCrEtKeY"
   },
   "db": {
     "mongo": {
@@ -34,7 +33,7 @@
       "port": 27017,
       "username": null,
       "password": null,
-      "db": "ultimate"
+      "db": "ultimate-seed"
     },
     "redis": {
       "host": "@@@@@",
@@ -42,16 +41,66 @@
       "password": null
     }
   },
+  "log": {
+    "_use": [
+      "console",
+      "sns"
+    ],
+    "transport": {
+      "console": {
+        "level": "debug"
+      },
+      "file": {
+        "level": "error"
+      },
+      "mongo": {
+        "level": "error"
+      },
+      "sns": {
+        "level": "error",
+        "subscriber": "@@@@@",
+        "topicArn": "@@@@@"
+      }
+    }
+  },
+  "mail": {
+    "_use": "ses",
+    "transport": {
+      "ses": {},
+      "smtp": {
+        "host": "@@@@@",
+        "port": 25,
+        "username": "@@@@@",
+        "password": "@@@@@",
+        "secure": false
+      }
+    }
+  },
   "session": {
+    "_use": "redis",
     "key": "sid",
-    "secret": "ultimate",
+    "secret": "UlTiMaTeSeCrEtKeY",
     "store": {
-      "_use": "redis",
       "mongo": {
         "collection": "sessions"
       },
       "redis": {
-        "prefix": "ultimate:sessions"
+        "prefix": "ultimate-seed:sessions"
+      }
+    }
+  },
+  "storage": {
+    "_use": "s3",
+    "backend": {
+      "cloudFiles": {
+        "container": {
+          "main": "ultimate-seed"
+        }
+      },
+      "s3": {
+        "bucket": {
+          "main": "ultimate-seed"
+        }
       }
     }
   }
