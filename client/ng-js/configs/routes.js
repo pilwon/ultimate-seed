@@ -1,5 +1,5 @@
 /*
- * client/js/routes.js
+ * client/js/configs/routes.js
  */
 
 /* globals app */

@@ -10,4 +10,5 @@ require('bootstrap');
 // Globalize app.
 global.app = require('./app');
 
-require ('./routes');
+// App configurations.
+require('./configs');
