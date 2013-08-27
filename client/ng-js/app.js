@@ -7,6 +7,10 @@
 var _       = require('lodash');
 var angular = require('angular');
 
+// Restangular needs to have _ attached to window object.
+window._ = _;
+require('restangular');
+
 require('./values');
 require('./directives');
 require('./filters');
@@ -27,6 +31,7 @@ var app = angular.module('ngApp', [
   'ngApp.values',
 
   // Third-party modules (alphabetical order)
+  'restangular',
   'ui.bootstrap',
   'ui.compat'
 ]);
