@@ -31,6 +31,7 @@ exports.register = function (app, restify) {
   // Home
   s.get('/', app.lib.controller.index);
   s.get('/express', c.home.express);
+  s.get('/health', c.home.health);
 
   // Account
   s.get('/account', ensureUser, c.account.index);
