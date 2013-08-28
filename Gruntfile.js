@@ -255,7 +255,7 @@ module.exports = function (grunt) {
     watch: {  // grunt-contrib-watch
       assets: {
         options: {
-          livereload: true
+          livereload: project.server.livereload
         },
         files: [
           '{<%= project.path.temp %>,<%= project.path.client %>}/{,*/}*.html',
@@ -279,7 +279,7 @@ module.exports = function (grunt) {
       },
       css: {
         options: {
-          livereload: true
+          livereload: project.server.livereload
         },
         files: ['<%= project.path.temp %>/css/{,*/}*.css']
       },
@@ -291,7 +291,7 @@ module.exports = function (grunt) {
       },
       jsClient: {
         options: {
-          livereload: true
+          livereload: project.server.livereload
         },
         files: [
           '<%= jshint.client %>',
@@ -332,7 +332,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('devServer', function () {
-    process.env.LIVERELOAD = 35729;
     grunt.task.run([
       'express',
       'open'
