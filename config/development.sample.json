@@ -88,6 +88,9 @@
       }
     }
   },
+  "socketio": {
+    "store": "redis"
+  },
   "storage": {
     "_use": "s3",
     "backend": {

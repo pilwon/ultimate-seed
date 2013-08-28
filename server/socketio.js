@@ -23,9 +23,6 @@ function _test(socket) {
 exports.register = function (app) {
   _socketio = app.servers.socketio.getServer();
 
-  _socketio.enable('browser client minification');
-  _socketio.enable('browser client etag');
-  _socketio.enable('browser client gzip');
   _socketio.set('log level', 2);
 
   _socketio.sockets.on('connection', function (socket) {
