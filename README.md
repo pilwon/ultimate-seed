@@ -65,7 +65,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   If you find any reason not to use `Redis` in your project, you can easily achieve it by following this instruction:
 
-  1. Change the value of `session.store._use` to `mongo` in `config/{development,heroku,production}.json`. (This lets `ultimate-seed` use MongoDB as session backend.)
+  1. Change the value of `session.store._use` to `mongo` and `socketio.store` to `memory` in `config/{development,heroku,production}.json`. (This lets `ultimate-seed` use MongoDB as session backend.)
   2. Comment out the line `ultimate.db.redis.connect(app.config.db.redis);` in `server/app.js`. (This prevents server connecting to `Redis` server.)
 
 ### Installation
