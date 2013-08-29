@@ -1,5 +1,5 @@
 /*
- * client/js/index.js
+ * client/js/values.js
  */
 
 'use strict';

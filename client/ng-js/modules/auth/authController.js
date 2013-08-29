@@ -12,7 +12,8 @@ var angular = require('angular');
 // We already created the module in index.js.
 var auth = angular.module('ngApp.modules.auth');
 
-auth.controller('AuthController', function ($http, $scope, security) {
+auth.controller('AuthController', ['$http', '$scope', 'security',
+    function ($http, $scope, security) {
   $scope.login = function (formData) {
     security.login(formData, function () {
       console.log('Error logging in.');
@@ -22,4 +23,4 @@ auth.controller('AuthController', function ($http, $scope, security) {
   $scope.register = function (formData) {
     console.log(formData);
   };
-});
+}]);

@@ -12,10 +12,11 @@ var angular = require('angular');
 // We already created the module in index.js.
 var nav = angular.module('ngApp.modules.nav');
 
-nav.controller('NavController', function ($scope, $cookies) {
+nav.controller('NavController', ['$scope', '$cookies',
+    function ($scope, $cookies) {
   $scope.user = {
     name: {
       full: $cookies['user.name.full']
     }
   };
-});
+}]);

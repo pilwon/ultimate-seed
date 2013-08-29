@@ -12,7 +12,8 @@ var angular = require('angular');
 // We already created the module in index.js.
 var home = angular.module('ngApp.modules.home');
 
-home.controller('HomeController', function ($scope) {
+home.controller('HomeController', ['$scope',
+    function ($scope) {
   $scope.items = [
     'Angular',
     'Bootstrap',
@@ -40,4 +41,4 @@ home.controller('HomeController', function ($scope) {
     'Uglify',
     'Winston'
   ];
-});
+}]);

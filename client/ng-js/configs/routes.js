@@ -6,7 +6,9 @@
 'use strict';
 
 
-app.config(function ($stateProvider, $urlRouterProvider, securityProvider) {
+
+app.config(['$stateProvider', '$urlRouterProvider', 'securityProvider',
+    function ($stateProvider, $urlRouterProvider, securityProvider) {
   $urlRouterProvider
       .otherwise('/');
 
@@ -14,7 +16,7 @@ app.config(function ($stateProvider, $urlRouterProvider, securityProvider) {
     url: '/',
     views: {
       '': {
-        templateUrl: 'js/modules/home/index.tmpl',
+        templateUrl: '/js/modules/home/index.tmpl',
         controller: 'HomeController'
       }
     }
@@ -24,7 +26,7 @@ app.config(function ($stateProvider, $urlRouterProvider, securityProvider) {
     url: '/login',
     views: {
       '': {
-        templateUrl: 'js/modules/auth/login.tmpl',
+        templateUrl: '/js/modules/auth/login.tmpl',
         controller: 'AuthController'
       }
     }
@@ -34,7 +36,7 @@ app.config(function ($stateProvider, $urlRouterProvider, securityProvider) {
     url: '/register',
     views: {
       '': {
-        templateUrl: 'js/modules/auth/register.tmpl',
+        templateUrl: '/js/modules/auth/register.tmpl',
         controller: 'AuthController'
       }
     }
@@ -47,9 +49,9 @@ app.config(function ($stateProvider, $urlRouterProvider, securityProvider) {
     },
     views: {
       '': {
-        templateUrl: 'js/modules/account/index.tmpl',
+        templateUrl: '/js/modules/account/index.tmpl',
         controller: 'AccountController'
       }
     }
   });
-});
+}]);

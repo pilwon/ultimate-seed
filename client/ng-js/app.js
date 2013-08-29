@@ -11,11 +11,12 @@ var angular = require('angular');
 window._ = _;
 require('restangular');
 
-require('./values');
 require('./directives');
 require('./filters');
 require('./services');
 require('./modules');
+require('./templates');
+require('./values');
 
 
 
@@ -28,6 +29,7 @@ var app = angular.module('ngApp', [
   'ngApp.filters',
   'ngApp.modules',
   'ngApp.services',
+  'ngApp.templates',
   'ngApp.values',
 
   // Third-party modules (alphabetical order)
@@ -36,11 +38,12 @@ var app = angular.module('ngApp', [
   'ui.compat'
 ]);
 
-app.run(function ($rootScope, $state, $stateParams) {
+app.run(['$rootScope', '$state', '$stateParams',
+    function ($rootScope, $state, $stateParams) {
   $rootScope._ = _;
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
-});
+}]);
 
 
 // Public API

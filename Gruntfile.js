@@ -140,7 +140,42 @@ module.exports = function (grunt) {
         }
       }
     },
+    html2js: {
+      ng: {
+        options: {
+          base: '.',
+          fileHeaderString: 'var angular = require(\'angular\');',
+          indentString: '',
+          module: 'ngApp.templates',  // no bundle module for all the html2js templates
+          rename: function (moduleName) {
+            var escapeRegExp = function (str) {
+              return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+            };
+            // Get rid of the prefix from the module name.
+            var prefix = project.path.temp + '/tmpl';
+            var regex = new RegExp('^' + escapeRegExp(prefix));
+            return moduleName.replace(regex, '');
+          }
+        },
+        files: [{
+          src: ['<%= project.path.temp %>/tmpl/**/*.tmpl'],
+          dest: '<%= project.path.client %>/js/templates.js'
+        }],
+      }
+    },
     htmlmin: {  // grunt-contrib-htmlmin
+      ng: {  // minify Angular templates
+        options: {
+          removeComments: true,
+          collapseWhitespace: true
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= project.path.client %>',
+          src: [ '**/*.tmpl' ],
+          dest: '<%= project.path.temp %>/tmpl'
+        }]
+      },
       dist: {
         files: [{
           expand: true,
@@ -232,16 +267,6 @@ module.exports = function (grunt) {
       e2e: {
         configFile: '<%= project.path.config %>/karma-e2e.conf.js',
         singleRun: true
-      }
-    },
-    ngmin: {  // grunt-ngmin
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= project.path.dist %>/js',
-          src: '*.js',
-          dest: '<%= project.path.dist %>/js'
-        }]
       }
     },
     open: {  // grunt-open
@@ -346,6 +371,8 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'jshint',
     'clean:dist',
+    'htmlmin:ng',
+    'html2js:ng',
     'browserify2:dist',
     'less:dist',
     'useminPrepare',
@@ -355,7 +382,6 @@ module.exports = function (grunt) {
     'copy:dist',
     'cacheBust:dist',
     'usemin',
-    'ngmin',
     'uglify:dist'
   ]);
 

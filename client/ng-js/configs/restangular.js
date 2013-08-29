@@ -7,6 +7,6 @@
 
 
 
-app.config(function (RestangularProvider) {
+app.config(['RestangularProvider', function (RestangularProvider) {
   RestangularProvider.setBaseUrl('/api');
-});
+}]);

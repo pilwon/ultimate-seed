@@ -100,7 +100,7 @@
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-watch": "~0.5.1",
     "grunt-express": "~1.0.0-beta2",
-    "grunt-html2js": "~0.1.6",
+    "grunt-html2js": "~0.1.7",
     "grunt-karma": "~0.6.1",
     "grunt-ngmin": "0.0.3",
     "grunt-open": "~0.2.2",
