@@ -25,7 +25,7 @@ exports.register = function (app) {
       socket.manager.transports[socket.id].onMessage = function (packet) {
         onMessage.apply(this, arguments);
         sockets.onMessage(socket, packet);
-      }
+      };
     }());
 
     // Call onDisconnect.

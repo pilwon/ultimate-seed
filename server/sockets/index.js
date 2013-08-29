@@ -21,11 +21,11 @@ function onConnect(socket) {
   _regiser(socket);
 }
 
-function onDisconnect(socket) {
+function onDisconnect(/*socket*/) {
   //...
 }
 
-function onMessage(socket, packet) {
+function onMessage(/*socket, packet*/) {
   // if (packet.type === 'heartbeat') {
   //   // ...
   // }

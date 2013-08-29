@@ -4,7 +4,7 @@
 
 'use strict';
 
-function _onNew(socket, data, cb) {
+function _onNew(/*socket, data, cb*/) {
   // console.log('=== users:create ===');
   // console.log(data);
 
@@ -20,14 +20,14 @@ function _onNew(socket, data, cb) {
   // cb(null, user);
 }
 
-function _onFetch(socket, data, cb) {
+function _onFetch(/*socket, data, cb*/) {
   // console.log('=== users:read ===');
   // console.log(data);
 
   // cb(null, _.values(user));
 }
 
-function _onSave(socket, data, cb) {
+function _onSave(/*socket, data, cb*/) {
   // console.log('=== users:update ===');
   // console.log(data);
 
@@ -39,7 +39,7 @@ function _onSave(socket, data, cb) {
   // cb(null, user);
 }
 
-function _onDestroy(socket, data, cb) {
+function _onDestroy(/*socket, data, cb*/) {
   // console.log('=== users:delete ===');
   // console.log(data);
 
