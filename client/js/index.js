@@ -72,7 +72,7 @@ $(function () {
       });
 
       socket.on('connect', function () {
-        socket.emit('test', {
+        socket.emit('info', {
           // modernizr: Modernizr,
           navigator: _.transform(navigator, function (result, val, key) {
             if (_.isString(val)) {

@@ -238,6 +238,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 │   ├── controllers/
 │   ├── lib/
 │   ├── models/
+│   ├── sockets/
 │   ├── views/
 │   │   ├── _helpers/
 │   │   ├── _layouts/
