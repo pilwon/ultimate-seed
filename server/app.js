@@ -70,7 +70,7 @@ app.attachMiddlewares = function () {
   app.servers.express.getServer().use(function (req, res, next) {
     // Locals
     res.locals.livereload = app.project.server.livereload;
-    res.locals.csrf = req.session._csrf;
+    res.locals.csrf = req.csrfToken();
     res.locals.user = req.user;
     res.locals.role = {
       admin: false

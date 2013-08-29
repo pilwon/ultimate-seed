@@ -1,7 +1,7 @@
 {
   "name": "ultimate-seed",
   "description": "The ultimate full-stack Node.js seed (batteries included!) that makes web developers insanely productive.",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "license": "MIT",
   "author": "Pilwon Huh <pilwon@gmail.com>",
   "contributors": [
@@ -61,7 +61,7 @@
     "colors": "~0.6.2",
     "connect-mongo": "~0.3.3",
     "connect-redis": "~1.4.5",
-    "express": "~3.3.5",
+    "express": "~3.3.7",
     "express-winston": "~0.2.1",
     "express3-handlebars": "~0.5.0",
     "hiredis": "~0.1.15",
@@ -77,7 +77,7 @@
     "request": "~2.26.0",
     "socket.io": "~0.9.16",
     "string": "~1.5.1",
-    "ultimate": "0.2.11",
+    "ultimate": "0.2.12",
     "winston": "~0.7.2",
     "winston-mongodb": "~0.4.0",
     "wrench": "~1.5.1",
