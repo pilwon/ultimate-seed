@@ -10,6 +10,7 @@
     "temp": ".tmp"
   },
   "server": {
+    "livereload": 35729,
     "port": 3000
   }
 }

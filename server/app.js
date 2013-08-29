@@ -98,7 +98,7 @@ app.attachMiddlewares = function () {
   // Custom
   app.servers.express.getServer().use(function (req, res, next) {
     // Locals
-    res.locals.livereload = process.env.LIVERELOAD;
+    res.locals.livereload = app.project.server.livereload;
     res.locals.csrf = req.session._csrf;
     res.locals.user = req.user;
     res.locals.role = {
@@ -113,8 +113,8 @@ app.attachMiddlewares = function () {
     }
 
     // Live reload
-    if (process.env.LIVERELOAD) {
-      res.cookie('livereload', process.env.LIVERELOAD);
+    if (process.env.NODE_ENV === 'development') {
+      res.cookie('livereload', app.project.server.livereload);
     } else {
       res.clearCookie('livereload');
     }
