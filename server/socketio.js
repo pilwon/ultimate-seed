@@ -4,21 +4,9 @@
 
 'use strict';
 
-var util = require('util');
+var sockets = require('./sockets');
 
 var _socketio = null;
-
-function _test(socket) {
-  // Server -> Client
-  socket.emit('test', {
-    hello: 'from server world'
-  });
-
-  // Client -> Server
-  socket.on('test', function (data) {
-    console.log('[%s] %s', socket.ip, JSON.stringify(data, null, 2));
-  });
-}
 
 exports.register = function (app) {
   _socketio = app.servers.socketio.getServer();
@@ -26,18 +14,28 @@ exports.register = function (app) {
   _socketio.set('log level', 2);
 
   _socketio.sockets.on('connection', function (socket) {
-    socket.ip = util.format(
-      '%s:%s',
-      socket.handshake.address.address,
-      socket.handshake.address.port
-    );
+    // Attach variables.
+    socket.address = socket.handshake.address.address + ':' +
+                     socket.handshake.address.port;
+    socket.connectedAt = new Date();
 
-    console.log('[%s] CONNECTED', socket.ip);
+    // Call onMessage.
+    (function () {
+      var onMessage = socket.manager.transports[socket.id].onMessage;
+      socket.manager.transports[socket.id].onMessage = function (packet) {
+        onMessage.apply(this, arguments);
+        sockets.onMessage(socket, packet);
+      };
+    }());
 
+    // Call onDisconnect.
     socket.on('disconnect', function () {
-      console.log('[%s] DISCONNECTED', socket.ip);
+      sockets.onDisconnect(socket);
+      console.info('[%s] DISCONNECTED', socket.address);
     });
 
-    _test(socket);
+    // Call onConnect.
+    sockets.onConnect(socket);
+    console.info('[%s] CONNECTED', socket.address);
   });
 };

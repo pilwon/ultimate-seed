@@ -21,6 +21,7 @@
 /node_modules/grunt-express/
 /node_modules/grunt-open/
 /node_modules/grunt-usemin/
+/node_modules/handlebars-runtime/
 /node_modules/hbsfy/
 /node_modules/intern/
 /node_modules/matchdep/

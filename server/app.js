@@ -50,35 +50,6 @@ app.attachMiddlewares = function () {
   // Remove trailing slashes
   ultimate.server.middleware.removeTrailingSlashes.attach(app);
 
-  // Attach session middleware
-  if (_.isObject(app.config.session) && _.isObject(app.config.session.store)) {
-    switch (ultimate.server.middleware.session._use(app.config, ['mongo', 'redis'])) {
-    case 'mongo':
-      app.logger.debug('app.config.session.store.mongo: '.cyan +
-          JSON.stringify(app.config.session.store.mongo, null, 2));
-      ultimate.server.middleware.session.mongo.attach(app);
-      break;
-    case 'redis':
-      app.logger.debug('app.config.session.store.redis: '.cyan +
-          JSON.stringify(app.config.session.store.redis, null, 2));
-      ultimate.server.middleware.session.redis.attach(app);
-      break;
-    default:
-      throw new Error('Missing session.store.{mongo,redis} in config');
-    }
-  } else {
-    throw new Error('Missing object in config: session.store');
-  }
-
-  // Generate CSRF token
-  app.servers.express.getServer().use(function (req, res, next) {
-    if (!req.session._csrf) {
-      req.session._csrf = ultimate.util.uuid({ length: 24, dash: false });
-    }
-    res.cookie('csrf', req.session._csrf);
-    next();
-  });
-
   // Method override
   ultimate.server.middleware.methodOverride.attach(app);
 
@@ -99,7 +70,7 @@ app.attachMiddlewares = function () {
   app.servers.express.getServer().use(function (req, res, next) {
     // Locals
     res.locals.livereload = app.project.server.livereload;
-    res.locals.csrf = req.session._csrf;
+    res.locals.csrf = req.csrfToken();
     res.locals.user = req.user;
     res.locals.role = {
       admin: false
