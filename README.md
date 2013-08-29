@@ -126,10 +126,10 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 
 
-## Deployment
+### Deployment
 
 
-### Production Server (`config/production.json`)
+#### Production Server (`config/production.json`)
 
   First, prepare and optimize all files used in production environment:
 
@@ -154,7 +154,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
     autorestart = true
 
 
-### Heroku (`config/heroku.json`)
+#### Heroku (`config/heroku.json`)
 
   `ultimate-seed` supports deployment of your app to [Heroku](https://www.heroku.com/) servers.
 
@@ -174,10 +174,10 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 
 
-## Optimization
+### Optimization
 
 
-### RedisStore for Socket.io
+#### RedisStore for Socket.io
 
   Socket.io supports `RedisStore` option, and it is a must-use feature for multi-server deployment setup. To enable this feature, change the value `socketio.store` to `redis` in `config/{development,heroku,production}.json`. The reason `RedisStore` is not used by default is due to max connection limit imposed by some Redis hosting providers. Each server makes 8 connections to the Redis server when this feature is enabled.
 
