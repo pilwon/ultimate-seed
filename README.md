@@ -19,6 +19,8 @@
 
 This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency library.
 
+
+
 ## Batteries Included
 
   `ultimate-seed` comes with many of popular, battle-tested modern web frameworks and libraries. All these parts are already wired together for you using best practices! :) Don't waste time writing boilerplate code.
@@ -49,7 +51,10 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   * [Uglify](http://lisperator.net/uglifyjs/)
   * [Winston](https://github.com/flatiron/winston)
 
+
+
 ## How to Use
+
 
 ### Dependencies
 
@@ -65,8 +70,9 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   If you find any reason not to use `Redis` in your project, you can easily achieve it by following this instruction:
 
-  1. Change the value of `session.store._use` to `mongo` and `socketio.store` to `memory` in `config/{development,heroku,production}.json`. (This lets `ultimate-seed` use MongoDB as session backend.)
+  1. Change the value of `session.store._use` to `mongo` in `config/{development,heroku,production}.json`. (This lets `ultimate-seed` use MongoDB as session backend.)
   2. Comment out the line `ultimate.db.redis.connect(app.config.db.redis);` in `server/app.js`. (This prevents server connecting to `Redis` server.)
+
 
 ### Installation
 
@@ -109,6 +115,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
     $ git push
 
+
 ### Development (`config/development.json`)
 
   [Grunt](http://gruntjs.com/) tasks to build your app:
@@ -117,7 +124,10 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
     $ grunt build              # jshint & build
     $ grunt clean              # clean grenerated files
 
+
+
 ## Deployment
+
 
 ### Production Server (`config/production.json`)
 
@@ -143,6 +153,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
     autostart = true
     autorestart = true
 
+
 ### Heroku (`config/heroku.json`)
 
   `ultimate-seed` supports deployment of your app to [Heroku](https://www.heroku.com/) servers.
@@ -160,6 +171,17 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   5. Set the environment variable: `heroku config:set NODE_ENV=heroku ERROR_PAGE_URL=http://APPID.herokuapp.com/404.html -a APPID`
   6. Deploy application to Heroku using `git push heroku +master`
   7. Deployed at [http://APPID.herokuapp.com/](http://ultimate-seed.herokuapp.com/)
+
+
+
+## Optimization
+
+
+### RedisStore for Socket.io
+
+  Socket.io supports `RedisStore` option, and it is a must-use feature for multi-server deployment setup. To enable this feature, change the value `socketio.store` to `redis` in `config/{development,heroku,production}.json`. The reason `RedisStore` is not used by default is due to max connection limit imposed by some Redis hosting providers. Each server makes 8 connections to the Redis server when this feature is enabled.
+
+
 
 ## Using REPL (read-eval-print loop)
 
@@ -185,6 +207,8 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
     ultimate> ld  // lodash (underscore) object (couldn't use _ because it has special meaning in REPL i.e. the result of the last expression)
     ultimate> ultimate  // ultimate object that ultimate-seed utilizes
     ultimate> showRoutes()  // shows an array of all routes (e.g. [ ..., 'GET /api/user/features/:id', ...])
+
+
 
 ## Directory Structure
 
@@ -263,12 +287,16 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 └── project.json
 ```
 
+
+
 ## Credits
 
   * [Pilwon Huh](https://github.com/pilwon) (creator, maintainer)
   * [Brian Park](https://github.com/yaru22) (collaborator)
 
   Thanks to [all the other contributors](https://github.com/pilwon/ultimate-seed/graphs/contributors) as well! :)
+
+
 
 ## License
 

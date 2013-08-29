@@ -90,7 +90,7 @@
     }
   },
   "socketio": {
-    "store": "redis"
+    "store": "memory"
   },
   "storage": {
     "_use": "s3",
