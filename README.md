@@ -168,7 +168,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   4. Add git remote pointing to Heroku:
     * New Heroku app: `heroku create APPID`
     * Existing Heroku app: `heroku git:remote -a APPID`
-  5. Set the environment variable: `heroku config:set NODE_ENV=heroku ERROR_PAGE_URL=http://APPID.herokuapp.com/404.html -a APPID`
+  5. Set the environment variable: `heroku config:set NODE_ENV=heroku ERROR_PAGE_URL=http://APPID.herokuapp.com/404.html`
   6. Deploy application to Heroku using `git push heroku +master`
   7. Deployed at [http://APPID.herokuapp.com/](http://ultimate-seed.herokuapp.com/)
 
