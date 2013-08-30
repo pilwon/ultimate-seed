@@ -66,7 +66,7 @@ app.on('initialize:after', function () {
     if (href[0] === '#' || href[0] === '?') {
       i = app.getRoute().indexOf(href[0]);
       if (i === -1) { i = app.getRoute().length; }
-      href = app.getRoute().slice(0, i) + href;
+      href = app.getRoute().slice(0, i) + (href.length > 1 ? href : '');
     } else if (href[0] === '.') {
       href = path.join(path.dirname(app.getRoute()), href);
     }
