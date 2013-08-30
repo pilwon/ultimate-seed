@@ -62,6 +62,7 @@ app.on('initialize:after', function () {
   // Snatch all click events on anchor tags.
   $(document).on('click', 'a', function (e) {
     var href = $(this).attr('href'), i;
+    app.globalConfig.fromServer = false;
     if (href[0] === '#' || href[0] === '?') {
       i = app.getRoute().indexOf(href[0]);
       if (i === -1) { i = app.getRoute().length; }
@@ -73,7 +74,6 @@ app.on('initialize:after', function () {
       e.preventDefault();
       app.navigate(href, { trigger: true });
     }
-    app.globalConfig.fromServer = false;
   });
 });
 
