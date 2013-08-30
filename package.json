@@ -1,7 +1,7 @@
 {
   "name": "ultimate-seed",
   "description": "The ultimate full-stack Node.js seed (batteries included!) that makes web developers insanely productive.",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "license": "MIT",
   "author": "Pilwon Huh <pilwon@gmail.com>",
   "contributors": [
@@ -76,7 +76,7 @@
     "request": "~2.26.0",
     "socket.io": "~0.9.16",
     "string": "~1.5.1",
-    "ultimate": "~0.2.14",
+    "ultimate": "~0.2.15",
     "winston": "~0.7.2",
     "winston-mongodb": "~0.4.0",
     "wrench": "~1.5.1",
