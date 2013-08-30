@@ -66,7 +66,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 | [Bower](http://twitter.github.com/bower/) | `npm install bower -g`                       |
 | [Grunt](http://gruntjs.com/)              | `npm install grunt-cli -g`                   |
 
-  Make sure both `MongoDB` and `Redis` servers running somewhere. (You can use free hosting services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/) for `MongoDB` and [Redis To Go](http://redistogo.com/) for `Redis`.) Then, update configuration information in `config/{development,heroku,production}.json`.
+  Make sure both `MongoDB` and `Redis` servers running somewhere. (You can use free hosting services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/) for `MongoDB` and [Redis To Go](http://redistogo.com/) or [RedisCloud](http://redis-cloud.com/) for `Redis`.) Then, update configuration information in `config/{development,heroku,production}.json`.
 
   If you find any reason not to use `Redis` in your project, you can easily achieve it by following this instruction:
 
@@ -158,19 +158,23 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   `ultimate-seed` supports deployment of your app to [Heroku](https://www.heroku.com/) servers.
 
-  1. Comment out the following lines in `.gitignore`.
+  1. Modify `config/heroku.json`.
+  2. Comment out the following lines in `.gitignore`.
     * `/client/js/node_modules/bower_components/`
     * `/client-built/`
     * `/config/heroku.json`
     * `/node_modules/`
-  2. Run `grunt build` to build the project.
-  3. Commit all files to a local git repository created at the project root.
-  4. Add git remote pointing to Heroku:
+  3. Run `grunt build` to build the project.
+  4. Commit all files to a local git repository created at the project root.
+  5. Add git remote pointing to Heroku:
     * New Heroku app: `heroku create APPID`
     * Existing Heroku app: `heroku git:remote -a APPID`
-  5. Set the environment variable: `heroku config:set NODE_ENV=heroku ERROR_PAGE_URL=http://APPID.herokuapp.com/404.html`
-  6. Deploy application to Heroku using `git push heroku +master`
-  7. Deployed at [http://APPID.herokuapp.com/](http://ultimate-seed.herokuapp.com/)
+  6. Set the environment variable: `heroku config:set NODE_ENV=heroku ERROR_PAGE_URL=http://APPID.herokuapp.com/404.html`
+  7. (Optional) Install MongoDB and Redis add-ons to the Heroku app. `ultimate-seed` reads environment variables attached by these add-ons. (Note: Add-on environment variables will override MongoDB/Redis configuration values in `config/heroku.json`):
+    * Mongo: `heroku addons:add mongohq:sandbox` or `heroku addons:add mongolab:sandbox`
+    * Redis: `heroku addons:add redistogo:nano` or `heroku addons:add rediscloud:20`
+  8. Deploy application to Heroku using `git push heroku +master`
+  9. Deployed at [http://APPID.herokuapp.com/](http://ultimate-seed.herokuapp.com/)
 
 
 
