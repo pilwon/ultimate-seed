@@ -174,15 +174,6 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 
 
-### Optimization
-
-
-#### RedisStore for Socket.io
-
-  Socket.io supports `RedisStore` option, and it is a must-use feature for multi-server deployment setup. To enable this feature, change the value `socketio.store` to `redis` in `config/{development,heroku,production}.json`. The reason `RedisStore` is not used by default is due to max connection limit imposed by some Redis hosting providers. Each server makes 8 connections to the Redis server when this feature is enabled.
-
-
-
 ## Using REPL (read-eval-print loop)
 
   This is helpful when you need to debug problems on the production server. You can connect to REPL of the running server via UNIX socket. By default, it creates UNIX socket at /tmp/ultimate-repl but you can configure it in `config/{development,heroku,production}.json`. In order to connect to it, simply run:
