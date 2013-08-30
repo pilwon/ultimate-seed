@@ -104,6 +104,8 @@
     "hbsfy": "~0.1.5",
     "intern": "~1.2.1",
     "matchdep": "~0.1.2",
+    "rfile": "~1.0.0",
+    "rfileify": "~1.2.0",
     "uglify-js": "~2.4.0"
   },
   "scripts": {

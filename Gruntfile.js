@@ -9,6 +9,7 @@ var path = require('path');
 var _ = require('lodash'),
     coffeeify = require('coffeeify'),
     hbsfy = require('hbsfy'),
+    rfileify = require('rfileify'),
     uglify = require('uglify-js');
 
 var project = require('./project');
@@ -29,6 +30,7 @@ module.exports = function (grunt) {
         beforeHook: function (bundle) {
           bundle.transform(coffeeify);
           bundle.transform(hbsfy);
+          bundle.transform(rfileify);
         }
       },
       dist: {
@@ -37,6 +39,7 @@ module.exports = function (grunt) {
         beforeHook: function (bundle) {
           bundle.transform(coffeeify);
           bundle.transform(hbsfy);
+          bundle.transform(rfileify);
         },
         afterHook: function (source) {
           return uglify.minify(source, { fromString: true }).code;
