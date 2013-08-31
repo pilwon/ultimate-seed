@@ -6,17 +6,23 @@
 
 'use strict';
 
-var Backbone = require('backbone');
+var S = require('string'),
+    Backbone = require('backbone');
 
 var views = require('./views');
 
 var Controller = app.lib.Backbone.Marionette.Controller.extend({
   initialize: function () {
-    var view = new views.NavView({
+    var view = this._navView = new views.NavView({
       model: new app.lib.Backbone.Model({
         user: app.config.get('user')
       })
     });
+
+    Backbone.history.on('route', function () {
+      this.updateActiveClass();
+      view.render();
+    }, this);
 
     this.listenTo(app.config, 'change:user', function () {
       view.model.set('user', app.config.get('user'));
@@ -39,11 +45,17 @@ var Controller = app.lib.Backbone.Marionette.Controller.extend({
       app.navigate('register', { trigger: true, refresh: true });
     });
 
-    Backbone.history.on('route', function () {
-      view.render();
-    });
-
     this.show(view);
+  },
+
+  updateActiveClass: function () {
+    var view = this._navView;
+
+    var classVar = S('class_' + app.getRoute().replace(/\//g, '_')).camelize().s;
+    if (classVar === 'class') { classVar += 'Backbone'; }
+
+    view.model.clear();
+    view.model.set(classVar, 'active');
   }
 });
 
