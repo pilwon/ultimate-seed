@@ -38,6 +38,11 @@ app.on('initialize:before', function (options) {
   _.keys(app.config.attributes).forEach(function (attribute) {
     app.config.trigger('change:' + attribute, app.config, app.config.get(attribute));
   });
+
+  // Check if the current session is authenticated.
+  $.get('/api/me').done(function (result) {
+    app.config.set('user', result.data);
+  });
 });
 
 // Add initializer.
@@ -79,24 +84,25 @@ app.on('initialize:after', function () {
 
 // Add regions.
 app.addRegions({
-  navRegion: '#nav',
+  alertRegion: '#alert',
+  footerRegion: '#footer',
   headerRegion: '#header',
   mainRegion: '#main',
-  footerRegion: '#footer'
+  navRegion: '#nav'
 });
 
 // Handle `set:layout` command.
 app.commands.setHandler('set:layout', function (layout) {
   switch (layout) {
   case 'fullscreen':
-    app.navRegion.$el.hide();
-    app.headerRegion.$el.hide();
     app.footerRegion.$el.hide();
+    app.headerRegion.$el.hide();
+    app.navRegion.$el.hide();
     break;
   default:
-    app.navRegion.$el.show();
-    app.headerRegion.$el.show();
     app.footerRegion.$el.show();
+    app.headerRegion.$el.show();
+    app.navRegion.$el.show();
   }
 });
 

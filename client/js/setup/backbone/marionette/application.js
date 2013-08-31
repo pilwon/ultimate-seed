@@ -2,6 +2,8 @@
  * client/js/setup/backbone/marionette/application.js
  */
 
+/* global app */
+
 'use strict';
 
 var path = require('path'),
@@ -12,6 +14,7 @@ var _ = require('lodash'),
 
 _.extend(Backbone.Marionette.Application.prototype, {
   navigate: function (route, options) {
+    app.execute('hide:alert');
     if (!_.isObject(options)) { options = {}; }
     route = route.replace(/^([^\/])(.*)([\/#?]?)$/, '/$1$2');
     Backbone.history.navigate(route, options);

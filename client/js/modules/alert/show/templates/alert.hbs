@@ -1,0 +1,13 @@
+<div class="alert alert-{{type}} alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    {{#if container}}<div class="container">{{/if}}
+      {{#if center}}
+        <div class="text-center">
+          {{{html}}}
+        </div>
+      {{else}}
+        {{{html}}}
+      {{/if}}
+    {{#if container}}</div>{{/if}}
+  </div>
+</div>

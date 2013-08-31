@@ -14,7 +14,6 @@ var app = require('../app'),
 
 function login(req, res) {
   if (req.isAuthenticated()) {
-    app.lib.cookie.setUserCookie(req, res);
     return res.redirect('/');
   }
   res.render('auth/login', {
@@ -70,7 +69,6 @@ function loginPOST(req, res, next) {
     req.logIn(user, function (err) {
       if (err) { return next(err); }
       req.flash('form');
-      app.lib.cookie.setUserCookie(req, res);
       return res.redirect('/');
     });
   })(req, res, next);
@@ -78,7 +76,6 @@ function loginPOST(req, res, next) {
 
 function logout(req, res) {
   if (!req.isAuthenticated()) {
-    app.lib.cookie.clearUserCookie(req, res);
     return res.redirect('/');
   }
   res.redirect('/logout?_method=post');
@@ -151,7 +148,6 @@ function registerPOST(req, res, next) {
       req.logIn(user, function (err) {
         if (err) { return next(err); }
         req.flash('form');
-        app.lib.cookie.setUserCookie(req, res);
         return res.redirect('/');
       });
     });
@@ -175,7 +171,6 @@ function facebookCallback(req, res, next) {
 }
 
 function facebookSuccess(req, res) {
-  app.lib.cookie.setUserCookie(req, res);
   res.redirect('/');
 }
 
@@ -197,7 +192,6 @@ function googleCallback(req, res, next) {
 }
 
 function googleSuccess(req, res) {
-  app.lib.cookie.setUserCookie(req, res);
   res.redirect('/');
 }
 
@@ -218,7 +212,6 @@ function twitterCallback(req, res, next) {
 }
 
 function twitterSuccess(req, res) {
-  app.lib.cookie.setUserCookie(req, res);
   res.redirect('/');
 }
 

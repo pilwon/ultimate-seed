@@ -10,7 +10,8 @@ var Config = app.lib.Backbone.Model.extend({
   defaults: {
     environment: 'development',
     title: 'ultimate-seed',
-    defaultRoute: ''
+    defaultRoute: '',
+    user: null
   }
 });
 

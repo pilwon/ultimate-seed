@@ -6,57 +6,61 @@
 
 'use strict';
 
-var $ = require('jquery');
+var _ = require('lodash'),
+    $ = require('jquery');
 
 var views = require('./views');
 
-var LoginModel = app.lib.Backbone.Model.extend({
-  defaults: {
-    username: '',
-    password: '',
-    csrf: '',
-    messages: []
-  },
-  url: '/api/login'
-});
-
 var Controller = app.lib.Backbone.Marionette.Controller.extend({
   initialize: function () {
-    var loginModel = new LoginModel({
-      csrf: $.cookie('csrf')
+    var view = this._loginView = new views.LoginView();
+
+    this.listenTo(view, 'show', function () {
+      view.ui.username.focus();
     });
 
-    var view = new views.LoginView({
-      model: loginModel
-    });
-
-    this.listenTo(view, 'dom:refresh', function () {
-      // view.$('form.login input[name="{{focus}}"]').focus();
-      view.$('input[name="username"]').focus();
-    });
-
-    this.listenTo(view, 'changed:input', function () {
-      view.model.set({
-        username: view.$('input[name="username"]').val()
-      });
-      view.render();
-    });
-
-    this.listenTo(view, 'clicked:submit', function () {
-      // view.model.save({
-      //   username: view.$el.find('#username').val(),
-      //   password: view.$el.find('#password').val()
-      // }, {
-      //   success: function () {
-      //     alert('success');
-      //   },
-      //   error: function () {
-      //     alert('fail');
-      //   }
-      // });
-    });
+    this.listenTo(view, 'login:click', this.onLoginClick);
+    this.listenTo(view, 'register:click', this.onRegisterClick);
 
     this.show(view);
+  },
+
+  onLoginClick: function () {
+    var view = this._loginView;
+
+    app.execute('hide:alert');
+    view.ui.login.button('loading');
+
+    $.post('/api/login', {
+      username: view.ui.username.val(),
+      password: view.ui.password.val(),
+      rememberMe: view.ui.rememberMe.is(':checked')
+    })
+    .done(function (result) {
+      app.config.set('user', result.data);
+      app.navigate('', { trigger: true, replace: true });
+    })
+    .fail(function (response) {
+      var result = response.responseJSON;
+      app.execute('show:alert', {
+        type: 'danger',
+        html: '<h4>Login Failed</h4><ul>' +
+          _.reduce(result.data.messages, function (html, msg) {
+            return html + '<li>' + msg + '</li>';
+          }, '') +
+          '</ul>'
+      });
+      if (result.data.focus && _.has(view.ui, result.data.focus)) {
+        view.ui[result.data.focus].select().focus();
+      } else {
+        view.ui.username.focus();
+      }
+      view.ui.login.button('reset');
+    });
+  },
+
+  onRegisterClick: function () {
+    app.navigate('register', { trigger: true });
   }
 });
 

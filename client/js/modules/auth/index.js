@@ -7,6 +7,7 @@
 'use strict';
 
 var _ = require('lodash'),
+    $ = require('jquery'),
     Backbone = require('backbone');
 
 var LoginController = require('./login/controller'),
@@ -20,7 +21,14 @@ var API = {
     new LoginController();
   },
   logout: function () {
-    location.href = '/logout?_method=post';
+    $.post('/logout')
+      .done(function () {
+        app.config.unset('user');
+        app.navigate('', { trigger: true, replace: true });
+      })
+      .fail(function () {
+        console.error('Failed to log out.');
+      });
   },
   facebookCallback: function () {
     app.navigate('', { trigger: true, replace: true });
@@ -29,9 +37,9 @@ var API = {
 
 var Router = Backbone.Marionette.AppRouter.extend({
   appRoutes: {
-    // 'register': 'register',
-    // 'login': 'login',
-    // 'logout': 'logout',
+    'register': 'register',
+    'login': 'login',
+    'logout': 'logout',
     '_=_': 'facebookCallback'
   },
   controller: API

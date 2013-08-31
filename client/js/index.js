@@ -26,6 +26,7 @@ require('./handlebars');
 // Load modules.
 require('./modules/account');
 require('./modules/admin');
+require('./modules/alert');
 require('./modules/auth');
 require('./modules/footer');
 require('./modules/header');

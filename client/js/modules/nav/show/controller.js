@@ -6,8 +6,7 @@
 
 'use strict';
 
-var $ = require('jquery'),
-    Backbone = require('backbone');
+var Backbone = require('backbone');
 
 var views = require('./views');
 
@@ -15,19 +14,28 @@ var Controller = app.lib.Backbone.Marionette.Controller.extend({
   initialize: function () {
     var view = new views.NavView({
       model: new app.lib.Backbone.Model({
-        user: ($.cookie('user.name.full') ? {
-          name: {
-            full: $.cookie('user.name.full')
-          }
-        } : void 0)
+        user: app.config.get('user')
       })
     });
 
-    view.on('clicked:login', function () {
+    this.listenTo(app.config, 'change:user', function () {
+      view.model.set('user', app.config.get('user'));
+      view.render();
+    });
+
+    this.listenTo(view, 'account:click', function () {
+      app.navigate('account', { trigger: true, refresh: true });
+    });
+
+    this.listenTo(view, 'logout:click', function () {
+      app.navigate('logout', { trigger: true, refresh: true });
+    });
+
+    this.listenTo(view, 'login:click', function () {
       app.navigate('login', { trigger: true, refresh: true });
     });
 
-    view.on('clicked:register', function () {
+    this.listenTo(view, 'register:click', function () {
       app.navigate('register', { trigger: true, refresh: true });
     });
 

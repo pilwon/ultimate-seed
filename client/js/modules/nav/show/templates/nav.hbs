@@ -19,8 +19,8 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        {{#if user.name.full}}
-          <li class="{{classAccount}}"><a href="/account">Logged in as <strong>{{user.name.full}}</strong></a></li>
+        {{#if user}}
+          <li class="{{classAccount}}"><a href="/account">Logged in as <strong>{{user.name.first}} {{user.name.last}}</strong></a></li>
           <li class="{{classLogout}}"><a href="/logout">Logout</a></li>
         {{else}}
           <li class="{{classLogin}}"><a href="/login">Login</a></li>

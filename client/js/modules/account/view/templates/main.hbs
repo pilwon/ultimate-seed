@@ -1,0 +1,100 @@
+<div id="account" class="container">
+
+  <div class="page-header">
+    <h1>Account</h1>
+  </div>
+
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>ID</th>
+      <td>{{user._id}}</td>
+    </tr>
+    <tr>
+      <th>First Name</th>
+      <td>{{user.name.first}}</td>
+    </tr>
+    <tr>
+      <th>Last Name</th>
+      <td>{{user.name.last}}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{user.email}}</td>
+    </tr>
+    <tr>
+      <th>Roles</th>
+      <td>
+        <ul>
+          {{#each user.roles}}<li>{{this}}</li>{{/each}}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>Joined</th>
+      <td>{{user.createdAt}}</td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td>{{user.updatedAt}}</td>
+    </tr>
+    <tr>
+      <th>Services</th>
+      <td>
+        <table class="table table-bordered table-hover">
+          <tr>
+            <th>Facebook</th>
+            <td>
+              {{#if user.auth.facebook}}
+                <table class="table table-bordered table-condensed table-striped">
+                  {{#eachKV user.auth.facebook.profile}}
+                    <tr>
+                      <th>{{k}}</th>
+                      <td>{{v}}</td>
+                    </tr>
+                  {{/eachKV}}
+                </table>
+              {{else}}
+                <a class="btn btn-facebook btn-sm" href="/auth/facebook"><i class="icon-facebook"></i> | Connect with Facebook</a>
+              {{/if}}
+            </td>
+          </tr>
+          <tr>
+            <th>Google</th>
+            <td>
+              {{#if user.auth.google}}
+                <table class="table table-bordered table-condensed table-striped">
+                  {{#eachKV user.auth.google.profile}}
+                    <tr>
+                      <th>{{k}}</th>
+                      <td>{{v}}</td>
+                    </tr>
+                  {{/eachKV}}
+                </table>
+              {{else}}
+                <a class="btn btn-google-plus btn-sm" href="/auth/google"><i class="icon-google-plus"></i> | Connect with Google+</a>
+              {{/if}}
+            </td>
+          </tr>
+          <tr>
+            <th>Twitter</th>
+            <td>
+              {{#if user.auth.twitter}}
+                <table class="table table-bordered table-condensed table-striped">
+                  {{#eachKV user.auth.twitter.profile}}
+                    <tr>
+                      <th>{{k}}</th>
+                      <td>{{v}}</td>
+                    </tr>
+                  {{/eachKV}}
+                </table>
+              {{else}}
+                <a class="btn btn-twitter btn-sm" href="/auth/twitter"><i class="icon-twitter"></i> | Connect with Twitter</a>
+              {{/if}}
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</div>

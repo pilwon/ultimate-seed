@@ -7,6 +7,7 @@
 var Handlebars = require('handlebars-runtime');
 
 // Helpers
+Handlebars.registerHelper('eachKV', require('./helpers/eachKV'));
 Handlebars.registerHelper('link', require('./helpers/link'));
 
 // Partials

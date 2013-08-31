@@ -76,13 +76,6 @@ app.attachMiddlewares = function () {
       admin: false
     };
 
-    // User cookie
-    if (!req.user) {
-      app.lib.cookie.clearUserCookie(req, res);
-    } else {
-      app.lib.cookie.setUserCookie(req, res);
-    }
-
     // Live reload
     if (process.env.NODE_ENV === 'development') {
       res.cookie('livereload', app.project.server.livereload);

@@ -19,7 +19,7 @@ var API = {
 
 var Router = Backbone.Marionette.AppRouter.extend({
   appRoutes: {
-    // 'account': 'view'
+    'account': 'view'
   },
   controller: API
 });
