@@ -47,9 +47,9 @@ app.on('initialize:before', function (options) {
 
 // Add initializer.
 app.addInitializer(function () {
-  app.execute('show:nav');
-  app.execute('show:header');
   app.execute('show:footer');
+  app.execute('show:header');
+  app.execute('show:nav');
 });
 
 // Handle `initialize:after` event.
