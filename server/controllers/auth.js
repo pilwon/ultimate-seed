@@ -83,7 +83,6 @@ function logout(req, res) {
 
 function logoutPOST(req, res) {
   req.logout();
-  app.lib.cookie.clearUserCookie(req, res);
   res.redirect('/');
 }
 

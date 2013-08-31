@@ -21,10 +21,9 @@ var API = {
     new LoginController();
   },
   logout: function () {
-    $.post('/logout')
+    $.post('/api/logout')
       .done(function () {
         app.config.unset('user');
-        app.navigate('', { trigger: true, replace: true });
       })
       .fail(function () {
         console.error('Failed to log out.');
