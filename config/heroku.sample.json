@@ -97,12 +97,12 @@
     "backend": {
       "cloudFiles": {
         "container": {
-          "main": "ultimate-seed"
+          "main": "@@@@@"
         }
       },
       "s3": {
         "bucket": {
-          "main": "ultimate-seed"
+          "main": "@@@@@"
         }
       }
     }
