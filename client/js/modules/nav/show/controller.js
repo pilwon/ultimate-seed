@@ -6,7 +6,8 @@
 
 'use strict';
 
-var S = require('string'),
+var _ = require('lodash'),
+    S = require('string'),
     Backbone = require('backbone');
 
 var views = require('./views');
@@ -54,7 +55,10 @@ var Controller = app.lib.Backbone.Marionette.Controller.extend({
     var classVar = S('class_' + app.getRoute().replace(/\//g, '_')).camelize().s;
     if (classVar === 'class') { classVar += 'Backbone'; }
 
-    view.model.clear();
+    _.each(view.model.omit(['user']), function (val, key) {
+      view.model.unset(key);
+    });
+
     view.model.set(classVar, 'active');
   }
 });
