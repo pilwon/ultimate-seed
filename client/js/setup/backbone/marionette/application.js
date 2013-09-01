@@ -39,10 +39,10 @@ _.extend(Backbone.Marionette.Application.prototype, {
 
   resetRegistry: function () {
     var oldCount = this.getRegistrySize();
-    _.each(this._registry, function (controller/*, key*/) {
+    _.each(this._registry, function (controller) {
       controller.region.close();
     });
-    var msg = 'There were ' + oldCount + ' controllers in the registry, there are now #{@getRegistrySize()}';
+    var msg = 'There were ' + oldCount + ' controllers in the registry, there are now ' + this.getRegistrySize() + '.';
     if (this.getRegistrySize() > 0) {
       console.warn(msg, this._registry);
     } else {

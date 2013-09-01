@@ -7,8 +7,8 @@
 var Backbone = require('backbone');
 
 var Collection = Backbone.Collection.extend({
-  parse: function (res) {
-    return res.data;
+  parse: function (result) {
+    return result.data;
   }
 });
 
