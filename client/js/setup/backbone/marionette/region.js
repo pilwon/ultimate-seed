@@ -2,8 +2,6 @@
  * client/js/setup/backbone/marionette/region.js
  */
 
-/* global app */
-
 'use strict';
 
 var Backbone = require('backbone');
