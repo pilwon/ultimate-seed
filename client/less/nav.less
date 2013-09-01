@@ -4,10 +4,12 @@
 
 #nav {
   .navbar-nav {
+    > li > a:focus,
     > li > a:hover {
       background-color: lighten(@brand-primary, 2.5%);
     }
 
+    > li.active > a:focus,
     > li.active > a:hover {
       background-color: @navbar-inverse-link-active-bg;
     }
