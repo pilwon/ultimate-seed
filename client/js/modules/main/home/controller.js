@@ -1,5 +1,5 @@
 /*
- * client/js/modules/home/view/controller.js
+ * client/js/modules/main/home/controller.js
  */
 
 /* global app */

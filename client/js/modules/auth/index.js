@@ -35,13 +35,13 @@ var API = {
 };
 
 var Router = Backbone.Marionette.AppRouter.extend({
+  controller: API,
   appRoutes: {
     'register': 'register',
     'login': 'login',
     'logout': 'logout',
     '_=_': 'facebookCallback'
-  },
-  controller: API
+  }
 });
 
 app.on('start:router', function (optionalIds) {

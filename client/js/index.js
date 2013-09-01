@@ -30,7 +30,7 @@ require('./modules/alert');
 require('./modules/auth');
 require('./modules/footer');
 require('./modules/header');
-require('./modules/home');
+require('./modules/main');
 require('./modules/nav');
 
 // Launch app.

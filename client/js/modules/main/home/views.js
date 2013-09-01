@@ -1,5 +1,5 @@
 /*
- * client/js/modules/home/view/views.js
+ * client/js/modules/main/home/views.js
  */
 
 /* global app */
