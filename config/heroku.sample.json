@@ -106,5 +106,8 @@
         }
       }
     }
+  },
+  "repl": {
+    "enabled": true
   }
 }
