@@ -7,8 +7,8 @@
 var util = require('util');
 
 var _ = require('lodash'),
-    mkdirp = require('mkdirp'),
-    ultimate = require('ultimate');
+    ultimate = require('ultimate'),
+    wrench = require('wrench');
 
 var config = ultimate.config(__dirname + '/../config');
 
@@ -25,7 +25,7 @@ var app = {
 exports = module.exports = app;
 
 // Attach winston logger
-mkdirp.sync(app.project.path.log);
+wrench.mkdirSyncRecursive(app.project.path.log);
 require('./winston').attach(app);
 
 // Debug
