@@ -4,13 +4,15 @@
 
 'use strict';
 
-var path = require('path');
+var path = require('path'),
+    util = require('util');
 
 var _ = require('lodash'),
     coffeeify = require('coffeeify'),
     hbsfy = require('hbsfy'),
     rfileify = require('rfileify'),
-    uglify = require('uglify-js');
+    uglify = require('uglify-js'),
+    wrench = require('wrench');
 
 var project = require('./project');
 
@@ -316,10 +318,11 @@ module.exports = function (grunt) {
     'browserify2:dev',
     'less:dev',
     'copy:dev',
+    'devSymlink',
     'cacheBust:dev'
   ]);
 
-  grunt.registerTask('build', [
+  grunt.registerTask('distBuild', [
     'jshint',
     'clean:dist',
     'browserify2:dist',
@@ -329,10 +332,37 @@ module.exports = function (grunt) {
     'htmlmin:dist',
     'cssmin:dist',
     'copy:dist',
+    'distSymlink',
     'cacheBust:dist',
     'usemin',
     'uglify:dist'
   ]);
+
+  grunt.registerTask('devSymlink', function () {
+    ['fonts'].forEach(function (dir) {
+      var symlinks = require(util.format('./%s/%s/.symlinks', project.path.client, dir));
+      _.each(symlinks, function (source, target) {
+        source = path.resolve(path.join(project.path.client, dir, source));
+        target = path.resolve(path.join(project.path.temp, dir, target));
+        wrench.mkdirSyncRecursive(path.join(project.path.temp, dir));
+        wrench.copyDirSyncRecursive(source, target);
+      });
+      console.info('Resolved symlinks: %s', path.resolve(project.path.client, dir));
+    });
+  });
+
+  grunt.registerTask('distSymlink', function () {
+    ['fonts'].forEach(function (dir) {
+      var symlinks = require(util.format('./%s/%s/.symlinks', project.path.client, dir));
+      _.each(symlinks, function (source, target) {
+        source = path.resolve(path.join(project.path.client, dir, source));
+        target = path.resolve(path.join(project.path.dist, dir, target));
+        wrench.mkdirSyncRecursive(path.join(project.path.dist, dir));
+        wrench.copyDirSyncRecursive(source, target);
+      });
+      console.info('Resolved symlinks: %s', path.resolve(project.path.dist, dir));
+    });
+  });
 
   grunt.registerTask('devServer', function () {
     grunt.task.run([
@@ -349,7 +379,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', ['intern:client']);
 
   // Shortcuts
-  grunt.registerTask('b', 'build');
+  grunt.registerTask('b', 'distBuild');
   grunt.registerTask('c', 'clean');
   grunt.registerTask('d', 'devBuild');
   grunt.registerTask('s', 'devServer');
