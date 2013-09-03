@@ -102,7 +102,7 @@ app.run = function () {
   ultimate.server.express.run(app);
   ultimate.server.http.run(app);
   ultimate.server.socketio.run(app);
-  if (app.config.repl.enabled) ultimate.server.repl.run(app);
+  ultimate.server.repl.run(app);
 
   // Register socket.io handlers
   require('./socketio').register(app);

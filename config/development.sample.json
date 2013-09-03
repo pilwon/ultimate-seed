@@ -105,8 +105,5 @@
         }
       }
     }
-  },
-  "repl": {
-    "enabled": true
   }
 }
