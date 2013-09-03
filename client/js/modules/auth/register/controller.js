@@ -19,8 +19,8 @@ var Controller = app.lib.Backbone.Marionette.Controller.extend({
       view.ui.username.focus();
     });
 
-    this.listenTo(view, 'register:click', this.onRegisterClick);
-    this.listenTo(view, 'login:click', this.onLoginClick);
+    this.listenTo(view, 'register:clicked', this.onRegisterClick);
+    this.listenTo(view, 'login:clicked', this.onLoginClick);
 
     this.show(view);
   },

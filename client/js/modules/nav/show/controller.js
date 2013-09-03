@@ -30,19 +30,19 @@ var Controller = app.lib.Backbone.Marionette.Controller.extend({
       view.render();
     });
 
-    this.listenTo(view, 'account:click', function () {
+    this.listenTo(view, 'account:clicked', function () {
       app.navigate('account', { trigger: true, refresh: true });
     });
 
-    this.listenTo(view, 'logout:click', function () {
+    this.listenTo(view, 'logout:clicked', function () {
       app.navigate('logout', { trigger: true, refresh: true });
     });
 
-    this.listenTo(view, 'login:click', function () {
+    this.listenTo(view, 'login:clicked', function () {
       app.navigate('login', { trigger: true, refresh: true });
     });
 
-    this.listenTo(view, 'register:click', function () {
+    this.listenTo(view, 'register:clicked', function () {
       app.navigate('register', { trigger: true, refresh: true });
     });
 

@@ -11,10 +11,10 @@ var navTpl = require('./templates/nav.hbs');
 var NavView = app.lib.Backbone.Marionette.ItemView.extend({
   template: navTpl,
   triggers: {
-    'click a[href="/account"]': 'account:click',
-    'click a[href="/login"]': 'login:click',
-    'click a[href="/logout"]': 'logout:click',
-    'click a[href="/register"]': 'register:click'
+    'click a[href="/account"]': 'account:clicked',
+    'click a[href="/login"]': 'login:clicked',
+    'click a[href="/logout"]': 'logout:clicked',
+    'click a[href="/register"]': 'register:clicked'
   }
 });
 

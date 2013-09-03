@@ -22,8 +22,8 @@ var RegisterView = app.lib.Backbone.Marionette.ItemView.extend({
   },
 
   triggers: {
-    'click .btn-register': 'register:click',
-    'click .btn-login': 'login:click'
+    'click .btn-register': 'register:clicked',
+    'click .btn-login': 'login:clicked'
   }
 });
 
