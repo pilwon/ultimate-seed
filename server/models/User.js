@@ -130,25 +130,27 @@ schema.methods.comparePassword = function (candidatePassword, cb) {
 
 // Safe JSON (internal data removed)
 schema.methods.getSafeJSON = function () {
-  var result = this.toJSON();
+  var user = this.toJSON();
 
-  delete result.__v;
-  delete result.accessToken;
+  user.id = user._id;
+  delete user._id;
+  delete user.__v;
+  delete user.accessToken;
 
-  if (result.auth.local) {
-    delete result.auth.local.password;
+  if (user.auth.local) {
+    delete user.auth.local.password;
   }
-  if (result.auth.facebook) {
-    delete result.auth.facebook.token;
+  if (user.auth.facebook) {
+    delete user.auth.facebook.token;
   }
-  if (result.auth.google) {
-    delete result.auth.google.token;
+  if (user.auth.google) {
+    delete user.auth.google.token;
   }
-  if (result.auth.twitter) {
-    delete result.auth.twitter.token;
+  if (user.auth.twitter) {
+    delete user.auth.twitter.token;
   }
 
-  return result;
+  return user;
 };
 
 /**
