@@ -37,6 +37,6 @@ app.reqres.setHandler('feature:entity', function (id) {
   return model;
 });
 
-app.reqres.setHandler('new:feature:entity', function () {
-  return new Feature();
+app.reqres.setHandler('new:feature:entity', function (attributes) {
+  return new Feature(attributes);
 });
