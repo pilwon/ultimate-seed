@@ -27,6 +27,10 @@ var Model = Backbone.Model.extend({
     this.get('_destroy');
   },
 
+  parse: function (result) {
+    return (_.isPlainObject(result.data) ? result.data : result);
+  },
+
   save: function (data, options) {
     var isNew = this.isNew();
 
