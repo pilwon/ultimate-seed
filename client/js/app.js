@@ -123,7 +123,7 @@ app.commands.setHandler('unregister:instance', function (instance, id) {
 // Handle `when:fetched` command.
 app.commands.setHandler('when:fetched', function (entities, cb) {
   var xhrs = _.chain([entities]).flatten().pluck('_fetch').value();
-  $.when(xhrs).done(function () {
+  $.when.apply($, xhrs).done(function () {
     cb();
   });
 });
