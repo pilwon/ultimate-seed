@@ -113,7 +113,7 @@ schema.pre('save', function (next) {
 // Promote user to admin if admin does not yet exist.
 schema.pre('save', function (next) {
   var user = this;
-  model.count({ roles: 'admin' }, function (err, count) {
+  exports.model.count({ roles: 'admin' }, function (err, count) {
     if (err) { return next(err); }
     if (count === 0) {
       user.roles.push('admin');
