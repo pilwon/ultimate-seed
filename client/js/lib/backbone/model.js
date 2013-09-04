@@ -9,8 +9,6 @@ var _ = require('lodash'),
     Backbone = require('backbone');
 
 var Model = Backbone.Model.extend({
-  idAttribute: '_id',
-
   destroy: function (options) {
     if (!_.isObject(options)) { options = {}; }
 
