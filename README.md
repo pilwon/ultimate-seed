@@ -207,7 +207,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 ## Directory Structure
 
-```
+<pre>
 .
 ├── client/
 │   ├── components/
@@ -280,7 +280,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 ├── npm-scripts.js
 ├── package.json
 └── project.json
-```
+</pre>
 
 
 
