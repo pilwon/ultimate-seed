@@ -88,7 +88,7 @@ schema.virtual('name.full').set(function (name) {
 
 // Plugins
 schema.plugin(plugin.findOrCreate);
-schema.plugin(plugin.timestamps);
+schema.plugin(plugin.timestamp);
 
 // Bcrypt middleware
 schema.pre('save', function (next) {
