@@ -7,6 +7,7 @@
 'use strict';
 
 var Feature = app.lib.Backbone.Model.extend({
+  urlRoot: '/api/features',
   defaults: {
     text: null,
     url: null,
