@@ -23,7 +23,9 @@ var Controller = app.lib.Backbone.Marionette.Controller.extend({
     var features = app.request('feature:entities');
 
     app.execute('when:fetched', features, function () {
-      features.reset(features.sortBy('text'));
+      features.reset(features.sortBy(function (feature) {
+        return feature.get('text').toLowerCase();
+      }));
     });
 
     var featuresView = new views.FeaturesView({
