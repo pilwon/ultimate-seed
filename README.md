@@ -160,6 +160,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   1. Modify `config/heroku.json`.
   2. Comment out the following lines in `.gitignore`.
+    * `/.cachebust`
     * `/client/js/node_modules/bower_components/`
     * `/client-built/`
     * `/config/heroku.json`

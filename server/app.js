@@ -66,6 +66,9 @@ app.attachMiddlewares = function () {
   // Hide Powered-by header
   ultimate.server.middleware.hidePoweredByHeader.attach(app);
 
+  // Cache bust
+  ultimate.server.middleware.cachebust.attach(app);
+
   // Custom
   app.servers.express.getServer().use(function (req, res, next) {
     // Locals

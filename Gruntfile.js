@@ -48,7 +48,7 @@ module.exports = function (grunt) {
         }
       }
     },
-    cacheBust: {
+    cachebust: {
       dev: {
         files: {
           src: [
@@ -279,7 +279,7 @@ module.exports = function (grunt) {
         ],
         tasks: [
           'copy:dev',
-          'cacheBust:dev'
+          'cachebust:dev'
         ]
       },
       css: {
@@ -319,7 +319,7 @@ module.exports = function (grunt) {
     'less:dev',
     'copy:dev',
     'devSymlink',
-    'cacheBust:dev'
+    'cachebust:dev'
   ]);
 
   grunt.registerTask('distBuild', [
@@ -333,10 +333,56 @@ module.exports = function (grunt) {
     'cssmin:dist',
     'copy:dist',
     'distSymlink',
-    'cacheBust:dist',
+    'cachebust:dist',
     'usemin',
     'uglify:dist'
   ]);
+
+  grunt.registerMultiTask('cachebust', function () {
+    this.files.forEach(function (file) {
+      file.src.filter(function (filepath) {
+        if (!grunt.file.exists(filepath)) {
+          grunt.log.warn('Source file "' + filepath + '" not found.');
+          return false;
+        } else {
+          return true;
+        }
+      }).map(function (filepath) {
+        var hash = '' + new Date().getTime(),
+            data = grunt.file.read(filepath, { encoding: 'utf-8' });
+        grunt.util._.each({
+          js: {
+            src: /<script.+src=['"](?!http:|https:|\/\/)([^"']+)["']/gm,
+            file: /src=['"]([^"']+)["']/m
+          },
+          css: {
+            src: /<link.+href=["'](?!http:|https:|\/\/).*\.css("|\?.*")/gm,
+            file: /href=['"]([^"']+)["']/m
+          },
+          images: {
+            src: /<img[^\>]+src=['"](?!http:|https:|\/\/|data:image)([^"']+)["']/gm,
+            file: /src=['"]([^"']+)["']/m
+          }
+        }, function (regex) {
+          var matches = data.match(regex.src) || [];
+          console.log(matches);
+          matches.forEach(function (snippet) {
+            snippet = snippet.substring(0, snippet.length - 1);
+            data = data.replace(snippet, snippet.split('?')[0] + '?' + hash);
+          });
+        });
+        grunt.file.write(filepath, data);
+        grunt.log.writeln(filepath + ' was busted!');
+        // Save hash to file so express server can use the value.
+        var cachebustData = {};
+        try {
+          cachebustData = grunt.file.readJSON('.cachebust');
+        } catch (e) {}
+        cachebustData[filepath] = hash;
+        grunt.file.write('.cachebust', JSON.stringify(cachebustData, null, 2));
+      });
+    });
+  });
 
   grunt.registerTask('devSymlink', function () {
     ['fonts'].forEach(function (dir) {
