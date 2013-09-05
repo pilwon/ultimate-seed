@@ -7,39 +7,33 @@
 'use strict';
 
 var _ = require('lodash'),
-    $ = require('jquery'),
     Backbone = require('backbone');
 
 var LoginController = require('./login/controller'),
+    LogoutController = require('./logout/controller'),
     RegisterController = require('./register/controller');
 
 var API = {
-  register: function () {
-    new RegisterController();
+  facebookCallback: function () {
+    app.navigate('', { trigger: true, replace: true });
   },
   login: function () {
     new LoginController();
   },
   logout: function () {
-    $.post('/api/logout')
-      .done(function () {
-        app.config.unset('user');
-      })
-      .fail(function () {
-        console.error('Failed to log out.');
-      });
+    new LogoutController();
   },
-  facebookCallback: function () {
-    app.navigate('', { trigger: true, replace: true });
+  register: function () {
+    new RegisterController();
   }
 };
 
 var Router = Backbone.Marionette.AppRouter.extend({
   controller: API,
   appRoutes: {
-    'register': 'register',
     'login': 'login',
     'logout': 'logout',
+    'register': 'register',
     '_=_': 'facebookCallback'
   }
 });

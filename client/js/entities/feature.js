@@ -6,6 +6,8 @@
 
 'use strict';
 
+var _ = require('lodash');
+
 var Feature = app.lib.Backbone.Model.extend({
   urlRoot: '/api/features',
   defaults: {
@@ -21,22 +23,43 @@ var FeatureCollection = app.lib.Backbone.Collection.extend({
   model: Feature
 });
 
+var API = {
+  createModel: function (attributes) {
+    return new Feature(attributes);
+  },
+  getModel: function (id, params) {
+    _.defaults(params, {
+
+    });
+    var model = new Feature({
+      id: id
+    });
+    model.fetch({
+      data: params
+    });
+    return model;
+  },
+  getCollection: function (params) {
+    _.defaults(params, {
+
+    });
+    var collection = new FeatureCollection();
+    collection.fetch({
+      reset: true,
+      data: params
+    });
+    return collection;
+  }
+};
+
 app.reqres.setHandler('feature:entities', function () {
-  var collection = new FeatureCollection();
-  collection.fetch({
-    reset: true
-  });
-  return collection;
+  return API.getCollection();
 });
 
 app.reqres.setHandler('feature:entity', function (id) {
-  var model = new Feature({
-    id: id
-  });
-  model.fetch();
-  return model;
+  return API.getModel(id);
 });
 
 app.reqres.setHandler('new:feature:entity', function (attributes) {
-  return new Feature(attributes);
+  return API.createModel(attributes);
 });

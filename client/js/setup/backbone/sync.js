@@ -30,7 +30,7 @@ Backbone.sync = function (method, entity, options) {
     complete: _.bind(_methods.complete, entity)
   });
 
-  var sync = _sync(method, entity, options);
+  var sync = _sync.call(this, method, entity, options);
   if (!entity._fetch && method === 'read') {
     entity._fetch = sync;
   }

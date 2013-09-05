@@ -9,56 +9,33 @@
 var emptyTpl = require('./templates/empty.hbs'),
     featureTpl = require('./templates/feature.hbs'),
     featuresTpl = require('./templates/features.hbs'),
-    layoutTpl = require('./templates/layout.hbs'),
-    loadingTpl = require('./templates/loading.hbs');
+    layoutTpl = require('./templates/layout.hbs');
 
 var _EmptyView = app.lib.Backbone.Marionette.ItemView.extend({
   template: emptyTpl
 });
 
-var _LoadingView = app.lib.Backbone.Marionette.ItemView.extend({
-  template: loadingTpl
+var Layout = app.lib.Backbone.Marionette.Layout.extend({
+  template: layoutTpl,
+  regions: {
+    featuresRegion: '.features'
+  }
 });
 
 var FeatureView = app.lib.Backbone.Marionette.ItemView.extend({
   template: featureTpl,
-  itemViewContainer: 'ul',
-  tagName: 'li'
+  tagName: 'li',
+  itemViewContainer: 'ul'
 });
 
 var FeaturesView = app.lib.Backbone.Marionette.CompositeView.extend({
   template: featuresTpl,
-  itemViewContainer: 'div.features',
-  itemView: FeatureView,
   emptyView: _EmptyView,
-
-  initialize: function() {
-    this.listenTo(this.collection, 'request', this.onRequest);
-    this.listenTo(this.collection, 'sync', this.onSync);
-
-    this.collection.fetch();
-  },
-
-  onRequest: function () {
-    this.emptyView = _LoadingView;
-    this.render();
-  },
-
-  onSync: function () {
-    this.emptyView = _EmptyView;
-    this.render();
-  }
-});
-
-var Layout = app.lib.Backbone.Marionette.Layout.extend({
-  template: layoutTpl,
-
-  regions: {
-    featuresRegion: 'div.features'
-  }
+  itemView: FeatureView,
+  itemViewContainer: '.features'
 });
 
 // Public API
+exports.Layout = Layout;
 exports.FeatureView = FeatureView;
 exports.FeaturesView = FeaturesView;
-exports.Layout = Layout;

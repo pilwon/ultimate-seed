@@ -107,17 +107,13 @@ app.commands.setHandler('set:layout', function (layout) {
 });
 
 // Handle `register:instance` command.
-app.commands.setHandler('register:instance', function (instance, id) {
-  if (app.config.get('environment') === 'development') {
-    app.register(instance, id);
-  }
+app.commands.setHandler('register:controller', function (controller) {
+  app.registerController(controller);
 });
 
 // Handle `unregsiter:instance` command.
-app.commands.setHandler('unregister:instance', function (instance, id) {
-  if (app.config.get('environment') === 'development') {
-    app.unregister(instance, id);
-  }
+app.commands.setHandler('deregister:controller', function (controller) {
+  app.deregisterController(controller);
 });
 
 // Handle `when:fetched` command.

@@ -11,22 +11,42 @@ var _ = require('lodash'),
 
 var Controller = Marionette.Controller.extend({
   constructor: function (options) {
-    this.region = (options || {}).region || app.request('default:region');
+    if (!_.isPlainObject(options)) { options = {}; }
+    this.region = options.region || app.request('default:region');
+    this._id = _.uniqueId('controller');
+    app.execute('register:controller', this, this._id);
     Marionette.Controller.apply(this, arguments);
-    this._instanceId = _.uniqueId('controller');
-    app.execute('register:instance', this, this._instanceId);
+  },
+
+  _manageView: function (view, options) {
+    if (options.loading) {
+      app.execute('show:loading', view, options);
+    } else {
+      options.region.show(view);
+    }
+  },
+
+  _setMainView: function (view) {
+    if (this._mainView) { return; }
+    this._mainView = view;
+    this.listenTo(view, 'close', this.close);
   },
 
   close: function () {
-    delete this.region;
-    delete this.options;
+    app.execute('deregister:controller', this, this._id);
     Marionette.Controller.prototype.close.apply(this, arguments);
-    app.execute('unregister:instance', this, this._instanceId);
   },
 
-  show: function (view) {
-    this.listenTo(view, 'close', this.close);
-    this.region.show(view);
+  show: function (view, options) {
+    if (!_.isPlainObject(options)) { options = {}; }
+
+    _.defaults(options, {
+      loading: false,
+      region: this.region
+    });
+
+    this._setMainView(view);
+    this._manageView(view, options);
   }
 });
 

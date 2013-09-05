@@ -6,4 +6,5 @@
 
 require('./application');
 require('./region');
+require('./renderer');
 require('./view');

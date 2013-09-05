@@ -10,28 +10,30 @@ var views = require('./views');
 
 var Controller = app.lib.Backbone.Marionette.Controller.extend({
   initialize: function () {
-    var layout = this._layout = new views.Layout();
+    this.layout = new views.Layout();
 
-    this.listenTo(layout, 'show', function () {
-      this.showFeaturesRegion();
+    this.listenTo(this.layout, 'show', function () {
+      this.showFeaturesView();
     });
 
-    this.show(layout);
+    this.show(this.layout);
   },
 
-  showFeaturesRegion: function () {
-    var layout = this._layout,
-        features = app.request('feature:entities');
+  showFeaturesView: function () {
+    var features = app.request('feature:entities');
 
-    features.comparator = function (feature) {
-      return feature.get('text');
-    };
+    app.execute('when:fetched', features, function () {
+      features.reset(features.sortBy('url'));
+    });
 
     var featuresView = new views.FeaturesView({
       collection: features
     });
 
-    layout.featuresRegion.show(featuresView);
+    this.show(featuresView, {
+      loading: true,
+      region: this.layout.featuresRegion
+    });
   }
 });
 

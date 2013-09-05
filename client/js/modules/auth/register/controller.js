@@ -13,7 +13,7 @@ var views = require('./views');
 
 var Controller = app.lib.Backbone.Marionette.Controller.extend({
   initialize: function () {
-    var view = this._registerView = new views.RegisterView();
+    var view = this.view = new views.RegisterView();
 
     this.listenTo(view, 'show', function () {
       view.ui.username.focus();
@@ -26,7 +26,7 @@ var Controller = app.lib.Backbone.Marionette.Controller.extend({
   },
 
   onRegisterClick: function () {
-    var view = this._registerView;
+    var view = this.view;
 
     app.execute('hide:alert');
     view.ui.register.button('loading');

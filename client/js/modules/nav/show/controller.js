@@ -14,14 +14,14 @@ var views = require('./views');
 
 var Controller = app.lib.Backbone.Marionette.Controller.extend({
   initialize: function () {
-    var view = this._navView = new views.NavView({
+    var view = this.view = new views.NavView({
       model: new app.lib.Backbone.Model({
         user: app.config.get('user')
       })
     });
 
     Backbone.history.on('route', function () {
-      this.updateActiveClass();
+      this.updateActiveClass(view);
       view.render();
     }, this);
 
@@ -50,7 +50,7 @@ var Controller = app.lib.Backbone.Marionette.Controller.extend({
   },
 
   updateActiveClass: function () {
-    var view = this._navView;
+    var view = this.view;
 
     var classVar = S('class_' + app.getRoute().replace(/\//g, '_')).camelize().s;
     if (classVar === 'class') { classVar += 'Backbone'; }

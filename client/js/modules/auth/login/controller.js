@@ -13,7 +13,7 @@ var views = require('./views');
 
 var Controller = app.lib.Backbone.Marionette.Controller.extend({
   initialize: function () {
-    var view = this._loginView = new views.LoginView();
+    var view = this.view = this._loginView = new views.LoginView();
 
     this.listenTo(view, 'show', function () {
       view.ui.username.focus();
@@ -26,7 +26,7 @@ var Controller = app.lib.Backbone.Marionette.Controller.extend({
   },
 
   onLoginClick: function () {
-    var view = this._loginView;
+    var view = this.view;
 
     app.execute('hide:alert');
     view.ui.login.button('loading');

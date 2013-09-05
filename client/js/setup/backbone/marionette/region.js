@@ -4,12 +4,16 @@
 
 'use strict';
 
-var Backbone = require('backbone');
+var Marionette = require('backbone.marionette');
 
-var _open = Backbone.Marionette.Region.prototype.open;
+var _open = Marionette.Region.prototype.open;
 
-Backbone.Marionette.Region.prototype.open = function (view) {
-  this.$el.hide();
-  _open.call(this, view);
-  this.$el.fadeIn();
+Marionette.Region.prototype.open = function (view) {
+  if (view.animate) {
+    this.$el.hide();
+  }
+  _open.apply(this, arguments);
+  if (view.animate) {
+    this.$el.fadeIn();
+  }
 };

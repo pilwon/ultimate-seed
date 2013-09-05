@@ -17,10 +17,14 @@ require('./setup');
 // Globalize app.
 global.app = require('./app');
 
-// Load entities.
-require('./entities');
+// Load components.
+require('./components/loading');
 
-// Configure Handlebars.
+// Load entities.
+require('./entities/config');
+require('./entities/feature');
+
+// Load Handlebars helpers and partials.
 require('./handlebars');
 
 // Load modules.
