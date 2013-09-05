@@ -7,8 +7,7 @@
 'use strict';
 
 var path = require('path'),
-    url = require('url'),
-    util = require('util');
+    url = require('url');
 
 var _ = require('lodash'),
     Backbone = require('backbone');
@@ -40,7 +39,7 @@ _.extend(Backbone.Marionette.Application.prototype, {
   registerController: function (controller) {
     if (!_.isObject(this._controllers)) {
       this._controllers = {};
-    };
+    }
     this._controllers[controller._id] = controller;
   },
 

@@ -27,17 +27,17 @@ var Controller = app.lib.Backbone.Marionette.Controller.extend({
     });
 
     switch (config.type) {
-      case 'opacity':
-        if (this.region.currentView) {
-          this.region.currentView.$el.css('opacity', 0.5);
-        }
-        break;
-      case 'spinner':
-        loadingView = new views.LoadingView();
-        this.show(loadingView);
-        break;
-      default:
-        throw new Error('Invalid loading type: ' + config.type);
+    case 'opacity':
+      if (this.region.currentView) {
+        this.region.currentView.$el.css('opacity', 0.5);
+      }
+      break;
+    case 'spinner':
+      loadingView = new views.LoadingView();
+      this.show(loadingView);
+      break;
+    default:
+      throw new Error('Invalid loading type: ' + config.type);
     }
 
     this._showRealView(view, loadingView, config);
@@ -51,16 +51,16 @@ var Controller = app.lib.Backbone.Marionette.Controller.extend({
     var self = this;
     app.execute('when:fetched', config.entities, function () {
       switch (config.type) {
-        case 'opacity':
-          if (self.region.currentView) {
-            self.region.currentView.$el.removeAttr('style');
-          }
-          break;
-        case 'spinner':
-          if (self.region.currentView !== loadingView) {
-            return realView.close();
-          }
-          break;
+      case 'opacity':
+        if (self.region.currentView) {
+          self.region.currentView.$el.removeAttr('style');
+        }
+        break;
+      case 'spinner':
+        if (self.region.currentView !== loadingView) {
+          return realView.close();
+        }
+        break;
       }
       if (!config.debug) {
         self.show(realView);

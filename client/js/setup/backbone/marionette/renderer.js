@@ -4,8 +4,7 @@
 
 'use strict';
 
-var _ = require('lodash'),
-    Marionette = require('backbone.marionette');
+var Marionette = require('backbone.marionette');
 
 var _render = Marionette.Renderer.render;
 
