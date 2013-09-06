@@ -138,8 +138,8 @@ module.exports = function (grunt) {
     express: {  // grunt-express
       server: {
         options: {
-          bases: [],
           debug: true,
+          livereload: project.server.livereload,
           port: '<%= process.env.PORT || project.server.port %>',
           server: path.resolve('<%= project.path.server %>')
         }
@@ -258,7 +258,7 @@ module.exports = function (grunt) {
       html: '<%= project.path.client %>/index.html'
     },
     watch: {  // grunt-contrib-watch
-      assets: {
+      livereload: {
         options: {
           livereload: project.server.livereload
         },
@@ -294,7 +294,7 @@ module.exports = function (grunt) {
         files: ['<%= project.path.client %>/less/{,*/}*.less'],
         tasks: ['less:dev']
       },
-      jsClient: {
+      js: {
         options: {
           livereload: project.server.livereload
         },
@@ -303,12 +303,6 @@ module.exports = function (grunt) {
           '<%= project.path.client %>/js/{handlebars/partials,modules/**}/*.hbs'
         ],
         tasks: ['browserify2:dev']
-      },
-      jsServer: {
-        options: {
-        },
-        files: ['<%= jshint.server %>'],
-        tasks: ['express']
       }
     }
   });

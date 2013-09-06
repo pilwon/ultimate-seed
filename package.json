@@ -81,7 +81,7 @@
     "grunt-contrib-less": "~0.7.0",
     "grunt-contrib-uglify": "~0.2.4",
     "grunt-contrib-watch": "~0.5.3",
-    "grunt-express": "~1.0.0-beta2",
+    "grunt-express": "~0.3.6",
     "grunt-open": "~0.2.2",
     "grunt-usemin": "~0.1.12",
     "handlebars-runtime": "~1.0.12",
