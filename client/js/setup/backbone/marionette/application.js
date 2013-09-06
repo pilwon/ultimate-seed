@@ -31,7 +31,6 @@ _.extend(Backbone.Marionette.Application.prototype, {
 
   navigate: function (route, options) {
     app.execute('hide:alert');
-    if (!_.isPlainObject(options)) { options = {}; }
     route = route.replace(/^([^\/])(.*)([\/#?]?)$/, '/$1$2');
     Backbone.history.navigate(route, options);
   },
