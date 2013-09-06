@@ -11,6 +11,7 @@
   },
   "server": {
     "livereload": 35729,
+    "serverreload": true,
     "port": 3000,
     "repl": false
   }
