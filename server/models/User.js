@@ -7,7 +7,7 @@
 var util = require('util');
 
 var _ = require('lodash'),
-    bcrypt = require('bcrypt'),
+    bcrypt = require('bcrypt-nodejs'),
     ultimate = require('ultimate');
 
 var mongoose = ultimate.lib.mongoose,
