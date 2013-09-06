@@ -300,7 +300,7 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= jshint.client %>',
-          '<%= project.path.client %>/js/{handlebars/partials,modules/**}/*.hbs'
+          '<%= project.path.client %>/js/{components/**,handlebars/partials,modules/**}/*.hbs'
         ],
         tasks: ['browserify2:dev']
       }
