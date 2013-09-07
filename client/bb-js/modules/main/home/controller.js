@@ -1,5 +1,5 @@
 /*
- * client/js/modules/home/view/controller.js
+ * client/js/modules/main/home/controller.js
  */
 
 /* global app */
@@ -13,24 +13,29 @@ var Controller = app.lib.Backbone.Marionette.Controller.extend({
     this.layout = new views.Layout();
 
     this.listenTo(this.layout, 'show', function () {
-      this.showFeaturesRegion();
+      this.showFeaturesView();
     });
 
     this.show(this.layout);
   },
 
-  showFeaturesRegion: function () {
+  showFeaturesView: function () {
     var features = app.request('feature:entities');
 
-    features.comparator = function (feature) {
-      return feature.get('text');
-    };
+    app.execute('when:fetched', features, function () {
+      features.reset(features.sortBy(function (feature) {
+        return feature.get('text').toLowerCase();
+      }));
+    });
 
     var featuresView = new views.FeaturesView({
       collection: features
     });
 
-    this.layout.featuresRegion.show(featuresView);
+    this.show(featuresView, {
+      loading: true,
+      region: this.layout.featuresRegion
+    });
   }
 });
 

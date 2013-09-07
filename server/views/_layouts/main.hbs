@@ -15,29 +15,28 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="http://" />
   <meta property="og:image" content="http://" />
-  <link rel="stylesheet" href="/css/main.css">
-  <script src="/js/vendor/modernizr.js"></script>
+  <link rel="stylesheet" href="/css/main.css?{{cachebust}}">
+  <script src="/js/vendor/modernizr.js?{{cachebust}}"></script>
 </head>
 
 <body>
   <div class="wrap">
     <div id="nav"></div>
-    <div id="header"></div>
-    <div id="main">{{{body}}}</div>
+    <div class="content">
+      <div id="alert"></div>
+      <div id="header"></div>
+      <div id="main">{{{body}}}</div>
+    </div>
   </div>
   <div id="footer"></div>
-
-  <!--{{>livereload}}-->
-  <!--{{{socketio}}}-->
-  <!--{{{block "scripts"}}}-->
 
   <!--[if lt IE 7]>
     <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
   <![endif]-->
 
   <!--[if lt IE 9]>
-    <script src="/js/vendor/es5-shim.js"></script>
-    <script src="/js/vendor/json3.js"></script>
+    <script src="/js/vendor/es5-shim.js?{{cachebust}}"></script>
+    <script src="/js/vendor/json3.js?{{cachebust}}"></script>
   <![endif]-->
 
   <script>
@@ -47,7 +46,7 @@
     };
   </script>
 
-  <script src="/js/main.js"></script>
+  <script src="/js/main.js?{{cachebust}}"></script>
 </body>
 
 </html>

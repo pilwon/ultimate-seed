@@ -8,10 +8,10 @@ var ultimate = require('ultimate');
 
 // Register controllers to routes.
 exports.register = function (app, restify) {
-  var csrf = ultimate.server.controller.csrf,
-      ensureAdmin = ultimate.server.controller.ensureAdmin,
-      ensureGuest = ultimate.server.controller.ensureGuest,
-      ensureUser = ultimate.server.controller.ensureUser;
+  var ensureAdmin = ultimate.server.controller.ensureAdmin,
+      // ensureGuest = ultimate.server.controller.ensureGuest,
+      // ensureUser = ultimate.server.controller.ensureUser,
+      csrf = ultimate.server.controller.csrf;
 
   var c = app.controllers,
       s = app.servers.express.getServer(),
@@ -20,6 +20,7 @@ exports.register = function (app, restify) {
   // API
   restify.model('/api/features', 'Feature');
   restify.model('/api/users', 'User');
+  restify.user ('/api/me', c.api.auth.me, ['list']);
   restify.any  ('/api/login', c.api.auth.login, ['post']);
   restify.any  ('/api/logout', c.api.auth.logout, ['post']);
   restify.any  ('/api/register', c.api.auth.register, ['post']);
@@ -34,20 +35,20 @@ exports.register = function (app, restify) {
   s.get('/health', c.home.health);
 
   // Account
-  s.get('/account', ensureUser, c.account.index);
+  // s.get('/account', ensureUser, c.account.index);
 
   // Admin
   s.get('/admin', ensureAdmin, c.admin.index);
   s.get(/^\/admin(?:[\/#?].*)?$/, error404);
 
   // Auth
-  s.get('/login', ensureGuest, c.auth.login);
+  // s.get('/login', ensureGuest, c.auth.login);
   s.post('/login', csrf, c.auth.loginPOST);
-  s.get('/logout', c.auth.logout);
+  // s.get('/logout', c.auth.logout);
   s.post('/logout', c.auth.logoutPOST);
-  s.get('/lost-password', ensureGuest, c.auth.lostPassword);
+  // s.get('/lost-password', ensureGuest, c.auth.lostPassword);
   s.post('/lost-password', csrf, c.auth.lostPasswordPOST);
-  s.get('/register', ensureGuest, c.auth.register);
+  // s.get('/register', ensureGuest, c.auth.register);
   s.post('/register', csrf, c.auth.registerPOST);
   s.get('/auth/facebook', c.auth.facebook);
   s.get('/auth/facebook/callback', c.auth.facebookCallback);

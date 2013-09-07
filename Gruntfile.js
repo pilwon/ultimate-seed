@@ -4,12 +4,15 @@
 
 'use strict';
 
-var path = require('path');
+var path = require('path'),
+    util = require('util');
 
 var _ = require('lodash'),
     coffeeify = require('coffeeify'),
     hbsfy = require('hbsfy'),
-    uglify = require('uglify-js');
+    rfileify = require('rfileify'),
+    uglify = require('uglify-js'),
+    wrench = require('wrench');
 
 var project = require('./project');
 
@@ -29,6 +32,7 @@ module.exports = function (grunt) {
         beforeHook: function (bundle) {
           bundle.transform(coffeeify);
           bundle.transform(hbsfy);
+          bundle.transform(rfileify);
         }
       },
       dist: {
@@ -37,13 +41,14 @@ module.exports = function (grunt) {
         beforeHook: function (bundle) {
           bundle.transform(coffeeify);
           bundle.transform(hbsfy);
+          bundle.transform(rfileify);
         },
         afterHook: function (source) {
           return uglify.minify(source, { fromString: true }).code;
         }
       }
     },
-    cacheBust: {
+    cachebust: {
       dev: {
         files: {
           src: [
@@ -133,8 +138,8 @@ module.exports = function (grunt) {
     express: {  // grunt-express
       server: {
         options: {
-          bases: [],
           debug: true,
+          livereload: project.server.livereload,
           port: '<%= process.env.PORT || project.server.port %>',
           server: path.resolve('<%= project.path.server %>')
         }
@@ -192,7 +197,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= project.path.client %>/img',
-          src: '**/*.{png,jpg,jpeg}',
+          src: '**/*.{png,jpg,gif}',
           dest: '<%= project.path.dist %>/img'
         }]
       }
@@ -304,14 +309,15 @@ module.exports = function (grunt) {
       html: '<%= project.path.client %>/index.html'
     },
     watch: {  // grunt-contrib-watch
-      assets: {
+      livereload: {
         options: {
           livereload: project.server.livereload
         },
         files: [
           '{<%= project.path.temp %>,<%= project.path.client %>}/{,*/}*.html',
           '!<%= project.path.client %>/index.html',
-          '<%= project.path.client %>/img/{,*/}*.png',
+          '<%= project.path.client %>/fonts/{,*/}*',
+          '<%= project.path.client %>/img/**/*',
           '<%= project.path.client %>/js/**/*.js',
           '<%= project.path.client %>/js/views/**/*.tmpl',
           '<%= project.path.server %>/views/{,*/}*.hbs'
@@ -325,7 +331,7 @@ module.exports = function (grunt) {
         ],
         tasks: [
           'copy:dev',
-          'cacheBust:dev'
+          'cachebust:dev'
         ]
       },
       css: {
@@ -340,21 +346,15 @@ module.exports = function (grunt) {
         files: ['<%= project.path.client %>/less/{,*/}*.less'],
         tasks: ['less:dev']
       },
-      jsClient: {
+      js: {
         options: {
           livereload: project.server.livereload
         },
         files: [
           '<%= jshint.client %>',
-          '<%= project.path.client %>/js/{handlebars/partials,modules/**}/*.hbs'
+          '<%= project.path.client %>/js/{components/**,handlebars/partials,modules/**}/*.hbs'
         ],
         tasks: ['browserify2:dev']
-      },
-      jsServer: {
-        options: {
-        },
-        files: ['<%= jshint.server %>'],
-        tasks: ['express']
       }
     }
   });
@@ -365,10 +365,11 @@ module.exports = function (grunt) {
     'browserify2:dev',
     'less:dev',
     'copy:dev',
-    'cacheBust:dev'
+    'devSymlink',
+    'cachebust:dev'
   ]);
 
-  grunt.registerTask('build', [
+  grunt.registerTask('distBuild', [
     'jshint',
     'clean:dist',
     'htmlmin:ng',
@@ -380,10 +381,83 @@ module.exports = function (grunt) {
     'htmlmin:dist',
     'cssmin:dist',
     'copy:dist',
-    'cacheBust:dist',
+    'distSymlink',
+    'cachebust:dist',
     'usemin',
     'uglify:dist'
   ]);
+
+  grunt.registerMultiTask('cachebust', function () {
+    this.files.forEach(function (file) {
+      file.src.filter(function (filepath) {
+        if (!grunt.file.exists(filepath)) {
+          grunt.log.warn('Source file "' + filepath + '" not found.');
+          return false;
+        } else {
+          return true;
+        }
+      }).map(function (filepath) {
+        var hash = '' + new Date().getTime(),
+            data = grunt.file.read(filepath, { encoding: 'utf-8' });
+        grunt.util._.each({
+          js: {
+            src: /<script.+src=['"](?!http:|https:|\/\/)([^"']+)["']/gm,
+            file: /src=['"]([^"']+)["']/m
+          },
+          css: {
+            src: /<link.+href=["'](?!http:|https:|\/\/).*\.css("|\?.*")/gm,
+            file: /href=['"]([^"']+)["']/m
+          },
+          images: {
+            src: /<img[^\>]+src=['"](?!http:|https:|\/\/|data:image)([^"']+)["']/gm,
+            file: /src=['"]([^"']+)["']/m
+          }
+        }, function (regex) {
+          var matches = data.match(regex.src) || [];
+          console.log(matches);
+          matches.forEach(function (snippet) {
+            snippet = snippet.substring(0, snippet.length - 1);
+            data = data.replace(snippet, snippet.split('?')[0] + '?' + hash);
+          });
+        });
+        grunt.file.write(filepath, data);
+        grunt.log.writeln(filepath + ' was busted!');
+        // Save hash to file so express server can use the value.
+        var cachebustData = {};
+        try {
+          cachebustData = grunt.file.readJSON('.cachebust');
+        } catch (e) {}
+        cachebustData[filepath] = hash;
+        grunt.file.write('.cachebust', JSON.stringify(cachebustData, null, 2));
+      });
+    });
+  });
+
+  grunt.registerTask('devSymlink', function () {
+    ['fonts'].forEach(function (dir) {
+      var symlinks = require(util.format('./%s/%s/.symlinks', project.path.client, dir));
+      _.each(symlinks, function (source, target) {
+        source = path.resolve(path.join(project.path.client, dir, source));
+        target = path.resolve(path.join(project.path.temp, dir, target));
+        wrench.mkdirSyncRecursive(path.join(project.path.temp, dir));
+        wrench.copyDirSyncRecursive(source, target);
+      });
+      console.info('Resolved symlinks: %s', path.resolve(project.path.client, dir));
+    });
+  });
+
+  grunt.registerTask('distSymlink', function () {
+    ['fonts'].forEach(function (dir) {
+      var symlinks = require(util.format('./%s/%s/.symlinks', project.path.client, dir));
+      _.each(symlinks, function (source, target) {
+        source = path.resolve(path.join(project.path.client, dir, source));
+        target = path.resolve(path.join(project.path.dist, dir, target));
+        wrench.mkdirSyncRecursive(path.join(project.path.dist, dir));
+        wrench.copyDirSyncRecursive(source, target);
+      });
+      console.info('Resolved symlinks: %s', path.resolve(project.path.dist, dir));
+    });
+  });
 
   grunt.registerTask('devServer', function () {
     grunt.task.run([
@@ -405,7 +479,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', ['intern:client']);
 
   // Shortcuts
-  grunt.registerTask('b', 'build');
+  grunt.registerTask('b', 'distBuild');
   grunt.registerTask('c', 'clean');
   grunt.registerTask('d', 'devBuild');
   grunt.registerTask('s', 'devServer');

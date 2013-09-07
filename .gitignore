@@ -2,6 +2,7 @@
 # .gitignore
 #
 
+/.cachebust
 /.git.*/
 /.gitignore.*
 /.tmp/

@@ -10,7 +10,7 @@ var _ = require('lodash'),
 
 var _sync = Backbone.sync;
 
-var methods = {
+var _methods = {
   beforeSend: function (xhr) {
     this.trigger('sync:start', this);
 
@@ -26,11 +26,12 @@ Backbone.sync = function (method, entity, options) {
   if (!_.isObject(options)) { options = {}; }
 
   _.defaults(options, {
-    beforeSend: _.bind(methods.beforeSend, entity),
-    complete: _.bind(methods.complete, entity)
+    beforeSend: _.bind(_methods.beforeSend, entity),
+    complete: _.bind(_methods.complete, entity)
   });
 
+  var sync = _sync.call(this, method, entity, options);
   if (!entity._fetch && method === 'read') {
-    entity._fetch = _sync(method, entity, options);
+    entity._fetch = sync;
   }
 };

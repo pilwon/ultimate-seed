@@ -7,7 +7,7 @@
 var util = require('util');
 
 var _ = require('lodash'),
-    bcrypt = require('bcrypt'),
+    bcrypt = require('bcrypt-nodejs'),
     ultimate = require('ultimate');
 
 var mongoose = ultimate.lib.mongoose,
@@ -88,7 +88,7 @@ schema.virtual('name.full').set(function (name) {
 
 // Plugins
 schema.plugin(plugin.findOrCreate);
-schema.plugin(plugin.timestamps);
+schema.plugin(plugin.timestamp);
 
 // Bcrypt middleware
 schema.pre('save', function (next) {
@@ -110,6 +110,19 @@ schema.pre('save', function (next) {
   });
 });
 
+// Promote user to admin if admin does not yet exist.
+schema.pre('save', function (next) {
+  var user = this,
+      model = exports;
+  model.count({ roles: 'admin' }, function (err, count) {
+    if (err) { return next(err); }
+    if (count === 0) {
+      user.roles.push('admin');
+    }
+    next();
+  });
+});
+
 // Password verification
 schema.methods.comparePassword = function (candidatePassword, cb) {
   var user = this;
@@ -118,25 +131,27 @@ schema.methods.comparePassword = function (candidatePassword, cb) {
 
 // Safe JSON (internal data removed)
 schema.methods.getSafeJSON = function () {
-  var result = this.toJSON();
+  var user = this.toJSON();
 
-  delete result.__v;
-  delete result.accessToken;
+  user.id = user._id;
+  delete user._id;
+  delete user.__v;
+  delete user.accessToken;
 
-  if (result.auth.local) {
-    delete result.auth.local.password;
+  if (user.auth.local) {
+    delete user.auth.local.password;
   }
-  if (result.auth.facebook) {
-    delete result.auth.facebook.token;
+  if (user.auth.facebook) {
+    delete user.auth.facebook.token;
   }
-  if (result.auth.google) {
-    delete result.auth.google.token;
+  if (user.auth.google) {
+    delete user.auth.google.token;
   }
-  if (result.auth.twitter) {
-    delete result.auth.twitter.token;
+  if (user.auth.twitter) {
+    delete user.auth.twitter.token;
   }
 
-  return result;
+  return user;
 };
 
 /**

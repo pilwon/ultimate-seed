@@ -11,9 +11,17 @@ var loginTpl = require('./templates/login.hbs');
 var LoginView = app.lib.Backbone.Marionette.ItemView.extend({
   template: loginTpl,
 
+  ui: {
+    username: 'input[name="username"]',
+    password: 'input[name="password"]',
+    rememberMe: 'input[name="rememberMe"]',
+    login: '.btn-login',
+    register: '.btn-regsiter'
+  },
+
   triggers: {
-    'change input': 'changed:input',
-    'click button[type="submit"]': 'clicked:submit'
+    'click .btn-login': 'login:clicked',
+    'click .btn-register': 'register:clicked'
   }
 });
 

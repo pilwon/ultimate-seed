@@ -4,11 +4,12 @@
 
 'use strict';
 
-var Backbone = require('backbone');
+var _ = require('lodash'),
+    Backbone = require('backbone');
 
 var Collection = Backbone.Collection.extend({
-  parse: function (res) {
-    return res.result;
+  parse: function (result) {
+    return (_.isArray(result.data) ? result.data : result);
   }
 });
 

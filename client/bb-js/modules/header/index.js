@@ -16,6 +16,7 @@ var API = {
   }
 };
 
+// Handle `show:header` command.
 app.commands.setHandler('show:header', function () {
   API.showHeader();
 });

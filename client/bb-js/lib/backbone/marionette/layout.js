@@ -6,7 +6,9 @@
 
 var Marionette = require('backbone.marionette');
 
-var Layout = Marionette.Layout.extend();
+var Layout = Marionette.Layout.extend({
+
+});
 
 // Public API
 exports = module.exports = Layout;

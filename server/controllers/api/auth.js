@@ -15,6 +15,9 @@ function loginPOST(req, cb) {
       focus = null;
 
   function _sendError(err) {
+    if (!errMsgs.length) {
+      errMsgs.push(err.message);
+    }
     cb(err, {
       focus: focus,
       form: _.omit(req.body, 'password'),
@@ -82,7 +85,6 @@ function loginPOST(req, cb) {
     // Log in.
     req.logIn(user, function (err) {
       if (err) { return _sendError(err); }
-      app.lib.cookie.setUserCookie(req, req.res);
       return cb(null, user.getSafeJSON());
     });
   })(req, req.res, req.next);
@@ -91,10 +93,13 @@ function loginPOST(req, cb) {
 function logoutPOST(req, cb) {
   // Log out.
   req.logout();
-  app.lib.cookie.clearUserCookie(req, req.res);
   return cb(null, {
     success: true
   });
+}
+
+function meLIST(req, cb) {
+  return cb(null, req.user.getSafeJSON());
 }
 
 function registerPOST(req, cb) {
@@ -102,6 +107,9 @@ function registerPOST(req, cb) {
       focus = null;
 
   function _sendError(err) {
+    if (!errMsgs.length) {
+      errMsgs.push(err.message);
+    }
     cb(err, {
       focus: focus,
       form: _.omit(req.body, 'password', 'passwordRepeat'),
@@ -157,7 +165,6 @@ function registerPOST(req, cb) {
     if (err) { return _sendError(err); }
     req.logIn(user, function (err) {
       if (err) { return _sendError(err); }
-      app.lib.cookie.setUserCookie(req, req.res);
       return cb(null, user.getSafeJSON());
     });
   });
@@ -166,4 +173,5 @@ function registerPOST(req, cb) {
 // Public API
 exports.login = { POST: loginPOST };
 exports.logout = { POST: logoutPOST };
+exports.me = { LIST: meLIST };
 exports.register = { POST: registerPOST };

@@ -2,6 +2,8 @@
  * client/js/setup/backbone/marionette/application.js
  */
 
+/* global app */
+
 'use strict';
 
 var path = require('path'),
@@ -11,43 +13,48 @@ var _ = require('lodash'),
     Backbone = require('backbone');
 
 _.extend(Backbone.Marionette.Application.prototype, {
-  navigate: function (route, options) {
-    if (!_.isObject(options)) { options = {}; }
-    route = route.replace(/^([^\/])(.*)([\/#?]?)$/, '/$1$2');
-    Backbone.history.navigate(route, options);
+  deregisterController: function (controller) {
+    delete this._controllers[controller._id];
   },
 
-  getRoute: function () {
-    return path.join('/', Backbone.history.fragment);
+  getControllers: function () {
+    return _.values(this._controllers);
   },
 
   getParsedUrl: function () {
     return url.parse(location.href);
   },
 
-  register: function (instance, id) {
-    this._registry = this._registry || {};
-    this._registry[id] = instance;
+  getRoute: function () {
+    return path.join('/', Backbone.history.fragment);
   },
 
-  unregister: function (instance, id) {
-    delete this._registry[id];
+  navigate: function (route, options) {
+    app.execute('hide:alert');
+    route = route.replace(/^([^\/])(.*)([\/#?]?)$/, '/$1$2');
+    Backbone.history.navigate(route, options);
   },
 
-  resetRegistry: function () {
-    var oldCount = this.getRegistrySize();
-    _.each(this._registry, function (controller/*, key*/) {
+  registerController: function (controller) {
+    if (!_.isObject(this._controllers)) {
+      this._controllers = {};
+    }
+    this._controllers[controller._id] = controller;
+  },
+
+  resetControllers: function () {
+    var oldCount = _.size(this._controllers),
+        newCount;
+    _.each(this._controllers, function (controller) {
       controller.region.close();
     });
-    var msg = 'There were ' + oldCount + ' controllers in the registry, there are now #{@getRegistrySize()}';
-    if (this.getRegistrySize() > 0) {
-      console.warn(msg, this._registry);
-    } else {
-      console.log(msg);
+    newCount = _.size(this._controllers);
+    console.info(
+      '%d controllers -> %d controllers',
+      oldCount, newCount
+    );
+    if (newCount) {
+      console.warn(this._controllers);
     }
-  },
-
-  getRegistrySize: function () {
-    return _.size(this._registry);
   }
 });

@@ -16,6 +16,7 @@ var API = {
   }
 };
 
+// Handle `show:nav` command.
 app.commands.setHandler('show:nav', function () {
   API.showNav();
 });

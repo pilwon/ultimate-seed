@@ -17,19 +17,24 @@ require('./setup');
 // Globalize app.
 global.app = require('./app');
 
-// Load entities.
-require('./entities');
+// Load components.
+require('./components/loading');
 
-// Configure Handlebars.
+// Load entities.
+require('./entities/config');
+require('./entities/feature');
+
+// Load Handlebars helpers and partials.
 require('./handlebars');
 
 // Load modules.
 require('./modules/account');
 require('./modules/admin');
+require('./modules/alert');
 require('./modules/auth');
 require('./modules/footer');
 require('./modules/header');
-require('./modules/home');
+require('./modules/main');
 require('./modules/nav');
 
 // Launch app.

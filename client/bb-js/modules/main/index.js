@@ -1,5 +1,5 @@
 /*
- * client/js/modules/home/index.js
+ * client/js/modules/main/index.js
  */
 
 /* global app */
@@ -9,24 +9,24 @@
 var _ = require('lodash'),
     Backbone = require('backbone');
 
-var ViewController = require('./view/controller');
+var HomeController = require('./home/controller');
 
 var API = {
-  view: function () {
-    new ViewController();
+  home: function () {
+    new HomeController();
   }
 };
 
 var Router = Backbone.Marionette.AppRouter.extend({
+  controller: API,
   appRoutes: {
-    '': 'view',
-    'index.html': 'view'
-  },
-  controller: API
+    '': 'home',
+    'index.html': 'home'
+  }
 });
 
 app.on('start:router', function (optionalIds) {
-  if (_.isUndefined(optionalIds) || _.contains(optionalIds, 'home')) {
+  if (_.isUndefined(optionalIds) || _.contains(optionalIds, 'main')) {
     new Router();
   }
 });

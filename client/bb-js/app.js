@@ -38,13 +38,18 @@ app.on('initialize:before', function (options) {
   _.keys(app.config.attributes).forEach(function (attribute) {
     app.config.trigger('change:' + attribute, app.config, app.config.get(attribute));
   });
+
+  // Check if the current session is authenticated.
+  $.get('/api/me').done(function (result) {
+    app.config.set('user', result.data);
+  });
 });
 
 // Add initializer.
 app.addInitializer(function () {
-  app.execute('show:nav');
-  app.execute('show:header');
   app.execute('show:footer');
+  app.execute('show:header');
+  app.execute('show:nav');
 });
 
 // Handle `initialize:after` event.
@@ -62,10 +67,11 @@ app.on('initialize:after', function () {
   // Snatch all click events on anchor tags.
   $(document).on('click', 'a', function (e) {
     var href = $(this).attr('href'), i;
+    app.globalConfig.fromServer = false;
     if (href[0] === '#' || href[0] === '?') {
       i = app.getRoute().indexOf(href[0]);
-      if (i === -1) { i = href.length; }
-      href = app.getRoute().slice(0, i) + href;
+      if (i === -1) { i = app.getRoute().length; }
+      href = app.getRoute().slice(0, i) + (href.length > 1 ? href : '');
     } else if (href[0] === '.') {
       href = path.join(path.dirname(app.getRoute()), href);
     }
@@ -73,51 +79,47 @@ app.on('initialize:after', function () {
       e.preventDefault();
       app.navigate(href, { trigger: true });
     }
-    app.globalConfig.fromServer = false;
   });
 });
 
 // Add regions.
 app.addRegions({
-  navRegion: '#nav',
+  alertRegion: '#alert',
+  footerRegion: '#footer',
   headerRegion: '#header',
   mainRegion: '#main',
-  footerRegion: '#footer'
+  navRegion: '#nav'
 });
 
 // Handle `set:layout` command.
 app.commands.setHandler('set:layout', function (layout) {
   switch (layout) {
   case 'fullscreen':
-    app.navRegion.$el.hide();
-    app.headerRegion.$el.hide();
     app.footerRegion.$el.hide();
+    app.headerRegion.$el.hide();
+    app.navRegion.$el.hide();
     break;
   default:
-    app.navRegion.$el.show();
-    app.headerRegion.$el.show();
     app.footerRegion.$el.show();
+    app.headerRegion.$el.show();
+    app.navRegion.$el.show();
   }
 });
 
 // Handle `register:instance` command.
-app.commands.setHandler('register:instance', function (instance, id) {
-  if (app.config.get('environment') === 'development') {
-    app.register(instance, id);
-  }
+app.commands.setHandler('register:controller', function (controller) {
+  app.registerController(controller);
 });
 
 // Handle `unregsiter:instance` command.
-app.commands.setHandler('unregister:instance', function (instance, id) {
-  if (app.config.get('environment') === 'development') {
-    app.unregister(instance, id);
-  }
+app.commands.setHandler('deregister:controller', function (controller) {
+  app.deregisterController(controller);
 });
 
 // Handle `when:fetched` command.
 app.commands.setHandler('when:fetched', function (entities, cb) {
   var xhrs = _.chain([entities]).flatten().pluck('_fetch').value();
-  $.when(xhrs).done(function () {
+  $.when.apply($, xhrs).done(function () {
     cb();
   });
 });

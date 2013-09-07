@@ -16,6 +16,7 @@ var API = {
   }
 };
 
+// Handle `show:footer` command.
 app.commands.setHandler('show:footer', function () {
   API.showFooter();
 });

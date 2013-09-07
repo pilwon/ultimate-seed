@@ -1,5 +1,5 @@
 /*
- * client/js/modules/i18n/index.js
+ * client/js/i18n/index.js
  */
 
 'use strict';

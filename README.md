@@ -66,7 +66,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 | [Bower](http://twitter.github.com/bower/) | `npm install bower -g`                       |
 | [Grunt](http://gruntjs.com/)              | `npm install grunt-cli -g`                   |
 
-  Make sure both `MongoDB` and `Redis` servers running somewhere. (You can use free hosting services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/) for `MongoDB` and [Redis To Go](http://redistogo.com/) for `Redis`.) Then, update configuration information in `config/{development,heroku,production}.json`.
+  Make sure both `MongoDB` and `Redis` servers running somewhere. (You can use free hosting services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/) for `MongoDB` and [Redis To Go](http://redistogo.com/) or [RedisCloud](http://redis-cloud.com/) for `Redis`.) Then, update configuration information in `config/{development,heroku,production}.json`.
 
   If you find any reason not to use `Redis` in your project, you can easily achieve it by following this instruction:
 
@@ -126,10 +126,10 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 
 
-## Deployment
+### Deployment
 
 
-### Production Server (`config/production.json`)
+#### Production Server (`config/production.json`)
 
   First, prepare and optimize all files used in production environment:
 
@@ -154,32 +154,28 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
     autorestart = true
 
 
-### Heroku (`config/heroku.json`)
+#### Heroku (`config/heroku.json`)
 
   `ultimate-seed` supports deployment of your app to [Heroku](https://www.heroku.com/) servers.
 
-  1. Comment out the following lines in `.gitignore`.
+  1. Modify `config/heroku.json`.
+  2. Comment out the following lines in `.gitignore`.
+    * `/.cachebust`
     * `/client/js/node_modules/bower_components/`
     * `/client-built/`
     * `/config/heroku.json`
     * `/node_modules/`
-  2. Run `grunt build` to build the project.
-  3. Commit all files to a local git repository created at the project root.
-  4. Add git remote pointing to Heroku:
+  3. Run `grunt build` to build the project.
+  4. Commit all files to a local git repository created at the project root.
+  5. Add git remote pointing to Heroku:
     * New Heroku app: `heroku create APPID`
     * Existing Heroku app: `heroku git:remote -a APPID`
-  5. Set the environment variable: `heroku config:set NODE_ENV=heroku ERROR_PAGE_URL=http://APPID.herokuapp.com/404.html -a APPID`
-  6. Deploy application to Heroku using `git push heroku +master`
-  7. Deployed at [http://APPID.herokuapp.com/](http://ultimate-seed.herokuapp.com/)
-
-
-
-## Optimization
-
-
-### RedisStore for Socket.io
-
-  Socket.io supports `RedisStore` option, and it is a must-use feature for multi-server deployment setup. To enable this feature, change the value `socketio.store` to `redis` in `config/{development,heroku,production}.json`. The reason `RedisStore` is not used by default is due to max connection limit imposed by some Redis hosting providers. Each server makes 8 connections to the Redis server when this feature is enabled.
+  6. Set the environment variable: `heroku config:set NODE_ENV=heroku ERROR_PAGE_URL=http://APPID.herokuapp.com/404.html`
+  7. (Optional) Install MongoDB and Redis add-ons to the Heroku app. `ultimate-seed` reads environment variables attached by these add-ons. (Note: Add-on environment variables will override MongoDB/Redis configuration values in `config/heroku.json`):
+    * Mongo: `heroku addons:add mongohq:sandbox` or `heroku addons:add mongolab:sandbox`
+    * Redis: `heroku addons:add redistogo:nano` or `heroku addons:add rediscloud:20`
+  8. Deploy application to Heroku using `git push heroku +master`
+  9. Deployed at [http://APPID.herokuapp.com/](http://ultimate-seed.herokuapp.com/)
 
 
 
@@ -212,7 +208,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 ## Directory Structure
 
-```
+<pre>
 .
 ├── client/
 │   ├── components/
@@ -285,7 +281,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 ├── npm-scripts.js
 ├── package.json
 └── project.json
-```
+</pre>
 
 
 
@@ -300,4 +296,26 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 ## License
 
-  `ultimate-seed` is released under the [MIT License](http://opensource.org/licenses/MIT).
+<pre>
+The MIT License (MIT)
+
+Copyright (c) 2012-2013 Pilwon Huh
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+</pre>

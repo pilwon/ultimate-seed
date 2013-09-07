@@ -10,7 +10,9 @@ var views = require('./views');
 
 var Controller = app.lib.Backbone.Marionette.Controller.extend({
   initialize: function () {
-    this.show(new views.HeaderView());
+    var view = this.view = new views.HeaderView();
+
+    this.show(view);
   }
 });
 

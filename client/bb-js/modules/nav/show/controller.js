@@ -6,36 +6,60 @@
 
 'use strict';
 
-var $ = require('jquery'),
+var _ = require('lodash'),
+    S = require('string'),
     Backbone = require('backbone');
 
 var views = require('./views');
 
 var Controller = app.lib.Backbone.Marionette.Controller.extend({
   initialize: function () {
-    var view = new views.NavView({
+    var view = this.view = new views.NavView({
       model: new app.lib.Backbone.Model({
-        user: ($.cookie('user.name.full') ? {
-          name: {
-            full: $.cookie('user.name.full')
-          }
-        } : void 0)
+        user: app.config.get('user')
       })
     });
 
-    view.on('clicked:login', function () {
-      app.navigate('login', { trigger: true, refresh: true });
-    });
-
-    view.on('clicked:register', function () {
-      app.navigate('register', { trigger: true, refresh: true });
-    });
-
     Backbone.history.on('route', function () {
+      this.updateActiveClass(view);
+      view.render();
+    }, this);
+
+    this.listenTo(app.config, 'change:user', function () {
+      view.model.set('user', app.config.get('user'));
       view.render();
     });
 
+    this.listenTo(view, 'account:clicked', function () {
+      app.navigate('account', { trigger: true, refresh: true });
+    });
+
+    this.listenTo(view, 'logout:clicked', function () {
+      app.navigate('logout', { trigger: true, refresh: true });
+    });
+
+    this.listenTo(view, 'login:clicked', function () {
+      app.navigate('login', { trigger: true, refresh: true });
+    });
+
+    this.listenTo(view, 'register:clicked', function () {
+      app.navigate('register', { trigger: true, refresh: true });
+    });
+
     this.show(view);
+  },
+
+  updateActiveClass: function () {
+    var view = this.view;
+
+    var classVar = S('class_' + app.getRoute().replace(/\//g, '_')).camelize().s;
+    if (classVar === 'class') { classVar += 'Backbone'; }
+
+    _.each(view.model.omit(['user']), function (val, key) {
+      view.model.unset(key);
+    });
+
+    view.model.set(classVar, 'active');
   }
 });
 

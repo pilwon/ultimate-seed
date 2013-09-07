@@ -90,19 +90,19 @@
     }
   },
   "socketio": {
-    "store": "memory"
+    "store": "redis"
   },
   "storage": {
     "_use": "s3",
     "backend": {
       "cloudFiles": {
         "container": {
-          "main": "ultimate-seed"
+          "main": "@@@@@"
         }
       },
       "s3": {
         "bucket": {
-          "main": "ultimate-seed"
+          "main": "@@@@@"
         }
       }
     }

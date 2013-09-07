@@ -6,11 +6,11 @@
 
 var _ = require('lodash'),
     $ = require('jquery'),
-    Backbone = require('backbone');
+    Marionette = require('backbone.marionette');
 
-var _remove = Backbone.Marionette.View.prototype.remove;
+var _remove = Marionette.View.prototype.remove;
 
-_.extend(Backbone.Marionette.View.prototype, {
+_.extend(Marionette.View.prototype, {
   addOpacityWrapper: function (init) {
     if (!_.isBoolean(init)) { init = true; }
     this.$el.toggleWrapper({
@@ -28,7 +28,7 @@ _.extend(Backbone.Marionette.View.prototype, {
     var self = this,
         wrapper;
 
-    // console.log('removing', this);
+    // console.log('Removing view: ', this);
 
     if (_.isObject(this.model) && _.isFunction(this.model.isDestroyed) && this.model.isDestroyed()) {
       wrapper = this.$el.toggleWrapper({
@@ -43,22 +43,6 @@ _.extend(Backbone.Marionette.View.prototype, {
       });
     } else {
       _remove.apply(this, params);
-    }
-  },
-
-  templateHelpers: {
-    linkTo: function (name, url, options) {
-      if (!_.isObject(options)) { options = {}; }
-
-      _.defaults(options, {
-        external: false
-      });
-
-      if (!options.external) {
-        url = '#' + url;
-      }
-
-      return '<a href="' + url + '">#{@escape(name)}</a>';
     }
   }
 });

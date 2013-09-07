@@ -18,10 +18,10 @@ var API = {
 };
 
 var Router = Backbone.Marionette.AppRouter.extend({
+  controller: API,
   appRoutes: {
     // 'admin': 'view'
-  },
-  controller: API
+  }
 });
 
 app.on('start:router', function (optionalIds) {

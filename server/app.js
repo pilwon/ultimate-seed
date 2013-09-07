@@ -7,8 +7,8 @@
 var util = require('util');
 
 var _ = require('lodash'),
-    mkdirp = require('mkdirp'),
-    ultimate = require('ultimate');
+    ultimate = require('ultimate'),
+    wrench = require('wrench');
 
 var config = ultimate.config(__dirname + '/../config');
 
@@ -25,7 +25,7 @@ var app = {
 exports = module.exports = app;
 
 // Attach winston logger
-mkdirp.sync(app.project.path.log);
+wrench.mkdirSyncRecursive(app.project.path.log);
 require('./winston').attach(app);
 
 // Debug
@@ -66,6 +66,9 @@ app.attachMiddlewares = function () {
   // Hide Powered-by header
   ultimate.server.middleware.hidePoweredByHeader.attach(app);
 
+  // Cache bust
+  ultimate.server.middleware.cachebust.attach(app);
+
   // Custom
   app.servers.express.getServer().use(function (req, res, next) {
     // Locals
@@ -75,13 +78,6 @@ app.attachMiddlewares = function () {
     res.locals.role = {
       admin: false
     };
-
-    // User cookie
-    if (!req.user) {
-      app.lib.cookie.clearUserCookie(req, res);
-    } else {
-      app.lib.cookie.setUserCookie(req, res);
-    }
 
     // Live reload
     if (process.env.NODE_ENV === 'development') {

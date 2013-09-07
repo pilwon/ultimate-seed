@@ -28,7 +28,7 @@ schema.restify = {
 
 // Plugins
 schema.plugin(plugin.findOrCreate);
-schema.plugin(plugin.timestamps);
+schema.plugin(plugin.timestamp);
 
 // Model
 var model = mongoose.model('Feature', schema);

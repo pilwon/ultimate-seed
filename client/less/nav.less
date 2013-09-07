@@ -3,35 +3,15 @@
  */
 
 #nav {
-  background-color: #000;
-
-  .navbar-brand {
-    color: #fff;
-  }
-
   .navbar-nav {
-    > li > a {
-      color: #fff;
-
-      &:hover {
-        color: #fff;
-        background-color: #282828;
-      }
+    > li > a:focus,
+    > li > a:hover {
+      background-color: lighten(@theme, 2.5%);
     }
 
-    > .active > a,
-    > .active > a:hover {
-      color: #fff;
-      background-color: #333;
-    }
-  }
-
-  .navbar-toggle {
-    border-color: #000;
-
-    &:hover {
-      background-color: #666;
-      border-color: #666;
+    > li.active > a:focus,
+    > li.active > a:hover {
+      background-color: @navbar-inverse-link-active-bg;
     }
   }
 }
