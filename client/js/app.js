@@ -38,8 +38,12 @@ var app = angular.module('ngApp', [
   'ui.compat'
 ]);
 
-app.run(['$http', '$rootScope', '$state', '$stateParams', 'security',
-    function ($http, $rootScope, $state, $stateParams, security) {
+app.run(['$http', '$rootScope', '$route', '$state', '$stateParams', 'security',
+    function ($http, $rootScope, $route, $state, $stateParams, security) {
+  $rootScope.$on('$routeChangeStart', function () {
+    global.config.fromServer = false;
+  });
+
   $rootScope._ = _;
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;

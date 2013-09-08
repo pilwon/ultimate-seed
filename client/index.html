@@ -1,7 +1,7 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="ngApp"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app="ngApp"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" ng-app="ngApp"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" ng-app="ngApp"> <!--<![endif]-->
 
 <head>
@@ -20,24 +20,25 @@
 </head>
 
 <body>
-<!--[if lt IE 7]>
-  <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-<![endif]-->
-
-<!--[if lt IE 9]>
-  <script src="/js/vendor/es5-shim.js"></script>
-  <script src="/js/vendor/json3.js"></script>
-<![endif]-->
-
   <div class="wrap">
-    <div id="nav" ng-include="'/js/modules/nav/nav.tmpl'"></div>
+    <div id="nav" ui-view="nav"></div>
     <div class="content">
-      <div id="alert" ng-include="'/js/modules/alert/alert.tmpl'"></div>
-      <div id="header" ng-include="'/js/modules/header/header.tmpl'"></div>
+      <div id="alert" ui-view="alert"></div>
+      <div id="header" ui-view="header"></div>
       <div id="main" ui-view></div>
     </div>
   </div>
-  <div id="footer" ng-include="'/js/modules/footer/footer.tmpl'"></div>
+  <div id="footer" ui-view="footer"></div>
+
+  <!--[if lt IE 7]>
+    <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+  <![endif]-->
+
+  <!--[if lt IE 9]>
+    <script src="/js/vendor/es5-shim.js"></script>
+    <script src="/js/vendor/json3.js"></script>
+  <![endif]-->
+
 
   <script src="/js/main.js"></script>
   <script src="http://localhost:35729/livereload.js?snipver=1"></script>

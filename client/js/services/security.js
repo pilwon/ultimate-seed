@@ -33,14 +33,14 @@ security.provider('security', {
     service.login = function (formData) {
       return $http.post('/api/login', formData).then(function (res) {
         service.user = res.data.result;
-        $state.transitionTo('account');
+        $state.transitionTo('app.account');
       });
     };
 
     service.logout = function () {
       return $http.post('/api/logout').then(function () {
         service.user = null;
-        $state.transitionTo('index');
+        $state.transitionTo('app.home');
       });
     };
 
@@ -53,7 +53,7 @@ security.provider('security', {
         service.user = res.data.result;
         return service.user;
       }, function () {
-        $state.transitionTo('login');
+        // $state.transitionTo('app.login');
         return null;
       });
     };

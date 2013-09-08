@@ -2,7 +2,7 @@
   "name": "ultimate-seed",
   "dependencies": {
     "angular": "PatternConsulting/bower-angular#1.1.5",
-    "angular-ui-router": "~0.0.1",
+    "angular-ui-router": "~0.0.2",
     "angular-ui-bootstrap": "gh-pages",
     "backbone": "~1.0.0",
     "backbone-query-parameters": "*",
