@@ -30,9 +30,9 @@ require('./winston').attach(app);
 
 // Debug
 app.logger.debug('app.project: '.cyan +
-    JSON.stringify(app.project, null, 2));
+                 JSON.stringify(app.project, null, 2));
 app.logger.debug(util.format('app.config (%s): ', process.env.NODE_ENV).cyan +
-    JSON.stringify(app.config, null, 2));
+                 JSON.stringify(app.config, null, 2));
 
 // Defaults for config
 _.defaults(app.config, {

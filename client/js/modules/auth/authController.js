@@ -32,13 +32,13 @@ auth.controller('AuthController', ['$http', '$scope', 'security',
 
     $http.post('/api/register', formData).then(function (resp) {
       console.log('success', resp);
-      return "hello world";
       if (resp.status !== 200) {
 
       }
 
       $scope.showError = false;
     }, function (resp) {
+
       console.log('error', resp);
     });
   };
