@@ -12,8 +12,8 @@ var angular = require('angular');
 // We already created the module in index.js.
 var auth = angular.module('ngApp.modules.auth');
 
-auth.controller('AuthController', ['$http', '$scope', 'security',
-    function ($http, $scope, security) {
+auth.controller('AuthController', ['$http', '$scope', 'alertService', 'security',
+    function ($http, $scope, alertService, security) {
   $scope.showError = false;
 
   $scope.login = function (formData, formMeta) {
@@ -29,17 +29,12 @@ auth.controller('AuthController', ['$http', '$scope', 'security',
       $scope.showError = true;
       return;
     }
-
-    $http.post('/api/register', formData).then(function (resp) {
-      console.log('success', resp);
-      if (resp.status !== 200) {
-
-      }
-
+    $http.post('/api/register', formData).then(function () {
       $scope.showError = false;
+      security.login(formData);
     }, function (resp) {
-
-      console.log('error', resp);
+      $scope.showError = true;
+      alertService.addError(resp.data.error.message);
     });
   };
 }]);

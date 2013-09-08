@@ -1,11 +1,12 @@
-<form class="form-horizontal form-login" method="post">
+<form name="loginForm" method="post" class="form-horizontal form-login">
   <h2>Please log in</h2>
 
   <div class="row form-group">
     <div class="col-md-12">
       <input type="text" name="username"
           class="form-control" placeholder="e-mail address"
-          ng-model="formData.username"/>
+          ng-model="formData.username" required/>
+      <div ng-show="showError && loginForm.username.$error.required" class="text-danger">Required</div>
     </div>
   </div>
 
@@ -13,7 +14,8 @@
     <div class="col-md-12">
       <input type="password" name="password"
           class="form-control" placeholder="password"
-          ng-model="formData.password"/>
+          ng-model="formData.password" required/>
+      <div ng-show="showError && loginForm.password.$error.required" class="text-danger">Required</div>
     </div>
   </div>
 
@@ -33,7 +35,7 @@
 
   <p>
     <button class="btn btn-inverse btn-lg btn-login" type="submit"
-        ng-click="login(formData)">
+        ng-click="login(formData, loginForm)">
       Login
     </button>
     <a class="btn btn-default btn-lg btn-regsiter"

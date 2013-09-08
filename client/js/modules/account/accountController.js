@@ -12,5 +12,7 @@ var angular = require('angular');
 // We already created the module in index.js.
 var account = angular.module('ngApp.modules.account');
 
-account.controller('AccountController', function () {
-});
+account.controller('AccountController', ['$rootScope', 'user',
+    function ($rootScope, user) {
+  $rootScope.user = user;
+}]);

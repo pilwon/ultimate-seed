@@ -1,54 +1,85 @@
-<div class="container">
-  <h1>Account</h1>
+<div id="account" class="container">
 
-  <table class="table table-striped table-bordered">
+  <div class="page-header">
+    <h1>Account</h1>
+  </div>
+
+  <table class="table table-bordered table-striped">
     <tr>
-      <td style="width: 120px;"><strong>Name:</strong></td>
-      <td>{{user.name.full}}</td>
+      <th>ID</th>
+      <td>{{ user.id }}</td>
     </tr>
     <tr>
-      <td><strong>Email:</strong></td>
-      <td>{{user.email}}</td>
+      <th>First Name</th>
+      <td>{{ user.name.first }}</td>
     </tr>
     <tr>
-      <td><strong>Access Token:</strong></td>
-      <td>{{user.accessToken}}</td>
+      <th>Last Name</th>
+      <td>{{ user.name.last }}</td>
     </tr>
     <tr>
-      <td><strong>Auth:</strong></td>
+      <th>Email</th>
+      <td>{{ user.email }}</td>
+    </tr>
+    <tr>
+      <th>Roles</th>
       <td>
-        <table class="table table-striped table-bordered table-condensed" style="table-layout: fixed; word-wrap: break-word;">
+        <ul>
+          <li ng-repeat="role in user.roles">{{ role }}</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>Joined</th>
+      <td>{{ user.createdAt }}</td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td>{{ user.updatedAt }}</td>
+    </tr>
+    <tr>
+      <th>Services</th>
+      <td>
+        <table class="table table-bordered table-hover">
           <tr>
-            <th><strong>Service</strong></th>
-            <th><strong>Id</strong></th>
-            <th><strong>Token</strong></th>
-            <th style="width: 50%;"><strong>Profile</strong></th>
-          </tr>
-          <tr ng-repeat-start="(k, v) in user.auth" ng-if="v.username">
-            <td><strong>{{k}}</strong></td>
-            <td>{{v.username}}</td>
-            <td colspan="2"><strong>Encrypted password:</strong> {{v.password}}</td>
-          </tr>
-          <tr ng-repeat-end ng-if="v.id">
-            <td><strong>{{k}}</strong></td>
-            <td ng-if="v.id">{{v.id}}</td>
-            <td ng-if="v.username">{{v.username}}</td>
-            <td>{{v.token}}</td>
+            <th>Facebook</th>
             <td>
-              <table class="table table-striped table-bordered table-hover table-condensed" style="table-layout: fixed; word-wrap: break-word;">
-                <tr>
-                  <th>Key</th>
-                  <th style="width: 70%;">Value</th>
-                </tr>
-                <tr ng-repeat="(k, v) in v.profile">
-                  <td><strong>{{k}}</strong></td>
-                  <td>{{v}}</td>
+              <table ng-if="user.auth.facebook" class="table table-bordered table-condensed table-striped">
+                <tr ng-repeat="(k, v) in user.auth.facebook.profile">
+                  <th>{{ k }}</th>
+                  <td>{{ v }}</td>
                 </tr>
               </table>
+              <a ng-if="!user.auth.facebook" class="btn btn-facebook btn-sm" href="/auth/facebook"><i class="icon-facebook"></i> | Connect with Facebook</a>
+            </td>
+          </tr>
+          <tr>
+            <th>Google</th>
+            <td>
+              <table ng-if="user.auth.google" class="table table-bordered table-condensed table-striped">
+                <tr ng-repeat="(k, v) in user.auth.google.profile">
+                  <th>{{ k }}</th>
+                  <td>{{ v }}</td>
+                </tr>
+              </table>
+              <a ng-if="!user.auth.google" class="btn btn-google-plus btn-sm" href="/auth/google"><i class="icon-google-plus"></i> | Connect with Google+</a>
+            </td>
+          </tr>
+          <tr>
+            <th>Twitter</th>
+            <td>
+              <table ng-if="user.auth.twitter" class="table table-bordered table-condensed table-striped">
+                <tr ng-repeat="(k, v) in user.auth.twitter.profile">
+                  <th>{{ k }}</th>
+                  <td>{{ v }}</td>
+                </tr>
+              </table>
+              <a ng-if="!user.auth.twitter" class="btn btn-twitter btn-sm" href="/auth/twitter"><i class="icon-twitter"></i> | Connect with Twitter</a>
             </td>
           </tr>
         </table>
       </td>
     </tr>
   </table>
+
 </div>

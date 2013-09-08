@@ -38,11 +38,14 @@ var app = angular.module('ngApp', [
   'ui.compat'
 ]);
 
-app.run(['$cookies', '$http', '$rootScope', '$state', '$stateParams',
-    function ($cookies, $http, $rootScope, $state, $stateParams) {
+app.run(['$http', '$rootScope', '$state', '$stateParams', 'security',
+    function ($http, $rootScope, $state, $stateParams, security) {
   $rootScope._ = _;
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
+
+  // Loading the user if the session is still active.
+  $rootScope.user = security.requireUser();
 }]);
 
 

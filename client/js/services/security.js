@@ -39,6 +39,7 @@ security.provider('security', {
 
     service.logout = function () {
       return $http.post('/api/logout').then(function () {
+        service.user = null;
         $state.transitionTo('index');
       });
     };
@@ -48,14 +49,11 @@ security.provider('security', {
         return $q.when(service.user);
       }
 
-      return $http.post('/api/me').then(function (res) {
-        if (res.status === 200 && res.result) {
-          service.user = res.result[0];
-          return service.user;
-        } else {
-          $state.transitionTo('login');
-        }
+      return $http.get('/api/me').then(function (res) {
+        service.user = res.data.result;
+        return service.user;
       }, function () {
+        $state.transitionTo('login');
         return null;
       });
     };

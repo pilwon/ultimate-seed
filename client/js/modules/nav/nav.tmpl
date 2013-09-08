@@ -19,20 +19,20 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li ng-if="user.name.full"
+        <li ng-if="isAuthenticated()"
             ng-class="{ 'active': $state.is('account') }">
           <a ng-href="#{{ $state.href('account') }}">
-            Logged in as <strong>{{ user.name.full }}</strong>
+            Logged in as <strong>{{ user.name.first }}</strong>
           </a>
         </li>
-        <li ng-if="user.name.full">
-          <a ng-href="/logout">Logout</a>
+        <li ng-if="isAuthenticated()">
+          <a ng-click="logout()">Logout</a>
         </li>
-        <li ng-if="!user.name.full"
+        <li ng-if="!isAuthenticated()"
             ng-class="{ 'active': $state.is('register') }">
           <a ng-href="#{{ $state.href('register') }}">Register</a>
         </li>
-        <li ng-if="!user.name.full"
+        <li ng-if="!isAuthenticated()"
             ng-class="{ 'active': $state.is('login') }">
           <a ng-href="#{{ $state.href('login') }}">Login</a>
         </li>
