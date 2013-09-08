@@ -1,5 +1,5 @@
 /*
- * client/js/controllers/accountController.js
+ * client/js/modules/account/accountController.js
  */
 
 'use strict';

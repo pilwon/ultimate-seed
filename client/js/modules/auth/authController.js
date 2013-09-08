@@ -1,5 +1,5 @@
 /*
- * client/js/controllers/authController.js
+ * client/js/modules/auth/authController.js
  */
 
 'use strict';
@@ -14,13 +14,32 @@ var auth = angular.module('ngApp.modules.auth');
 
 auth.controller('AuthController', ['$http', '$scope', 'security',
     function ($http, $scope, security) {
-  $scope.login = function (formData) {
-    security.login(formData, function () {
-      console.log('Error logging in.');
-    });
+  $scope.showError = false;
+
+  $scope.login = function (formData, formMeta) {
+    if (formMeta.$invalid) {
+      $scope.showError = true;
+      return;
+    }
+    security.login(formData);
   };
 
-  $scope.register = function (formData) {
-    console.log(formData);
+  $scope.register = function (formData, formMeta) {
+    if (formMeta.$invalid) {
+      $scope.showError = true;
+      return;
+    }
+
+    $http.post('/api/register', formData).then(function (resp) {
+      console.log('success', resp);
+      return "hello world";
+      if (resp.status !== 200) {
+
+      }
+
+      $scope.showError = false;
+    }, function (resp) {
+      console.log('error', resp);
+    });
   };
 }]);

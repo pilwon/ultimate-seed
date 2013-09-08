@@ -319,7 +319,7 @@ module.exports = function (grunt) {
           '<%= project.path.client %>/fonts/{,*/}*',
           '<%= project.path.client %>/img/**/*',
           '<%= project.path.client %>/js/**/*.js',
-          '<%= project.path.client %>/js/views/**/*.tmpl',
+          '<%= project.path.client %>/js/**/*.tmpl',
           '<%= project.path.server %>/views/{,*/}*.hbs'
         ]
       },

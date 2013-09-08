@@ -1,5 +1,5 @@
 /*
- * client/js/controllers/homeController.js
+ * client/js/modules/home/homeController.js
  */
 
 'use strict';
@@ -12,33 +12,9 @@ var angular = require('angular');
 // We already created the module in index.js.
 var home = angular.module('ngApp.modules.home');
 
-home.controller('HomeController', ['$scope',
-    function ($scope) {
-  $scope.items = [
-    'Angular',
-    'Bootstrap',
-    'Bower',
-    'Browserify',
-    'Express',
-    'Font Awesome',
-    'Grunt',
-    'Handlebars',
-    'jQuery',
-    'JSHint',
-    'LESS',
-    'LESS Hat',
-    'Livereload',
-    'Lodash (Underscore)',
-    'Modernizr',
-    'MongoDB w/ Mongoose',
-    'Passport',
-    'Passport for Facebook',
-    'Passport for Google',
-    'Passport for Twitter',
-    'Redis w/ Hiredis',
-    'SocketIO',
-    'Source Maps',
-    'Uglify',
-    'Winston'
-  ];
+home.controller('HomeController', ['$http', '$scope',
+    function ($http, $scope) {
+  $scope.items = $http.get('/api/features').then(function (resp) {
+    return resp.data.data;
+  });
 }]);

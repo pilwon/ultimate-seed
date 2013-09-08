@@ -11,12 +11,12 @@ var angular = require('angular');
 window._ = _;
 require('restangular');
 
+require('./values');
 require('./directives');
 require('./filters');
 require('./services');
 require('./modules');
 require('./templates');
-require('./values');
 
 
 
@@ -38,8 +38,8 @@ var app = angular.module('ngApp', [
   'ui.compat'
 ]);
 
-app.run(['$rootScope', '$state', '$stateParams',
-    function ($rootScope, $state, $stateParams) {
+app.run(['$cookies', '$http', '$rootScope', '$state', '$stateParams',
+    function ($cookies, $http, $rootScope, $state, $stateParams) {
   $rootScope._ = _;
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;

@@ -22,23 +22,23 @@ security.provider('security', {
     var service = {};
     service.user = null;
 
+    service.getUser = function() {
+      return service.user;
+    };
+
     service.isAuthenticated = function () {
       return !!service.user;
     };
 
-    service.login = function (formData, callback) {
-      $http.post('/api/login', formData).success(function (data) {
-        service.user = data.result;
+    service.login = function (formData) {
+      return $http.post('/api/login', formData).then(function (res) {
+        service.user = res.data.result;
         $state.transitionTo('account');
-      }).error(function (data) {
-        if (callback) {
-          callback(data);
-        }
       });
     };
 
     service.logout = function () {
-      $http.post('/api/logout').success(function () {
+      return $http.post('/api/logout').then(function () {
         $state.transitionTo('index');
       });
     };
@@ -48,15 +48,15 @@ security.provider('security', {
         return $q.when(service.user);
       }
 
-      // TODO: Handle this when the backend is properly implemented.
-      var request = $http.post('/api/users/');
-      return request.then(function (response) {
-        if (response.status === 200 && response.result) {
-          service.user = response.result[0];
+      return $http.post('/api/me').then(function (res) {
+        if (res.status === 200 && res.result) {
+          service.user = res.result[0];
           return service.user;
         } else {
           $state.transitionTo('login');
         }
+      }, function () {
+        return null;
       });
     };
 
