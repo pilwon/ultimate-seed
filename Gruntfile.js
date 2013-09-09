@@ -251,7 +251,6 @@ module.exports = function (grunt) {
       dist: {
         options: {
           paths: ['<%= project.path.client %>/less'],
-          report: 'gzip',
           compress: true,
           yuicompress: true
         },
