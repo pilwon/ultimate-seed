@@ -1,31 +1,10 @@
-/*
- * client/js/modules/account/index.js
- */
-
-/* global app */
-
 'use strict';
 
-var _ = require('lodash'),
-    Backbone = require('backbone');
+var angular = require('angular');
 
-var ViewController = require('./view/controller');
 
-var API = {
-  view: function () {
-    new ViewController();
-  }
-};
 
-var Router = Backbone.Marionette.AppRouter.extend({
-  controller: API,
-  appRoutes: {
-    'account': 'view'
-  }
-});
+angular.module('ngApp.modules.account', [
+]);
 
-app.on('start:router', function (optionalIds) {
-  if (_.isUndefined(optionalIds) || _.contains(optionalIds, 'account')) {
-    new Router();
-  }
-});
+require('./accountController');
