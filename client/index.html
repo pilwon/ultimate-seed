@@ -1,8 +1,8 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="ngApp"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app="ngApp"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" ng-app="ngApp"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="ngApp"> <!--<![endif]-->
 
 <head>
   <meta charset="utf-8">
@@ -21,14 +21,14 @@
 
 <body>
   <div class="wrap">
-    <div id="nav"></div>
+    <div id="nav" ui-view="nav"></div>
     <div class="content">
-      <div id="alert"></div>
-      <div id="header"></div>
-      <div id="main"></div>
+      <div id="alert" ui-view="alert"></div>
+      <div id="header" ui-view="header"></div>
+      <div id="main" ui-view></div>
     </div>
   </div>
-  <div id="footer"></div>
+  <div id="footer" ui-view="footer"></div>
 
   <!--[if lt IE 7]>
     <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
@@ -39,7 +39,8 @@
     <script src="/js/vendor/json3.js"></script>
   <![endif]-->
 
-  <script src="/js/main.js"></script>
-</body>
 
+  <script src="/js/main.js"></script>
+  <script src="http://localhost:35729/livereload.js?snipver=1"></script>
+</body>
 </html>

@@ -145,7 +145,42 @@ module.exports = function (grunt) {
         }
       }
     },
+    html2js: {
+      ng: {
+        options: {
+          base: '.',
+          fileHeaderString: 'var angular = require(\'angular\');',
+          indentString: '',
+          module: 'ngApp.templates',  // no bundle module for all the html2js templates
+          rename: function (moduleName) {
+            var escapeRegExp = function (str) {
+              return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+            };
+            // Get rid of the prefix from the module name.
+            var prefix = project.path.temp + '/tmpl';
+            var regex = new RegExp('^' + escapeRegExp(prefix));
+            return moduleName.replace(regex, '');
+          }
+        },
+        files: [{
+          src: ['<%= project.path.temp %>/tmpl/**/*.tmpl'],
+          dest: '<%= project.path.client %>/js/templates.js'
+        }],
+      }
+    },
     htmlmin: {  // grunt-contrib-htmlmin
+      ng: {  // minify Angular templates
+        options: {
+          removeComments: true,
+          collapseWhitespace: true
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= project.path.client %>',
+          src: [ '**/*.tmpl' ],
+          dest: '<%= project.path.temp %>/tmpl'
+        }]
+      },
       dist: {
         files: [{
           expand: true,
@@ -203,7 +238,7 @@ module.exports = function (grunt) {
         'Gruntfile.js'
       ]
     },
-    less: {
+    less: {  // grunt-contrib-less
       dev: {
         options: {
           dumpLineNumbers: 'comments',
@@ -216,6 +251,7 @@ module.exports = function (grunt) {
       dist: {
         options: {
           paths: ['<%= project.path.client %>/less'],
+          report: 'gzip',
           compress: true,
           yuicompress: true
         },
@@ -224,12 +260,27 @@ module.exports = function (grunt) {
         }
       }
     },
+    karma: {  // grunt-karma
+      single: {
+        configFile: '<%= project.path.config %>/karma-unit.conf.js',
+        singleRun: true
+      },
+      multi: {
+        configFile: '<%= project.path.config %>/karma-unit.conf.js',
+        singleRun: false
+      },
+      e2e: {
+        configFile: '<%= project.path.config %>/karma-e2e.conf.js',
+        singleRun: true
+      }
+    },
     open: {  // grunt-open
       dev: {
         url: 'http://localhost:<%= process.env.PORT || project.server.port %>'
       }
     },
-    uglify: {
+    uglify: {  // grunt-contrib-uglify
+      // TODO: Figure out a way to specify sourceMap option to grunt-usemin.
       dist: {
         files: _.transform({
           paths: _.map([
@@ -268,6 +319,7 @@ module.exports = function (grunt) {
           '<%= project.path.client %>/fonts/{,*/}*',
           '<%= project.path.client %>/img/**/*',
           '<%= project.path.client %>/js/**/*.js',
+          '<%= project.path.client %>/js/**/*.tmpl',
           '<%= project.path.server %>/views/{,*/}*.hbs'
         ]
       },
@@ -300,12 +352,13 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= jshint.client %>',
-          '<%= project.path.client %>/js/{handlebars/partials,modules/**}/*.hbs'
+          '<%= project.path.client %>/js/{components/**,handlebars/partials,modules/**}/*.hbs'
         ],
         tasks: ['browserify2:dev']
       }
     }
   });
+
 
   grunt.registerTask('devBuild', [
     'clean:dev',
@@ -319,6 +372,8 @@ module.exports = function (grunt) {
   grunt.registerTask('distBuild', [
     'jshint',
     'clean:dist',
+    'htmlmin:ng',
+    'html2js:ng',
     'browserify2:dist',
     'less:dist',
     'useminPrepare',
@@ -414,6 +469,11 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.registerTask('test', [
+    'jshint:all',
+    'karma:multi'
+  ]);
+
   grunt.registerTask('develop', ['devBuild', 'devServer']);
 
   grunt.registerTask('test', ['intern:client']);
@@ -423,6 +483,7 @@ module.exports = function (grunt) {
   grunt.registerTask('c', 'clean');
   grunt.registerTask('d', 'devBuild');
   grunt.registerTask('s', 'devServer');
+  grunt.registerTask('t', 'test');
 
   // Default
   grunt.registerTask('default', 'develop');

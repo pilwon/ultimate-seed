@@ -1,38 +1,11 @@
-/*
- * client/js/modules/alert/index.js
- */
-
-/* global app */
-
 'use strict';
 
-var _ = require('lodash');
+var angular = require('angular');
 
-var ShowController = require('./show/controller');
 
-var API = {
-  showAlert: function (options) {
-    if (!_.isObject(options)) { options = {}; }
-    new ShowController({
-      region: app.alertRegion,
-      center: options.center,
-      container: options.container,
-      html: options.html,
-      type: options.type
-    });
-  },
 
-  hideAlert: function () {
-    app.alertRegion.close();
-  }
-};
+angular.module('ngApp.modules.alert', [
+  'ngApp.services.alert'
+]);
 
-// Handle `show:alert` command.
-app.commands.setHandler('show:alert', function (options) {
-  API.showAlert(options);
-});
-
-// Handle `hide:alert` command.
-app.commands.setHandler('hide:alert', function () {
-  API.hideAlert();
-});
+require('./alertController');
