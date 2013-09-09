@@ -1,0 +1,58 @@
+<form name="registerForm" method="post" class="form-horizontal form-register" >
+  <h2>New account</h2>
+
+  <div class="row form-group">
+    <div class="col-md-12">
+      <input type="email" name="username"
+          class="form-control" placeholder="e-mail address"
+          ng-model="formData.username" required/>
+      <div ng-show="showError && registerForm.username.$error.required" class="text-danger">Required</div>
+      <div ng-show="registerForm.username.$error.email" class="text-danger">Invalid email.</div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-md-12">
+      <input type="password" name="password"
+          class="form-control" placeholder="password"
+          ng-model="formData.password" required/>
+      <div ng-show="showError && registerForm.password.$error.required" class="text-danger">Required</div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-md-12">
+      <input type="password" name="passwordRepeat"
+          class="form-control" placeholder="repeat password"
+          ng-model="formData.passwordRepeat" required/>
+      <div ng-show="showError && registerForm.passwordRepeat.$error.required" class="text-danger">Required</div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-md-6">
+      <input type="text" name="firstName"
+          class="form-control" placeholder="first name"
+          ng-model="formData.firstName" required/>
+      <div ng-show="showError && registerForm.firstName.$error.required" class="text-danger">Required</div>
+    </div>
+    <div class="col-md-6">
+      <input type="text" name="lastName"
+          class="form-control" placeholder="last name"
+          ng-model="formData.lastName"/>
+    </div>
+  </div>
+
+  <hr>
+
+  <p>
+    <button class="btn btn-inverse btn-lg btn-register" type="submit"
+        ng-click="register(formData, registerForm)">
+      Register
+    </button>
+    <a class="btn btn-default btn-lg btn-login"
+        ng-href="{{ $state.href('app.login') }}">
+      Login
+    </a>
+  </p>
+</form>

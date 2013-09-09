@@ -1,0 +1,85 @@
+<div id="account" class="container">
+
+  <div class="page-header">
+    <h1>Account</h1>
+  </div>
+
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th>ID</th>
+      <td>{{ user.id }}</td>
+    </tr>
+    <tr>
+      <th>First Name</th>
+      <td>{{ user.name.first }}</td>
+    </tr>
+    <tr>
+      <th>Last Name</th>
+      <td>{{ user.name.last }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ user.email }}</td>
+    </tr>
+    <tr>
+      <th>Roles</th>
+      <td>
+        <ul>
+          <li ng-repeat="role in user.roles">{{ role }}</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>Joined</th>
+      <td>{{ user.createdAt }}</td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td>{{ user.updatedAt }}</td>
+    </tr>
+    <tr>
+      <th>Services</th>
+      <td>
+        <table class="table table-bordered table-hover">
+          <tr>
+            <th>Facebook</th>
+            <td>
+              <table ng-if="user.auth.facebook" class="table table-bordered table-condensed table-striped">
+                <tr ng-repeat="(k, v) in user.auth.facebook.profile">
+                  <th>{{ k }}</th>
+                  <td>{{ v }}</td>
+                </tr>
+              </table>
+              <a ng-if="!user.auth.facebook" class="btn btn-facebook btn-sm" href="/auth/facebook"><i class="icon-facebook"></i> | Connect with Facebook</a>
+            </td>
+          </tr>
+          <tr>
+            <th>Google</th>
+            <td>
+              <table ng-if="user.auth.google" class="table table-bordered table-condensed table-striped">
+                <tr ng-repeat="(k, v) in user.auth.google.profile">
+                  <th>{{ k }}</th>
+                  <td>{{ v }}</td>
+                </tr>
+              </table>
+              <a ng-if="!user.auth.google" class="btn btn-google-plus btn-sm" href="/auth/google"><i class="icon-google-plus"></i> | Connect with Google+</a>
+            </td>
+          </tr>
+          <tr>
+            <th>Twitter</th>
+            <td>
+              <table ng-if="user.auth.twitter" class="table table-bordered table-condensed table-striped">
+                <tr ng-repeat="(k, v) in user.auth.twitter.profile">
+                  <th>{{ k }}</th>
+                  <td>{{ v }}</td>
+                </tr>
+              </table>
+              <a ng-if="!user.auth.twitter" class="btn btn-twitter btn-sm" href="/auth/twitter"><i class="icon-twitter"></i> | Connect with Twitter</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</div>

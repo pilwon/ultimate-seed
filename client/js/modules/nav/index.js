@@ -1,22 +1,10 @@
-/*
- * client/js/modules/nav/index.js
- */
-
-/* global app */
-
 'use strict';
 
-var ShowController = require('./show/controller');
+var angular = require('angular');
 
-var API = {
-  showNav: function () {
-    new ShowController({
-      region: app.navRegion
-    });
-  }
-};
 
-// Handle `show:nav` command.
-app.commands.setHandler('show:nav', function () {
-  API.showNav();
-});
+
+angular.module('ngApp.modules.nav', [
+]);
+
+require('./navController');
