@@ -32,8 +32,8 @@ var app = angular.module('ngApp', [
   'ui.router'
 ]);
 
-app.run(['$http', '$rootScope', '$route', '$state', '$stateParams', 'security',
-    function ($http, $rootScope, $route, $state, $stateParams, security) {
+app.run(['$rootScope', '$state', '$stateParams', 'security',
+    function ($rootScope, $state, $stateParams, security) {
   $rootScope.$on('$routeChangeStart', function () {
     global.config.fromServer = false;
   });
