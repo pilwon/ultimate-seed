@@ -145,42 +145,7 @@ module.exports = function (grunt) {
         }
       }
     },
-    html2js: {
-      ng: {
-        options: {
-          base: '.',
-          fileHeaderString: 'var angular = require(\'angular\');',
-          indentString: '',
-          module: 'ngApp.templates',  // no bundle module for all the html2js templates
-          rename: function (moduleName) {
-            var escapeRegExp = function (str) {
-              return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
-            };
-            // Get rid of the prefix from the module name.
-            var prefix = project.path.temp + '/tmpl';
-            var regex = new RegExp('^' + escapeRegExp(prefix));
-            return moduleName.replace(regex, '');
-          }
-        },
-        files: [{
-          src: ['<%= project.path.temp %>/tmpl/**/*.tmpl'],
-          dest: '<%= project.path.client %>/js/templates.js'
-        }],
-      }
-    },
     htmlmin: {  // grunt-contrib-htmlmin
-      ng: {  // minify Angular templates
-        options: {
-          removeComments: true,
-          collapseWhitespace: true
-        },
-        files: [{
-          expand: true,
-          cwd: '<%= project.path.client %>',
-          src: [ '**/*.tmpl' ],
-          dest: '<%= project.path.temp %>/tmpl'
-        }]
-      },
       dist: {
         files: [{
           expand: true,
@@ -279,7 +244,6 @@ module.exports = function (grunt) {
       }
     },
     uglify: {  // grunt-contrib-uglify
-      // TODO: Figure out a way to specify sourceMap option to grunt-usemin.
       dist: {
         files: _.transform({
           paths: _.map([
@@ -318,8 +282,7 @@ module.exports = function (grunt) {
           '<%= project.path.client %>/fonts/{,*/}*',
           '<%= project.path.client %>/img/**/*',
           '<%= project.path.client %>/js/**/*.js',
-          '<%= project.path.client %>/js/**/*.tmpl',
-          '<%= project.path.server %>/views/{,*/}*.hbs'
+          '<%= project.path.client %>/js/**/*.tmpl'
         ]
       },
       html: {
@@ -351,13 +314,12 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= jshint.client %>',
-          '<%= project.path.client %>/js/{components/**,handlebars/partials,modules/**}/*.hbs'
+          '<%= project.path.client %>/js/**/*.tmpl'
         ],
         tasks: ['browserify2:dev']
       }
     }
   });
-
 
   grunt.registerTask('devBuild', [
     'clean:dev',
@@ -371,8 +333,6 @@ module.exports = function (grunt) {
   grunt.registerTask('distBuild', [
     'jshint',
     'clean:dist',
-    'htmlmin:ng',
-    'html2js:ng',
     'browserify2:dist',
     'less:dist',
     'useminPrepare',
