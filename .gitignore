@@ -6,9 +6,7 @@
 /.git.*/
 /.gitignore.*
 /.tmp/
-/client/bb-js/node_modules/bower_components/
 /client/js/node_modules/bower_components/
-/client/ng-js/node_modules/bower_components/
 /client-built/
 /config/development.json
 /config/heroku.json
