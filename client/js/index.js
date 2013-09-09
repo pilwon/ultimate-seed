@@ -4,8 +4,10 @@
 
 'use strict';
 
-require('jquery');
+// Load modules.
 require('bootstrap');
+require('jquery');
+require('restangular');
 
 // Globalize app.
 global.app = require('./app');

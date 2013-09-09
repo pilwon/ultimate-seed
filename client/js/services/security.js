@@ -6,10 +6,8 @@
 
 var angular = require('angular');
 
-
-
 var security = angular.module('ngApp.services.security', [
-  'ui.compat'  // angular-ui/ui-router
+  'ui.router'
 ]);
 
 security.provider('security', {
