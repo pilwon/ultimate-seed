@@ -468,14 +468,12 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.registerTask('develop', ['devBuild', 'devServer']);
+
   grunt.registerTask('test', [
     'jshint:all',
     'karma:multi'
   ]);
-
-  grunt.registerTask('develop', ['devBuild', 'devServer']);
-
-  grunt.registerTask('test', ['intern:client']);
 
   // Shortcuts
   grunt.registerTask('b', 'distBuild');
