@@ -14,12 +14,12 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'client/components/chai/chai.js',
       'client/components/angular/angular.js',
       'client/components/angular-cookies/angular-cookies.js',
       'client/components/angular-sanitize/angular-sanitize.js',
       'client/components/angular-mocks/angular-mocks.js',
       'client/js/**/*.js',
+      'node_modules/chai/chai.js',
       'test/client/unit/**/*.js'
     ],
 

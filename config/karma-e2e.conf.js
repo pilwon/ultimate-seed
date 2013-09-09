@@ -23,12 +23,12 @@ module.exports = function(config) {
     files: [
       ANGULAR_SCENARIO,
       ANGULAR_SCENARIO_ADAPTER,
-      'client/components/chai/chai.js',
       'client/components/angular/angular.js',
       'client/components/angular-cookies/angular-cookies.js',
       'client/components/angular-sanitize/angular-sanitize.js',
       'client/components/angular-mocks/angular-mocks.js',
       'client/js/**/*.js',
+      'node_modules/chai/chai.js',
       'test/client/e2e/**/*.js'
     ],
 

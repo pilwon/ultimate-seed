@@ -69,6 +69,7 @@
     "wrench": "~1.5.1"
   },
   "devDependencies": {
+    "chai": "~1.7.2",
     "coffeeify": "~0.5.1",
     "grunt": "~0.4.1",
     "grunt-browserify2": "~0.1.8",
