@@ -277,17 +277,14 @@ module.exports = function (grunt) {
           livereload: project.server.livereload
         },
         files: [
-          '{<%= project.path.temp %>,<%= project.path.client %>}/{,*/}*.html',
-          '!<%= project.path.client %>/index.html',
           '<%= project.path.client %>/fonts/{,*/}*',
           '<%= project.path.client %>/img/**/*',
-          '<%= project.path.client %>/js/**/*.js',
-          '<%= project.path.client %>/js/**/*.tmpl'
+          '<%= project.path.temp %>/index.html',
+          '<%= project.path.temp %>/css/{,*/}*.css',
+          '<%= project.path.temp %>/js/{,*/}*.js'
         ]
       },
       html: {
-        options: {
-        },
         files: [
           '<%= project.path.client %>/index.html'
         ],
@@ -296,25 +293,14 @@ module.exports = function (grunt) {
           'cachebust:dev'
         ]
       },
-      css: {
-        options: {
-          livereload: project.server.livereload
-        },
-        files: ['<%= project.path.temp %>/css/{,*/}*.css']
-      },
       less: {
-        options: {
-        },
         files: ['<%= project.path.client %>/less/{,*/}*.less'],
         tasks: ['less:dev']
       },
       js: {
-        options: {
-          livereload: project.server.livereload
-        },
         files: [
           '<%= jshint.client %>',
-          '<%= project.path.client %>/js/**/*.tmpl'
+          '<%= project.path.client %>/js/**/*.html'
         ],
         tasks: ['browserify2:dev']
       }
