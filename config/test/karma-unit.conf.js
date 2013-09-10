@@ -1,5 +1,5 @@
 /*
- * config/karma/unit.conf.js
+ * config/test/karma-unit.conf.js
  *
  * Karma unit testing configuration
  */

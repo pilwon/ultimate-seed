@@ -226,15 +226,15 @@ module.exports = function (grunt) {
     },
     karma: {  // grunt-karma
       single: {
-        configFile: '<%= project.path.config %>/karma/unit.conf.js',
+        configFile: '<%= project.path.config %>/test/karma-unit.conf.js',
         singleRun: true
       },
       multi: {
-        configFile: '<%= project.path.config %>/karma/unit.conf.js',
+        configFile: '<%= project.path.config %>/test/karma-unit.conf.js',
         singleRun: false
       },
       e2e: {
-        configFile: '<%= project.path.config %>/karma/e2e.conf.js',
+        configFile: '<%= project.path.config %>/test/karma-e2e.conf.js',
         singleRun: true
       }
     },

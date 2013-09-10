@@ -1,5 +1,5 @@
 /*
- * config/karma/e2e.conf.js
+ * config/test/karma-e2e.conf.js
  *
  * Karma end-to-end testing configuration
  */
