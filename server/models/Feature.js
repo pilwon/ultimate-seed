@@ -39,7 +39,7 @@ exports = module.exports = model;
 // Insert data.
 var data = [
   {
-    text: 'AngularJS',
+    text: 'Angular',
     url: 'http://angularjs.org/'
   },
   {

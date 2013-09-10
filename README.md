@@ -25,7 +25,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   `ultimate-seed` comes with many of popular, battle-tested modern web frameworks and libraries. All these parts are already wired together for you using best practices! :) Don't waste time writing boilerplate code.
 
-  * [AngularJS](http://angularjs.org/)
+  * [Angular](http://angularjs.org/)
   * [AngularUI](http://angular-ui.github.io/)
   * [Bootstrap](http://getbootstrap.com/)
   * [Bower](http://twitter.github.com/bower/)
