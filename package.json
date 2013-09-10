@@ -26,6 +26,7 @@
     "node.js",
     "seed",
     "angular",
+    "angular-ui",
     "source-maps",
     "bootstrap",
     "bower",

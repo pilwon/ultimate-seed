@@ -39,8 +39,12 @@ exports = module.exports = model;
 // Insert data.
 var data = [
   {
-    text: 'Angular',
+    text: 'AngularJS',
     url: 'http://angularjs.org/'
+  },
+  {
+    text: 'AngularUI',
+    url: 'http://angular-ui.github.io/'
   },
   {
     text: 'Bootstrap',
@@ -77,6 +81,10 @@ var data = [
   {
     text: 'JSHint',
     url: 'http://www.jshint.com/'
+  },
+  {
+    text: 'Karma w/ Mocha',
+    url: 'http://karma-runner.github.io/'
   },
   {
     text: 'LESS',

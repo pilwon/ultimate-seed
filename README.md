@@ -25,7 +25,8 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   `ultimate-seed` comes with many of popular, battle-tested modern web frameworks and libraries. All these parts are already wired together for you using best practices! :) Don't waste time writing boilerplate code.
 
-  * [Angular](http://angularjs.org/)
+  * [AngularJS](http://angularjs.org/)
+  * [AngularUI](http://angular-ui.github.io/)
   * [Bootstrap](http://getbootstrap.com/)
   * [Bower](http://twitter.github.com/bower/)
   * [Browserify](https://github.com/substack/node-browserify)
@@ -35,6 +36,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   * [Handlebars](http://handlebarsjs.com/)
   * [jQuery](http://jquery.com/)
   * [JSHint](http://www.jshint.com/)
+  * [Karma](http://karma-runner.github.io/) w/ [Mocha](http://visionmedia.github.io/mocha/)
   * [LESS](http://lesscss.org/) w/ [LESS Hat](http://lesshat.com/)
   * [Livereload](http://livereload.com/)
   * [Lodash](http://lodash.com/) ([Underscore](http://underscorejs.org/))
@@ -212,15 +214,17 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 ├── client/
 │   ├── components/
 │   ├── fonts/
-│   │   └── font-awesome/
+│   │   ├── font-awesome/
+│   │   └── glyphicons/
 │   ├── img/
 │   ├── js/
 │   │   ├── {{module}}/
-│   │   │   └── controllers/
-│   │   │       └── *.js
-│   │   │   └── templates/
-│   │   │       └── *.html
-│   │   ├── ...
+│   │   │   ├── controllers/
+│   │   │   ├── directives/
+│   │   │   ├── services/
+│   │   │   ├── templates/
+│   │   │   │   └── {{template}}.html
+│   │   │   └── index.js
 │   │   ├── node_modules/
 │   │   │   ├── bower_components/
 │   │   │   └── custom_components/
