@@ -1,4 +1,4 @@
-<form name="registerForm" method="post" class="form-horizontal form-register" >
+<form name="registerForm" method="post" class="form-horizontal form-register" novalidate>
   <h2>New account</h2>
 
   <div class="row form-group">
@@ -11,15 +11,17 @@
 
   <div class="row form-group">
     <div class="col-md-12">
-      <input type="password" name="password" class="form-control" placeholder="password" ng-model="formData.password" focus="focus.password" required/>
+      <input type="password" name="password" class="form-control" placeholder="password" ng-model="formData.password" ng-minlength="6" ng-maxlength="20" focus="focus.password" required/>
       <div ng-show="showError && registerForm.password.$error.required" class="text-danger">Required</div>
+      <div ng-show="registerForm.password.$error.minlength || registerForm.password.$error.maxlength" class="text-danger">Password has to be between 6 and 20 characters.</div>
     </div>
   </div>
 
   <div class="row form-group">
     <div class="col-md-12">
-      <input type="password" name="passwordRepeat" class="form-control" placeholder="repeat password" ng-model="formData.passwordRepeat" focus="focus.passwordRepeat" required/>
+      <input type="password" name="passwordRepeat" class="form-control" placeholder="repeat password" ng-model="formData.passwordRepeat" ng-minlength="6" ng-maxlength="20" focus="focus.passwordRepeat" required/>
       <div ng-show="showError && registerForm.passwordRepeat.$error.required" class="text-danger">Required</div>
+      <div ng-show="showError && (formData.password != formData.passwordRepeat)" class="text-danger">Passwords do not match.</div>
     </div>
   </div>
 
