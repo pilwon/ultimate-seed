@@ -1,10 +1,10 @@
 ```sh
-       _      _    _____   _   _       ____   _____   _____        ____   _____  _____  ____ 
+       _      _    _____   _   _       ____   _____   _____        ____   _____  _____  ____
       / \ /\ / \  /__ __\ / \ / \__/| /  _ \ /__ __\ /  __/       / ___\ /  __/ /  __/ /  _ \
       | | || | |    / \   | | | |\/|| | / \ |  / \   |  \  _____  |    \ |  \   |  \   | | \|
       | \_/| | |_/\ | |   | | | |  || | |-| |  | |   |  /_ \____\ \___ | |  /_  |  /_  | |_/|
       \____/ \____/ \_/   \_/ \_/  \| \_/ \ |  \_/   \____\       \____/ \____\ \____\ \____/
-                                                                           
+
 ```
 
 [![NPM](https://nodei.co/npm/ultimate-seed.png?downloads=false&stars=false)](https://npmjs.org/package/ultimate-seed)
@@ -25,8 +25,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   `ultimate-seed` comes with many of popular, battle-tested modern web frameworks and libraries. All these parts are already wired together for you using best practices! :) Don't waste time writing boilerplate code.
 
-  * [Backbone](http://backbonejs.org/)
-  * [Backbone.Marionette](http://marionettejs.com/)
+  * [Angular](http://angularjs.org/)
   * [Bootstrap](http://getbootstrap.com/)
   * [Bower](http://twitter.github.com/bower/)
   * [Browserify](https://github.com/substack/node-browserify)
@@ -182,15 +181,15 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 ## Using REPL (read-eval-print loop)
 
   This is helpful when you need to debug problems on the production server. You can connect to REPL of the running server via UNIX socket. By default, it creates UNIX socket at /tmp/ultimate-repl but you can configure it in `config/{development,heroku,production}.json`. In order to connect to it, simply run:
-  
+
     $ nc -U /tmp/ultimate-repl
     ultimate>
-    
+
   or if you want readline's line editing and persistent history (i.e. using up/down arrow key to see the command history), then install rlwrap (on Mac, `brew install rlwrap`) and run:
-  
+
     $ rlwrap nc -U /tmp/ultimate-repl
     ultimate>
-    
+
   Once you are connected, you can evaluate Javascript expression.
 
     ultimate> 3 + 3
@@ -198,7 +197,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
     ultimate>
 
   For your convenience, several variables/functions are exposed. Try the followings:
-  
+
     ultimate> app  // ultimate app object
     ultimate> ld  // lodash (underscore) object (couldn't use _ because it has special meaning in REPL i.e. the result of the last expression)
     ultimate> ultimate  // ultimate object that ultimate-seed utilizes
@@ -216,26 +215,15 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 │   │   └── font-awesome/
 │   ├── img/
 │   ├── js/
-│   │   ├── entities/
-│   │   │   └── config.js
-│   │   ├── handlebars/
-│   │   │   ├── helpers/
-│   │   │   └── partials/
-│   │   ├── lib/
-│   │   ├── modules/
-│   │   │   ├── {{module}}/
-│   │   │   │   └── {{action}}/
-│   │   │   │       ├── templates/
-│   │   │   │       ├── controller.js
-│   │   │   │       └── views.js
-│   │   │   └── ...
+│   │   ├── {{module}}/
+│   │   │   └── controllers/
+│   │   │       └── *.js
+│   │   │   └── templates/
+│   │   │       └── *.html
+│   │   ├── ...
 │   │   ├── node_modules/
 │   │   │   ├── bower_components/
 │   │   │   └── custom_components/
-│   │   ├── setup/
-│   │   │   └── backbone/
-│   │   │       └── marionette/
-│   │   ├── test/
 │   │   ├── app.js
 │   │   └── index.js
 │   ├── less/
