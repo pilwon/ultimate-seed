@@ -7,14 +7,10 @@
 exports = module.exports = function (ngModule) {
   ngModule.directive('focus', function () {
     return {
-      scope: {
-        trigger: '=focus'
-      },
-      link: function (scope, element) {
-        scope.$watch('trigger', function (value) {
-          if (value === true) {
-            element[0].focus();
-            scope.trigger = false;
+      link: function (scope, elem, attr) {
+        scope.$watch(attr.focus, function() {
+          if (scope.$eval(attr.focus)) {
+            elem[0].focus();
           }
         });
       }
