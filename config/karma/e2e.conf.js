@@ -1,21 +1,13 @@
 /*
- * config/karma-e2e.conf.js
+ * config/karma/e2e.conf.js
  *
  * Karma end-to-end testing configuration
  */
 
-
- /*
-  * config/karma.conf.js
-  *
-  * Karma unit testing configuration
-  */
-
-
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     // base path, that will be used to resolve files and exclude
-    basePath: '..',
+    basePath: '../..',
 
     frameworks: ['mocha'],
 

@@ -1,14 +1,13 @@
 /*
- * config/karma.conf.js
+ * config/karma/unit.conf.js
  *
  * Karma unit testing configuration
  */
 
-
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     // base path, that will be used to resolve files and exclude
-    basePath: '..',
+    basePath: '../..',
 
     frameworks: ['mocha'],
 
