@@ -5,8 +5,8 @@
 'use strict';
 
 // Load dependencies.
+require('angular.ui');
 require('bootstrap');
-require('jquery');
 require('restangular');
 
 // Register modules.
