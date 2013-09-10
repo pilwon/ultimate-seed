@@ -5,7 +5,7 @@
 'use strict';
 
 exports = module.exports = function (ngModule) {
-  ngModule.directive('focus', function ($timeout) {
+  ngModule.directive('focus', function () {
     return {
       scope: {
         trigger: '=focus'
