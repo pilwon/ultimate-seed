@@ -17,7 +17,7 @@ exports = module.exports = function (ngModule) {
     }
 
     service.addError = function (msg) {
-      addMessage('error', msg);
+      addMessage('danger', msg);
     };
 
     service.addInfo = function (msg) {
