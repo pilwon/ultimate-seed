@@ -7,10 +7,7 @@
 var angular = require('angular'),
     rfile = require('rfile');
 
-var ngModule = angular.module('app.account', [
-  'ui.router',
-  'app.shared'
-]);
+var ngModule = angular.module('app.account', []);
 
 // Routes
 ngModule.config(function ($stateProvider, securityProvider) {
