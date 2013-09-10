@@ -11,6 +11,9 @@ var ngModule = angular.module('app.shared', []);
 // Constants
 ngModule.constant('VERSION', '1.0');
 
+// Directives
+require('./directives/focus')(ngModule);
+
 // Services
 require('./services/alert')(ngModule);
 require('./services/security')(ngModule);
