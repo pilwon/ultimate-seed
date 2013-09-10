@@ -6,6 +6,9 @@
 
 exports = module.exports = function (ngModule) {
   ngModule.controller('RegisterCtrl', function ($http, $scope, alert, security) {
+    $scope.focus = {
+      username: true
+    };
     $scope.showError = false;
 
     $scope.register = function (formData, formMeta) {

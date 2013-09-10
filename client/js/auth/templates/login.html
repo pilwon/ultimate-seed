@@ -3,18 +3,14 @@
 
   <div class="row form-group">
     <div class="col-md-12">
-      <input type="text" name="username"
-          class="form-control" placeholder="e-mail address"
-          ng-model="formData.username" required/>
+      <input type="text" name="username" class="form-control" placeholder="e-mail address" ng-model="formData.username" focus="focus.username" required/>
       <div ng-show="showError && loginForm.username.$error.required" class="text-danger">Required</div>
     </div>
   </div>
 
   <div class="row form-group">
     <div class="col-md-12">
-      <input type="password" name="password"
-          class="form-control" placeholder="password"
-          ng-model="formData.password" required/>
+      <input type="password" name="password" class="form-control" placeholder="password" ng-model="formData.password" focus="focus.password" required/>
       <div ng-show="showError && loginForm.password.$error.required" class="text-danger">Required</div>
     </div>
   </div>
@@ -23,8 +19,7 @@
     <div class="col-md-12">
       <div class="checkbox">
         <label>
-          <input type="checkbox" name="rememberMe"
-              ng-model="form.rememberMe" ng-true-value="1" ng-false-value="0"/>
+          <input type="checkbox" name="rememberMe" ng-model="form.rememberMe" ng-true-value="1" ng-false-value="0" focus="focus.rememberMe"/>
           Remember me
         </label>
       </div>
@@ -34,12 +29,10 @@
   <hr>
 
   <p>
-    <button class="btn btn-inverse btn-lg btn-login" type="submit"
-        ng-click="login(formData, loginForm)">
+    <button class="btn btn-inverse btn-lg btn-login" type="submit" ng-click="login(formData, loginForm)">
       Login
     </button>
-    <a class="btn btn-default btn-lg btn-regsiter"
-        ng-href="{{ $state.href('app.register') }}">
+    <a class="btn btn-default btn-lg btn-regsiter" ng-href="{{ $state.href('app.register') }}">
       Register
     </a>
   </p>
