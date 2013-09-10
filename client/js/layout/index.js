@@ -5,7 +5,7 @@
 'use strict';
 
 var angular = require('angular'),
-    rfile = require('rfile');
+    rhtml = require('rhtml');
 
 var ngModule = angular.module('app.layout', []);
 
@@ -17,19 +17,19 @@ ngModule.config(function ($stateProvider) {
       views: {
         'alert': {
           controller: 'AlertCtrl',
-          template: rfile('./templates/alert.html')
+          template: rhtml('./templates/alert.html')
         },
         'footer': {
           controller: 'FooterCtrl',
-          template: rfile('./templates/footer.html')
+          template: rhtml('./templates/footer.html')
         },
         'header': {
           controller: 'HeaderCtrl',
-          template: rfile('./templates/header.html')
+          template: rhtml('./templates/header.html')
         },
         'nav': {
           controller: 'NavCtrl',
-          template: rfile('./templates/nav.html')
+          template: rhtml('./templates/nav.html')
         }
       }
     });

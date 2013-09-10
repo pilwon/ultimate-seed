@@ -5,7 +5,7 @@
 'use strict';
 
 var angular = require('angular'),
-    rfile = require('rfile');
+    rhtml = require('rhtml');
 
 var ngModule = angular.module('app.auth', []);
 
@@ -17,7 +17,7 @@ ngModule.config(function ($stateProvider) {
       views: {
         '@': {
           controller: 'LoginCtrl',
-          template: rfile('./templates/login.html')
+          template: rhtml('./templates/login.html')
         }
       }
     })
@@ -26,7 +26,7 @@ ngModule.config(function ($stateProvider) {
       views: {
         '@': {
           controller: 'RegisterCtrl',
-          template: rfile('./templates/register.html')
+          template: rhtml('./templates/register.html')
         }
       }
     });

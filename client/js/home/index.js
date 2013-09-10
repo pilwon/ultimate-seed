@@ -5,7 +5,7 @@
 'use strict';
 
 var angular = require('angular'),
-    rfile = require('rfile');
+    rhtml = require('rhtml');
 
 var ngModule = angular.module('app.home', []);
 
@@ -16,7 +16,7 @@ ngModule.config(function ($stateProvider) {
       url: '/',
       views: {
         '@': {
-          template: rfile('./templates/main.html'),
+          template: rhtml('./templates/main.html'),
           controller: 'MainCtrl'
         }
       }

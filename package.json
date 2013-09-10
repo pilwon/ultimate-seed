@@ -98,7 +98,8 @@
     "karma-ng-html2js-preprocessor": "~0.1",
     "matchdep": "~0.1.2",
     "rfile": "~1.0.0",
-    "rfileify": "~1.2.0",
+    "rfileify": "~1.3.1",
+    "rhtml": "~0.0.1",
     "uglify-js": "~2.4.0"
   },
   "scripts": {
