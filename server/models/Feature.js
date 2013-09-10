@@ -39,12 +39,8 @@ exports = module.exports = model;
 // Insert data.
 var data = [
   {
-    text: 'Backbone',
-    url: 'http://backbonejs.org/'
-  },
-  {
-    text: 'Backbone.Marionette',
-    url: 'http://marionettejs.com/'
+    text: 'Angular',
+    url: 'http://angularjs.org/'
   },
   {
     text: 'Bootstrap',
