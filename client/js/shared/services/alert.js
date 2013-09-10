@@ -5,7 +5,7 @@
 'use strict';
 
 exports = module.exports = function (ngModule) {
-  ngModule.factory('alertService', function () {
+  ngModule.factory('alert', function () {
     var service = {},
         _messages = [];
 

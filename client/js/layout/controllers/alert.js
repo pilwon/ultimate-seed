@@ -5,8 +5,8 @@
 'use strict';
 
 exports = module.exports = function (ngModule) {
-  ngModule.controller('AlertCtrl', function ($scope, alertService) {
-    $scope.alerts = alertService.getMessages();
-    $scope.closeAlert = alertService.removeMessage;
+  ngModule.controller('AlertCtrl', function ($scope, alert) {
+    $scope.alerts = alert.getMessages();
+    $scope.closeAlert = alert.removeMessage;
   });
 };
