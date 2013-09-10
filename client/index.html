@@ -1,8 +1,8 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="ngApp"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app="ngApp"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" ng-app="ngApp"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" ng-app="ngApp"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="app"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app="app"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" ng-app="app"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="app"> <!--<![endif]-->
 
 <head>
   <meta charset="utf-8">
@@ -39,8 +39,14 @@
     <script src="/js/vendor/json3.js"></script>
   <![endif]-->
 
+  <script>
+    window.config = {
+      notFoundOnServer: false,
+      fromServer: false
+    };
+  </script>
 
   <script src="/js/main.js"></script>
-  <script src="http://localhost:35729/livereload.js?snipver=1"></script>
 </body>
+
 </html>

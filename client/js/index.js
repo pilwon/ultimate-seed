@@ -4,13 +4,18 @@
 
 'use strict';
 
-// Load modules.
+// Load dependencies.
 require('bootstrap');
 require('jquery');
 require('restangular');
 
-// Globalize app.
-global.app = require('./app');
+// Register modules.
+require('./account');
+require('./admin');
+require('./auth');
+require('./home');
+require('./layout');
+require('./shared');
 
-// App configurations.
-require('./configs');
+// Register app.
+require('./app');

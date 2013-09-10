@@ -4,47 +4,58 @@
 
 'use strict';
 
+var url = require('url');
+
 var _ = require('lodash'),
     angular = require('angular');
 
-require('./values');
-require('./directives');
-require('./filters');
-require('./services');
-require('./modules');
-require('./templates');
-
-var app = angular.module('ngApp', [
-  // Angular modules (alphabetical order)
+var ngModule = angular.module('app', [
   'ngCookies',
-
-  // Custom modules (alphabetical order)
-  'ngApp.directives',
-  'ngApp.filters',
-  'ngApp.modules',
-  'ngApp.services',
-  'ngApp.templates',
-  'ngApp.values',
-
-  // Third-party modules (alphabetical order)
   'restangular',
   'ui.bootstrap',
-  'ui.router'
+  'ui.router',
+  'app.shared',
+  'app.layout',
+  'app.account',
+  'app.admin',
+  'app.auth',
+  'app.home'
 ]);
 
-app.run(['$rootScope', '$state', '$stateParams', 'security',
-    function ($rootScope, $state, $stateParams, security) {
-  $rootScope.$on('$routeChangeStart', function () {
-    global.config.fromServer = false;
-  });
+// Enable HTML5 Mode
+ngModule.config(function ($locationProvider) {
+  $locationProvider.html5Mode(true);
+});
 
+// Set Restacular base URL.
+ngModule.config(function (RestangularProvider) {
+  RestangularProvider.setBaseUrl('/api');
+});
+
+// Routes
+ngModule.config(function ($urlRouterProvider) {
+  $urlRouterProvider.otherwise(function () {
+    if (!global.config.fromServer) {
+      global.location.replace(url.parse(global.location.href).path);
+    } else if (global.config.notFoundOnServer) {
+      global.location.replace('/404.html');
+    } else {
+      global.config.fromServer = false;
+    }
+  });
+});
+
+// Attach variables to $rootScope.
+ngModule.run(function ($rootScope, $state, $stateParams, security) {
   $rootScope._ = _;
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
-
-  // Loading the user if the session is still active.
   $rootScope.user = security.requireUser();
-}]);
+});
 
-// Public API
-exports = module.exports = app;
+// Update `fromServer` global config variable.
+ngModule.run(function ($rootScope) {
+  $rootScope.$on('$routeChangeStart', function () {
+    global.config.fromServer = false;
+  });
+});
