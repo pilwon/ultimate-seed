@@ -5,7 +5,7 @@
 'use strict';
 
 exports = module.exports = function (ngModule) {
-  ngModule.controller('RegisterCtrl', function ($http, $scope, alertService, security) {
+  ngModule.controller('RegisterCtrl', function ($http, $scope, alert, security) {
     $scope.showError = false;
 
     $scope.register = function (formData, formMeta) {
@@ -18,7 +18,7 @@ exports = module.exports = function (ngModule) {
         security.login(formData);
       }, function (res) {
         $scope.showError = true;
-        alertService.addError(res.data.error.message);
+        alert.addError(res.data.error.message);
       });
     };
   });
