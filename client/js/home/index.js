@@ -11,15 +11,16 @@ var ngModule = angular.module('app.home', []);
 
 // Routes
 ngModule.config(function ($stateProvider) {
-  $stateProvider.state('app.home', {
-    url: '/',
-    views: {
-      '@': {
-        template: rfile('./templates/main.html'),
-        controller: 'MainCtrl'
+  $stateProvider
+    .state('app.home', {
+      url: '/',
+      views: {
+        '@': {
+          template: rfile('./templates/main.html'),
+          controller: 'MainCtrl'
+        }
       }
-    }
-  });
+    });
 });
 
 // Controllers

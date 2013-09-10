@@ -11,24 +11,25 @@ var ngModule = angular.module('app.auth', []);
 
 // Routes
 ngModule.config(function ($stateProvider) {
-  $stateProvider.state('app.login', {
-    url: '/login',
-    views: {
-      '@': {
-        template: rfile('./templates/login.html'),
-        controller: 'LoginCtrl'
+  $stateProvider
+    .state('app.login', {
+      url: '/login',
+      views: {
+        '@': {
+          controller: 'LoginCtrl',
+          template: rfile('./templates/login.html')
+        }
       }
-    }
-  });
-  $stateProvider.state('app.register', {
-    url: '/register',
-    views: {
-      '@': {
-        template: rfile('./templates/register.html'),
-        controller: 'RegisterCtrl'
+    })
+    .state('app.register', {
+      url: '/register',
+      views: {
+        '@': {
+          controller: 'RegisterCtrl',
+          template: rfile('./templates/register.html')
+        }
       }
-    }
-  });
+    });
 });
 
 // Controllers

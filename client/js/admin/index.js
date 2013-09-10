@@ -11,15 +11,16 @@ var ngModule = angular.module('app.admin', []);
 
 // Routes
 ngModule.config(function ($stateProvider) {
-  $stateProvider.state('app.admin', {
-    url: '/admin',
-    views: {
-      '@': {
-        template: rfile('./templates/main.html'),
-        controller: 'MainCtrl'
+  $stateProvider
+    .state('app.admin', {
+      url: '/admin',
+      views: {
+        '@': {
+          controller: 'MainCtrl',
+          template: rfile('./templates/main.html')
+        }
       }
-    }
-  });
+    });
 });
 
 // Controllers

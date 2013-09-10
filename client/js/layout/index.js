@@ -11,25 +11,28 @@ var ngModule = angular.module('app.layout', []);
 
 // Routes
 ngModule.config(function ($stateProvider) {
-  $stateProvider.state('app', {
-    abstract: true,
-    views: {
-      'alert': {
-        template: rfile('./templates/alert.html'),
-        controller: 'AlertCtrl'
-      },
-      'footer': {
-        template: rfile('./templates/footer.html')
-      },
-      'header': {
-        template: rfile('./templates/header.html')
-      },
-      'nav': {
-        template: rfile('./templates/nav.html'),
-        controller: 'NavCtrl'
+  $stateProvider
+    .state('app', {
+      abstract: true,
+      views: {
+        'alert': {
+          controller: 'AlertCtrl',
+          template: rfile('./templates/alert.html')
+        },
+        'footer': {
+          controller: 'FooterCtrl',
+          template: rfile('./templates/footer.html')
+        },
+        'header': {
+          controller: 'HeaderCtrl',
+          template: rfile('./templates/header.html')
+        },
+        'nav': {
+          controller: 'NavCtrl',
+          template: rfile('./templates/nav.html')
+        }
       }
-    }
-  });
+    });
 });
 
 // Controllers

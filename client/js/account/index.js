@@ -11,18 +11,19 @@ var ngModule = angular.module('app.account', []);
 
 // Routes
 ngModule.config(function ($stateProvider, securityProvider) {
-  $stateProvider.state('app.account', {
-    url: '/account',
-    resolve: {
-      user: securityProvider.requireUser
-    },
-    views: {
-      '@': {
-        template: rfile('./templates/main.html'),
-        controller: 'MainCtrl'
+  $stateProvider
+    .state('app.account', {
+      url: '/account',
+      resolve: {
+        user: securityProvider.requireUser
+      },
+      views: {
+        '@': {
+          controller: 'MainCtrl',
+          template: rfile('./templates/main.html')
+        }
       }
-    }
-  });
+    });
 });
 
 // Controllers
