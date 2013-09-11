@@ -10,6 +10,7 @@ var path = require('path'),
 var _ = require('lodash'),
     coffeeify = require('coffeeify'),
     hbsfy = require('hbsfy'),
+    ngmin = require('ngmin'),
     rfileify = require('rfileify'),
     uglify = require('uglify-js'),
     wrench = require('wrench');
@@ -44,7 +45,9 @@ module.exports = function (grunt) {
           bundle.transform(rfileify);
         },
         afterHook: function (source) {
-          return uglify.minify(source, { fromString: true }).code;
+          return uglify.minify(ngmin.annotate(source), {
+            fromString: true
+          }).code;
         }
       }
     },
@@ -203,6 +206,20 @@ module.exports = function (grunt) {
         'Gruntfile.js'
       ]
     },
+    karma: {  // grunt-karma
+      single: {
+        configFile: '<%= project.path.config %>/test/karma-unit.conf.js',
+        singleRun: true
+      },
+      multi: {
+        configFile: '<%= project.path.config %>/test/karma-unit.conf.js',
+        singleRun: false
+      },
+      e2e: {
+        configFile: '<%= project.path.config %>/test/karma-e2e.conf.js',
+        singleRun: true
+      }
+    },
     less: {  // grunt-contrib-less
       dev: {
         options: {
@@ -222,20 +239,6 @@ module.exports = function (grunt) {
         files: {
           '<%= project.path.dist %>/css/main.css': '<%= project.path.client %>/less/index.less'
         }
-      }
-    },
-    karma: {  // grunt-karma
-      single: {
-        configFile: '<%= project.path.config %>/test/karma-unit.conf.js',
-        singleRun: true
-      },
-      multi: {
-        configFile: '<%= project.path.config %>/test/karma-unit.conf.js',
-        singleRun: false
-      },
-      e2e: {
-        configFile: '<%= project.path.config %>/test/karma-e2e.conf.js',
-        singleRun: true
       }
     },
     open: {  // grunt-open
