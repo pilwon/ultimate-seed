@@ -5,6 +5,7 @@
 'use strict';
 
 // Load dependencies.
+require('angular.translate');
 require('angular.ui');
 require('bootstrap');
 require('restangular');

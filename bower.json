@@ -2,8 +2,9 @@
   "name": "ultimate-seed",
   "dependencies": {
     "angular": "~1.2.0-rc.2",
-    "angular-cookies": "~1.2.0-rc.2",
+    "angular-cookies": "~1.0.8",
     "angular-sanitize": "~1.2.0-rc.2",
+    "angular-translate": "~1.1.0",
     "angular-ui-bootstrap": "gh-pages",
     "angular-ui-router": "~0.2.0",
     "bootstrap": "~3.0.0",
@@ -15,7 +16,6 @@
     "modernizr": "~2.6.2",
     "restangular": "~1.1.3",
     "socket.io-client": "~0.9.16",
-    "spinjs": "~1.3.2",
-    "angular-cookies": "~1.0.8"
+    "spinjs": "~1.3.2"
   }
 }
