@@ -5,7 +5,7 @@
 
   <div class="features">
     <ul>
-      <li ng-repeat="item in items">
+      <li ng-repeat="item in items | orderBy:'text'">
         <a ng-href="{{ item.url }}">{{ item.text }}</a>
       </li>
      </ul>
