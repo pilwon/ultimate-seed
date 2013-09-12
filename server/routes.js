@@ -8,7 +8,7 @@ var ultimate = require('ultimate');
 
 // Register controllers to routes.
 exports.register = function (app, restify) {
-  var ensureAdmin = ultimate.server.controller.ensureAdmin,
+  var // ensureAdmin = ultimate.server.controller.ensureAdmin,
       // ensureGuest = ultimate.server.controller.ensureGuest,
       // ensureUser = ultimate.server.controller.ensureUser,
       csrf = ultimate.server.controller.csrf;
