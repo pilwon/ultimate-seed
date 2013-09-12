@@ -38,8 +38,8 @@ exports.register = function (app, restify) {
   // s.get('/account', ensureUser, c.account.index);
 
   // Admin
-  s.get('/admin', ensureAdmin, c.admin.index);
-  s.get(/^\/admin(?:[\/#?].*)?$/, error404);
+  // s.get('/admin', ensureAdmin, c.admin.index);
+  // s.get(/^\/admin(?:[\/#?].*)?$/, error404);
 
   // Auth
   // s.get('/login', ensureGuest, c.auth.login);
