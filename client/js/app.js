@@ -52,6 +52,7 @@ ngModule.run(function ($rootScope, $state, $stateParams, security) {
   $rootScope._ = _;
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
+  $rootScope.documentTitle = 'ultimate-seed';
   $rootScope.user = security.requireUser();
 });
 
