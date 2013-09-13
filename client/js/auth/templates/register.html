@@ -1,34 +1,30 @@
 <form name="registerForm" method="post" class="form-horizontal form-register" novalidate>
   <h2>New account</h2>
 
-  <div class="row form-group">
+  <div class="row form-group" ng-class="{ 'has-error': showError && registerForm.username.$invalid }">
     <div class="col-md-12">
       <input type="email" name="username" class="form-control" placeholder="e-mail address" ng-model="formData.username" focus="focus.username" required/>
-      <div ng-show="showError && registerForm.username.$error.required" class="text-danger">Required</div>
       <div ng-show="registerForm.username.$error.email" class="text-danger">Invalid email.</div>
     </div>
   </div>
 
-  <div class="row form-group">
+  <div class="row form-group" ng-class="{ 'has-error': showError && registerForm.password.$invalid }">
     <div class="col-md-12">
       <input type="password" name="password" class="form-control" placeholder="password" ng-model="formData.password" ng-minlength="6" ng-maxlength="20" focus="focus.password" required/>
-      <div ng-show="showError && registerForm.password.$error.required" class="text-danger">Required</div>
       <div ng-show="registerForm.password.$error.minlength || registerForm.password.$error.maxlength" class="text-danger">Password has to be between 6 and 20 characters.</div>
     </div>
   </div>
 
-  <div class="row form-group">
+  <div class="row form-group" ng-class="{ 'has-error': showError && registerForm.passwordRepeat.$invalid }">
     <div class="col-md-12">
-      <input type="password" name="passwordRepeat" class="form-control" placeholder="repeat password" ng-model="formData.passwordRepeat" ng-minlength="6" ng-maxlength="20" focus="focus.passwordRepeat" required/>
-      <div ng-show="showError && registerForm.passwordRepeat.$error.required" class="text-danger">Required</div>
+      <input type="password" name="passwordRepeat" class="form-control" placeholder="repeat password" ng-model="formData.passwordRepeat" ng-class="{ 'has-error': showError && registerForm.username.$error.required }" ng-minlength="6" ng-maxlength="20" focus="focus.passwordRepeat" required/>
       <div ng-show="showError && (formData.password != formData.passwordRepeat)" class="text-danger">Passwords do not match.</div>
     </div>
   </div>
 
   <div class="row form-group">
-    <div class="col-md-6">
+    <div class="col-md-6" ng-class="{ 'has-error': showError && registerForm.firstName.$invalid }">
       <input type="text" name="firstName" class="form-control" placeholder="first name" ng-model="formData.firstName" focus="focus.firstName" required/>
-      <div ng-show="showError && registerForm.firstName.$error.required" class="text-danger">Required</div>
     </div>
     <div class="col-md-6">
       <input type="text" name="lastName" class="form-control" placeholder="last name" ng-model="formData.lastName" focus="focus.lastName"/>
