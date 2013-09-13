@@ -21,8 +21,7 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li ng-if="isAuthenticated()"
-            ng-class="{ active: $state.includes('app.account') }">
+        <li ng-if="isAuthenticated()" ng-class="{ active: $state.includes('app.account') }">
           <a ng-href="{{ $state.href('app.account') }}">
             Logged in as <strong>{{ user.name.first }}</strong>
           </a>
@@ -30,12 +29,10 @@
         <li ng-if="isAuthenticated()">
           <a href="" ng-click="logout()">Logout</a>
         </li>
-        <li ng-if="!isAuthenticated()"
-            ng-class="{ active: $state.includes('app.register') }">
+        <li ng-if="!isAuthenticated()" ng-class="{ active: $state.includes('app.register') }">
           <a ng-href="{{ $state.href('app.register') }}">Register</a>
         </li>
-        <li ng-if="!isAuthenticated()"
-            ng-class="{ active: $state.includes('app.login') }">
+        <li ng-if="!isAuthenticated()" ng-class="{ active: $state.includes('app.login') }">
           <a ng-href="{{ $state.href('app.login') }}">Login</a>
         </li>
       </ul>
