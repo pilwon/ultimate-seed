@@ -3,6 +3,7 @@
   "dependencies": {
     "angular": "~1.2.0-rc.2",
     "angular-cookies": "~1.0.8",
+    "angular-route": "~1.2.0-rc.2",
     "angular-sanitize": "~1.2.0-rc.2",
     "angular-translate": "~1.1.0",
     "angular-ui-bootstrap": "gh-pages",

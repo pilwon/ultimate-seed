@@ -12,6 +12,7 @@ var _ = require('lodash'),
 
 var ngModule = angular.module('app', [
   'ngCookies',
+  'ngRoute',
   'ngSanitize',
   'pascalprecht.translate',
   'restangular',
