@@ -12,17 +12,17 @@
 
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li ng-class="{ 'active': $state.is('app.home') }">
+        <li ng-class="{ active: $state.includes('app.home') }">
           <a ng-href="{{ $state.href('app.home') }}">Angular</a>
         </li>
-        <li ng-class="{ 'active': $state.is('app') }">
+        <li ng-class="{ active: $state.is('app') }">
           <a href="/express" target="_self">Express</a>
         </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
         <li ng-if="isAuthenticated()"
-            ng-class="{ 'active': $state.is('app.account') }">
+            ng-class="{ active: $state.includes('app.account') }">
           <a ng-href="{{ $state.href('app.account') }}">
             Logged in as <strong>{{ user.name.first }}</strong>
           </a>
@@ -31,11 +31,11 @@
           <a href="" ng-click="logout()">Logout</a>
         </li>
         <li ng-if="!isAuthenticated()"
-            ng-class="{ 'active': $state.is('app.register') }">
+            ng-class="{ active: $state.includes('app.register') }">
           <a ng-href="{{ $state.href('app.register') }}">Register</a>
         </li>
         <li ng-if="!isAuthenticated()"
-            ng-class="{ 'active': $state.is('app.login') }">
+            ng-class="{ active: $state.includes('app.login') }">
           <a ng-href="{{ $state.href('app.login') }}">Login</a>
         </li>
       </ul>
