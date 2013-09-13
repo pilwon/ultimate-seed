@@ -4,6 +4,8 @@
 
 'use strict';
 
+var _ = require('lodash');
+
 exports = module.exports = function (ngModule) {
   ngModule.provider('security', {
     requireUser: function (security) {
@@ -12,7 +14,16 @@ exports = module.exports = function (ngModule) {
 
     $get: function($http, $state, $q) {
       var service = {
-        user: null
+        user: {}
+      };
+
+      var _clearUser = function () {
+        _.each(service.user, function(v, k) { delete service.user[k]; });
+      };
+
+      var _setUser = function (user) {
+        _clearUser();
+        _.assign(service.user, user);
       };
 
       service.getUser = function() {
@@ -20,19 +31,19 @@ exports = module.exports = function (ngModule) {
       };
 
       service.isAuthenticated = function () {
-        return !!service.user;
+        return !_.isEmpty(service.user);
       };
 
       service.login = function (formData) {
         return $http.post('/api/login', formData).then(function (res) {
-          service.user = res.data.result;
+          _setUser(res.data.result);
           $state.transitionTo('app.account');
         });
       };
 
       service.logout = function () {
         return $http.post('/api/logout').then(function () {
-          service.user = null;
+          _clearUser();
           $state.transitionTo('app.home');
         });
       };
@@ -43,7 +54,7 @@ exports = module.exports = function (ngModule) {
         }
 
         return $http.get('/api/me').then(function (res) {
-          service.user = res.data.result;
+          _setUser(res.data.result);
           return service.user;
         });
       };
