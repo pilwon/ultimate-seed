@@ -14,8 +14,8 @@ require('restangular');
 require('./account');
 require('./admin');
 require('./auth');
-require('./main');
 require('./layout');
+require('./main');
 require('./shared');
 
 // Register app.
