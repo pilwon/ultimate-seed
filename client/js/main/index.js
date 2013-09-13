@@ -1,5 +1,5 @@
 /*
- * client/js/home/index.js
+ * client/js/main/index.js
  */
 
 'use strict';
@@ -7,7 +7,7 @@
 var angular = require('angular'),
     rhtml = require('rhtml');
 
-var ngModule = angular.module('app.home', []);
+var ngModule = angular.module('app.main', []);
 
 // Routes
 ngModule.config(function ($stateProvider) {
@@ -16,12 +16,12 @@ ngModule.config(function ($stateProvider) {
       url: '/',
       views: {
         '@': {
-          template: rhtml('./templates/main.html'),
-          controller: 'MainCtrl'
+          template: rhtml('./templates/home.html'),
+          controller: 'HomeCtrl'
         }
       }
     });
 });
 
 // Controllers
-require('./controllers/main')(ngModule);
+require('./controllers/home')(ngModule);

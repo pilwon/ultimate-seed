@@ -14,7 +14,7 @@ require('restangular');
 require('./account');
 require('./admin');
 require('./auth');
-require('./home');
+require('./main');
 require('./layout');
 require('./shared');
 
