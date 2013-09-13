@@ -11,6 +11,7 @@ var _ = require('lodash'),
 
 var ngModule = angular.module('app', [
   'ngCookies',
+  'ngSanitize',
   'pascalprecht.translate',
   'restangular',
   'ui.bootstrap',
