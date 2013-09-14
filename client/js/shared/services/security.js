@@ -6,60 +6,72 @@
 
 var _ = require('lodash');
 
+var _injected = {},
+    _user = {};
+
+function _clearUser() {
+  _.each(_user || {}, function(v, k) {
+    delete _user[k];
+  });
+}
+
+function _setUser(user) {
+  _clearUser();
+  _.assign(_user, user);
+}
+
+function getUser() {
+  return _user;
+}
+
+function isAuthenticated() {
+  return !_.isEmpty(_user);
+}
+
+function login(formData) {
+  return _injected.$http.post('/api/login', formData).then(function (res) {
+    _setUser(res.data.result);
+    _injected.$state.transitionTo('app.account');
+  });
+}
+
+function logout() {
+  return _injected.$http.post('/api/logout').then(function () {
+    _clearUser();
+    _injected.$state.transitionTo('app.home');
+  });
+}
+
+function requireUser() {
+  if (_user) {
+    return _injected.$q.when(_user);
+  }
+  return _injected.$http.get('/api/me').then(function (res) {
+    _setUser(res.data.result);
+    return _user;
+  });
+}
+
 exports = module.exports = function (ngModule) {
   ngModule.provider('security', {
     requireUser: function (security) {
       return security.requireUser();
     },
 
-    $get: function($http, $state, $q) {
-      var service = {
-        user: {}
+    $get: function ($http, $state, $q) {
+      _injected = {
+        $http: $http,
+        $state: $state,
+        $q: $q
       };
 
-      var _clearUser = function () {
-        _.each(service.user, function(v, k) { delete service.user[k]; });
+      return {
+        getUser: getUser,
+        isAuthenticated: isAuthenticated,
+        login: login,
+        logout: logout,
+        requireUser: requireUser
       };
-
-      var _setUser = function (user) {
-        _clearUser();
-        _.assign(service.user, user);
-      };
-
-      service.getUser = function() {
-        return service.user;
-      };
-
-      service.isAuthenticated = function () {
-        return !_.isEmpty(service.user);
-      };
-
-      service.login = function (formData) {
-        return $http.post('/api/login', formData).then(function (res) {
-          _setUser(res.data.result);
-          $state.transitionTo('app.account');
-        });
-      };
-
-      service.logout = function () {
-        return $http.post('/api/logout').then(function () {
-          _clearUser();
-          $state.transitionTo('app.home');
-        });
-      };
-
-      service.requireUser = function () {
-        if (service.user) {
-          return $q.when(service.user);
-        }
-
-        return $http.get('/api/me').then(function (res) {
-          _setUser(res.data.result);
-          return service.user;
-        });
-      };
-
-      return service;
     }
   });
 };
