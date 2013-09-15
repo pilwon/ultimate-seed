@@ -8,14 +8,14 @@ var ultimate = require('ultimate');
 
 // Register controllers to routes.
 exports.register = function (app, restify) {
-  var // ensureAdmin = ultimate.server.controller.ensureAdmin,
-      // ensureGuest = ultimate.server.controller.ensureGuest,
-      // ensureUser = ultimate.server.controller.ensureUser,
-      csrf = ultimate.server.controller.csrf;
-
   var c = app.controllers,
       s = app.servers.express.getServer(),
       error404 = app.lib.controller.error404;
+
+  // var ensureAdmin = ultimate.server.controller.ensureAdmin,
+  //     ensureGuest = ultimate.server.controller.ensureGuest,
+  //     ensureUser = ultimate.server.controller.ensureUser,
+  //     csrf = ultimate.server.controller.csrf;
 
   // API
   restify.model('/api/features', 'Feature');
@@ -34,22 +34,7 @@ exports.register = function (app, restify) {
   s.get('/express', c.home.express);
   s.get('/health', c.home.health);
 
-  // Account
-  // s.get('/account', ensureUser, c.account.index);
-
-  // Admin
-  // s.get('/admin', ensureAdmin, c.admin.index);
-  // s.get(/^\/admin(?:[\/#?].*)?$/, error404);
-
   // Auth
-  // s.get('/login', ensureGuest, c.auth.login);
-  s.post('/login', csrf, c.auth.loginPOST);
-  // s.get('/logout', c.auth.logout);
-  s.post('/logout', c.auth.logoutPOST);
-  // s.get('/lost-password', ensureGuest, c.auth.lostPassword);
-  s.post('/lost-password', csrf, c.auth.lostPasswordPOST);
-  // s.get('/register', ensureGuest, c.auth.register);
-  s.post('/register', csrf, c.auth.registerPOST);
   s.get('/auth/facebook', c.auth.facebook);
   s.get('/auth/facebook/callback', c.auth.facebookCallback);
   s.get('/auth/facebook/success', c.auth.facebookSuccess);
