@@ -43,7 +43,7 @@ function logout() {
 }
 
 function requireUser() {
-  if (_user) {
+  if (isAuthenticated()) {
     return _injected.$q.when(_user);
   }
   return _injected.$http.get('/api/me').then(function (res) {
