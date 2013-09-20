@@ -4,7 +4,7 @@
 
 'use strict';
 
-var ultimate = require('ultimate');
+// var ultimate = require('ultimate');
 
 // Register controllers to routes.
 exports.register = function (app, restify) {
