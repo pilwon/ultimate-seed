@@ -310,16 +310,16 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('devBuild', [
+  grunt.registerTask('buildDev', [
     'clean:dev',
     'browserify2:dev',
     'less:dev',
     'copy:dev',
-    'devSymlink',
+    'symlinkDev',
     'cachebust:dev'
   ]);
 
-  grunt.registerTask('distBuild', [
+  grunt.registerTask('buildDist', [
     'jshint',
     'clean:dist',
     'browserify2:dist',
@@ -329,7 +329,7 @@ module.exports = function (grunt) {
     'htmlmin:dist',
     'cssmin:dist',
     'copy:dist',
-    'distSymlink',
+    'symlinkDist',
     'cachebust:dist',
     'usemin',
     'uglify:dist'
@@ -381,7 +381,7 @@ module.exports = function (grunt) {
     });
   });
 
-  grunt.registerTask('devSymlink', function () {
+  grunt.registerTask('symlinkDev', function () {
     ['fonts'].forEach(function (dir) {
       var symlinks = require(util.format('./%s/%s/.symlinks', project.path.client, dir));
       _.each(symlinks, function (source, target) {
@@ -394,7 +394,7 @@ module.exports = function (grunt) {
     });
   });
 
-  grunt.registerTask('distSymlink', function () {
+  grunt.registerTask('symlinkDist', function () {
     ['fonts'].forEach(function (dir) {
       var symlinks = require(util.format('./%s/%s/.symlinks', project.path.client, dir));
       _.each(symlinks, function (source, target) {
@@ -407,7 +407,7 @@ module.exports = function (grunt) {
     });
   });
 
-  grunt.registerTask('devServer', function () {
+  grunt.registerTask('serverDev', function () {
     grunt.task.run([
       'express',
       'open'
@@ -417,20 +417,16 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('develop', ['devBuild', 'devServer']);
-
-  grunt.registerTask('test', [
-    'jshint:all',
-    'karma:multi'
-  ]);
+  grunt.registerTask('build', 'buildDist');
+  grunt.registerTask('test', ['jshint', 'karma:multi']);
 
   // Shortcuts
-  grunt.registerTask('b', 'distBuild');
+  grunt.registerTask('b', 'build');
   grunt.registerTask('c', 'clean');
-  grunt.registerTask('d', 'devBuild');
-  grunt.registerTask('s', 'devServer');
+  grunt.registerTask('d', 'buildDev');
+  grunt.registerTask('s', 'serverDev');
   grunt.registerTask('t', 'test');
 
   // Default
-  grunt.registerTask('default', 'develop');
+  grunt.registerTask('default', ['buildDev', 'serverDev']);
 };
