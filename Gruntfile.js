@@ -132,7 +132,6 @@ module.exports = function (grunt) {
       dist: {
         files: {
           '<%= project.path.dist %>/css/main.css': [
-            '<%= project.path.temp %>/css/**/*.css',
             '<%= project.path.dist %>/css/**/*.css'
           ]
         }
