@@ -21,19 +21,41 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li ng-if="isAuthenticated()" ng-class="{ active: $state.includes('app.account') }">
-          <a ng-href="{{ $state.href('app.account') }}">
-            Logged in as <strong>{{ user.name.first }}</strong>
+        <li ng-if="isAuthenticated()" class="dropdown" ng-class="{ active: $state.includes('app.account') }">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-user"></span>
+            {{ user.name.first }}
+            <b class="caret"></b>
           </a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-header">Account</li>
+            <li ng-class="{ active: $state.includes('app.account') }">
+              <a ng-href="{{ $state.href('app.account.summary') }}">Summary</a>
+            </li>
+            <li class="divider" ng-if="isAdmin()"></li>
+            <li class="dropdown-header" ng-if="isAdmin()">Admin</li>
+            <li ng-class="{ active: $state.includes('app.admin') }" ng-if="isAdmin()">
+              <a ng-href="{{ $state.href('app.admin.dashboard') }}">Dashboard</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="#" ng-click="logout()">Logout</a>
+            </li>
+          </ul>
         </li>
-        <li ng-if="isAuthenticated()">
-          <a href="" ng-click="logout()">Logout</a>
-        </li>
-        <li ng-if="!isAuthenticated()" ng-class="{ active: $state.includes('app.register') }">
-          <a ng-href="{{ $state.href('app.register') }}">Register</a>
-        </li>
-        <li ng-if="!isAuthenticated()" ng-class="{ active: $state.includes('app.login') }">
-          <a ng-href="{{ $state.href('app.login') }}">Login</a>
+        <li class="dropdown" ng-class="{ active: $state.includes('app.login') || $state.includes('app.register') }" ng-if="!isAuthenticated()">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-user"></span>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li ng-class="{ active: $state.includes('app.login') }">
+              <a ng-href="{{ $state.href('app.login') }}">Login</a>
+            </li>
+            <li ng-class="{ active: $state.includes('app.register') }">
+              <a ng-href="{{ $state.href('app.register') }}">Register</a>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

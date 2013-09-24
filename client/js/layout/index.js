@@ -11,20 +11,20 @@ var ngModule = angular.module('app.layout', []);
 
 var _views = {
   'alert': {
-    controller: 'AlertCtrl',
-    template: rhtml('./templates/alert.html')
+    controller: '_AlertCtrl',
+    template: rhtml('./templates/_alert.html')
   },
   'footer': {
-    controller: 'FooterCtrl',
-    template: rhtml('./templates/footer.html')
+    controller: '_FooterCtrl',
+    template: rhtml('./templates/_footer.html')
   },
   'header': {
-    controller: 'HeaderCtrl',
-    template: rhtml('./templates/header.html')
+    controller: '_HeaderCtrl',
+    template: rhtml('./templates/_header.html')
   },
   'nav': {
-    controller: 'NavCtrl',
-    template: rhtml('./templates/nav.html')
+    controller: '_NavCtrl',
+    template: rhtml('./templates/_nav.html')
   }
 };
 
@@ -40,7 +40,7 @@ ngModule.config(function ($stateProvider, layoutProvider) {
 });
 
 // Controllers
-require('./controllers/alert')(ngModule);
-require('./controllers/footer')(ngModule);
-require('./controllers/header')(ngModule);
-require('./controllers/nav')(ngModule);
+require('./controllers/_alert')(ngModule);
+require('./controllers/_footer')(ngModule);
+require('./controllers/_header')(ngModule);
+require('./controllers/_nav')(ngModule);

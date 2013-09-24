@@ -1,11 +1,11 @@
 /*
- * client/js/layout/controllers/header.js
+ * client/js/layout/controllers/_header.js
  */
 
 'use strict';
 
 exports = module.exports = function (ngModule) {
-  ngModule.controller('HeaderCtrl', function () {
+  ngModule.controller('_HeaderCtrl', function () {
 
   });
 };
