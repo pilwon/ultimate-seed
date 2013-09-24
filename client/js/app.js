@@ -48,7 +48,7 @@ ngModule.config(function ($stateProvider, $urlRouterProvider, layoutProvider) {
   });
 
   $stateProvider
-    .state('otherwise', {
+    .state('express', {
       url: '*path',
       views: layoutProvider.getViews()
     });
