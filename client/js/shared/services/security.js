@@ -24,14 +24,22 @@ function getUser() {
   return _user;
 }
 
+function isAdmin() {
+  return isRole('admin');
+}
+
 function isAuthenticated() {
   return !_.isEmpty(_user);
+}
+
+function isRole(role) {
+  return !_.isEmpty(_user) && _.isArray(_user.roles) && _.contains(_user.roles, role);
 }
 
 function login(formData) {
   return _injected.$http.post('/api/login', formData).then(function (res) {
     _setUser(res.data.result);
-    _injected.$state.transitionTo('app.account');
+    _injected.$state.transitionTo('app.account.summary');
   });
 }
 
@@ -64,7 +72,9 @@ exports = module.exports = function (ngModule) {
 
       return {
         getUser: getUser,
+        isAdmin: isAdmin,
         isAuthenticated: isAuthenticated,
+        isRole: isRole,
         login: login,
         logout: logout,
         requireUser: requireUser
