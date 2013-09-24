@@ -28,7 +28,7 @@ exports = module.exports = function (ngModule) {
         $scope.showError = false;
       }, function (res) {
         $scope.showError = true;
-        alert.addError(res.data.error.message);
+        alert.setMessages('danger', res.data.result.messages);
       });
     };
   });
