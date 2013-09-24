@@ -26,6 +26,7 @@ exports = module.exports = function (ngModule) {
 
       security.login(formData).then(function () {
         $scope.showError = false;
+        alert.clearMessages();
       }, function (res) {
         $scope.showError = true;
         alert.setMessages('danger', res.data.result.messages);

@@ -8,15 +8,16 @@ var _ = require('lodash');
 
 var _messages = [];
 
-function getMessages() {
-  return _messages;
+function clearMessages() {
+  _messages.length = 0;
 }
 
-function addMessage(type, message) {
-  _messages.push({
-    type: type,
-    message: message
-  });
+function removeMessage(idx) {
+  _messages.splice(idx, 1);
+}
+
+function getMessages() {
+  return _messages;
 }
 
 function setMessages(type, messages) {
@@ -31,22 +32,21 @@ function setMessages(type, messages) {
       });
 }
 
-function clearMessages() {
-  _messages.length = 0;
-}
-
-function removeMessage(idx) {
-  _messages.splice(idx, 1);
+function addMessage(type, message) {
+  _messages.push({
+    type: type,
+    message: message
+  });
 }
 
 exports = module.exports = function (ngModule) {
   ngModule.factory('alert', function () {
     return {
+      clearMessages: clearMessages,
+      removeMessage: removeMessage,
       getMessages: getMessages,
       setMessages: setMessages,
-      addMessage: addMessage,
-      clearMessages: clearMessages,
-      removeMessage: removeMessage
+      addMessage: addMessage
     };
   });
 };
