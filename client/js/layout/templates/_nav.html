@@ -28,14 +28,14 @@
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li class="dropdown-header">Account</li>
-            <li ng-class="{ active: $state.includes('app.account') }">
-              <a ng-href="{{ $state.href('app.account.summary') }}">Summary</a>
-            </li>
-            <li class="divider" ng-if="isAdmin()"></li>
             <li class="dropdown-header" ng-if="isAdmin()">Admin</li>
             <li ng-class="{ active: $state.includes('app.admin') }" ng-if="isAdmin()">
               <a ng-href="{{ $state.href('app.admin.dashboard') }}">Dashboard</a>
+            </li>
+            <li class="divider" ng-if="isAdmin()"></li>
+            <li class="dropdown-header">Account</li>
+            <li ng-class="{ active: $state.includes('app.account') }">
+              <a ng-href="{{ $state.href('app.account.summary') }}">Summary</a>
             </li>
             <li class="divider"></li>
             <li>
