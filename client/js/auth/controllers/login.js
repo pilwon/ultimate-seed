@@ -26,9 +26,10 @@ exports = module.exports = function (ngModule) {
 
       security.login(formData).then(function () {
         $scope.showError = false;
+        alert.clearMessages();
       }, function (res) {
         $scope.showError = true;
-        alert.addError(res.data.error.message);
+        alert.setMessages('danger', res.data.result.messages);
       });
     };
   });

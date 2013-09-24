@@ -26,10 +26,11 @@ exports = module.exports = function (ngModule) {
 
       $http.post('/api/register', formData).then(function () {
         $scope.showError = false;
+        alert.clearMessages();
         security.login(formData);
       }, function (res) {
         $scope.showError = true;
-        alert.addError(res.data.error.message);
+        alert.setMessages('danger', res.data.result.messages);
       });
     };
   });
