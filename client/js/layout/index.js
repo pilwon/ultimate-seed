@@ -9,30 +9,34 @@ var angular = require('angular'),
 
 var ngModule = angular.module('app.layout', []);
 
+var _views = {
+  'alert': {
+    controller: 'AlertCtrl',
+    template: rhtml('./templates/alert.html')
+  },
+  'footer': {
+    controller: 'FooterCtrl',
+    template: rhtml('./templates/footer.html')
+  },
+  'header': {
+    controller: 'HeaderCtrl',
+    template: rhtml('./templates/header.html')
+  },
+  'nav': {
+    controller: 'NavCtrl',
+    template: rhtml('./templates/nav.html')
+  }
+};
+
 // Routes
-ngModule.config(function ($stateProvider) {
+ngModule.config(function ($stateProvider, layoutProvider) {
   $stateProvider
     .state('app', {
       abstract: true,
-      views: {
-        'alert': {
-          controller: 'AlertCtrl',
-          template: rhtml('./templates/alert.html')
-        },
-        'footer': {
-          controller: 'FooterCtrl',
-          template: rhtml('./templates/footer.html')
-        },
-        'header': {
-          controller: 'HeaderCtrl',
-          template: rhtml('./templates/header.html')
-        },
-        'nav': {
-          controller: 'NavCtrl',
-          template: rhtml('./templates/nav.html')
-        }
-      }
+      views: _views
     });
+
+  layoutProvider.setViews(_views);
 });
 
 // Controllers

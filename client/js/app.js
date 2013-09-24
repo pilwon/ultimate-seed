@@ -36,7 +36,7 @@ ngModule.config(function (RestangularProvider) {
 });
 
 // Routes
-ngModule.config(function ($urlRouterProvider) {
+ngModule.config(function ($stateProvider, $urlRouterProvider, layoutProvider) {
   $urlRouterProvider.otherwise(function () {
     if (!global.config.fromServer) {
       global.location.replace(url.parse(global.location.href).path);
@@ -46,6 +46,12 @@ ngModule.config(function ($urlRouterProvider) {
       global.config.fromServer = false;
     }
   });
+
+  $stateProvider
+    .state('otherwise', {
+      url: '*path',
+      views: layoutProvider.getViews()
+    });
 });
 
 // Attach variables to $rootScope.
