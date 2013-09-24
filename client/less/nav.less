@@ -4,6 +4,9 @@
 
 #nav {
   .navbar-nav {
+    margin: 0;
+    padding: 0;
+
     > li > a:focus,
     > li > a:hover {
       background-color: lighten(@theme, 2.5%);
@@ -12,6 +15,25 @@
     > li.active > a:focus,
     > li.active > a:hover {
       background-color: @navbar-inverse-link-active-bg;
+    }
+
+    &.navbar-right {
+      margin-right: -15px;
+    }
+
+    .dropdown-menu {
+      > li > a:focus,
+      > li > a:hover {
+        color: #000;
+        background-color: #e0e0e0;
+      }
+
+      > li.active > a,
+      > li.active > a:hover,
+      > li.active > a:focus {
+        color: #fff;
+        background-color: @navbar-inverse-link-active-bg;
+      }
     }
   }
 }
