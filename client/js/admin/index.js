@@ -10,18 +10,34 @@ var angular = require('angular'),
 var ngModule = angular.module('app.admin', []);
 
 // Routes
-ngModule.config(function ($stateProvider) {
+ngModule.config(function ($stateProvider, $urlRouterProvider, securityProvider) {
   $stateProvider
     .state('app.admin', {
+      abstract: true,
       url: '/admin',
+      resolve: {
+        user: securityProvider.requireUser
+      },
       views: {
         '@': {
-          controller: 'MainCtrl',
-          template: rhtml('./templates/main.html')
+          controller: '_LayoutCtrl',
+          template: rhtml('./templates/_layout.html')
+        }
+      }
+    })
+    .state('app.admin.dashboard', {
+      url: '/dashboard',
+      views: {
+        '@app.admin': {
+          controller: 'DashboardCtrl',
+          template: rhtml('./templates/dashboard.html')
         }
       }
     });
+
+  $urlRouterProvider.when('/admin', '/admin/dashboard');
 });
 
 // Controllers
-require('./controllers/main')(ngModule);
+require('./controllers/_layout')(ngModule);
+require('./controllers/dashboard')(ngModule);

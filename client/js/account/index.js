@@ -10,21 +10,34 @@ var angular = require('angular'),
 var ngModule = angular.module('app.account', []);
 
 // Routes
-ngModule.config(function ($stateProvider, securityProvider) {
+ngModule.config(function ($stateProvider, $urlRouterProvider, securityProvider) {
   $stateProvider
     .state('app.account', {
+      abstract: true,
       url: '/account',
       resolve: {
         user: securityProvider.requireUser
       },
       views: {
         '@': {
-          controller: 'MainCtrl',
-          template: rhtml('./templates/main.html')
+          controller: '_LayoutCtrl',
+          template: rhtml('./templates/_layout.html')
+        }
+      }
+    })
+    .state('app.account.summary', {
+      url: '/summary',
+      views: {
+        '@app.account': {
+          controller: 'SummaryCtrl',
+          template: rhtml('./templates/summary.html')
         }
       }
     });
+
+  $urlRouterProvider.when('/account', '/account/summary');
 });
 
 // Controllers
-require('./controllers/main')(ngModule);
+require('./controllers/_layout')(ngModule);
+require('./controllers/summary')(ngModule);
