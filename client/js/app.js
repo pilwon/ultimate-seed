@@ -54,7 +54,9 @@ ngModule.run(function ($rootScope, $state, $stateParams, security) {
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
   $rootScope.documentTitle = 'ultimate-seed';
-  $rootScope.user = security.requireUser();
+  security.requireUser().then(function(user) {
+    $rootScope.user = user;
+  });
 });
 
 // Update `fromServer` global config variable.

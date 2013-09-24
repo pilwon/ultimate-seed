@@ -43,13 +43,10 @@ function logout() {
 }
 
 function requireUser() {
-  if (isAuthenticated()) {
-    return _injected.$q.when(_user);
-  }
-  return _injected.$http.get('/api/me').then(function (res) {
+  _injected.$http.get('/api/me').then(function (res) {
     _setUser(res.data.result);
-    return _user;
   });
+  return _injected.$q.when(_user);
 }
 
 exports = module.exports = function (ngModule) {
