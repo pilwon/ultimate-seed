@@ -10,7 +10,7 @@ var angular = require('angular'),
 var ngModule = angular.module('app.auth', []);
 
 // Routes
-ngModule.config(function ($stateProvider) {
+ngModule.config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('app.login', {
       url: '/login',
@@ -30,6 +30,9 @@ ngModule.config(function ($stateProvider) {
         }
       }
     });
+
+  // Handle Facebook auth callback.
+  $urlRouterProvider.when('/_=_', '/');
 });
 
 // Controllers
