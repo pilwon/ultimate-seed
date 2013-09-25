@@ -45,9 +45,9 @@ module.exports = function (grunt) {
           bundle.transform(rfileify);
         },
         afterHook: function (source) {
-          return uglify.minify(ngmin.annotate(source), {
-            fromString: true
-          }).code;
+          source = ngmin.annotate(source);
+          source = uglify.minify(source, { fromString: true }).code;
+          return source;
         }
       }
     },
