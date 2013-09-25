@@ -10,14 +10,14 @@ var angular = require('angular'),
 var ngModule = angular.module('app.account', []);
 
 // Routes
-ngModule.config(function ($stateProvider, $urlRouterProvider, securityProvider) {
+ngModule.config(function ($stateProvider, $urlRouterProvider/*, securityProvider*/) {
   $stateProvider
     .state('app.account', {
       abstract: true,
       url: '/account',
-      resolve: {
-        user: securityProvider.requireUser
-      },
+      // resolve: {
+      //   user: securityProvider.requireUser
+      // },
       views: {
         '@': {
           controller: '_LayoutCtrl',
