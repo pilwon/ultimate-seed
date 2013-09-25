@@ -59,9 +59,9 @@ function requireUser() {
 
 exports = module.exports = function (ngModule) {
   ngModule.provider('security', {
-    requireUser: function (security) {
+    requireUser: ['security', function (security) {
       return security.requireUser();
-    },
+    }],
 
     $get: function ($http, $state, $q) {
       _injected = {
