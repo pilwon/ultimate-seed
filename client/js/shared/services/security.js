@@ -39,14 +39,14 @@ function isRole(role) {
 function login(formData) {
   return _injected.$http.post('/api/login', formData).then(function (res) {
     _setUser(res.data.result);
-    _injected.$state.transitionTo('app.account.summary');
+    _injected.$state.go('app.account.summary');
   });
 }
 
 function logout() {
   return _injected.$http.post('/api/logout').then(function () {
     _clearUser();
-    _injected.$state.transitionTo('app.home');
+    _injected.$state.go('app.home');
   });
 }
 
