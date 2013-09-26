@@ -55,12 +55,13 @@ ngModule.config(function ($stateProvider, $urlRouterProvider, layoutProvider) {
 });
 
 // Attach variables to $rootScope.
-ngModule.run(function ($rootScope, $state, $stateParams, security) {
+ngModule.run(function ($rootScope, $state, $stateParams, auth) {
   $rootScope._ = _;
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
   $rootScope.documentTitle = 'ultimate-seed';
-  security.requireUser().then(function(user) {
+
+  auth.requireUser().then(function(user) {
     $rootScope.user = user;
   });
 });

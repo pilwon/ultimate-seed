@@ -7,7 +7,7 @@
 var _ = require('lodash');
 
 exports = module.exports = function (ngModule) {
-  ngModule.controller('LoginCtrl', function ($scope, alert, security) {
+  ngModule.controller('LoginCtrl', function ($scope, alert, auth) {
     $scope.focus = {
       username: true
     };
@@ -24,7 +24,7 @@ exports = module.exports = function (ngModule) {
         return;
       }
 
-      security.login(formData).then(function () {
+      auth.login(formData).then(function () {
         $scope.showError = false;
         alert.clearMessages();
       }, function (res) {

@@ -7,7 +7,7 @@
 var _ = require('lodash');
 
 exports = module.exports = function (ngModule) {
-  ngModule.controller('RegisterCtrl', function ($http, $scope, alert, security) {
+  ngModule.controller('RegisterCtrl', function ($http, $scope, alert, auth) {
     $scope.focus = {
       username: true
     };
@@ -27,7 +27,7 @@ exports = module.exports = function (ngModule) {
       $http.post('/api/register', formData).then(function () {
         $scope.showError = false;
         alert.clearMessages();
-        security.login(formData);
+        auth.login(formData);
       }, function (res) {
         $scope.showError = true;
         alert.setMessages('danger', res.data.result.messages);

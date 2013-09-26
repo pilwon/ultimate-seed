@@ -1,5 +1,5 @@
 /*
- * client/js/shared/services/security.js
+ * client/js/shared/services/auth.js
  */
 
 'use strict';
@@ -58,9 +58,9 @@ function requireUser() {
 }
 
 exports = module.exports = function (ngModule) {
-  ngModule.provider('security', {
-    requireUser: ['security', function (security) {
-      return security.requireUser();
+  ngModule.provider('auth', {
+    requireUser: ['auth', function (auth) {
+      return auth.requireUser();
     }],
 
     $get: function ($http, $state, $q) {

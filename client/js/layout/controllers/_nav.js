@@ -5,10 +5,10 @@
 'use strict';
 
 exports = module.exports = function (ngModule) {
-  ngModule.controller('_NavCtrl', function ($scope, security) {
-    $scope.isAdmin = security.isAdmin;
-    $scope.isAuthenticated = security.isAuthenticated;
-    $scope.isRole = security.isRole;
-    $scope.logout = security.logout;
+  ngModule.controller('_NavCtrl', function ($scope, auth) {
+    $scope.isAdmin = auth.isAdmin;
+    $scope.isAuthenticated = auth.isAuthenticated;
+    $scope.isRole = auth.isRole;
+    $scope.logout = auth.logout;
   });
 };
