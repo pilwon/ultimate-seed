@@ -10,14 +10,14 @@ var angular = require('angular'),
 var ngModule = angular.module('app.account', []);
 
 // Routes
-ngModule.config(function ($stateProvider, $urlRouterProvider/*, securityProvider*/) {
+ngModule.config(function ($stateProvider, securityProvider) {
   $stateProvider
     .state('app.account', {
       abstract: true,
       url: '/account',
-      // resolve: {
-      //   user: securityProvider.requireUser
-      // },
+      resolve: {
+        user: securityProvider.requireUser
+      },
       views: {
         '@': {
           controller: '_LayoutCtrl',
@@ -34,8 +34,13 @@ ngModule.config(function ($stateProvider, $urlRouterProvider/*, securityProvider
         }
       }
     });
+});
 
-  $urlRouterProvider.when('/account', '/account/summary');
+// Redirections
+ngModule.run(function ($rootScope, $state, route) {
+  route.redirect($rootScope, $state, {
+    '/account': 'app.account.summary'
+  });
 });
 
 // Controllers

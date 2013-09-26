@@ -10,14 +10,14 @@ var angular = require('angular'),
 var ngModule = angular.module('app.admin', []);
 
 // Routes
-ngModule.config(function ($stateProvider, $urlRouterProvider/*, securityProvider*/) {
+ngModule.config(function ($stateProvider, securityProvider) {
   $stateProvider
     .state('app.admin', {
       abstract: true,
       url: '/admin',
-      // resolve: {
-      //   user: securityProvider.requireUser
-      // },
+      resolve: {
+        user: securityProvider.requireUser
+      },
       views: {
         '@': {
           controller: '_LayoutCtrl',
@@ -34,8 +34,13 @@ ngModule.config(function ($stateProvider, $urlRouterProvider/*, securityProvider
         }
       }
     });
+});
 
-  $urlRouterProvider.when('/admin', '/admin/dashboard');
+// Redirections
+ngModule.run(function ($rootScope, $state, route) {
+  route.redirect($rootScope, $state, {
+    '/admin': 'app.admin.dashboard'
+  });
 });
 
 // Controllers
