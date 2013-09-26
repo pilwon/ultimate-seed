@@ -22,9 +22,6 @@ ngModule.config(function ($translateProvider) {
     .preferredLanguage('en');
 });
 
-// Constants
-ngModule.constant('VERSION', '1.0');
-
 // Directives
 require('./directives/focus')(ngModule);
 
