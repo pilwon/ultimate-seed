@@ -37,16 +37,6 @@ ngModule.config(function (RestangularProvider) {
 
 // Routes
 ngModule.config(function ($stateProvider, $urlRouterProvider, layoutProvider) {
-  $urlRouterProvider.otherwise(function () {
-    if (!global.config.fromServer) {
-      global.location.replace(url.parse(global.location.href).path);
-    } else if (global.config.notFoundOnServer) {
-      global.location.replace('/404.html');
-    } else {
-      global.config.fromServer = false;
-    }
-  });
-
   $stateProvider
     .state('express', {
       url: '*path',
