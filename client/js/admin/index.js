@@ -20,6 +20,9 @@ ngModule.config(function ($stateProvider) {
           controller: '_LayoutCtrl',
           template: rhtml('./templates/_layout.html')
         }
+      },
+      data: {
+        menuTitle: 'Admin'
       }
     })
     .state('app.admin.dashboard', {
@@ -29,6 +32,21 @@ ngModule.config(function ($stateProvider) {
           controller: 'DashboardCtrl',
           template: rhtml('./templates/dashboard.html')
         }
+      },
+      data: {
+        title: 'Dashboard'
+      }
+    })
+    .state('app.admin.users', {
+      url: '/users',
+      views: {
+        '@app.admin': {
+          controller: 'UsersCtrl',
+          template: rhtml('./templates/users.html')
+        }
+      },
+      data: {
+        title: 'Users'
       }
     });
 });
@@ -52,3 +70,4 @@ ngModule.run(function ($rootScope, $state, auth, route) {
 // Controllers
 require('./controllers/_layout')(ngModule);
 require('./controllers/dashboard')(ngModule);
+require('./controllers/users')(ngModule);

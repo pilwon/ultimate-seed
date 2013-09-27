@@ -1,9 +1,24 @@
 <div id="admin" class="container">
   <div class="row">
-    <!-- <div class="col-md-3">
-      ADMIN MENU
+    <div class="menu col-md-3">
+      <div class="well">
+        <div class="page-header">
+          <h3>{{ $state.current.data.menuTitle }}</h3>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+          <li ng-class="{ active: $state.includes('app.admin.dashboard') }">
+            <a ng-href="{{ $state.href('app.admin.dashboard') }}">
+              {{ $state.get('app.admin.dashboard').data.title }}
+            </a>
+          </li>
+          <li ng-class="{ active: $state.includes('app.admin.users') }">
+            <a ng-href="{{ $state.href('app.admin.users') }}">
+              {{ $state.get('app.admin.users').data.title }}
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="col-md-9" ui-view></div> -->
-    <div class="col-md-12" ui-view></div>
+    <div class="content col-md-9" ui-view></div>
   </div>
 </div>

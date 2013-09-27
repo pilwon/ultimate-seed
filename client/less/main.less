@@ -6,11 +6,48 @@
   padding-top: @main-vertical-padding;
   padding-bottom: @main-vertical-padding + 15px;
 
-  .page-header {
-    margin: 0 0 15px;
+  .menu {
+    .page-header {
+      margin: 0 0 15px;
+
+      h3 {
+        margin: 5px 5px 0 5px;
+      }
+    }
+
+    li {
+      a {
+        color: @text-color;
+        padding: 7px 10px;
+      }
+
+      &.active {
+        a {
+          color: white;
+        }
+      }
+    }
+
+    .nav-stacked > li + li {
+      margin-top: 5px;
+    }
+
+    .well {
+      background-color: inherit;
+      border-color: lighten(@theme, 70%);
+      padding: 10px;
+    }
   }
 
-  .features {
-    margin-left: 10px;
+  .content {
+    h1,
+    h2,
+    h3 {
+      margin-top: 0;
+    }
+
+    .page-header {
+      margin: 0 0 15px;
+    }
   }
 }

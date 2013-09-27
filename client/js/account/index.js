@@ -20,6 +20,9 @@ ngModule.config(function ($stateProvider) {
           controller: '_LayoutCtrl',
           template: rhtml('./templates/_layout.html')
         }
+      },
+      data: {
+        menuTitle: 'Account'
       }
     })
     .state('app.account.summary', {
@@ -29,6 +32,9 @@ ngModule.config(function ($stateProvider) {
           controller: 'SummaryCtrl',
           template: rhtml('./templates/summary.html')
         }
+      },
+      data: {
+        title: 'Summary'
       }
     });
 });
