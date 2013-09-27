@@ -4,11 +4,15 @@
 
 'use strict';
 
+var _ = require('lodash');
+
 exports = module.exports = function (ngModule) {
   ngModule.controller('_NavCtrl', function ($scope, auth) {
-    $scope.isAdmin = auth.isAdmin;
-    $scope.isAuthenticated = auth.isAuthenticated;
-    $scope.isRole = auth.isRole;
-    $scope.logout = auth.logout;
+    _.assign($scope, {
+      isAdmin: auth.isAdmin,
+      isAuthenticated: auth.isAuthenticated,
+      isRole: auth.isRole,
+      logout: auth.logout
+    });
   });
 };
