@@ -26,7 +26,10 @@ function _checkRoles(auth, rules) {
   return result;
 }
 
-function _getParentStates(state, includeCurrentState) {
+// Given a state, e.g. "app.account.summary", returns an array of ancestor states
+// ["app", "app.account", "app.account.summary"] (last element removed if
+// `includeCurrentState` is false)
+function _getAncestorStates(state, includeCurrentState) {
   var states = [state],
       temp;
   while (true) {
@@ -51,7 +54,7 @@ function authorize($rootScope, $state, auth, config) {
   // Activate.
   if (!_authorizeRolesActivated) {
     $rootScope.$on('$stateChangeStart', function (event, toState) {
-      _getParentStates(toState.name, true).reverse().forEach(function (state) {
+      _getAncestorStates(toState.name, true).reverse().forEach(function (state) {
         if (!event.defaultPrevented &&
             _.has(_authorizeRules, state) &&
             !_checkRoles(auth, _authorizeRules[state])) {
