@@ -33,7 +33,17 @@ function isAuthenticated() {
 }
 
 function isRole(role) {
-  return !_.isEmpty(_user) && _.isArray(_user.roles) && _.contains(_user.roles, role);
+  if (!_.isEmpty(_user)) {
+    if (role === 'user') {
+      return true;
+    }
+    if (_.isArray(_user.roles) && _.contains(_user.roles, role)) {
+      return true;
+    }
+  } else if (role === 'guest') {
+    return true;
+  }
+  return false;
 }
 
 function login(formData) {

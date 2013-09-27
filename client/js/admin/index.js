@@ -43,6 +43,15 @@ ngModule.run(function ($rootScope, $state, route) {
   });
 });
 
+// Authorizations
+ngModule.run(function ($rootScope, $state, auth, route) {
+  route.authorize($rootScope, $state, auth, {
+    'app.admin': {
+      allow: ['admin']
+    }
+  });
+});
+
 // Controllers
 require('./controllers/_layout')(ngModule);
 require('./controllers/dashboard')(ngModule);

@@ -39,6 +39,20 @@ ngModule.run(function ($rootScope, $state, route) {
   });
 });
 
+// Authorizations
+ngModule.run(function ($rootScope, $state, auth, route) {
+  route.authorize($rootScope, $state, auth, {
+    'app.login': {
+      deny: ['user'],
+      redirect: 'app.account.summary'
+    },
+    'app.register': {
+      deny: ['user'],
+      redirect: 'app.account.summary'
+    }
+  });
+});
+
 // Controllers
 require('./controllers/login')(ngModule);
 require('./controllers/register')(ngModule);
