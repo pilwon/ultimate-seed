@@ -30,3 +30,4 @@ require('./services/alert')(ngModule);
 require('./services/auth')(ngModule);
 require('./services/layout')(ngModule);
 require('./services/route')(ngModule);
+require('./services/user')(ngModule);
