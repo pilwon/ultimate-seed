@@ -10,14 +10,11 @@ var angular = require('angular'),
 var ngModule = angular.module('app.admin', []);
 
 // Routes
-ngModule.config(function ($stateProvider, authProvider) {
+ngModule.config(function ($stateProvider) {
   $stateProvider
     .state('app.admin', {
       abstract: true,
       url: '/admin',
-      resolve: {
-        user: authProvider.requireUser
-      },
       views: {
         '@': {
           controller: '_LayoutCtrl',

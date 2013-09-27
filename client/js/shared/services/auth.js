@@ -15,9 +15,9 @@ function _clearUser() {
   });
 }
 
-function _setUser(user) {
+function _setUser(userJSON) {
   _clearUser();
-  _.assign(_user, user);
+  _.assign(_user, userJSON);
 }
 
 function getUser() {
@@ -46,6 +46,12 @@ function isRole(role) {
   return false;
 }
 
+function loadUserFromGlobal() {
+  if (global.config.user) {
+    _setUser(global.config.user);
+  }
+}
+
 function login(formData) {
   return _injected.$http.post('/api/login', formData).then(function (res) {
     _setUser(res.data.result);
@@ -70,6 +76,8 @@ function requireUser() {
 // Public API
 exports = module.exports = function (ngModule) {
   ngModule.provider('auth', {
+    loadUserFromGlobal: loadUserFromGlobal,
+
     requireUser: ['auth', function (auth) {
       return auth.requireUser();
     }],

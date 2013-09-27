@@ -75,6 +75,7 @@ app.attachMiddlewares = function () {
     res.locals.livereload = app.project.server.livereload;
     res.locals.csrf = req.csrfToken();
     res.locals.user = req.user;
+    res.locals.userJSON = req.user ? JSON.stringify(req.user.getSafeJSON()) : 'null';
     res.locals.role = {
       admin: false
     };

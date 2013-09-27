@@ -25,7 +25,7 @@ var ngModule = angular.module('app', [
   'app.main'
 ]);
 
-// Enable HTML5 Mode
+// Enable HTML5 Mode.
 ngModule.config(function ($locationProvider) {
   $locationProvider.html5Mode(true);
 });
@@ -54,18 +54,26 @@ ngModule.config(function ($stateProvider, $urlRouterProvider, layoutProvider) {
     });
 });
 
+// Load user from global variable sent from server.
+ngModule.config(function (authProvider) {
+  authProvider.loadUserFromGlobal();
+});
+
 // Attach variables to $rootScope.
 ngModule.run(function ($rootScope, $state, $stateParams, auth) {
   _.assign($rootScope, {
     _: _,
     $state: $state,
     $stateParams: $stateParams,
-    documentTitle: 'ultimate-seed'
+    documentTitle: 'ultimate-seed',
+    user: auth.getUser()
   });
 
-  auth.requireUser().then(function(user) {
-    $rootScope.user = user;
-  });
+  if (!global.config.user) {
+    auth.requireUser().then(function (user) {
+      $rootScope.user = user;
+    });
+  }
 });
 
 // Update `fromServer` global config variable.
