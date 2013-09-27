@@ -62,11 +62,9 @@ function _parseAuthorizeRules(auth, authorizeRules, state) {
 }
 
 function authorize($rootScope, $state, auth, config) {
-  // Update rules.
   _.assign(_authorizeRules, config);
-
-  // Activate.
   if (!_authorizeActivated) {
+    _authorizeActivated = true;
     $rootScope.$on('$stateChangeStart', function (event, toState) {
       _getAncestorStates(toState.name, true).reverse().forEach(function (state) {
         if (!event.defaultPrevented) {
@@ -78,16 +76,13 @@ function authorize($rootScope, $state, auth, config) {
         }
       });
     });
-    _authorizeActivated = true;
   }
 }
 
 function redirect($rootScope, $state, config) {
-  // Update rules.
   _.assign(_redirectRules, config);
-
-  // Activate.
   if (!_redirectActivated) {
+    _redirectActivated = true;
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
       _.each(_redirectRules, function (destState, url) {
         if (toState.url.charAt(0) === '*' && toParams[toState.url.slice(1)] === url) {
@@ -96,7 +91,6 @@ function redirect($rootScope, $state, config) {
         }
       });
     });
-    _redirectActivated = true;
   }
 }
 
