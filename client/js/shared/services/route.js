@@ -26,9 +26,11 @@ function _checkRoles(auth, rules) {
   return result;
 }
 
-// Given a state, e.g. "app.account.summary", returns an array of ancestor states
-// ["app", "app.account", "app.account.summary"] (last element removed if
-// `includeCurrentState` is false)
+/**
+ * Given a state, e.g. "app.account.summary", returns an array of ancestor states
+ * ["app", "app.account", "app.account.summary"] (last element removed if
+ * `includeCurrentState` is false)
+ */
 function _getAncestorStates(state, includeCurrentState) {
   var states = [state],
       temp;
@@ -43,23 +45,51 @@ function _getAncestorStates(state, includeCurrentState) {
   return states;
 }
 
+function _isRoleAllowedToAccess(auth, rules) {
+  if (!rules) { return true; }
+  var result = !rules.allow.length;
+  rules.allow.forEach(function (role) {
+    if (auth.isRole(role)) {
+      result = true;
+    }
+  });
+  rules.deny.forEach(function (role) {
+    if (auth.isRole(role)) {
+      result = false;
+    }
+  });
+  return result;
+}
+
+function _parseAuthorizeRules(auth, authorizeRules, state) {
+  if (!_.has(_authorizeRules, state)) { return null; }
+  var rules = authorizeRules[state];
+  rules.allow = _.compact(_.flatten([rules.allow]));
+  rules.deny = _.compact(_.flatten([rules.deny]));
+  if (!rules.redirect) {
+    if (_.intersection(rules.allow, ['admin', 'user']).length &&
+        !auth.isAuthenticated()) {
+      rules.redirect = 'app.login';
+    }
+    rules.redirect = rules.redirect || 'app.home';
+  }
+  return rules;
+}
+
 function authorize($rootScope, $state, auth, config) {
   // Update rules.
-  var authorizeRules = {};
-  _.sortBy(_.keys(config)).forEach(function (state) {
-    authorizeRules[state] = config[state];
-  });
-  _.assign(_authorizeRules, authorizeRules);
+  _.assign(_authorizeRules, config);
 
   // Activate.
   if (!_authorizeRolesActivated) {
     $rootScope.$on('$stateChangeStart', function (event, toState) {
       _getAncestorStates(toState.name, true).reverse().forEach(function (state) {
-        if (!event.defaultPrevented &&
-            _.has(_authorizeRules, state) &&
-            !_checkRoles(auth, _authorizeRules[state])) {
-          event.preventDefault();
-          $state.go(_authorizeRules[state].redirect || 'app.home');
+        if (!event.defaultPrevented) {
+          var rules = _parseAuthorizeRules(auth, _authorizeRules, state);
+          if (!_isRoleAllowedToAccess(auth, rules)) {
+            event.preventDefault();
+            $state.go(rules.redirect);
+          }
         }
       });
     });
