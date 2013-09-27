@@ -14,6 +14,7 @@ function setViews(views) {
   _views = views;
 }
 
+// Public API
 exports = module.exports = function (ngModule) {
   ngModule.provider('layout', {
     getViews: getViews,

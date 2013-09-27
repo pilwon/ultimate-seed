@@ -39,6 +39,7 @@ function addMessage(type, message) {
   });
 }
 
+// Public API
 exports = module.exports = function (ngModule) {
   ngModule.factory('alert', function () {
     return {

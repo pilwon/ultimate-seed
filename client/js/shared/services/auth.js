@@ -67,6 +67,7 @@ function requireUser() {
   return _injected.$q.when(_user);
 }
 
+// Public API
 exports = module.exports = function (ngModule) {
   ngModule.provider('auth', {
     requireUser: ['auth', function (auth) {
