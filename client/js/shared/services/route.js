@@ -33,16 +33,8 @@ function _getAncestorStates(state, includeCurrentState) {
 function _isRoleAllowedToAccess(auth, rules) {
   if (!rules) { return true; }
   var result = !rules.allow.length;
-  rules.allow.forEach(function (role) {
-    if (auth.isRole(role)) {
-      result = true;
-    }
-  });
-  rules.deny.forEach(function (role) {
-    if (auth.isRole(role)) {
-      result = false;
-    }
-  });
+  result = _.any(rules.allow, auth.isRole) ? true : result;
+  result = _.any(rules.deny, auth.isRole) ? false : result;
   return result;
 }
 
