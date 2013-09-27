@@ -6,25 +6,10 @@
 
 var _ = require('lodash');
 
-var _authorizeRules = {},
-    _authorizeRolesActivated = false,
-    _redirectRules = {},
-    _redirectRulesActivated = false;
-
-function _checkRoles(auth, rules) {
-  var result = !_.has(rules, 'allow');
-  _.compact(_.flatten([rules.allow])).forEach(function (role) {
-    if (auth.isRole(role)) {
-      result = true;
-    }
-  });
-  _.compact(_.flatten([rules.deny])).forEach(function (role) {
-    if (auth.isRole(role)) {
-      result = false;
-    }
-  });
-  return result;
-}
+var _authorizeActivated = false,
+    _authorizeRules = {},
+    _redirectActivated = false,
+    _redirectRules = {};
 
 /**
  * Given a state, e.g. "app.account.summary", returns an array of ancestor states
@@ -81,7 +66,7 @@ function authorize($rootScope, $state, auth, config) {
   _.assign(_authorizeRules, config);
 
   // Activate.
-  if (!_authorizeRolesActivated) {
+  if (!_authorizeActivated) {
     $rootScope.$on('$stateChangeStart', function (event, toState) {
       _getAncestorStates(toState.name, true).reverse().forEach(function (state) {
         if (!event.defaultPrevented) {
@@ -93,7 +78,7 @@ function authorize($rootScope, $state, auth, config) {
         }
       });
     });
-    _authorizeRolesActivated = true;
+    _authorizeActivated = true;
   }
 }
 
@@ -102,7 +87,7 @@ function redirect($rootScope, $state, config) {
   _.assign(_redirectRules, config);
 
   // Activate.
-  if (!_redirectRulesActivated) {
+  if (!_redirectActivated) {
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
       _.each(_redirectRules, function (destState, url) {
         if (toState.url.charAt(0) === '*' && toParams[toState.url.slice(1)] === url) {
@@ -111,7 +96,7 @@ function redirect($rootScope, $state, config) {
         }
       });
     });
-    _redirectRulesActivated = true;
+    _redirectActivated = true;
   }
 }
 
