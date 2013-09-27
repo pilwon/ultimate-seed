@@ -19,6 +19,13 @@ ngModule.config(function ($stateProvider) {
           template: rhtml('./templates/home.html'),
           controller: 'HomeCtrl'
         }
+      },
+      resolve: {
+        features: function ($http) {
+          return $http.get('/api/features').then(function (res) {
+            return res.data.result;
+          });
+        }
       }
     });
 });
