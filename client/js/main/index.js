@@ -21,11 +21,11 @@ ngModule.config(function ($stateProvider) {
         }
       },
       resolve: {
-        features: function ($http) {
+        features: ['$http', function ($http) {
           return $http.get('/api/features').then(function (res) {
             return res.data.result;
           });
-        }
+        }]
       }
     });
 });
