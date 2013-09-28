@@ -33,9 +33,12 @@ ngModule.config(function ($stateProvider) {
 });
 
 // Redirections
-ngModule.run(function ($rootScope, $state, route) {
-  route.redirect($rootScope, $state, {
-    '/_=_': 'app.account.summary'
+ngModule.run(function ($location, $rootScope, $state, route) {
+  route.redirect($location, $rootScope, $state, {
+    '/_=_': {
+      state: 'app.account.summary',
+      reload: true
+    }
   });
 });
 

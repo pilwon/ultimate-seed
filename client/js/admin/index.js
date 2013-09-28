@@ -52,8 +52,8 @@ ngModule.config(function ($stateProvider) {
 });
 
 // Redirections
-ngModule.run(function ($rootScope, $state, route) {
-  route.redirect($rootScope, $state, {
+ngModule.run(function ($location, $rootScope, $state, route) {
+  route.redirect($location, $rootScope, $state, {
     '/admin': 'app.admin.dashboard'
   });
 });

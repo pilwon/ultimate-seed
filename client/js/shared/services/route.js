@@ -11,6 +11,14 @@ var _authorizeActivated = false,
     _redirectActivated = false,
     _redirectRules = {};
 
+function _buildStateUrl(state, $state) {
+  var url = '';
+  _getAncestorStates(state, true).forEach(function (state) {
+    url += $state.get(state).url || '';
+  });
+  return url;
+}
+
 /**
  * Given a state, e.g. "app.account.summary", returns an array of ancestor states
  * ["app", "app.account", "app.account.summary"] (last element removed if
@@ -71,15 +79,30 @@ function authorize($rootScope, $state, auth, config) {
   }
 }
 
-function redirect($rootScope, $state, config) {
+function redirect($location, $rootScope, $state, config) {
   _.assign(_redirectRules, config);
   if (!_redirectActivated) {
     _redirectActivated = true;
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-      _.each(_redirectRules, function (destState, url) {
+      _.each(_redirectRules, function (rule, url) {
         if (toState.url.charAt(0) === '*' && toParams[toState.url.slice(1)] === url) {
-          event.preventDefault();
-          $state.go(destState);
+          if (_.isPlainObject(rule)) {
+            if (rule.state || rule.url) {
+              event.preventDefault();
+            }
+            if (rule.state && rule.reload) {
+              global.location.replace(_buildStateUrl(rule.state, $state));
+            } else if (rule.state) {
+              $state.go(rule.state);
+            } else if (rule.url && rule.reload) {
+              global.location.replace(rule.url);
+            } else if (rule.url) {
+              $location.path(rule.url);
+            }
+          } else if (_.isString(rule)) {
+            event.preventDefault();
+            $state.go(rule);
+          }
         }
       });
     });
