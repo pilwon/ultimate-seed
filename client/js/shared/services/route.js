@@ -4,8 +4,6 @@
 
 'use strict';
 
-var url = require('url');
-
 var _ = require('lodash');
 
 var _authorizeActivated = false,
@@ -78,14 +76,6 @@ function redirect($rootScope, $state, config) {
   if (!_redirectActivated) {
     _redirectActivated = true;
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-      if (!global.config.fromServer) {
-        global.location.replace(url.parse(global.location.href).path);
-      } else if (global.config.notFoundOnServer) {
-        global.location.replace('/404.html');
-      } else {
-        global.config.fromServer = false;
-      }
-
       _.each(_redirectRules, function (destState, url) {
         if (toState.url.charAt(0) === '*' && toParams[toState.url.slice(1)] === url) {
           event.preventDefault();

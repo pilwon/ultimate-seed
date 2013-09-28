@@ -4,6 +4,8 @@
 
 'use strict';
 
+var url = require('url');
+
 var _ = require('lodash'),
     angular = require('angular'),
     socketio = require('socketio');
@@ -38,7 +40,16 @@ ngModule.config(function ($stateProvider, $urlRouterProvider, layoutProvider) {
   $stateProvider
     .state('express', {
       url: '*path',
-      views: layoutProvider.getViews()
+      views: layoutProvider.getViews(),
+      onEnter: function () {
+        if (!global.config.fromServer) {
+          global.location.replace(url.parse(global.location.href).path);
+        } else if (global.config.notFoundOnServer) {
+          global.location.replace('/404.html');
+        } else {
+          global.config.fromServer = false;
+        }
+      }
     });
 });
 
@@ -66,7 +77,7 @@ ngModule.run(function ($rootScope, $state, $stateParams, auth) {
 
 // Update `fromServer` global config variable.
 ngModule.run(function ($rootScope) {
-  $rootScope.$on('$routeChangeStart', function () {
+  $rootScope.$on('$stateChangeSuccess', function () {
     global.config.fromServer = false;
   });
 });
