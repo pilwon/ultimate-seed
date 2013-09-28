@@ -26,7 +26,7 @@ function facebookCallback(req, res, next) {
 }
 
 function facebookSuccess(req, res) {
-  res.redirect('/');
+  res.redirect('/account');
 }
 
 function google(req, res, next) {
@@ -47,7 +47,7 @@ function googleCallback(req, res, next) {
 }
 
 function googleSuccess(req, res) {
-  res.redirect('/');
+  res.redirect('/account');
 }
 
 function twitter(req, res, next) {
@@ -67,7 +67,7 @@ function twitterCallback(req, res, next) {
 }
 
 function twitterSuccess(req, res) {
-  res.redirect('/');
+  res.redirect('/account');
 }
 
 // Public API
