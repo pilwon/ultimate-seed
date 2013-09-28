@@ -82,6 +82,13 @@ ngModule.run(function ($rootScope) {
   });
 });
 
+// Loading spinner.
+ngModule.run(function ($rootScope, layout) {
+  $rootScope.$on('$stateChangeStart', layout.startSpinner);
+  $rootScope.$on('$stateChangeSuccess', layout.stopSpinner);
+  $rootScope.$on('$stateChangeError', layout.stopSpinner);
+});
+
 // Connect to socket.io server.
 ngModule.run(function () {
   var retryInterval = 5000,
