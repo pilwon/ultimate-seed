@@ -55,14 +55,15 @@ module.exports = function (grunt) {
       dev: {
         files: {
           src: [
-            '<%= project.path.temp %>/index.html'
+            '<%= project.path.temp %>/{,*/}*.html'
           ]
         }
       },
       dist: {
         files: {
           src: [
-            '<%= project.path.dist %>/index.html'
+            '<%= project.path.dist %>/{,*/}*.html',
+            '<%= project.path.server %>/views/_layouts/**/*.hbs'
           ]
         }
       }
@@ -360,15 +361,20 @@ module.exports = function (grunt) {
             file: /src=['"]([^"']+)["']/m
           }
         }, function (regex) {
+          if (/\.hbs$/.test(filepath)) { return; }
           var matches = data.match(regex.src) || [];
-          console.log(matches);
+          if (matches.length) {
+            console.log(matches);
+          }
           matches.forEach(function (snippet) {
             snippet = snippet.substring(0, snippet.length - 1);
             data = data.replace(snippet, snippet.split('?')[0] + '?' + hash);
           });
         });
-        grunt.file.write(filepath, data);
-        grunt.log.writeln(filepath + ' was busted!');
+        if (!/\.hbs$/.test(filepath)) {
+          grunt.file.write(filepath, data);
+          grunt.log.writeln('"' + filepath + '" busted.');
+        }
         // Save hash to file so express server can use the value.
         var cachebustData = {};
         try {
@@ -376,6 +382,7 @@ module.exports = function (grunt) {
         } catch (e) {}
         cachebustData[filepath] = hash;
         grunt.file.write('.cachebust', JSON.stringify(cachebustData, null, 2));
+        grunt.log.writeln('".cachebust" updated.');
       });
     });
   });
