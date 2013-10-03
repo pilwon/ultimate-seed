@@ -55,14 +55,14 @@ module.exports = function (grunt) {
       dev: {
         files: {
           src: [
-            '<%= project.path.temp %>/{,*/}*.html'
+            '<%= project.path.temp %>/**/*.html'
           ]
         }
       },
       dist: {
         files: {
           src: [
-            '<%= project.path.dist %>/{,*/}*.html',
+            '<%= project.path.dist %>/**/*.html',
             '<%= project.path.server %>/views/_layouts/**/*.hbs'
           ]
         }
@@ -95,7 +95,7 @@ module.exports = function (grunt) {
             cwd: '<%= project.path.client %>',
             dest: '<%= project.path.temp %>',
             src: [
-              'index.html'
+              '**/*.html'
             ]
           }
         ]
@@ -154,7 +154,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= project.path.client %>',
           src: [
-            '*.html'
+            '**/*.html'
           ],
           dest: '<%= project.path.dist %>'
         }]
@@ -265,14 +265,14 @@ module.exports = function (grunt) {
       options: {
         dirs: ['<%= project.path.dist %>']
       },
-      html: ['<%= project.path.dist %>/{,*/}*.html'],
+      html: ['<%= project.path.dist %>/**/*.html'],
       css: ['<%= project.path.dist %>/css/{,*/}*.css']
     },
     useminPrepare: {  // grunt-usemin
       options: {
         dest: '<%= project.path.dist %>'
       },
-      html: '<%= project.path.client %>/index.html'
+      html: '<%= project.path.client %>/**/*.html'
     },
     watch: {  // grunt-contrib-watch
       livereload: {
@@ -282,14 +282,14 @@ module.exports = function (grunt) {
         files: [
           '<%= project.path.client %>/fonts/{,*/}*',
           '<%= project.path.client %>/img/**/*',
-          '<%= project.path.temp %>/index.html',
+          '<%= project.path.temp %>/**/*.html',
           '<%= project.path.temp %>/css/{,*/}*.css',
           '<%= project.path.temp %>/js/{,*/}*.js'
         ]
       },
       html: {
         files: [
-          '<%= project.path.client %>/index.html'
+          '<%= project.path.client %>/**/*.html'
         ],
         tasks: [
           'copy:dev',
