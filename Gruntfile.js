@@ -133,7 +133,7 @@ module.exports = function (grunt) {
       dist: {
         files: {
           '<%= project.path.dist %>/css/main.css': [
-            '<%= project.path.dist %>/css/**/*.css'
+            '<%= project.path.dist %>/css/{,*/}*.css'
           ]
         }
       }
@@ -265,8 +265,8 @@ module.exports = function (grunt) {
       options: {
         dirs: ['<%= project.path.dist %>']
       },
-      html: ['<%= project.path.dist %>/**/*.html'],
-      css: ['<%= project.path.dist %>/css/**/*.css']
+      html: ['<%= project.path.dist %>/{,*/}*.html'],
+      css: ['<%= project.path.dist %>/css/{,*/}*.css']
     },
     useminPrepare: {  // grunt-usemin
       options: {
