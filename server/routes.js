@@ -10,6 +10,7 @@
 exports.register = function (app, restify) {
   var c = app.controllers,
       s = app.servers.express.getServer(),
+      catchAll = app.lib.controller.catchAll,
       error404 = app.lib.controller.error404;
 
   // var ensureAdmin = ultimate.server.controller.ensureAdmin,
@@ -30,7 +31,7 @@ exports.register = function (app, restify) {
   s.get(/^\/api(?:[\/#?].*)?$/, error404);
 
   // Home
-  s.get('/', app.lib.controller.index);
+  s.get('/', c.home.index);
   s.get('/express', c.home.express);
   s.get('/health', c.home.health);
 
@@ -46,5 +47,5 @@ exports.register = function (app, restify) {
   s.get('/auth/twitter/success', c.auth.twitterSuccess);
 
   // Catch all
-  s.get('*', c.home.index);
+  s.get('*', catchAll);
 };

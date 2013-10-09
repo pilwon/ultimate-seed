@@ -5,9 +5,7 @@
 'use strict';
 
 function index(req, res) {
-  res.render('home/index', {
-    notFoundOnServer: true
-  });
+  res.render('home/index');
 }
 
 function express(req, res) {

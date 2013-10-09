@@ -4,8 +4,6 @@
 
 'use strict';
 
-var url = require('url');
-
 var _ = require('lodash'),
     angular = require('angular'),
     socketio = require('socketio');
@@ -42,12 +40,8 @@ ngModule.config(function ($stateProvider, $urlRouterProvider, layoutProvider) {
       url: '*path',
       views: layoutProvider.getViews(),
       onEnter: function () {
-        if (!global.config.fromServer) {
-          global.location.replace(url.parse(global.location.href).path);
-        } else if (global.config.notFoundOnServer) {
+        if (!!global.config.catchAll) {
           global.location.replace('/404.html');
-        } else {
-          global.config.fromServer = false;
         }
       }
     });
@@ -73,13 +67,6 @@ ngModule.run(function ($rootScope, $state, $stateParams, auth) {
       $rootScope.user = user;
     });
   }
-});
-
-// Update `fromServer` global config variable.
-ngModule.run(function ($rootScope) {
-  $rootScope.$on('$stateChangeSuccess', function () {
-    global.config.fromServer = false;
-  });
 });
 
 // Loading spinner.

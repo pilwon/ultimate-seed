@@ -12,8 +12,10 @@ var _clientDir = path.join(app.dir, '..', app.project.path[
   process.env.NODE_ENV === 'development' ? 'client' : 'dist'
 ]);
 
-function index(req, res) {
-  res.sendfile(path.join(_clientDir, 'index.html'));
+function catchAll(req, res) {
+  res.render('empty', {
+    catchAll: true
+  });
 }
 
 function error404(req, res) {
@@ -21,5 +23,5 @@ function error404(req, res) {
 }
 
 // Public API
-exports.index = index;
+exports.catchAll = catchAll;
 exports.error404 = error404;

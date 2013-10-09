@@ -47,7 +47,7 @@ function isRole(role) {
 }
 
 function loadUserFromGlobal() {
-  if (global.config.user) {
+  if (!!global.config.user) {
     _setUser(global.config.user);
   }
 }

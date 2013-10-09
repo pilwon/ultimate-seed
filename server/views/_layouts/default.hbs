@@ -43,9 +43,8 @@
 
   <script>
     window.config = {
-      fromServer: true,
-      notFoundOnServer: {{#if notFoundOnServer}}true{{else}}false{{/if}},
-      user: {{{userJSON}}}
+      catchAll: {{#if catchAll}}true{{else}}false{{/if}},
+      user: {{#if userJSON}}{{{userJSON}}}{{else}}null{{/if}}
     };
   </script>
 
