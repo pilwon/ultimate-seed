@@ -119,8 +119,7 @@ module.exports = function (grunt) {
             dest: '<%= project.path.dist %>',
             src: [
               '../<%= project.path.bower %>/**/*',
-              'fonts/**/*',
-              '*.{ico,txt}'
+              'fonts/**/*'
             ]
           },
           {
@@ -173,8 +172,8 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= project.path.client %>/img',
-          src: '**/*.{png,jpg,gif}',
-          dest: '<%= project.path.dist %>/img'
+          dest: '<%= project.path.dist %>/img',
+          src: '**/*.{gif,jpg,png}'
         }]
       }
     },
@@ -289,7 +288,8 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= project.path.client %>/fonts/{,*/}*',
-          '<%= project.path.client %>/img/**/*',
+          '<%= project.path.client %>/img/**/*.{gif,jpg,png}',
+          '<%= project.path.static %>/**/*',
           '<%= project.path.temp %>/*.html',
           '<%= project.path.temp %>/css/{,*/}*.css',
           '<%= project.path.temp %>/js/{,*/}*.js'

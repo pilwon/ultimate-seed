@@ -12,8 +12,8 @@
 
 #### [Demo hosted on Heroku](http://ultimate-seed.herokuapp.com/)
 
-[![Screenshot](https://raw.github.com/pilwon/ultimate-seed/master/client/img/screenshot1.png)](http://ultimate-seed.herokuapp.com/)
-[![Screenshot](https://raw.github.com/pilwon/ultimate-seed/master/client/img/screenshot2.png)](http://ultimate-seed.herokuapp.com/login)
+[![Screenshot](https://raw.github.com/pilwon/ultimate-seed/master/static/img/screenshot1.png)](http://ultimate-seed.herokuapp.com/)
+[![Screenshot](https://raw.github.com/pilwon/ultimate-seed/master/static/img/screenshot2.png)](http://ultimate-seed.herokuapp.com/login)
 
 `ultimate-seed` is the ultimate full-stack AngularJS + Node.js/Express seed (batteries included!) that makes web developers insanely productive.
 
@@ -263,6 +263,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 │   ├── routes.js
 │   ├── socketio.js
 │   └── winston.js
+├── static/
 ├── .bowerrc
 ├── .editorconfig
 ├── .jshintrc

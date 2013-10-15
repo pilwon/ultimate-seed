@@ -6,6 +6,7 @@
     "dist": "client-built",
     "log": "log",
     "server": "server",
+    "static": "static",
     "test": "test",
     "temp": ".tmp"
   },
