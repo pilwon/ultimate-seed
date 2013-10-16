@@ -289,6 +289,7 @@ module.exports = function (grunt) {
         files: [
           '<%= project.path.client %>/fonts/{,*/}*',
           '<%= project.path.client %>/img/**/*.{gif,jpg,png}',
+          '<%= project.path.server %>/views/**/*.hbs',
           '<%= project.path.static %>/**/*',
           '<%= project.path.temp %>/*.html',
           '<%= project.path.temp %>/css/{,*/}*.css',
