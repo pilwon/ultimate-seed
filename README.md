@@ -216,7 +216,6 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 │   ├── fonts/
 │   │   ├── font-awesome/
 │   │   └── glyphicons/
-│   ├── img/
 │   ├── js/
 │   │   ├── {{module}}/
 │   │   │   ├── controllers/
@@ -230,15 +229,11 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 │   │   │   └── custom_components/
 │   │   ├── app.js
 │   │   └── index.js
-│   ├── less/
-│   │   ├── bootstrap/
-│   │   ├── font-awesome/
-│   │   ├── lesshat/
-│   │   └── social-buttons/
-│   ├── 404.html
-│   ├── favicon.ico
-│   ├── index.html
-│   └── robots.txt
+│   └── less/
+│       ├── bootstrap/
+│       ├── font-awesome/
+│       ├── lesshat/
+│       └── social-buttons/
 ├── config/
 │   ├── development.json
 │   ├── heroku.json
@@ -254,7 +249,9 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 │   ├── views/
 │   │   ├── _helpers/
 │   │   ├── _layouts/
+│   │   │   └── default.hbs
 │   │   ├── _partials/
+│   │   │   └── livereload.hbs
 │   │   ├── account/
 │   │   ├── admin/
 │   │   └── auth/
@@ -264,6 +261,10 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 │   ├── socketio.js
 │   └── winston.js
 ├── static/
+│   ├── img/
+│   ├── 404.html
+│   ├── favicon.ico
+│   └── robots.txt
 ├── .bowerrc
 ├── .editorconfig
 ├── .jshintrc
