@@ -14,15 +14,6 @@ function express(req, res) {
   });
 }
 
-function health(req, res) {
-  res.json({
-    pid: process.pid,
-    memory: process.memoryUsage(),
-    uptime: process.uptime()
-  });
-}
-
 // Public API
 exports.index = index;
 exports.express = express;
-exports.health = health;

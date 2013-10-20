@@ -33,7 +33,6 @@ exports.register = function (app, restify) {
   // Home
   s.get('/', c.home.index);
   s.get('/express', c.home.express);
-  s.get('/health', c.home.health);
 
   // Auth
   s.get('/auth/facebook', c.auth.facebook);
@@ -45,6 +44,10 @@ exports.register = function (app, restify) {
   s.get('/auth/twitter', c.auth.twitter);
   s.get('/auth/twitter/callback', c.auth.twitterCallback);
   s.get('/auth/twitter/success', c.auth.twitterSuccess);
+
+  // Status
+  s.get('/status', c.status.index);
+  s.get('/status/health', c.status.health);
 
   // Catch all
   s.get('*', catchAll);
