@@ -252,9 +252,9 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 │   │   │   └── default.hbs
 │   │   ├── _partials/
 │   │   │   └── livereload.hbs
-│   │   ├── account/
-│   │   ├── admin/
-│   │   └── auth/
+│   │   ├── home/
+│   │   ├── status/
+│   │   └── empty.hbs
 │   ├── app.js
 │   ├── index.js
 │   ├── routes.js
