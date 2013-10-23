@@ -133,18 +133,6 @@ module.exports = function (grunt) {
         ]
       }
     },
-    cssmin: {  // grunt-contrib-cssmin
-      options: {
-        keepSpecialComments: 0
-      },
-      dist: {
-        files: {
-          '<%= project.path.dist %>/css/main.css': [
-            '<%= project.path.dist %>/css/{,*/}*.css'
-          ]
-        }
-      }
-    },
     express: {  // grunt-express
       server: {
         options: {
@@ -339,7 +327,6 @@ module.exports = function (grunt) {
     'useminPrepare',
     'htmlmin:dist',
     'imagemin:dist',
-    'cssmin:dist',
     'copy:dist',
     'symlinkDist',
     'cachebust:dist',
