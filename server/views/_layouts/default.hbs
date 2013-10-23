@@ -23,14 +23,14 @@
 <body>
   <div id="spinner"></div>
   <div class="wrap">
-    <div id="nav" ui-view="nav"></div>
+    <nav id="nav" ui-view="nav"></nav>
     <div class="content">
       <div id="alert" ui-view="alert"></div>
       <div id="header" ui-view="header"></div>
       <div id="main" ui-view>{{{body}}}</div>
     </div>
   </div>
-  <div id="footer" ui-view="footer"></div>
+  <footer id="footer" ui-view="footer"></footer>
 
   <!--[if lt IE 7]>
     <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
