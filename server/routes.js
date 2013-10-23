@@ -10,7 +10,6 @@
 exports.register = function (app, restify) {
   var c = app.controllers,
       s = app.servers.express.getServer(),
-      catchAll = app.lib.controller.catchAll,
       error404 = app.lib.controller.error404;
 
   // var ensureAdmin = ultimate.server.controller.ensureAdmin,
@@ -51,5 +50,5 @@ exports.register = function (app, restify) {
   s.get('/status/health', c.status.health);
 
   // Catch all
-  s.get('*', catchAll);
+  s.get('*', app.lib.controller.catchAll);
 };
