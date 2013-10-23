@@ -306,13 +306,14 @@ module.exports = function (grunt) {
         ]
       },
       less: {
-        files: ['<%= project.path.client %>/less/{,*/}*.less'],
+        files: ['<%= project.path.client %>/less/**/*.less'],
         tasks: ['less:dev']
       },
       js: {
         files: [
           '<%= jshint.client %>',
-          '<%= project.path.client %>/js/*.html'
+          '<%= project.path.client %>/js/**/*.html',
+          '!<%= project.path.client %>/js/bower_components/**/*.html'
         ],
         tasks: ['browserify2:dev']
       }
