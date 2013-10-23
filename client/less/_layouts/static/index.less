@@ -1,0 +1,77 @@
+/*
+ * client/less/_layouts/static/index.less
+ */
+
+@import 'bootstrap/bootstrap';
+@import 'font-awesome/font-awesome';
+@import 'lesshat/lesshat';
+
+// Bootstrap
+@component-active-bg: @theme;
+@navbar-inverse-bg: @theme;
+@navbar-inverse-link-color: @gray-lighter;
+@navbar-inverse-link-active-bg: lighten(@theme, 6.5%);
+
+// App
+@theme: #242729;
+@footer-height: @navbar-height;
+@main-vertical-padding: 20px;
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  overflow: auto;
+}
+
+body > .wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -@footer-height;
+  padding: 0 0 @footer-height;
+}
+
+a {
+  color: #000;
+}
+
+#nav {
+  .navbar-brand {
+    letter-spacing: 1px;
+  }
+
+  .navbar-nav {
+    margin: 0;
+    padding: 0;
+
+    &.navbar-right {
+      margin-right: -15px;
+    }
+  }
+}
+
+#main {
+  padding-top: @navbar-height;
+}
+
+#footer {
+  height: @footer-height;
+  background-color: #e0e0e0;
+
+  .container .credit {
+    margin: 15px 0;
+    color: #888;
+    text-align: center;
+  }
+
+  @media (max-width: @screen-sm) {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

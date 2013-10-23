@@ -234,7 +234,8 @@ module.exports = function (grunt) {
           paths: ['<%= project.path.client %>/less']
         },
         files: {
-          '<%= project.path.temp %>/css/main.css': '<%= project.path.client %>/less/index.less'
+          '<%= project.path.temp %>/css/main.css': '<%= project.path.client %>/less/index.less',
+          '<%= project.path.temp %>/css/static.css': '<%= project.path.client %>/less/_layouts/static/index.less'
         }
       },
       dist: {
@@ -244,7 +245,8 @@ module.exports = function (grunt) {
           yuicompress: true
         },
         files: {
-          '<%= project.path.dist %>/css/main.css': '<%= project.path.client %>/less/index.less'
+          '<%= project.path.dist %>/css/main.css': '<%= project.path.client %>/less/index.less',
+          '<%= project.path.dist %>/css/static.css': '<%= project.path.client %>/less/_layouts/static/index.less'
         }
       }
     },

@@ -33,6 +33,7 @@ exports.register = function (app, restify) {
   // Home
   s.get('/', c.home.index);
   s.get('/express', c.home.express);
+  s.get('/page', c.home.page);
 
   // Auth
   s.get('/auth/facebook', c.auth.facebook);

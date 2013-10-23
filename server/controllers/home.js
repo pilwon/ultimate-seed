@@ -14,6 +14,15 @@ function express(req, res) {
   });
 }
 
+function page(req, res) {
+  res.render('home/page', {
+    layout: 'static',
+    documentTitle: 'Static Page',
+    navTitle: 'Static Layout'
+  });
+}
+
 // Public API
 exports.index = index;
 exports.express = express;
+exports.page = page;
