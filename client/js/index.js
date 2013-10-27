@@ -7,6 +7,7 @@
 // Load dependencies.
 require('angular.translate');
 require('angular.ui');
+require('angular.animate');
 require('bootstrap');
 require('jquery.center');
 require('jquery.spin');
