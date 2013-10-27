@@ -61,12 +61,6 @@ ngModule.run(function ($rootScope, $state, $stateParams, auth) {
     documentTitle: 'ultimate-seed',
     user: auth.getUser()
   });
-
-  if (!global.config.user) {
-    auth.requireUser().then(function (user) {
-      $rootScope.user = user;
-    });
-  }
 });
 
 // Loading spinner.
