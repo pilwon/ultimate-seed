@@ -44,7 +44,7 @@
   <script>
     window.config = {
       catchAll: {{#if catchAll}}true{{else}}false{{/if}},
-      user: {{#if user}}{{{user}}}{{else}}null{{/if}}
+      user: {{#if user}}{{{user.safeJSON}}}{{else}}null{{/if}}
     };
   </script>
 

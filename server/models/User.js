@@ -78,6 +78,9 @@ schema.path('auth.google.id').index({ unique: true, sparse: true });
 schema.path('auth.twitter.id').index({ unique: true, sparse: true });
 
 // Virtuals
+schema.virtual('safeJSON').get(function () {
+  return JSON.stringify(this.getSafeJSON());
+});
 schema.virtual('name.full').get(function () {
   return this.name.first + ' ' + this.name.last;
 });

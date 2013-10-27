@@ -72,7 +72,7 @@ app.attachMiddlewares = function () {
   // Custom
   app.servers.express.getServer().use(function (req, res, next) {
     res.locals.livereload = app.project.server.livereload;
-    res.locals.user = req.user ? JSON.stringify(req.user.getSafeJSON()) : null;
+    res.locals.user = req.user;
     next();
   });
 };
