@@ -79,14 +79,6 @@ app.attachMiddlewares = function () {
     res.locals.role = {
       admin: false
     };
-
-    // Live reload
-    if (process.env.NODE_ENV === 'development') {
-      res.cookie('livereload', app.project.server.livereload);
-    } else {
-      res.clearCookie('livereload');
-    }
-
     next();
   });
 };
