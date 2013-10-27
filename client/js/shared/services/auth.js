@@ -64,21 +64,10 @@ function logout() {
   });
 }
 
-function requireUser() {
-  _injected.$http.get('/api/me').then(function (res) {
-    _setUser(res.data.result);
-  });
-  return _injected.$q.when(_user);
-}
-
 // Public API
 exports = module.exports = function (ngModule) {
   ngModule.provider('auth', {
     loadUserFromGlobal: loadUserFromGlobal,
-
-    requireUser: ['auth', function (auth) {
-      return auth.requireUser();
-    }],
 
     $get: function ($http, $state, $q) {
       _injected = {
@@ -93,8 +82,7 @@ exports = module.exports = function (ngModule) {
         isAuthenticated: isAuthenticated,
         isRole: isRole,
         login: login,
-        logout: logout,
-        requireUser: requireUser
+        logout: logout
       };
     }
   });
