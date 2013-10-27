@@ -71,12 +71,7 @@ app.attachMiddlewares = function () {
 
   // Custom
   app.servers.express.getServer().use(function (req, res, next) {
-    // Locals
     res.locals.livereload = app.project.server.livereload;
-    res.locals.csrf = req.csrfToken();
-    res.locals.role = {
-      admin: false
-    };
     res.locals.user = req.user ? JSON.stringify(req.user.getSafeJSON()) : null;
     next();
   });
