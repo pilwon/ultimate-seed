@@ -172,11 +172,12 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
     * New Heroku app: `heroku create APPID`
     * Existing Heroku app: `heroku git:remote -a APPID`
   6. Set the environment variable: `heroku config:set NODE_ENV=heroku ERROR_PAGE_URL=http://APPID.herokuapp.com/404.html`
-  7. (Optional) Install MongoDB and Redis add-ons to the Heroku app. `ultimate-seed` reads environment variables attached by these add-ons. (Note: Add-on environment variables will override MongoDB/Redis configuration values in `config/heroku.json`):
+  7. Enable websocket support: `heroku labs:enable websockets`
+  8. (Optional) Install MongoDB and Redis add-ons to the Heroku app. `ultimate-seed` reads environment variables attached by these add-ons. (Note: Add-on environment variables will override MongoDB/Redis configuration values in `config/heroku.json`):
     * Mongo: `heroku addons:add mongohq:sandbox` or `heroku addons:add mongolab:sandbox`
     * Redis: `heroku addons:add redistogo:nano` or `heroku addons:add rediscloud:20`
-  8. Deploy application to Heroku using `git push heroku +master`
-  9. Deployed at [http://APPID.herokuapp.com/](http://ultimate-seed.herokuapp.com/)
+  9. Deploy application to Heroku using `git push heroku +master`
+  10. Deployed at [http://APPID.herokuapp.com/](http://ultimate-seed.herokuapp.com/)
 
 
 
