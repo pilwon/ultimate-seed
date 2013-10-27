@@ -99,7 +99,7 @@ function logoutPOST(req, cb) {
 }
 
 function meLIST(req, cb) {
-  return cb(null, req.user.getSafeJSON());
+  return cb(null, req.user ? req.user.getSafeJSON() : null);
 }
 
 function registerPOST(req, cb) {
