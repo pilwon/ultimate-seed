@@ -9,6 +9,7 @@ var _ = require('lodash'),
     socketio = require('socketio');
 
 var ngModule = angular.module('app', [
+  'ngAnimate',
   'ngCookies',
   'ngSanitize',
   'pascalprecht.translate',
@@ -20,6 +21,7 @@ var ngModule = angular.module('app', [
   'app.account',
   'app.admin',
   'app.auth',
+  'app.status',
   'app.main'
 ]);
 
