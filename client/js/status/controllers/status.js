@@ -1,5 +1,5 @@
 /*
- * client/js/main/controllers/home.js
+ * client/js/status/controllers/status.js
  */
 
 'use strict';

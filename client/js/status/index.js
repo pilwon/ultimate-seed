@@ -1,5 +1,5 @@
 /*
- * client/js/main/index.js
+ * client/js/status/index.js
  */
 
 'use strict';
