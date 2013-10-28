@@ -9,9 +9,9 @@ var _ = require('lodash'),
     socketio = require('socketio');
 
 var ngModule = angular.module('app', [
+  'ngAnimate',
   'ngCookies',
   'ngSanitize',
-  'ngAnimate',
   'pascalprecht.translate',
   'restangular',
   'ui.bootstrap',
