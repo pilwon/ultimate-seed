@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="content">
+    <div class="page-header">
+      <h2>Status</h2>
+    </div>
+    <div>
+      <a href="#" ng-click="fetch()">fetch status</a>
+    </div>
+    <div class="status">
+      <table class="table table-striped">
+        <thead>
+          <th>pid</th>
+          <th>rss</th>
+          <th>heapTotal</th>
+          <th>heapUsed</th>
+          <th>uptime</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="stat in status" class="animate-fade">
+            <td>{{ stat.pid }}</td>
+            <td>{{ stat.memory.rss }}</td>
+            <td>{{ stat.memory.heapTotal }}</td>
+            <td>{{ stat.memory.heapUsed }}</td>
+            <td>{{ stat.uptime }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

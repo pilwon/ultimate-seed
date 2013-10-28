@@ -1,0 +1,21 @@
+/*
+ * client/less/animations.less
+ */
+
+@fade-duration: .5s;
+
+.animate-fade.ng-enter {
+  -webkit-animation: fadeIn ease @fade-duration;
+     -moz-animation: fadeIn ease @fade-duration;
+      -ms-animation: fadeIn ease @fade-duration;
+       -o-animation: fadeIn ease @fade-duration;
+          animation: fadeIn ease @fade-duration;
+}
+
+.animate-fade.ng-leave {
+  -webkit-animation: fadeOut ease @fade-duration;
+     -moz-animation: fadeOut ease @fade-duration;
+      -ms-animation: fadeOut ease @fade-duration;
+       -o-animation: fadeOut ease @fade-duration;
+          animation: fadeOut ease @fade-duration;
+}
