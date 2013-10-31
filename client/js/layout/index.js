@@ -7,7 +7,10 @@
 var angular = require('angular'),
     rhtml = require('rhtml');
 
-var ngModule = angular.module('app.layout', []);
+var module = 'app.layout';
+
+var ngModule = angular.module(module, []);
+
 
 var _views = {
   'alert': {
@@ -44,3 +47,8 @@ require('./controllers/_alert')(ngModule);
 require('./controllers/_footer')(ngModule);
 require('./controllers/_header')(ngModule);
 require('./controllers/_nav')(ngModule);
+
+// Dependency
+require('../dependency')({
+  module: module
+});

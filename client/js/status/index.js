@@ -7,7 +7,10 @@
 var angular = require('angular'),
     rhtml = require('rhtml');
 
-var ngModule = angular.module('app.status', []);
+var module = 'app.status';
+
+var ngModule = angular.module(module, []);
+
 
 // Routes
 ngModule.config(function ($stateProvider) {
@@ -25,3 +28,8 @@ ngModule.config(function ($stateProvider) {
 
 // Controllers
 require('./controllers/status')(ngModule);
+
+// Dependency
+require('../dependency')({
+  module: module
+});

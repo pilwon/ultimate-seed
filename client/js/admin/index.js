@@ -7,7 +7,10 @@
 var angular = require('angular'),
     rhtml = require('rhtml');
 
-var ngModule = angular.module('app.admin', []);
+var module = 'app.admin';
+
+var ngModule = angular.module(module, []);
+
 
 // Routes
 ngModule.config(function ($stateProvider) {
@@ -71,3 +74,8 @@ ngModule.run(function ($rootScope, $state, auth, route) {
 require('./controllers/_layout')(ngModule);
 require('./controllers/dashboard')(ngModule);
 require('./controllers/users')(ngModule);
+
+// Dependency
+require('../dependency')({
+  module: module
+});
