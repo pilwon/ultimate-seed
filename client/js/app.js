@@ -8,7 +8,8 @@ var _ = require('lodash'),
     angular = require('angular'),
     socketio = require('socketio');
 
-var ngModule = angular.module('app', [
+// default dependencies
+var dependencies = [
   'ngAnimate',
   'ngCookies',
   'ngSanitize',
@@ -16,14 +17,14 @@ var ngModule = angular.module('app', [
   'restangular',
   'ui.bootstrap',
   'ui.router',
-  'app.shared',
-  'app.layout',
-  'app.account',
-  'app.admin',
-  'app.auth',
-  'app.status',
-  'app.main'
-]);
+];
+
+// loading the ultimate-module dependency list and insert all modules in the dependencies list
+require('./dependency').list().map(function(dep) {
+  dependencies.push(dep.module);
+});
+
+var ngModule = angular.module('app', dependencies);
 
 // Enable HTML5 Mode.
 ngModule.config(function ($locationProvider) {

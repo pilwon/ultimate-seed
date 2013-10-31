@@ -6,7 +6,10 @@
 
 var angular = require('angular');
 
-var ngModule = angular.module('app.shared', []);
+var module = 'app.shared';
+
+var ngModule = angular.module(module, []);
+
 
 // i18n
 ngModule.config(function ($translateProvider) {
@@ -31,3 +34,8 @@ require('./services/auth')(ngModule);
 require('./services/layout')(ngModule);
 require('./services/route')(ngModule);
 require('./services/user')(ngModule);
+
+// Dependency
+require('../dependency')({
+  module: module
+});
