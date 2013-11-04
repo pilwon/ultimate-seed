@@ -47,7 +47,9 @@ function isRole(role) {
 }
 
 function loadUserFromGlobal() {
-  _setUser(global.config.user);
+  if (_.isPlainObject(global.config)) {
+    _setUser(global.config.user);
+  }
 }
 
 function login(formData) {

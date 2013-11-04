@@ -42,7 +42,7 @@ ngModule.config(function ($stateProvider, $urlRouterProvider, layoutProvider) {
       url: '*path',
       views: layoutProvider.getViews(),
       onEnter: function () {
-        if (!!global.config.catchAll) {
+        if (_.isPlainObject(global.config) && !!global.config.catchAll) {
           global.location.replace('/404.html');
         }
       }
