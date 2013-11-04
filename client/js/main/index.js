@@ -16,8 +16,8 @@ ngModule.config(function ($stateProvider) {
       url: '/',
       views: {
         '@': {
-          template: rhtml('./templates/home.html'),
-          controller: 'HomeCtrl'
+          controller: 'HomeCtrl',
+          template: rhtml('./templates/home.html')
         }
       },
       resolve: {
