@@ -280,6 +280,10 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 </pre>
 
 
+## Contributing to the Project
+
+  Please send your [Pull Requests](https://help.github.com/articles/using-pull-requests) to the `dev` branch.
+
 
 ## Credits
 
