@@ -20,13 +20,13 @@ exports.register = function (app) {
     socket.connectedAt = new Date();
 
     // Call onMessage.
-    (function () {
-      var onMessage = socket.manager.transports[socket.id].onMessage;
-      socket.manager.transports[socket.id].onMessage = function (packet) {
-        onMessage.apply(this, arguments);
-        sockets.onMessage(socket, packet);
-      };
-    }());
+    // (function () {
+    //   var onMessage = socket.manager.transports[socket.id].onMessage;
+    //   socket.manager.transports[socket.id].onMessage = function (packet) {
+    //     onMessage.apply(this, arguments);
+    //     sockets.onMessage(socket, packet);
+    //   };
+    // }());
 
     // Call onDisconnect.
     socket.on('disconnect', function () {
