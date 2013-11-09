@@ -14,7 +14,7 @@
     "font-awesome": "~3.2.1",
     "jquery": "~2.0.3",
     "json3": "~3.2.5",
-    "lesshat": "https://github.com/csshat/lesshat.git#~1.1.2",
+    "lesshat": "~1.1.2",
     "modernizr": "~2.6.2",
     "restangular": "~1.1.3",
     "socket.io-client": "~0.9.16",
