@@ -7,10 +7,10 @@
 
 ```
 
-#### [Demo hosted on Heroku](http://ultimate-seed.herokuapp.com/)
-
 [![Screenshot](https://raw.github.com/pilwon/ultimate-seed/master/static/img/screenshot1.png)](http://ultimate-seed.herokuapp.com/)
 [![Screenshot](https://raw.github.com/pilwon/ultimate-seed/master/static/img/screenshot2.png)](http://ultimate-seed.herokuapp.com/login)
+
+#### [Demo hosted on Heroku](http://ultimate-seed.herokuapp.com/)
 
 `ultimate-seed` is the ultimate full-stack AngularJS + Node.js/Express seed (batteries included!) that makes web developers insanely productive.
 
