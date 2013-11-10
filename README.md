@@ -7,9 +7,6 @@
 
 ```
 
-[![NPM](https://nodei.co/npm/ultimate.png?downloads=false&stars=false)](https://npmjs.org/package/ultimate)
-[![NPM](https://nodei.co/npm-dl/ultimate.png?months=8)](https://npmjs.org/package/ultimate)
-
 #### [Demo hosted on Heroku](http://ultimate-seed.herokuapp.com/)
 
 [![Screenshot](https://raw.github.com/pilwon/ultimate-seed/master/static/img/screenshot1.png)](http://ultimate-seed.herokuapp.com/)
