@@ -7,8 +7,8 @@
 
 ```
 
-[![NPM](https://nodei.co/npm/ultimate-seed.png?downloads=false&stars=false)](https://npmjs.org/package/ultimate-seed)
-[![NPM](https://nodei.co/npm-dl/ultimate.png?months=8)](https://npmjs.org/package/ultimate-seed)
+[![NPM](https://nodei.co/npm/ultimate.png?downloads=false&stars=false)](https://npmjs.org/package/ultimate)
+[![NPM](https://nodei.co/npm-dl/ultimate.png?months=8)](https://npmjs.org/package/ultimate)
 
 #### [Demo hosted on Heroku](http://ultimate-seed.herokuapp.com/)
 
