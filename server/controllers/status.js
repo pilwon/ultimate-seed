@@ -12,8 +12,9 @@ function index(req, res) {
 
 function health(req, res) {
   res.json({
-    pid: process.pid,
     memory: process.memoryUsage(),
+    pid: process.pid,
+    time: new Date(),
     uptime: process.uptime()
   });
 }

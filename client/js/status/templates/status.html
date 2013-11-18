@@ -1,31 +1,38 @@
 <div class="container">
   <div class="content">
     <div class="page-header">
-      <div class="row">
-        <div class="col-md-9">
-          <h2>Status</h2>
-        </div>
-        <div class="col-md-3 text-right">
-          <a class="btn btn-default" href="#" ng-click="fetch()">Update</a>
-        </div>
+      <div class="pull-right">
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="value in _.range(1, 11)">
+            <a href="" ng-click="setFetchInterval(1000 * value)">
+              Fetch Interval: <strong>{{ value }}s</strong>
+            </a>
+          </li>
+        </ul>
       </div>
+      <h2>
+        App Status
+        <small>(updates every {{ fetchInterval / 1000 }}s)</small>
+      </h2>
     </div>
     <div class="status">
       <table class="table table-striped">
         <thead>
-          <th>pid</th>
-          <th>rss</th>
-          <th>heapTotal</th>
-          <th>heapUsed</th>
-          <th>uptime</th>
+          <th>Time</th>
+          <th>PID</th>
+          <th>RSS</th>
+          <th>Heap Total</th>
+          <th>Heap Used</th>
+          <th>Uptime</th>
         </thead>
         <tbody>
-          <tr ng-repeat="stat in status" class="animate-fade">
+          <tr ng-repeat="stat in status | limitTo: 30" class="animate-fade">
+            <td>{{ stat.time | date: 'yyyy-MM-dd HH:mm:ss.sss' }}</td>
             <td>{{ stat.pid }}</td>
-            <td>{{ stat.memory.rss }}</td>
-            <td>{{ stat.memory.heapTotal }}</td>
-            <td>{{ stat.memory.heapUsed }}</td>
-            <td>{{ stat.uptime }}</td>
+            <td>{{ stat.memory.rss / 1024 / 1024 | number: 2 }} MB</td>
+            <td>{{ stat.memory.heapTotal / 1024 / 1024 | number: 2 }} MB</td>
+            <td>{{ stat.memory.heapUsed / 1024 / 1024 | number: 2 }} MB</td>
+            <td>{{ stat.uptime }}s</td>
           </tr>
         </tbody>
       </table>

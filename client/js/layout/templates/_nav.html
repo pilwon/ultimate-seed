@@ -17,11 +17,11 @@
         <li ng-class="{ active: $state.includes('app.home') }">
           <a ng-href="{{ $state.href('app.home') }}">Angular</a>
         </li>
-        <li ng-class="{ active: $state.is('express') }">
-          <a href="/express" target="_self">Express</a>
-        </li>
         <li ng-class="{ active: $state.includes('app.status') }">
           <a ng-href="{{ $state.href('app.status') }}">Status</a>
+        </li>
+        <li ng-class="{ active: $state.is('express') }">
+          <a href="/express" target="_self">Express</a>
         </li>
         <li>
           <a href="/page" target="_self">Page</a>
