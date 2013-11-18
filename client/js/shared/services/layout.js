@@ -4,7 +4,8 @@
 
 'use strict';
 
-var $ = require('jquery');
+var _ = require('lodash'),
+    $ = require('jquery');
 
 var _spinnerStarted = false,
     _views;
@@ -18,7 +19,7 @@ function setViews(views) {
 }
 
 function startSpinner(event, toState) {
-  if (_spinnerStarted || !toState.resolve) { return; }
+  if (_spinnerStarted || !toState.resolve || _.isEmpty(toState.resolve)) { return; }
   var $spinner = $('<div/>').spin({
     lines: 13,            // The number of lines to draw
     length: 20,           // The length of each line
@@ -42,7 +43,7 @@ function startSpinner(event, toState) {
 }
 
 function stopSpinner(event, toState) {
-  if (!_spinnerStarted || !toState.resolve) { return; }
+  if (!_spinnerStarted || !toState.resolve || _.isEmpty(toState.resolve)) { return; }
   $('#spinner').fadeOut('fast');
   _spinnerStarted = false;
 }
