@@ -6,6 +6,7 @@
 
 var _ = require('lodash'),
     angular = require('angular'),
+    moment = require('moment'),
     socketio = require('socketio');
 
 var ngModule = angular.module('app', [
@@ -61,6 +62,7 @@ ngModule.run(function ($rootScope, $state, $stateParams, auth) {
     $state: $state,
     $stateParams: $stateParams,
     documentTitle: 'ultimate-seed',
+    moment: moment,
     user: auth.getUser()
   });
 });
