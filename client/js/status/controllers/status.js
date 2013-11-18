@@ -25,26 +25,16 @@ function _fetch() {
   _fetchIntervalId = $timeout(_fetch, $scope.fetchInterval);
 }
 
-function _init() {
-  var $scope = _injected.$scope,
-      $timeout = _injected.$timeout;
-
-  _.assign($scope, {
-    fetchInterval: DEFAULT_FETCH_INTEVAL,
-    setFetchInterval: setFetchInterval,
-    status: []
-  });
-
-  $scope.$on('$destroy', function () {
-    $timeout.cancel(_fetchIntervalId);
-  });
-
+function _onCreate() {
   _fetch();
+}
+
+function _onDestroy() {
+  _injected.$timeout.cancel(_fetchIntervalId);
 }
 
 function setFetchInterval(fetchInterval) {
   _injected.$scope.fetchInterval = fetchInterval;
-
   _fetch();
 }
 
@@ -55,6 +45,14 @@ exports = module.exports = function (ngModule) {
       $scope: $scope,
       $timeout: $timeout
     };
-    _init();
+
+    _.assign($scope, {
+      fetchInterval: DEFAULT_FETCH_INTEVAL,
+      setFetchInterval: setFetchInterval,
+      status: []
+    });
+
+    $scope.$on('$destroy', _onDestroy);
+    _onCreate();
   });
 };

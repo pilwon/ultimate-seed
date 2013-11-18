@@ -59,3 +59,6 @@ ngModule.run(function ($rootScope, $state, auth, route) {
 // Controllers
 require('./controllers/login')(ngModule);
 require('./controllers/register')(ngModule);
+
+// Services
+require('./services/auth')(ngModule);

@@ -5,6 +5,7 @@
 'use strict';
 
 var _ = require('lodash'),
+    $ = require('jquery'),
     angular = require('angular'),
     moment = require('moment'),
     socketio = require('socketio');
@@ -56,14 +57,16 @@ ngModule.config(function (authProvider) {
 });
 
 // Attach variables to $rootScope.
-ngModule.run(function ($rootScope, $state, $stateParams, auth) {
+ngModule.run(function ($rootScope, $state, $stateParams, app) {
   _.assign($rootScope, {
     _: _,
+    $: $,
     $state: $state,
     $stateParams: $stateParams,
-    documentTitle: 'ultimate-seed',
+    app: app,
+    config: app.config,
     moment: moment,
-    user: auth.getUser()
+    user: app.auth.getUser()
   });
 });
 

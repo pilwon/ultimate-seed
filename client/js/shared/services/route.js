@@ -8,6 +8,7 @@ var _ = require('lodash');
 
 var _authorizeActivated = false,
     _authorizeRules = {},
+    _injected,
     _redirectActivated = false,
     _redirectRules = {};
 
@@ -38,22 +39,22 @@ function _getAncestorStates(state, includeCurrentState) {
   return states;
 }
 
-function _isRoleAllowedToAccess(auth, rules) {
+function _isRoleAllowedToAccess(rules) {
   if (!rules) { return true; }
   var result = !rules.allow.length;
-  result = _.any(rules.allow, auth.isRole) ? true : result;
-  result = _.any(rules.deny, auth.isRole) ? false : result;
+  result = _.any(rules.allow, _injected.auth.isRole) ? true : result;
+  result = _.any(rules.deny, _injected.auth.isRole) ? false : result;
   return result;
 }
 
-function _parseAuthorizeRules(auth, authorizeRules, state) {
+function _parseAuthorizeRules(authorizeRules, state) {
   if (!_.has(_authorizeRules, state)) { return null; }
   var rules = authorizeRules[state];
   rules.allow = _.compact(_.flatten([rules.allow]));
   rules.deny = _.compact(_.flatten([rules.deny]));
   if (!rules.redirect) {
     if (_.intersection(rules.allow, ['admin', 'user']).length &&
-        !auth.isAuthenticated()) {
+        !_injected.auth.isAuthenticated()) {
       rules.redirect = 'app.login';
     }
     rules.redirect = rules.redirect || 'app.home';
@@ -61,15 +62,15 @@ function _parseAuthorizeRules(auth, authorizeRules, state) {
   return rules;
 }
 
-function authorize($rootScope, $state, auth, config) {
+function authorize($rootScope, $state, config) {
   _.assign(_authorizeRules, config);
   if (!_authorizeActivated) {
     _authorizeActivated = true;
     $rootScope.$on('$stateChangeStart', function (event, toState) {
       _getAncestorStates(toState.name, true).reverse().forEach(function (state) {
         if (!event.defaultPrevented) {
-          var rules = _parseAuthorizeRules(auth, _authorizeRules, state);
-          if (!_isRoleAllowedToAccess(auth, rules)) {
+          var rules = _parseAuthorizeRules(_authorizeRules, state);
+          if (!_isRoleAllowedToAccess(rules)) {
             event.preventDefault();
             $state.go(rules.redirect);
           }
@@ -111,7 +112,11 @@ function redirect($location, $rootScope, $state, config) {
 
 // Public API
 exports = module.exports = function (ngModule) {
-  ngModule.factory('route', function () {
+  ngModule.factory('route', function (auth) {
+    _injected = {
+      auth: auth
+    };
+
     return {
       authorize: authorize,
       redirect: redirect

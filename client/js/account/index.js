@@ -47,8 +47,8 @@ ngModule.run(function ($location, $rootScope, $state, route) {
 });
 
 // Authorizations
-ngModule.run(function ($rootScope, $state, auth, route) {
-  route.authorize($rootScope, $state, auth, {
+ngModule.run(function ($rootScope, $state, route) {
+  route.authorize($rootScope, $state, {
     'app.account': {
       allow: ['user']
     }

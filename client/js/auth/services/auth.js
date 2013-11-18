@@ -1,12 +1,12 @@
 /*
- * client/js/shared/services/auth.js
+ * client/js/auth/services/auth.js
  */
 
 'use strict';
 
 var _ = require('lodash');
 
-var _injected = {},
+var _injected,
     _user = {};
 
 function _clearUser() {
