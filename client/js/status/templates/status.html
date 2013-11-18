@@ -26,7 +26,7 @@
           <th>Uptime</th>
         </thead>
         <tbody>
-          <tr ng-repeat="stat in status | limitTo:30" class="animate-fade">
+          <tr class="animate-fade" ng-repeat="stat in status | limitTo:30">
             <td>{{ stat.time | date:'yyyy-MM-dd HH:mm:ss.sss' }}</td>
             <td>{{ stat.pid }}</td>
             <td>{{ stat.memory.rss / 1024 / 1024 | number:2 }} MB</td>
