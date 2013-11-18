@@ -122,6 +122,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
     $ grunt build              # jshint & build
     $ grunt clean              # clean grenerated files
 
+* If you see the `Could not load the bindings file.` error message, please perform `npm rebuild` then try again.
 
 
 ### Deployment
