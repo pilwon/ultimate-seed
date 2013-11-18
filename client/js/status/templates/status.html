@@ -32,7 +32,7 @@
             <td>{{ stat.memory.rss / 1024 / 1024 | number: 2 }} MB</td>
             <td>{{ stat.memory.heapTotal / 1024 / 1024 | number: 2 }} MB</td>
             <td>{{ stat.memory.heapUsed / 1024 / 1024 | number: 2 }} MB</td>
-            <td>{{ stat.uptime }}s</td>
+            <td>{{ stat.uptime | number: 0 }}s</td>
           </tr>
         </tbody>
       </table>
