@@ -19,5 +19,8 @@
     "restangular": "~1.1.8",
     "socket.io-client": "~0.9.16",
     "spinjs": "~1.3.2"
+  },
+  "resolutions": {
+    "angular": "~1.2.1"
   }
 }
