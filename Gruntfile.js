@@ -28,7 +28,7 @@ module.exports = function (grunt) {
     browserify2: {  // grunt-browserify2
       dev: {
         entry: './<%= project.path.client %>/js/index.js',
-        compile: '<%= project.path.temp %>/js/main.js',
+        compile: '<%= project.path.temp %>/js/app.js',
         debug: true,
         beforeHook: function (bundle) {
           bundle.transform(coffeeify);
@@ -38,7 +38,7 @@ module.exports = function (grunt) {
       },
       dist: {
         entry: './<%= project.path.client %>/js/index.js',
-        compile: '<%= project.path.dist %>/js/main.js',
+        compile: '<%= project.path.dist %>/js/app.js',
         beforeHook: function (bundle) {
           bundle.transform(coffeeify);
           bundle.transform(hbsfy);
@@ -222,7 +222,7 @@ module.exports = function (grunt) {
           paths: ['<%= project.path.client %>/less']
         },
         files: {
-          '<%= project.path.temp %>/css/main.css': '<%= project.path.client %>/less/index.less',
+          '<%= project.path.temp %>/css/app.css': '<%= project.path.client %>/less/index.less',
           '<%= project.path.temp %>/css/static.css': '<%= project.path.client %>/less/_layouts/static/index.less'
         }
       },
@@ -233,7 +233,7 @@ module.exports = function (grunt) {
           yuicompress: true
         },
         files: {
-          '<%= project.path.dist %>/css/main.css': '<%= project.path.client %>/less/index.less',
+          '<%= project.path.dist %>/css/app.css': '<%= project.path.client %>/less/index.less',
           '<%= project.path.dist %>/css/static.css': '<%= project.path.client %>/less/_layouts/static/index.less'
         }
       }
