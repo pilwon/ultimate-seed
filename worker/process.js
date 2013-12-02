@@ -8,13 +8,14 @@ var util = require('util');
 
 require('colors');
 
-var worker = require('./');
+var worker = require('./'),
+    bbq = worker.bbq;
 
-worker.bbq.on('error', function (err) {
+bbq.on('error', function (err) {
   console.error(err.stack);
 });
 
-worker.bbq.on('active', function (task) {
+bbq.on('active', function (task) {
   console.info(util.format(
     '[ACTIVE:%s:%s]',
     task.id,
@@ -22,7 +23,7 @@ worker.bbq.on('active', function (task) {
   ).grey);
 });
 
-worker.bbq.on('processing', function (task) {
+bbq.on('processing', function (task) {
   console.info(util.format(
     '[PROCESSING:%s:%s] %s ...',
     task.id,
@@ -31,7 +32,7 @@ worker.bbq.on('processing', function (task) {
   ).bold);
 });
 
-worker.bbq.on('complete', function (task) {
+bbq.on('complete', function (task) {
   console.info(util.format(
     '[COMPLETE:%s:%s:%ds] %s',
     task.id,
@@ -41,7 +42,7 @@ worker.bbq.on('complete', function (task) {
   ).cyan);
 });
 
-worker.bbq.on('failed', function (task) {
+bbq.on('failed', function (task) {
   console.error(util.format(
     '[FAILED:%s:%s:%ds] %s',
     task.id,
@@ -51,12 +52,12 @@ worker.bbq.on('failed', function (task) {
   ).red);
 });
 
-worker.bbq.on('log', function (task, msg) {
+bbq.on('log', function (task, msg) {
   console.info('[LOG:%s:%s] %s', task.id, task.type, msg);
 });
 
-worker.bbq.on('progress', function (task, percent) {
+bbq.on('progress', function (task, percent) {
   console.info('[PROGRESS:%s:%s] %d%', task.id, task.type, percent);
 });
 
-worker.bbq.processAll(worker.task);
+bbq.processAll(worker.task);
