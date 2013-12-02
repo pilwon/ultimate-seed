@@ -24,6 +24,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
   * [Angular](http://angularjs.org/)
   * [AngularUI](http://angular-ui.github.io/)
+  * [Barbeque](https://github.com/pilwon/barbeque)
   * [Bootstrap](http://getbootstrap.com/)
   * [Bower](http://twitter.github.com/bower/)
   * [Browserify](https://github.com/substack/node-browserify)

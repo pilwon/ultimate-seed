@@ -47,6 +47,10 @@ var data = [
     url: 'http://angular-ui.github.io/'
   },
   {
+    text: 'Barbeque',
+    url: 'https://github.com/pilwon/barbeque'
+  },
+  {
     text: 'Bootstrap',
     url: 'http://getbootstrap.com/'
   },

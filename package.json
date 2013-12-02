@@ -28,6 +28,7 @@
     "seed",
     "angular",
     "angular-ui",
+    "barbeque",
     "source-maps",
     "bootstrap",
     "bower",
