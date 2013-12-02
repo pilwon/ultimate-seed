@@ -14,6 +14,7 @@ var config = ultimate.config(__dirname + '/../config');
 
 // Create an app
 var app = {
+  bbq: require('../worker').bbq,
   config: config,
   dir: __dirname,
   project: require('../project'),

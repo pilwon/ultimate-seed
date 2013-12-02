@@ -38,7 +38,8 @@
     "redis": {
       "host": "@@@@@",
       "port": 6379,
-      "password": null
+      "password": null,
+      "namespace": "ultimate-seed"
     }
   },
   "log": {

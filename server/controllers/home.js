@@ -4,6 +4,8 @@
 
 'use strict';
 
+var app = require('../app');
+
 function index(req, res) {
   res.render('home/index');
 }
@@ -22,7 +24,18 @@ function page(req, res) {
   });
 }
 
+function task(req, res, next) {
+  app.bbq.create('Test.Add', {
+    a: 1,
+    b: 2
+  }).save(function (err) {
+    if (err) { return next(err); }
+    res.send('Scheduled task. (`node worker` to process)');
+  });
+}
+
 // Public API
 exports.index = index;
 exports.express = express;
 exports.page = page;
+exports.task = task;
