@@ -266,6 +266,10 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 │   ├── 404.html
 │   ├── favicon.ico
 │   └── robots.txt
+├── worker/
+│   ├── task/
+│   ├── index.js
+│   └── process.js
 ├── .bowerrc
 ├── .editorconfig
 ├── .jshintrc
