@@ -7,13 +7,17 @@
 var Barbeque = require('barbeque'),
     ultimate = require('ultimate');
 
-var config = exports.config = ultimate.config(__dirname + '/../config');
+var config = exports.config = ultimate.config(__dirname + '/../config'),
+    redisConfig = ultimate.db.redis.getConfig(config.db.redis);
+
+ultimate.db.redis.connect(redisConfig);
 
 exports.bbq = new Barbeque({
-  host: config.db.redis.host,
-  port: config.db.redis.port,
-  password: config.db.redis.password,
-  namespace: config.db.redis.namespace
+  host: redisConfig.host,
+  port: redisConfig.port,
+  password: redisConfig.password,
+  namespace: redisConfig.namespace,
+  client: ultimate.db.redis.getClient()
 });
 
 exports.task = ultimate.require(__dirname + '/task');
