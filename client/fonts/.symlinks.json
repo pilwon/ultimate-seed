@@ -1,4 +1,4 @@
 {
   "font-awesome": "../js/node_modules/bower_components/font-awesome/fonts/",
-  "glyphicons": "../js/node_modules/bower_components/bootstrap/fonts/"
+  "glyphicons": "../js/node_modules/bower_components/bootstrap/dist/fonts/"
 }
