@@ -57,10 +57,11 @@ ngModule.config(function (authProvider) {
 });
 
 // Attach variables to $rootScope.
-ngModule.run(function ($rootScope, $state, $stateParams, app) {
+ngModule.run(function ($location, $rootScope, $state, $stateParams, app) {
   _.assign($rootScope, {
     _: _,
     $: $,
+    $location: $location,
     $state: $state,
     $stateParams: $stateParams,
     app: app,
