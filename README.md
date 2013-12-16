@@ -82,7 +82,6 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
     $ npm install -g yo
     $ npm install -g generator-ultimate
     $ yo ultimate
-    $ npm install && bower install
 
 #### Method 2: Git Clone
 
