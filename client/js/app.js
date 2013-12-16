@@ -34,7 +34,11 @@ ngModule.config(function ($locationProvider) {
 
 // Set Restacular base URL.
 ngModule.config(function (RestangularProvider) {
-  RestangularProvider.setBaseUrl('/api');
+  RestangularProvider
+    .setBaseUrl('/api')
+    .setResponseExtractor(function (res) {
+      return res.result;
+    });
 });
 
 // Routes
