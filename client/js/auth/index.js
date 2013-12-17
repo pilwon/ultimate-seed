@@ -33,8 +33,8 @@ ngModule.config(function ($stateProvider) {
 });
 
 // Redirections
-ngModule.run(function ($location, $rootScope, $state, route) {
-  route.redirect($location, $rootScope, $state, {
+ngModule.run(function (route) {
+  route.redirect({
     '/_=_': {
       state: 'app.account.summary',
       reload: true
@@ -43,8 +43,8 @@ ngModule.run(function ($location, $rootScope, $state, route) {
 });
 
 // Authorizations
-ngModule.run(function ($rootScope, $state, auth, route) {
-  route.authorize($rootScope, $state, auth, {
+ngModule.run(function (auth) {
+  auth.authorize({
     'app.login': {
       deny: ['user'],
       redirect: 'app.account.summary'

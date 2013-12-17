@@ -52,15 +52,15 @@ ngModule.config(function ($stateProvider) {
 });
 
 // Redirections
-ngModule.run(function ($location, $rootScope, $state, route) {
-  route.redirect($location, $rootScope, $state, {
+ngModule.run(function (route) {
+  route.redirect({
     '/admin': 'app.admin.dashboard'
   });
 });
 
 // Authorizations
-ngModule.run(function ($rootScope, $state, route) {
-  route.authorize($rootScope, $state, {
+ngModule.run(function (auth) {
+  auth.authorize({
     'app.admin': {
       allow: ['admin']
     }

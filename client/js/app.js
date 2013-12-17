@@ -57,11 +57,13 @@ ngModule.config(function ($stateProvider, $urlRouterProvider, layoutProvider) {
 
 // Load user from global variable sent from server.
 ngModule.config(function (authProvider) {
-  authProvider.loadUserFromGlobal();
+  if (_.isPlainObject(global.config) && global.config.user) {
+    authProvider.initUser(global.config.user);
+  }
 });
 
 // Attach variables to $rootScope.
-ngModule.run(function ($location, $rootScope, $state, $stateParams, app) {
+ngModule.run(function ($location, $rootScope, $state, $stateParams, app, auth) {
   _.assign($rootScope, {
     _: _,
     $: $,
@@ -71,7 +73,7 @@ ngModule.run(function ($location, $rootScope, $state, $stateParams, app) {
     app: app,
     config: app.config,
     moment: moment,
-    user: app.auth.getUser()
+    user: auth.getUser()
   });
 });
 

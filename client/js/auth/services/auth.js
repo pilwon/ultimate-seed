@@ -4,46 +4,96 @@
 
 'use strict';
 
-var _ = require('lodash');
+var _ = require('lodash'),
+    $ = require('jquery');
 
-var _injected,
-    _user = {};
+var _authorizeActivated = false,
+    _authorizeRules = {},
+    _user = {},
+    _injected;
 
 function _clearUser() {
-  _.each(_user || {}, function(v, k) {
-    delete _user[k];
+  _.keys(_user).forEach(function (key) {
+    delete _user[key];
   });
 }
 
-function _setUser(userJSON) {
+function _isRoleAllowedToAccess(rules) {
+  if (!rules) { return true; }
+  var result = !rules.allow.length;
+  result = _.any(rules.allow, hasRole) ? true : result;
+  result = _.any(rules.deny, hasRole) ? false : result;
+  return result;
+}
+
+function _parseAuthorizeRules(authorizeRules, state) {
+  if (!_.has(_authorizeRules, state)) { return null; }
+  var rules = authorizeRules[state];
+  rules.allow = _.compact(_.flatten([rules.allow]));
+  rules.deny = _.compact(_.flatten([rules.deny]));
+  if (!rules.redirect) {
+    if (_.intersection(rules.allow, ['admin', 'user']).length &&
+        !isAuthenticated()) {
+      rules.redirect = 'app.login';
+    }
+    rules.redirect = rules.redirect || 'app.home';
+  }
+  return rules;
+}
+
+function _setUser(user) {
+  if (_.isEmpty(user)) { return; }
+
   _clearUser();
-  _.assign(_user, userJSON);
+  _.assign(_user, user);
+  _.assign(_user, {
+    is: hasRole,
+    isAdmin: function () {
+      return hasRole('admin');
+    },
+    isLoggedIn: isAuthenticated
+  });
+
+  if (hasRole('admin')) {
+    $('html').addClass('admin-mode');
+  } else {
+    $('html').removeClass('admin-mode');
+  }
+}
+
+function authorize(config) {
+  _.assign(_authorizeRules, config);
+  if (!_authorizeActivated) {
+    _authorizeActivated = true;
+    _injected.$rootScope.$on('$stateChangeStart', function (event, toState) {
+      _injected.route.getAncestorStates(toState.name, true).reverse().forEach(function (state) {
+        if (!event.defaultPrevented) {
+          var rules = _parseAuthorizeRules(_authorizeRules, state);
+          if (!_isRoleAllowedToAccess(rules)) {
+            event.preventDefault();
+            _injected.$state.go(rules.redirect);
+          }
+        }
+      });
+    });
+  }
 }
 
 function getUser() {
   return _user;
 }
 
-function isAdmin() {
-  return isRole('admin');
+function hasRole(role) {
+  if (isAuthenticated() &&
+      _.isArray(_user.roles) &&
+      _.contains(_user.roles.concat('user'), role)) {
+    return true;
+  }
+  return false;
 }
 
 function isAuthenticated() {
   return !_.isEmpty(_user);
-}
-
-function isRole(role) {
-  if (!_.isEmpty(_user)) {
-    if (role === 'user') {
-      return true;
-    }
-    if (_.isArray(_user.roles) && _.contains(_user.roles, role)) {
-      return true;
-    }
-  } else if (role === 'guest') {
-    return true;
-  }
-  return false;
 }
 
 function loadUserFromGlobal() {
@@ -53,38 +103,48 @@ function loadUserFromGlobal() {
 }
 
 function login(formData) {
-  return _injected.$http.post('/api/login', formData).then(function (res) {
-    _setUser(res.data.result);
-    _injected.$state.go('app.account.summary');
-  });
+  return _injected.Restangular.all('login').post(formData).then(
+    function (result) {
+      _setUser(result);
+      _injected.$state.go('app.account.summary');
+    }
+  );
 }
 
 function logout() {
-  return _injected.$http.post('/api/logout').then(function () {
-    _clearUser();
-    _injected.$state.go('app.home');
-  });
+  return _injected.Restangular.all('logout').post().then(
+    function () {
+      _clearUser();
+      _injected.$state.go('app.home');
+    }
+  );
+}
+
+function register(formData) {
+  return _injected.Restangular.all('register').post(formData);
 }
 
 // Public API
 exports = module.exports = function (ngModule) {
   ngModule.provider('auth', {
-    loadUserFromGlobal: loadUserFromGlobal,
+    initUser: _setUser,
 
-    $get: function ($http, $state, $q) {
+    $get: function ($rootScope, $state, Restangular, route) {
       _injected = {
-        $http: $http,
+        $rootScope: $rootScope,
         $state: $state,
-        $q: $q
+        Restangular: Restangular,
+        route: route
       };
 
       return {
+        authorize: authorize,
         getUser: getUser,
-        isAdmin: isAdmin,
+        hasRole: hasRole,
         isAuthenticated: isAuthenticated,
-        isRole: isRole,
         login: login,
-        logout: logout
+        logout: logout,
+        register: register
       };
     }
   });

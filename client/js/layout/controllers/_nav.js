@@ -6,13 +6,21 @@
 
 var _ = require('lodash');
 
+var _injected;
+
+function logout() {
+  _injected.auth.logout();
+}
+
 exports = module.exports = function (ngModule) {
-  ngModule.controller('_NavCtrl', function ($scope, app) {
+  ngModule.controller('_NavCtrl', function ($scope, auth) {
+    _injected = {
+      $scope: $scope,
+      auth: auth
+    };
+
     _.assign($scope, {
-      isAdmin: app.auth.isAdmin,
-      isAuthenticated: app.auth.isAuthenticated,
-      isRole: app.auth.isRole,
-      logout: app.auth.logout
+      logout: logout
     });
   });
 };

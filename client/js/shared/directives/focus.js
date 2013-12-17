@@ -4,7 +4,7 @@
 
 'use strict';
 
-var _injected = {};
+var _injected;
 
 function link(scope, elem, attrs) {
   scope.$watch(attrs.focus, function () {

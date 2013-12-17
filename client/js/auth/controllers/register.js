@@ -6,32 +6,57 @@
 
 var _ = require('lodash');
 
-exports = module.exports = function (ngModule) {
-  ngModule.controller('RegisterCtrl', function ($http, $scope, alert, auth) {
-    $scope.focus = {
-      username: true
-    };
-    $scope.showError = false;
+var _injected;
 
-    $scope.register = function (formData, formMeta) {
-      if (formMeta.$invalid) {
+function register(formMeta) {
+  var $scope = _injected.$scope,
+      alert = _injected.alert,
+      auth = _injected.auth,
+      errField,
+      fields;
+
+  if (formMeta.$invalid) {
+    $scope.showError = true;
+    fields = ['username', 'password', 'passwordRepeat', 'firstName'];
+    errField = _.find(fields, function (field) {
+      return formMeta[field].$invalid;
+    });
+    $scope.focus[errField] = true;
+    return;
+  }
+
+  auth.register($scope.formData).then(
+    function () {
+      $scope.showError = false;
+      alert.clearMessages();
+      auth.login($scope.formData);
+    },
+    function (res) {
+      if (res.data.error && res.data.error.message) {
         $scope.showError = true;
-        var fields = ['username', 'password', 'passwordRepeat', 'firstName'];
-        var erroredField = _.find(fields, function (field) {
-          return formMeta[field].$invalid;
-        });
-        $scope.focus[erroredField] = true;
-        return;
+        alert.setMessages('danger', res.data.error.message);
+      } else {
+        throw new Error('Failed to register.');
       }
+    }
+  );
+}
 
-      $http.post('/api/register', formData).then(function () {
-        $scope.showError = false;
-        alert.clearMessages();
-        auth.login(formData);
-      }, function (res) {
-        $scope.showError = true;
-        alert.setMessages('danger', res.data.result.messages);
-      });
+exports = module.exports = function (ngModule) {
+  ngModule.controller('RegisterCtrl', function ($scope, alert, auth) {
+    _injected = {
+      $scope: $scope,
+      alert: alert,
+      auth: auth
     };
+
+    _.assign($scope, {
+      focus: {
+        username: true
+      },
+      formData: {},
+      register: register,
+      showError: false
+    });
   });
 };

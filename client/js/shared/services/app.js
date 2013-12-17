@@ -41,18 +41,16 @@ function _initConfig() {
 
 // Public API
 exports = module.exports = function (ngModule) {
-  ngModule.factory('app', function ($cookieStore, $rootScope, auth) {
+  ngModule.factory('app', function ($cookieStore, $rootScope) {
     _injected = {
       $cookieStore: $cookieStore,
-      $rootScope: $rootScope,
-      auth: auth
+      $rootScope: $rootScope
     };
 
     _initConfig();
 
     return {
-      config: config,
-      auth: auth
+      config: config
     };
   });
 };

@@ -29,27 +29,27 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li ng-if="isAuthenticated()" class="dropdown" ng-class="{ active: $state.includes('app.account') || (isAdmin() && $state.includes('app.admin')) }">
+        <li ng-if="user.isLoggedIn()" class="dropdown" ng-class="{ active: $state.includes('app.account') || (user.isAdmin() && $state.includes('app.admin')) }">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="glyphicon glyphicon-user"></span>
             {{ user.name.first }}
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li class="dropdown-header" ng-if="isAdmin()">
+            <li class="dropdown-header" ng-if="user.isAdmin()">
               {{ $state.get('app.admin').data.menuTitle }}
             </li>
-            <li ng-class="{ active: $state.includes('app.admin.dashboard') }" ng-if="isAdmin()">
+            <li ng-class="{ active: $state.includes('app.admin.dashboard') }" ng-if="user.isAdmin()">
               <a ng-href="{{ $state.href('app.admin.dashboard') }}">
                 {{ $state.get('app.admin.dashboard').data.title }}
               </a>
             </li>
-            <li ng-class="{ active: $state.includes('app.admin.users') }" ng-if="isAdmin()">
+            <li ng-class="{ active: $state.includes('app.admin.users') }" ng-if="user.isAdmin()">
               <a ng-href="{{ $state.href('app.admin.users') }}">
                 {{ $state.get('app.admin.users').data.title }}
               </a>
             </li>
-            <li class="divider" ng-if="isAdmin()"></li>
+            <li class="divider" ng-if="user.isAdmin()"></li>
             <li class="dropdown-header">
               {{ $state.get('app.account').data.menuTitle }}
             </li>
@@ -67,7 +67,7 @@
             </li>
           </ul>
         </li>
-        <li class="dropdown" ng-class="{ active: $state.includes('app.login') || $state.includes('app.register') }" ng-if="!isAuthenticated()">
+        <li class="dropdown" ng-class="{ active: $state.includes('app.login') || $state.includes('app.register') }" ng-if="!user.isLoggedIn()">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="glyphicon glyphicon-lock"></span>
             <b class="caret"></b>

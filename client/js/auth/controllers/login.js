@@ -6,31 +6,55 @@
 
 var _ = require('lodash');
 
+var _injected;
+
+function login(formMeta) {
+  var $scope = _injected.$scope,
+      alert = _injected.alert,
+      auth = _injected.auth,
+      errField,
+      fields;
+
+  if (formMeta.$invalid) {
+    $scope.showError = true;
+    fields = ['username', 'password'];
+    errField = _.find(fields, function (field) {
+      return formMeta[field].$invalid;
+    });
+    $scope.focus[errField] = true;
+    return;
+  }
+
+  auth.login($scope.formData).then(
+    function () {
+      $scope.showError = false;
+      alert.clearMessages();
+    }, function (res) {
+      if (res.data.error && res.data.error.message) {
+        $scope.showError = true;
+        alert.setMessages('danger', res.data.error.message);
+      } else {
+        throw new Error('Failed to login.');
+      }
+    }
+  );
+}
+
 exports = module.exports = function (ngModule) {
   ngModule.controller('LoginCtrl', function ($scope, alert, auth) {
-    $scope.focus = {
-      username: true
+    _injected = {
+      $scope: $scope,
+      alert: alert,
+      auth: auth
     };
-    $scope.showError = false;
 
-    $scope.login = function (formData, formMeta) {
-      if (formMeta.$invalid) {
-        $scope.showError = true;
-        var fields = ['username', 'password'];
-        var erroredField = _.find(fields, function (field) {
-          return formMeta[field].$invalid;
-        });
-        $scope.focus[erroredField] = true;
-        return;
-      }
-
-      auth.login(formData).then(function () {
-        $scope.showError = false;
-        alert.clearMessages();
-      }, function (res) {
-        $scope.showError = true;
-        alert.setMessages('danger', res.data.result.messages);
-      });
-    };
+    _.assign($scope, {
+      focus: {
+        username: true
+      },
+      formData: {},
+      login: login,
+      showError: false
+    });
   });
 };
