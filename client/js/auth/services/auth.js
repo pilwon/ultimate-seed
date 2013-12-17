@@ -96,12 +96,6 @@ function isAuthenticated() {
   return !_.isEmpty(_user);
 }
 
-function loadUserFromGlobal() {
-  if (_.isPlainObject(global.config)) {
-    _setUser(global.config.user);
-  }
-}
-
 function login(formData) {
   return _injected.Restangular.all('login').post(formData).then(
     function (result) {
