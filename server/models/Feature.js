@@ -56,7 +56,7 @@ var data = [
   },
   {
     text: 'Bower',
-    url: 'https://github.com/bower/bower'
+    url: 'http://bower.io'
   },
   {
     text: 'Browserify',

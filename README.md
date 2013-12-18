@@ -26,7 +26,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   * [AngularUI](http://angular-ui.github.io/)
   * [Barbeque](https://github.com/pilwon/barbeque)
   * [Bootstrap](http://getbootstrap.com/)
-  * [Bower](https://github.com/bower/bower)
+  * [Bower](http://bower.io)
   * [Browserify](https://github.com/substack/node-browserify)
   * [Express](http://expressjs.com/)
   * [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
