@@ -12,6 +12,7 @@ function login(formMeta) {
   var $scope = _injected.$scope,
       alert = _injected.alert,
       auth = _injected.auth,
+      layout = _injected.layout,
       errField,
       fields;
 
@@ -25,6 +26,7 @@ function login(formMeta) {
     return;
   }
 
+  layout.startSpinner();
   auth.login($scope.formData).then(
     function () {
       $scope.showError = false;
@@ -37,15 +39,16 @@ function login(formMeta) {
         throw new Error('Failed to login.');
       }
     }
-  );
+  ).finally(layout.stopSpinner);
 }
 
 exports = module.exports = function (ngModule) {
-  ngModule.controller('LoginCtrl', function ($scope, alert, auth) {
+  ngModule.controller('LoginCtrl', function ($scope, alert, auth, layout) {
     _injected = {
       $scope: $scope,
       alert: alert,
-      auth: auth
+      auth: auth,
+      layout: layout
     };
 
     _.assign($scope, {

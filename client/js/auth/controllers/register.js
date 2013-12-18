@@ -12,6 +12,7 @@ function register(formMeta) {
   var $scope = _injected.$scope,
       alert = _injected.alert,
       auth = _injected.auth,
+      layout = _injected.layout,
       errField,
       fields;
 
@@ -25,6 +26,7 @@ function register(formMeta) {
     return;
   }
 
+  layout.startSpinner();
   auth.register($scope.formData).then(
     function () {
       $scope.showError = false;
@@ -39,15 +41,16 @@ function register(formMeta) {
         throw new Error('Failed to register.');
       }
     }
-  );
+  ).finally(layout.stopSpinner);
 }
 
 exports = module.exports = function (ngModule) {
-  ngModule.controller('RegisterCtrl', function ($scope, alert, auth) {
+  ngModule.controller('RegisterCtrl', function ($scope, alert, auth, layout) {
     _injected = {
       $scope: $scope,
       alert: alert,
-      auth: auth
+      auth: auth,
+      layout: layout
     };
 
     _.assign($scope, {
