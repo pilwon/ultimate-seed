@@ -60,7 +60,7 @@
             </li>
             <li class="divider"></li>
             <li>
-              <a href="#" ng-click="logout()">
+              <a href="" ng-click="logout()">
                 <span class="glyphicon glyphicon-off"></span>
                 Logout
               </a>
@@ -74,13 +74,13 @@
           </a>
           <ul class="dropdown-menu">
             <li ng-class="{ active: $state.includes('app.login') }">
-              <a ng-href="{{ $state.href('app.login') }}">
+              <a href="" ng-click="login()">
                 <span class="glyphicon glyphicon-user"></span>
                 Login
               </a>
             </li>
             <li ng-class="{ active: $state.includes('app.register') }">
-              <a ng-href="{{ $state.href('app.register') }}">
+              <a href="" ng-click="register()">
                 <span class="glyphicon glyphicon-pencil"></span>
                 Register
               </a>

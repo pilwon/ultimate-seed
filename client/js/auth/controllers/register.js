@@ -31,7 +31,6 @@ function register(formMeta) {
     function () {
       $scope.showError = false;
       alert.clearMessages();
-      auth.login($scope.formData);
     },
     function (res) {
       if (res.data.error && res.data.error.message) {

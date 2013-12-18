@@ -31,7 +31,8 @@ function login(formMeta) {
     function () {
       $scope.showError = false;
       alert.clearMessages();
-    }, function (res) {
+    },
+    function (res) {
       if (res.data.error && res.data.error.message) {
         $scope.showError = true;
         alert.setMessages('danger', res.data.error.message);

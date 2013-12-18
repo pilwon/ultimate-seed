@@ -65,13 +65,18 @@ function authorize(config) {
   _.assign(_authorizeRules, config);
   if (!_authorizeActivated) {
     _authorizeActivated = true;
-    _o.$rootScope.$on('$stateChangeStart', function (event, toState) {
+    _o.$rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
       _o.util.getAncestorStates(toState.name, true).reverse().forEach(function (state) {
         if (!event.defaultPrevented) {
-          var rules = _parseAuthorizeRules(_authorizeRules, state);
+          var params = {},
+              rules = _parseAuthorizeRules(_authorizeRules, state);
           if (!_isRoleAllowedToAccess(rules)) {
             event.preventDefault();
-            _o.$state.go(rules.redirect);
+            params.s = toState.name;
+            if (!_.isEmpty(toParams)) {
+              params.sp = JSON.stringify(toParams);
+            }
+            _o.$state.go(rules.redirect, params);
           }
         }
       });
@@ -96,11 +101,19 @@ function isAuthenticated() {
   return !_.isEmpty(_user);
 }
 
-function login(formData) {
+function login(formData, redirect) {
   return _o.Restangular.all('login').post(formData).then(
     function (result) {
       _setUser(result);
-      _o.$state.go('app.account.summary');
+      if (_o.$stateParams.u) {
+        global.location.href = _o.$stateParams.u;
+      } else if (_o.$stateParams.s &&
+                 _o.$state.get(_o.$stateParams.s) &&
+                 !_o.$state.get(_o.$stateParams.s).abstract) {
+        _o.$state.go(_o.$stateParams.s, JSON.parse(_o.$stateParams.sp));
+      } else if (!!redirect) {
+        _o.$state.go('app.account.summary');
+      }
     }
   );
 }
@@ -109,13 +122,25 @@ function logout() {
   return _o.Restangular.all('logout').post().then(
     function () {
       _clearUser();
-      _o.$state.go('app.home');
+      if (_o.$stateParams.u) {
+        global.location.href = _o.$stateParams.u;
+      } else if (_o.$stateParams.s &&
+                 _o.$state.get(_o.$stateParams.s) &&
+                 !_o.$state.get(_o.$stateParams.s).abstract) {
+        _o.$state.go(_o.$stateParams.s, JSON.parse(_o.$stateParams.sp));
+      } else {
+        _o.$state.go('app.home');
+      }
     }
   );
 }
 
 function register(formData) {
-  return _o.Restangular.all('register').post(formData);
+  return _o.Restangular.all('register').post(formData).then(
+    function () {
+      return login(formData, true);
+    }
+  );
 }
 
 // Public API
@@ -123,10 +148,11 @@ exports = module.exports = function (ngModule) {
   ngModule.provider('auth', {
     initUser: _setUser,
 
-    $get: function ($rootScope, $state, Restangular, util) {
+    $get: function ($rootScope, $state, $stateParams, Restangular, util) {
       _o = {
         $rootScope: $rootScope,
         $state: $state,
+        $stateParams: $stateParams,
         Restangular: Restangular,
         util: util
       };
