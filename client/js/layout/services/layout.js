@@ -1,5 +1,5 @@
 /*
- * client/js/shared/services/layout.js
+ * client/js/layout/services/layout.js
  */
 
 'use strict';

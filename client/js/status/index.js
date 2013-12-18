@@ -9,6 +9,9 @@ var angular = require('angular'),
 
 var ngModule = angular.module('app.status', []);
 
+// Controllers
+require('./controllers/status')(ngModule);
+
 // Routes
 ngModule.config(function ($stateProvider) {
   $stateProvider
@@ -22,6 +25,3 @@ ngModule.config(function ($stateProvider) {
       }
     });
 });
-
-// Controllers
-require('./controllers/status')(ngModule);

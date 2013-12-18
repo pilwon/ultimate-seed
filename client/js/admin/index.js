@@ -9,6 +9,11 @@ var angular = require('angular'),
 
 var ngModule = angular.module('app.admin', []);
 
+// Controllers
+require('./controllers/_layout')(ngModule);
+require('./controllers/dashboard')(ngModule);
+require('./controllers/users')(ngModule);
+
 // Routes
 ngModule.config(function ($stateProvider) {
   $stateProvider
@@ -66,8 +71,3 @@ ngModule.run(function (auth) {
     }
   });
 });
-
-// Controllers
-require('./controllers/_layout')(ngModule);
-require('./controllers/dashboard')(ngModule);
-require('./controllers/users')(ngModule);

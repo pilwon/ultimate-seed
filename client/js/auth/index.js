@@ -9,6 +9,13 @@ var angular = require('angular'),
 
 var ngModule = angular.module('app.auth', []);
 
+// Controllers
+require('./controllers/login')(ngModule);
+require('./controllers/register')(ngModule);
+
+// Services
+require('./services/auth')(ngModule);
+
 // Routes
 ngModule.config(function ($stateProvider) {
   $stateProvider
@@ -55,10 +62,3 @@ ngModule.run(function (auth) {
     }
   });
 });
-
-// Controllers
-require('./controllers/login')(ngModule);
-require('./controllers/register')(ngModule);
-
-// Services
-require('./services/auth')(ngModule);

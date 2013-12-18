@@ -9,6 +9,15 @@ var angular = require('angular'),
 
 var ngModule = angular.module('app.layout', []);
 
+// Controllers
+require('./controllers/_alert')(ngModule);
+require('./controllers/_footer')(ngModule);
+require('./controllers/_header')(ngModule);
+require('./controllers/_nav')(ngModule);
+
+// Services
+require('./services/layout')(ngModule);
+
 var _views = {
   'alert': {
     controller: '_AlertCtrl',
@@ -38,9 +47,3 @@ ngModule.config(function ($stateProvider, layoutProvider) {
 
   layoutProvider.setViews(_views);
 });
-
-// Controllers
-require('./controllers/_alert')(ngModule);
-require('./controllers/_footer')(ngModule);
-require('./controllers/_header')(ngModule);
-require('./controllers/_nav')(ngModule);

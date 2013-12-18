@@ -9,6 +9,9 @@ var angular = require('angular'),
 
 var ngModule = angular.module('app.main', []);
 
+// Controllers
+require('./controllers/home')(ngModule);
+
 // Routes
 ngModule.config(function ($stateProvider) {
   $stateProvider
@@ -29,6 +32,3 @@ ngModule.config(function ($stateProvider) {
       }
     });
 });
-
-// Controllers
-require('./controllers/home')(ngModule);
