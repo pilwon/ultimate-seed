@@ -66,7 +66,7 @@ function authorize(config) {
   if (!_authorizeActivated) {
     _authorizeActivated = true;
     _injected.$rootScope.$on('$stateChangeStart', function (event, toState) {
-      _injected.route.getAncestorStates(toState.name, true).reverse().forEach(function (state) {
+      _injected.util.getAncestorStates(toState.name, true).reverse().forEach(function (state) {
         if (!event.defaultPrevented) {
           var rules = _parseAuthorizeRules(_authorizeRules, state);
           if (!_isRoleAllowedToAccess(rules)) {
@@ -123,12 +123,12 @@ exports = module.exports = function (ngModule) {
   ngModule.provider('auth', {
     initUser: _setUser,
 
-    $get: function ($rootScope, $state, Restangular, route) {
+    $get: function ($rootScope, $state, Restangular, util) {
       _injected = {
         $rootScope: $rootScope,
         $state: $state,
         Restangular: Restangular,
-        route: route
+        util: util
       };
 
       return {

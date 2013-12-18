@@ -29,3 +29,4 @@ require('./directives/focus')(ngModule);
 require('./services/alert')(ngModule);
 require('./services/app')(ngModule);
 require('./services/route')(ngModule);
+require('./services/util')(ngModule);
