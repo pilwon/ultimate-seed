@@ -6,13 +6,13 @@
 
 var _ = require('lodash');
 
-var _injected;
+var _o;
 
 var config = {};
 
 function _initConfig() {
-  var $cookieStore = _injected.$cookieStore,
-      $rootScope = _injected.$rootScope;
+  var $cookieStore = _o.$cookieStore,
+      $rootScope = _o.$rootScope;
 
   // Load global config.
   if (_.isPlainObject(global.config)) {
@@ -42,7 +42,7 @@ function _initConfig() {
 // Public API
 exports = module.exports = function (ngModule) {
   ngModule.factory('app', function ($cookieStore, $rootScope) {
-    _injected = {
+    _o = {
       $cookieStore: $cookieStore,
       $rootScope: $rootScope
     };

@@ -6,16 +6,16 @@
 
 var _ = require('lodash');
 
-var _injected;
+var _o;
 
 function logout() {
-  _injected.layout.startSpinner();
-  _injected.auth.logout().finally(_injected.layout.stopSpinner);
+  _o.layout.startSpinner();
+  _o.auth.logout().finally(_o.layout.stopSpinner);
 }
 
 exports = module.exports = function (ngModule) {
   ngModule.controller('_NavCtrl', function ($scope, auth, layout) {
-    _injected = {
+    _o = {
       $scope: $scope,
       auth: auth,
       layout: layout

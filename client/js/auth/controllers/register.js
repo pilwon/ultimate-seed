@@ -6,13 +6,13 @@
 
 var _ = require('lodash');
 
-var _injected;
+var _o;
 
 function register(formMeta) {
-  var $scope = _injected.$scope,
-      alert = _injected.alert,
-      auth = _injected.auth,
-      layout = _injected.layout,
+  var $scope = _o.$scope,
+      alert = _o.alert,
+      auth = _o.auth,
+      layout = _o.layout,
       errField,
       fields;
 
@@ -46,7 +46,7 @@ function register(formMeta) {
 
 exports = module.exports = function (ngModule) {
   ngModule.controller('RegisterCtrl', function ($scope, alert, auth, layout) {
-    _injected = {
+    _o = {
       $scope: $scope,
       alert: alert,
       auth: auth,

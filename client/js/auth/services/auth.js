@@ -10,7 +10,7 @@ var _ = require('lodash'),
 var _authorizeActivated = false,
     _authorizeRules = {},
     _user = {},
-    _injected;
+    _o;
 
 function _clearUser() {
   _.keys(_user).forEach(function (key) {
@@ -65,13 +65,13 @@ function authorize(config) {
   _.assign(_authorizeRules, config);
   if (!_authorizeActivated) {
     _authorizeActivated = true;
-    _injected.$rootScope.$on('$stateChangeStart', function (event, toState) {
-      _injected.util.getAncestorStates(toState.name, true).reverse().forEach(function (state) {
+    _o.$rootScope.$on('$stateChangeStart', function (event, toState) {
+      _o.util.getAncestorStates(toState.name, true).reverse().forEach(function (state) {
         if (!event.defaultPrevented) {
           var rules = _parseAuthorizeRules(_authorizeRules, state);
           if (!_isRoleAllowedToAccess(rules)) {
             event.preventDefault();
-            _injected.$state.go(rules.redirect);
+            _o.$state.go(rules.redirect);
           }
         }
       });
@@ -97,25 +97,25 @@ function isAuthenticated() {
 }
 
 function login(formData) {
-  return _injected.Restangular.all('login').post(formData).then(
+  return _o.Restangular.all('login').post(formData).then(
     function (result) {
       _setUser(result);
-      _injected.$state.go('app.account.summary');
+      _o.$state.go('app.account.summary');
     }
   );
 }
 
 function logout() {
-  return _injected.Restangular.all('logout').post().then(
+  return _o.Restangular.all('logout').post().then(
     function () {
       _clearUser();
-      _injected.$state.go('app.home');
+      _o.$state.go('app.home');
     }
   );
 }
 
 function register(formData) {
-  return _injected.Restangular.all('register').post(formData);
+  return _o.Restangular.all('register').post(formData);
 }
 
 // Public API
@@ -124,7 +124,7 @@ exports = module.exports = function (ngModule) {
     initUser: _setUser,
 
     $get: function ($rootScope, $state, Restangular, util) {
-      _injected = {
+      _o = {
         $rootScope: $rootScope,
         $state: $state,
         Restangular: Restangular,

@@ -4,11 +4,11 @@
 
 'use strict';
 
-var _injected;
+var _o;
 
 function link(scope, elem, attrs) {
   scope.$watch(attrs.focus, function () {
-    var getter = _injected.$parse(attrs.focus);
+    var getter = _o.$parse(attrs.focus);
     var setter = getter.assign;
     if (getter(scope)) {
       elem[0].focus();
@@ -19,7 +19,7 @@ function link(scope, elem, attrs) {
 
 exports = module.exports = function (ngModule) {
   ngModule.directive('focus', function ($parse) {
-    _injected = {
+    _o = {
       $parse: $parse
     };
 

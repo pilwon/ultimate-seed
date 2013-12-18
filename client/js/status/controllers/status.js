@@ -9,12 +9,12 @@ var _ = require('lodash');
 var DEFAULT_FETCH_INTEVAL = 5000;
 
 var _fetchIntervalId,
-    _injected;
+    _o;
 
 function _fetch() {
-  var $http = _injected.$http,
-      $scope = _injected.$scope,
-      $timeout = _injected.$timeout;
+  var $http = _o.$http,
+      $scope = _o.$scope,
+      $timeout = _o.$timeout;
 
   $timeout.cancel(_fetchIntervalId);
 
@@ -30,17 +30,17 @@ function _onCreate() {
 }
 
 function _onDestroy() {
-  _injected.$timeout.cancel(_fetchIntervalId);
+  _o.$timeout.cancel(_fetchIntervalId);
 }
 
 function setFetchInterval(fetchInterval) {
-  _injected.$scope.fetchInterval = fetchInterval;
+  _o.$scope.fetchInterval = fetchInterval;
   _fetch();
 }
 
 exports = module.exports = function (ngModule) {
   ngModule.controller('StatusCtrl', function ($http, $scope, $timeout) {
-    _injected = {
+    _o = {
       $http: $http,
       $scope: $scope,
       $timeout: $timeout
