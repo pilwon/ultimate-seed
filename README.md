@@ -285,12 +285,12 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 ## FAQ
 
-  * How do I fix the error `EMFILE: Too many opened files.`?
+#### How do I fix the error `EMFILE: Too many opened files.`?
     
   This is an issue with [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch). You can fix it by increasing your system's max opened file limit. See [this answer](https://github.com/gruntjs/grunt-contrib-watch#how-do-i-fix-the-error-emfile-too-many-opened-files)
   NOTE: Even if `ulimit` command on the shell gives you 'unlimited', you might still need to increase the max opened file limit.
 
-  * How do I fix `Error: Could not load the bindings file.`?
+#### How do I fix `Error: Could not load the bindings file.`?
 
   If you are using node version manager [n](https://npmjs.org/package/n), you might come across the following error message when running `grunt`:
   ```
