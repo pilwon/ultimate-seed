@@ -79,18 +79,13 @@ ngModule.run(function ($location, $rootScope, $state, $stateParams, app, auth) {
 
 // Loading spinner.
 ngModule.run(function ($rootScope, layout) {
-  $rootScope.$on('$stateChangeStart', function (event, toState) {
+  var commonFunc = function (spinnerFunc, event, toState) {
     if (!toState.resolve || _.isEmpty(toState.resolve)) { return; }
-    layout.startSpinner();
-  });
-  $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-    if (!toState.resolve || _.isEmpty(toState.resolve)) { return; }
-    layout.stopSpinner();
-  });
-  $rootScope.$on('$stateChangeError', function (event, toState) {
-    if (!toState.resolve || _.isEmpty(toState.resolve)) { return; }
-    layout.stopSpinner();
-  });
+    spinnerFunc();
+  };
+  $rootScope.$on('$stateChangeStart', _.wrap(layout.startSpinner, commonFunc));
+  $rootScope.$on('$stateChangeSuccess', _.wrap(layout.stopSpinner, commonFunc));
+  $rootScope.$on('$stateChangeError', _.wrap(layout.stopSpinner, commonFunc));
 });
 
 // Connect to socket.io server.
