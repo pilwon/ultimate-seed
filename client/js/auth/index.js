@@ -20,7 +20,7 @@ require('./services/auth')(ngModule);
 ngModule.config(function ($stateProvider) {
   $stateProvider
     .state('app.login', {
-      url: '/login?s&sp&u',  // s: $state, sp: $stateParams, u: url
+      url: '/login?s&sp',  // s: $state, sp: $stateParams
       views: {
         '@': {
           controller: 'LoginCtrl',
@@ -29,7 +29,7 @@ ngModule.config(function ($stateProvider) {
       }
     })
     .state('app.register', {
-      url: '/register?s&sp',  // s: $state, sp: $stateParams, u: url
+      url: '/register?s&sp',  // s: $state, sp: $stateParams
       views: {
         '@': {
           controller: 'RegisterCtrl',

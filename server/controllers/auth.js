@@ -4,12 +4,14 @@
 
 'use strict';
 
+var querystring = require('querystring');
+
 var ultimate = require('ultimate');
 
-var //app = require('../app'),
-    passport = ultimate.lib.passport;
+var passport = ultimate.lib.passport;
 
 function facebook(req, res, next) {
+  req.session.ultimate.query = req.query;
   passport.authenticate('facebook', {
     scope: [
       'email'
@@ -18,18 +20,17 @@ function facebook(req, res, next) {
 }
 
 function facebookCallback(req, res, next) {
+  var qs = querystring.stringify(req.session.ultimate.query);
+  delete req.session.ultimate.query;
   passport.authenticate('facebook', {
-    successRedirect: '/auth/facebook/success',
-    failureRedirect: '/login',
+    successRedirect: '/login' + (qs ? '?' + qs : ''),
+    failureRedirect: '/login' + (qs ? '?' + qs : ''),
     failureFlash: true
   })(req, res, next);
 }
 
-function facebookSuccess(req, res) {
-  res.redirect('/account');
-}
-
 function google(req, res, next) {
+  req.session.ultimate.query = req.query;
   passport.authenticate('google', {
     scope: [
       'https://www.googleapis.com/auth/userinfo.profile',
@@ -39,18 +40,17 @@ function google(req, res, next) {
 }
 
 function googleCallback(req, res, next) {
+  var qs = querystring.stringify(req.session.ultimate.query);
+  delete req.session.ultimate.query;
   passport.authenticate('google', {
-    successRedirect: '/auth/google/success',
-    failureRedirect: '/login',
+    successRedirect: '/login' + (qs ? '?' + qs : ''),
+    failureRedirect: '/login' + (qs ? '?' + qs : ''),
     failureFlash: true
   })(req, res, next);
 }
 
-function googleSuccess(req, res) {
-  res.redirect('/account');
-}
-
 function twitter(req, res, next) {
+  req.session.ultimate.query = req.query;
   passport.authenticate('twitter', {
     scope: [
       'email'
@@ -59,24 +59,19 @@ function twitter(req, res, next) {
 }
 
 function twitterCallback(req, res, next) {
+  var qs = querystring.stringify(req.session.ultimate.query);
+  delete req.session.ultimate.query;
   passport.authenticate('twitter', {
-    successRedirect: '/auth/twitter/success',
-    failureRedirect: '/login',
+    successRedirect: '/login' + (qs ? '?' + qs : ''),
+    failureRedirect: '/login' + (qs ? '?' + qs : ''),
     failureFlash: true
   })(req, res, next);
-}
-
-function twitterSuccess(req, res) {
-  res.redirect('/account');
 }
 
 // Public API
 exports.facebook = facebook;
 exports.facebookCallback = facebookCallback;
-exports.facebookSuccess = facebookSuccess;
 exports.google = google;
 exports.googleCallback = googleCallback;
-exports.googleSuccess = googleSuccess;
 exports.twitter = twitter;
 exports.twitterCallback = twitterCallback;
-exports.twitterSuccess = twitterSuccess;

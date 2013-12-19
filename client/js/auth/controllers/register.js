@@ -57,6 +57,9 @@ exports = module.exports = function (ngModule) {
         username: true
       },
       formData: {},
+      loginFacebook: auth.loginFacebook,
+      loginGoogle: auth.loginGoogle,
+      loginTwitter: auth.loginTwitter,
       register: register,
       showError: false
     });

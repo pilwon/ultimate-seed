@@ -76,6 +76,7 @@ app.attachMiddlewares = function () {
       res.locals.livereload = app.project.server.livereload;
     }
     res.locals.user = req.user;
+    req.session.ultimate = req.session.ultimate || {};
     next();
   });
 };

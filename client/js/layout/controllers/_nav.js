@@ -12,13 +12,13 @@ function login() {
   var params;
 
   if (_o.$state.includes('app.login') || _o.$state.includes('app.register')) {
-    params = _o.$rootScope.$stateParams;
+    params = _o.$location.search();
   } else {
     params = {
       s: _o.$state.current.name
     };
-    if (!_.isEmpty(_o.$rootScope.$stateParams)) {
-      params.sp = JSON.stringify(_o.$rootScope.$stateParams);
+    if (!_.isEmpty(_o.$location.search())) {
+      params.sp = JSON.stringify(_o.$location.search());
     }
   }
 
@@ -34,13 +34,13 @@ function register() {
   var params;
 
   if (_o.$state.includes('app.register') || _o.$state.includes('app.login')) {
-    params = _o.$rootScope.$stateParams;
+    params = _o.$location.search();
   } else {
     params = {
       s: _o.$state.current.name
     };
-    if (!_.isEmpty(_o.$rootScope.$stateParams)) {
-      params.sp = JSON.stringify(_o.$rootScope.$stateParams);
+    if (!_.isEmpty(_o.$location.search())) {
+      params.sp = JSON.stringify(_o.$location.search());
     }
   }
 
@@ -48,9 +48,9 @@ function register() {
 }
 
 exports = module.exports = function (ngModule) {
-  ngModule.controller('_NavCtrl', function ($rootScope, $scope, $state, auth, layout) {
+  ngModule.controller('_NavCtrl', function ($location, $scope, $state, auth, layout) {
     _o = {
-      $rootScope: $rootScope,
+      $location: $location,
       $scope: $scope,
       $state: $state,
       auth: auth,

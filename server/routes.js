@@ -38,13 +38,10 @@ exports.register = function (app, restify) {
   // Auth
   s.get('/auth/facebook', c.auth.facebook);
   s.get('/auth/facebook/callback', c.auth.facebookCallback);
-  s.get('/auth/facebook/success', c.auth.facebookSuccess);
   s.get('/auth/google', c.auth.google);
   s.get('/auth/google/callback', c.auth.googleCallback);
-  s.get('/auth/google/success', c.auth.googleSuccess);
   s.get('/auth/twitter', c.auth.twitter);
   s.get('/auth/twitter/callback', c.auth.twitterCallback);
-  s.get('/auth/twitter/success', c.auth.twitterSuccess);
 
   // Status
   s.get('/status', c.status.index);

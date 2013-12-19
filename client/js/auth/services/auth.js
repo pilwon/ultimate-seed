@@ -4,6 +4,8 @@
 
 'use strict';
 
+var querystring = require('querystring');
+
 var _ = require('lodash'),
     $ = require('jquery');
 
@@ -41,6 +43,21 @@ function _parseAuthorizeRules(authorizeRules, state) {
   return rules;
 }
 
+function _parseStateData(stateParams) {
+  var result = null;
+  if (stateParams.s &&
+      _o.$state.get(stateParams.s) &&
+      !_o.$state.get(stateParams.s).abstract) {
+    result = {
+      state: stateParams.s
+    };
+    if (!_.isEmpty(stateParams.sp)) {
+      result.stateParams = JSON.parse(stateParams.sp);
+    }
+  }
+  return result;
+}
+
 function _setUser(user) {
   if (_.isEmpty(user)) { return; }
 
@@ -68,15 +85,33 @@ function authorize(config) {
     _o.$rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
       _o.util.getAncestorStates(toState.name, true).reverse().forEach(function (state) {
         if (!event.defaultPrevented) {
-          var params = {},
-              rules = _parseAuthorizeRules(_authorizeRules, state);
+          var rules = _parseAuthorizeRules(_authorizeRules, state),
+              data;
+
           if (!_isRoleAllowedToAccess(rules)) {
             event.preventDefault();
-            params.s = toState.name;
-            if (!_.isEmpty(toParams)) {
-              params.sp = JSON.stringify(toParams);
+
+            if (_.contains(['app.login', 'app.register'], toState.name)) {
+              data = _parseStateData(toParams);
+              if (!_.isEmpty(data) &&
+                  _o.$state.get(data.state) &&
+                  !_o.$state.get(data.state).abstract &&
+                  _isRoleAllowedToAccess(_parseAuthorizeRules(_authorizeRules, data.state))) {
+                return _o.$state.go(data.state, data.stateParams);
+              }
             }
-            _o.$state.go(rules.redirect, params);
+
+            if (_.isEmpty(rules.redirectParams)) {
+              rules.redirectParams = {
+                s: toState.name
+              };
+
+              if (!_.isEmpty(toParams)) {
+                rules.redirectParams.sp = JSON.stringify(toParams);
+              }
+            }
+
+            _o.$state.go(rules.redirect, rules.redirectParams);
           }
         }
       });
@@ -105,12 +140,10 @@ function login(formData, redirect) {
   return _o.Restangular.all('login').post(formData).then(
     function (result) {
       _setUser(result);
-      if (_o.$stateParams.u) {
-        global.location.href = _o.$stateParams.u;
-      } else if (_o.$stateParams.s &&
-                 _o.$state.get(_o.$stateParams.s) &&
-                 !_o.$state.get(_o.$stateParams.s).abstract) {
-        _o.$state.go(_o.$stateParams.s, JSON.parse(_o.$stateParams.sp));
+
+      var data = _parseStateData(_o.$stateParams);
+      if (!_.isEmpty(data)) {
+        _o.$state.go(data.state, data.stateParams);
       } else if (!!redirect) {
         _o.$state.go('app.account.summary');
       }
@@ -118,18 +151,31 @@ function login(formData, redirect) {
   );
 }
 
+function loginFacebook() {
+  var qs = querystring.stringify(_o.$stateParams);
+  global.location.href = '/auth/facebook' + (qs ? '?' + qs : '');
+}
+
+function loginGoogle() {
+  var qs = querystring.stringify(_o.$stateParams);
+  global.location.href = '/auth/google' + (qs ? '?' + qs : '');
+}
+
+function loginTwitter() {
+  var qs = querystring.stringify(_o.$stateParams);
+  global.location.href = '/auth/twitter' + (qs ? '?' + qs : '');
+}
+
 function logout() {
   return _o.Restangular.all('logout').post().then(
     function () {
       _clearUser();
-      if (_o.$stateParams.u) {
-        global.location.href = _o.$stateParams.u;
-      } else if (_o.$stateParams.s &&
-                 _o.$state.get(_o.$stateParams.s) &&
-                 !_o.$state.get(_o.$stateParams.s).abstract) {
-        _o.$state.go(_o.$stateParams.s, JSON.parse(_o.$stateParams.sp));
+
+      var data = _parseStateData(_o.$stateParams);
+      if (!_.isEmpty(data)) {
+        _o.$state.go(data.state, data.stateParams);
       } else {
-        _o.$state.go('app.home');
+        global.location.reload();
       }
     }
   );
@@ -163,6 +209,9 @@ exports = module.exports = function (ngModule) {
         hasRole: hasRole,
         isAuthenticated: isAuthenticated,
         login: login,
+        loginFacebook: loginFacebook,
+        loginGoogle: loginGoogle,
+        loginTwitter: loginTwitter,
         logout: logout,
         register: register
       };

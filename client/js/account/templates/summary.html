@@ -48,7 +48,7 @@
                 <td>{{ v }}</td>
               </tr>
             </table>
-            <a class="btn btn-facebook btn-sm" href="/auth/facebook" target="_self" ng-if="!user.auth.facebook">
+            <a class="btn btn-facebook btn-sm" href="" ng-click="loginFacebook()" ng-if="!user.auth.facebook">
               <i class="fa fa-facebook"></i> | Connect with Facebook
             </a>
           </td>
@@ -62,7 +62,7 @@
                 <td>{{ v }}</td>
               </tr>
             </table>
-            <a class="btn btn-google-plus btn-sm" href="/auth/google" target="_self" ng-if="!user.auth.google">
+            <a class="btn btn-google-plus btn-sm" href="" ng-click="loginGoogle()" ng-if="!user.auth.google">
               <i class="fa fa-google-plus"></i> | Connect with Google+
             </a>
           </td>
@@ -76,7 +76,7 @@
                 <td>{{ v }}</td>
               </tr>
             </table>
-            <a class="btn btn-twitter btn-sm" href="/auth/twitter" target="_self" ng-if="!user.auth.twitter">
+            <a class="btn btn-twitter btn-sm" href="" ng-click="loginTwitter()" ng-if="!user.auth.twitter">
               <i class="fa fa-twitter"></i> | Connect with Twitter
             </a>
           </td>
