@@ -9,38 +9,34 @@ var _ = require('lodash');
 var _o;
 
 function register(formMeta) {
-  var $scope = _o.$scope,
-      alert = _o.alert,
-      auth = _o.auth,
-      layout = _o.layout,
-      errField,
+  var errField,
       fields;
 
   if (formMeta.$invalid) {
-    $scope.showError = true;
+    _o.$scope.showError = true;
     fields = ['username', 'password', 'passwordRepeat', 'firstName'];
     errField = _.find(fields, function (field) {
       return formMeta[field].$invalid;
     });
-    $scope.focus[errField] = true;
+    _o.$scope.focus[errField] = true;
     return;
   }
 
-  layout.startSpinner();
-  auth.register($scope.formData).then(
+  _o.layout.startSpinner();
+  _o.auth.register(_o.$scope.formData).then(
     function () {
-      $scope.showError = false;
-      alert.clearMessages();
+      _o.$scope.showError = false;
+      _o.alert.clearMessages();
     },
     function (res) {
       if (res.data.error && res.data.error.message) {
-        $scope.showError = true;
-        alert.setMessages('danger', res.data.error.message);
+        _o.$scope.showError = true;
+        _o.alert.setMessages('danger', res.data.error.message);
       } else {
         throw new Error('Failed to register.');
       }
     }
-  ).finally(layout.stopSpinner);
+  ).finally(_o.layout.stopSpinner);
 }
 
 exports = module.exports = function (ngModule) {

@@ -12,17 +12,13 @@ var _fetchIntervalId,
     _o;
 
 function _fetch() {
-  var $http = _o.$http,
-      $scope = _o.$scope,
-      $timeout = _o.$timeout;
+  _o.$timeout.cancel(_fetchIntervalId);
 
-  $timeout.cancel(_fetchIntervalId);
-
-  $http.get('/status/health').then(function (res) {
-    $scope.status.unshift(res.data);
+  _o.$http.get('/status/health').then(function (res) {
+    _o.$scope.status.unshift(res.data);
   });
 
-  _fetchIntervalId = $timeout(_fetch, $scope.fetchInterval);
+  _fetchIntervalId = _o.$timeout(_fetch, _o.$scope.fetchInterval);
 }
 
 function _onCreate() {
