@@ -18,6 +18,8 @@ function _clearUser() {
   _.keys(_user).forEach(function (key) {
     delete _user[key];
   });
+
+  $('html').removeClass('admin-mode');
 }
 
 function _isRoleAllowedToAccess(rules) {
