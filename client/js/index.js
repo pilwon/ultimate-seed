@@ -19,7 +19,6 @@ require('./auth');
 require('./layout');
 require('./main');
 require('./shared');
-require('./status');
 
 // Register app.
 require('./app');
