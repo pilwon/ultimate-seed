@@ -1,0 +1,48 @@
+<section class="status">
+  <article class="content">
+    <header class="page-header">
+      <div class="pull-right">
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="value in _.range(1, 11)">
+            <a href="" ng-click="setFetchInterval(1000 * value)">
+              Fetch Interval: <strong>{{ value }}s</strong>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <h2>
+        Status
+        <small>(updates every {{ fetchInterval / 1000 }}s)</small>
+      </h2>
+    </header>
+    <div class="status">
+      <table class="table table-hover table-striped">
+        <thead>
+          <th>Time</th>
+          <th>PID</th>
+          <th>RSS</th>
+          <th>Heap Total</th>
+          <th>Heap Used</th>
+          <th>Uptime</th>
+        </thead>
+        <tbody>
+          <tr class="animate-fade" ng-repeat="stat in status | limitTo:25">
+            <td>{{ stat.time | date:'yyyy-MM-dd HH:mm:ss.sss' }}</td>
+            <td>{{ stat.pid }}</td>
+            <td>{{ stat.memory.rss / 1024 / 1024 | number:2 }} MB</td>
+            <td>{{ stat.memory.heapTotal / 1024 / 1024 | number:2 }} MB</td>
+            <td>{{ stat.memory.heapUsed / 1024 / 1024 | number:2 }} MB</td>
+            <td>
+              <span ng-show="stat.uptime / 60 / 60 / 24 >= 1">
+                {{ stat.uptime / 60 / 60 / 24 | number:0 }}d
+              </span>
+              <span>
+                {{ moment(stat.uptime * 1000).subtract(moment(0)).format('H[h] m[m] s[s]') }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</section>

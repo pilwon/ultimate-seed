@@ -1,5 +1,5 @@
 /*
- * client/js/status/controllers/status.js
+ * client/js/admin/controllers/status.js
  */
 
 'use strict';

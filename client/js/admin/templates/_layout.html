@@ -11,6 +11,11 @@
               {{ $state.get('app.admin.dashboard').data.title }}
             </a>
           </li>
+          <li ng-class="{ active: $state.includes('app.admin.status') }">
+            <a ng-href="{{ $state.href('app.admin.status') }}">
+              {{ $state.get('app.admin.status').data.title }}
+            </a>
+          </li>
           <li ng-class="{ active: $state.includes('app.admin.users') }">
             <a ng-href="{{ $state.href('app.admin.users') }}">
               {{ $state.get('app.admin.users').data.title }}

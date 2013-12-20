@@ -12,6 +12,7 @@ var ngModule = angular.module('app.admin', []);
 // Controllers
 require('./controllers/_layout')(ngModule);
 require('./controllers/dashboard')(ngModule);
+require('./controllers/status')(ngModule);
 require('./controllers/users')(ngModule);
 
 // Routes
@@ -36,6 +37,14 @@ ngModule.config(function ($stateProvider) {
       template: rhtml('./templates/dashboard.html'),
       data: {
         title: 'Dashboard'
+      }
+    })
+    .state('app.admin.status', {
+      url: '/status',
+      controller: 'StatusCtrl',
+      template: rhtml('./templates/status.html'),
+      data: {
+        title: 'Status'
       }
     })
     .state('app.admin.users', {
