@@ -19,19 +19,19 @@ require('./controllers/_nav')(ngModule);
 require('./services/layout')(ngModule);
 
 var _views = {
-  'alert': {
+  alert: {
     controller: '_AlertCtrl',
     template: rhtml('./templates/_alert.html')
   },
-  'footer': {
+  footer: {
     controller: '_FooterCtrl',
     template: rhtml('./templates/_footer.html')
   },
-  'header': {
+  header: {
     controller: '_HeaderCtrl',
     template: rhtml('./templates/_header.html')
   },
-  'nav': {
+  nav: {
     controller: '_NavCtrl',
     template: rhtml('./templates/_nav.html')
   }

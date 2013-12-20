@@ -32,24 +32,16 @@ ngModule.config(function ($stateProvider) {
     })
     .state('app.admin.dashboard', {
       url: '/dashboard',
-      views: {
-        '@app.admin': {
-          controller: 'DashboardCtrl',
-          template: rhtml('./templates/dashboard.html')
-        }
-      },
+      controller: 'DashboardCtrl',
+      template: rhtml('./templates/dashboard.html'),
       data: {
         title: 'Dashboard'
       }
     })
     .state('app.admin.users', {
       url: '/users',
-      views: {
-        '@app.admin': {
-          controller: 'UsersCtrl',
-          template: rhtml('./templates/users.html')
-        }
-      },
+      controller: 'UsersCtrl',
+      template: rhtml('./templates/users.html'),
       data: {
         title: 'Users'
       }

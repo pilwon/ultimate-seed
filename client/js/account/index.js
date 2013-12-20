@@ -31,12 +31,8 @@ ngModule.config(function ($stateProvider) {
     })
     .state('app.account.summary', {
       url: '/summary',
-      views: {
-        '@app.account': {
-          controller: 'SummaryCtrl',
-          template: rhtml('./templates/summary.html')
-        }
-      },
+      controller: 'SummaryCtrl',
+      template: rhtml('./templates/summary.html'),
       data: {
         title: 'Summary'
       }
