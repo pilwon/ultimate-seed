@@ -90,6 +90,7 @@
     "grunt-express": "~0.3.6",
     "grunt-karma": "~0.6.2",
     "grunt-open": "~0.2.2",
+    "grunt-protractor-runner": "~0.2.0",
     "grunt-usemin": "~2.0.1",
     "handlebars-runtime": "~1.0.12",
     "hbsfy": "~1.0.0",
