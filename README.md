@@ -125,6 +125,39 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 * If you see the `Could not load the bindings file.` error message, please perform `npm rebuild` then try again.
 
 
+### Testing
+
+#### Unit Testing with [Karma](https://github.com/karma-runner/karma)
+
+  **TODO**
+
+#### End-to-End (E2E) Testing with [Protractor](https://github.com/angular/protractor)
+
+  Protractor wraps around [WebDriverJS](https://code.google.com/p/selenium/wiki/WebDriverJs), which is a javascript binding for Selenium-Webdriver.
+  
+  > Selenium-Webdriver is a browser automation framework. Tests are written with the WebDriver API, which communicates with a Selenium server to control the browser under test. - [Protractor Getting Started Guide](https://github.com/angular/protractor/blob/master/docs/getting-started.md)
+
+  Therefore, you need to first download and install Selenium standalone server. If you successfully performed `npm install`, you will have `./node_modules/.bin/webdriver-manager`. You can download and install Selenium standalone server by the following command:
+
+    $ ./node_modules/.bin/webdriver-manager update
+
+  From then on, you can start the server via:
+
+    $ ./node_modules/.bin/webdriver-manager start
+
+  You need to have the Selenium server running before running E2E tests. Once the Selenium server is running, you should also start the application server (in another tab) because your tests will run against it:
+
+    $ grunt
+
+  While the application server is running, open another tab and run e2e tests using Protractor.
+
+    $ grunt test
+
+  Enjoy watching your tests running inside a real browser (Chrome by default). If you'd like to change Protractor configuration, check out `config/test/protractor-e2e.conf.js`.
+
+  ** TODO: Simplify the above steps so that it can be all done using one grunt command. **
+
+
 ### Deployment
 
 #### Production Server (`config/production.json`)
