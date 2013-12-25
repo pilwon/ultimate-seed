@@ -243,6 +243,15 @@ module.exports = function (grunt) {
         url: 'http://localhost:<%= process.env.PORT || project.server.port %>'
       }
     },
+    protractor: {  // grunt-protractor-runner
+      options: {
+        keepAlive: true,
+        noColor: false
+      },
+      e2e: {
+        configFile: '<%= project.path.config %>/test/protractor-e2e.conf.js',
+      }
+    },
     uglify: {  // grunt-contrib-uglify
       dist: {
         files: _.transform({
@@ -423,7 +432,11 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('build', 'buildDist');
-  grunt.registerTask('test', ['jshint', 'karma:multi']);
+  grunt.registerTask('test', [
+    'jshint',
+    'protractor'
+    // 'karma:multi'
+  ]);
 
   // Shortcuts
   grunt.registerTask('b', 'build');
