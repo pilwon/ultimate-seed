@@ -127,7 +127,6 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 ### Deployment
 
-
 #### Production Server (`config/production.json`)
 
   First, prepare and optimize all files used in production environment:
@@ -178,8 +177,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   10. Deployed at [http://APPID.herokuapp.com/](http://ultimate-seed.herokuapp.com/)
 
 
-
-## Using REPL (read-eval-print loop)
+### Using REPL (read-eval-print loop)
 
   This is helpful when you need to debug problems on the production server. You can connect to REPL of the running server via UNIX socket. By default, it creates UNIX socket at /tmp/ultimate-repl but you can configure it in `config/{development,heroku,production}.json`. In order to connect to it, simply run:
 
