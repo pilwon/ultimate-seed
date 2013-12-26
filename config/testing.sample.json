@@ -1,0 +1,110 @@
+{
+  "api": {
+    "aws": {
+      "key": "@@@@@",
+      "secret": "@@@@@"
+    },
+    "facebook": {
+      "appId": "@@@@@",
+      "appSecret": "@@@@@"
+    },
+    "google": {
+      "clientId": "@@@@@",
+      "clientSecret": "@@@@@"
+    },
+    "rackspace": {
+      "username": "@@@@@",
+      "apiKey": "@@@@@"
+    },
+    "twitter": {
+      "accessToken": "@@@@@",
+      "accessTokenSecret": "@@@@@",
+      "consumerKey": "@@@@@",
+      "consumerSecret": "@@@@@"
+    }
+  },
+  "cookie": {
+    "secret": "UlTiMaTeSeCrEtKeY"
+  },
+  "db": {
+    "mongo": {
+      "host": "localhost",
+      "port": 27017,
+      "username": null,
+      "password": null,
+      "db": "ultimate-seed-test"
+    },
+    "redis": {
+      "host": "localhost",
+      "port": 6379,
+      "password": null,
+      "namespace": "ultimate-seed-test"
+    }
+  },
+  "log": {
+    "_use": [
+      "console",
+      "sns"
+    ],
+    "transport": {
+      "console": {
+        "level": "debug"
+      },
+      "file": {
+        "level": "error"
+      },
+      "mongo": {
+        "level": "error"
+      },
+      "sns": {
+        "level": "error",
+        "subscriber": "@@@@@",
+        "topicArn": "@@@@@"
+      }
+    }
+  },
+  "mail": {
+    "_use": "ses",
+    "transport": {
+      "ses": {},
+      "smtp": {
+        "host": "@@@@@",
+        "port": 25,
+        "username": "@@@@@",
+        "password": "@@@@@",
+        "secure": false
+      }
+    }
+  },
+  "session": {
+    "_use": "redis",
+    "key": "sid",
+    "secret": "UlTiMaTeSeCrEtKeY",
+    "store": {
+      "mongo": {
+        "collection": "sessions"
+      },
+      "redis": {
+        "prefix": "ultimate-seed-test:sessions"
+      }
+    }
+  },
+  "socketio": {
+    "store": "redis"
+  },
+  "storage": {
+    "_use": "s3",
+    "backend": {
+      "cloudFiles": {
+        "container": {
+          "main": "@@@@@"
+        }
+      },
+      "s3": {
+        "bucket": {
+          "main": "@@@@@"
+        }
+      }
+    }
+  }
+}
