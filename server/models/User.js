@@ -177,17 +177,23 @@ schema.statics.findOrCreateLocal = function (profile, cb) {
   }, function (err, user) {
     if (err) { return cb(err); }
     if (user) {
-      user.comparePassword(profile.password, function (err, matched) {
-        if (err) { return cb(err); }
-        if (matched) {
-          // Update existing account.
-          user.name = data.name;
-          user.save(cb);
-        } else {
-          // Account created by someone else or using non-local.
-          return cb(new Error('Account already exists.'));
-        }
-      });
+      if (_.isEmpty(user.get('auth.local'))) {
+        user.auth.local.username = profile.username;
+        user.auth.local.password = profile.password;
+        user.save(cb);
+      } else {
+        user.comparePassword(profile.password, function (err, matched) {
+          if (err) { return cb(err); }
+          if (matched) {
+            // Update existing account.
+            user.name = data.name;
+            user.save(cb);
+          } else {
+            // Account created by someone else or using non-local.
+            return cb(new Error('Account already exists.'));
+          }
+        });
+      }
     } else {
       // Create new account.
       app.models.User.create(data, cb);
