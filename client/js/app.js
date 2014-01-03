@@ -31,7 +31,7 @@ ngModule.config(function ($locationProvider) {
   $locationProvider.html5Mode(true);
 });
 
-// Set Restacular base URL.
+// Set Restangular base URL.
 ngModule.config(function (RestangularProvider) {
   RestangularProvider
     .setBaseUrl('/api')
