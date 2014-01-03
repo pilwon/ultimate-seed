@@ -14,8 +14,8 @@
     <div class="collapse navbar-collapse">
 
       <ul class="nav navbar-nav">
-        <li ng-class="{ active: $state.includes('app.home') }">
-          <a ng-href="{{ $state.href('app.home') }}">Angular</a>
+        <li ui-sref-active="active">
+          <a ui-sref="app.home">Angular</a>
         </li>
         <li ng-class="{ active: $state.is('express') }">
           <a href="/express" target="_self">Express</a>
@@ -36,18 +36,18 @@
             <li class="dropdown-header" ng-if="user.isAdmin()">
               {{ $state.get('app.admin').data.menuTitle }}
             </li>
-            <li ng-class="{ active: $state.includes('app.admin.dashboard') }" ng-if="user.isAdmin()">
-              <a ng-href="{{ $state.href('app.admin.dashboard') }}">
+            <li ui-sref-active="active" ng-if="user.isAdmin()">
+              <a ui-sref="app.admin.dashboard">
                 {{ $state.get('app.admin.dashboard').data.title }}
               </a>
             </li>
-            <li ng-class="{ active: $state.includes('app.admin.status') }" ng-if="user.isAdmin()">
-              <a ng-href="{{ $state.href('app.admin.status') }}">
+            <li ui-sref-active="active" ng-if="user.isAdmin()">
+              <a ui-sref="app.admin.status">
                 {{ $state.get('app.admin.status').data.title }}
               </a>
             </li>
-            <li ng-class="{ active: $state.includes('app.admin.users') }" ng-if="user.isAdmin()">
-              <a ng-href="{{ $state.href('app.admin.users') }}">
+            <li ui-sref-active="active" ng-if="user.isAdmin()">
+              <a ui-sref="app.admin.users">
                 {{ $state.get('app.admin.users').data.title }}
               </a>
             </li>
@@ -55,8 +55,8 @@
             <li class="dropdown-header">
               {{ $state.get('app.account').data.menuTitle }}
             </li>
-            <li ng-class="{ active: $state.includes('app.account') }">
-              <a ng-href="{{ $state.href('app.account.summary') }}">
+            <li ui-sref-active="active">
+              <a ui-sref="app.account.summary">
                 {{ $state.get('app.account.summary').data.title }}
               </a>
             </li>

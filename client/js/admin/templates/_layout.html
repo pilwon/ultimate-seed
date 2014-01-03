@@ -6,18 +6,18 @@
           <h3>{{ $state.current.data.menuTitle }}</h3>
         </div>
         <ul class="nav nav-pills nav-stacked">
-          <li ng-class="{ active: $state.includes('app.admin.dashboard') }">
-            <a ng-href="{{ $state.href('app.admin.dashboard') }}">
+          <li ui-sref-active="active">
+            <a ui-sref="app.admin.dashboard">
               {{ $state.get('app.admin.dashboard').data.title }}
             </a>
           </li>
-          <li ng-class="{ active: $state.includes('app.admin.status') }">
-            <a ng-href="{{ $state.href('app.admin.status') }}">
+          <li ui-sref-active="active">
+            <a ui-sref="app.admin.status">
               {{ $state.get('app.admin.status').data.title }}
             </a>
           </li>
-          <li ng-class="{ active: $state.includes('app.admin.users') }">
-            <a ng-href="{{ $state.href('app.admin.users') }}">
+          <li ui-sref-active="active">
+            <a ui-sref="app.admin.users">
               {{ $state.get('app.admin.users').data.title }}
             </a>
           </li>

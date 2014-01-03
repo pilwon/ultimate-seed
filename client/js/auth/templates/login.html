@@ -35,7 +35,7 @@
     <button class="btn btn-inverse btn-lg btn-login" type="submit" ng-click="login(loginForm)">
       Login
     </button>
-    <a class="btn btn-default btn-lg btn-regsiter" ng-href="{{ $state.href('app.register', $stateParams) }}">
+    <a class="btn btn-default btn-lg btn-regsiter" ui-sref="app.register($stateParams)">
       Register
     </a>
   </p>

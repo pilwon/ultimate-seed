@@ -6,8 +6,8 @@
           <h3>{{ $state.current.data.menuTitle }}</h3>
         </div>
         <ul class="nav nav-pills nav-stacked">
-          <li ng-class="{ active: $state.includes('app.account.summary') }">
-            <a ng-href="{{ $state.href('app.account.summary') }}">
+          <li ui-sref-active="active">
+            <a ui-sref="app.account.summary">
               {{ $state.get('app.account.summary').data.title }}
             </a>
           </li>
