@@ -7,7 +7,7 @@
     "angular-sanitize": "~1.2.3",
     "angular-translate": "~1.1.1",
     "angular-ui-bootstrap": "gh-pages",
-    "angular-ui-router": "~0.2.0",
+    "angular-ui-router": "~0.2.7",
     "animate.css": "~3.0.0",
     "bootstrap": "~3.0.3",
     "bootstrap-social-buttons": "~1.0.0",
