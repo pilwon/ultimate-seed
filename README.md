@@ -210,6 +210,16 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   10. Deployed at [http://APPID.herokuapp.com/](http://ultimate-seed.herokuapp.com/)
 
 
+#### Using Docker Container
+
+  1. Install [Docker](http://docker.io/).
+  2. Download `ultimate-seed`: `git clone https://github.com/pilwon/ultimate-seed.git && cd $_`
+  3. Build container: `docker build -t="<app-id>" .`
+  4. Run the container: `CID=$(docker run -d -e NODE_ENV="production" <app-id>)`
+  5. Check logs: `docker logs $CID`
+
+
+
 ### Using REPL (read-eval-print loop)
 
   This is helpful when you need to debug problems on the production server. You can connect to REPL of the running server via UNIX socket. By default, it creates UNIX socket at /tmp/ultimate-repl but you can configure it in `config/{development,heroku,production}.json`. In order to connect to it, simply run:
@@ -324,14 +334,16 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 #### How do I fix `Error: Could not load the bindings file.`?
 
   If you are using node version manager [n](https://npmjs.org/package/n), you might come across the following error message when running `grunt`:
-  ```
+
+```
   Fatal error: Server ["/Users/username/path-to-ultimate-seed/server"] -  Error: Could not load the bindings file. Tried:
 → /Users/username/path-to-ultimate-seed/node_modules/bcrypt/build/bcrypt_lib.node
 → /Users/username/path-to-ultimate-seed/node_modules/bcrypt/build/Debug/bcrypt_lib.node
 ...
 → /Users/username/path-to-ultimate-seed/node_modules/bcrypt/build/default/bcrypt_lib.node
 → /Users/username/path-to-ultimate-seed/node_modules/bcrypt/compiled/0.10.23/darwin/x64/bcrypt_lib.node
-  ```
+```
+
   In order to fix it, run `npm rebuild`. Then you will be able to run `grunt` without seeing the above error message.
 
 
