@@ -368,7 +368,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 <pre>
 The MIT License (MIT)
 
-Copyright (c) 2012-2013 Pilwon Huh
+Copyright (c) 2012-2014 Pilwon Huh
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
