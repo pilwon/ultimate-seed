@@ -388,3 +388,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </pre>
+
+[![Analytics](https://ga-beacon.appspot.com/UA-47034562-1/ultimate-seed/readme?pixel)](https://github.com/pilwon/ultimate-seed)
