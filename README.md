@@ -222,14 +222,14 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 ### Using REPL (read-eval-print loop)
 
-  This is helpful when you need to debug problems on the production server. You can connect to REPL of the running server via UNIX socket. By default, it creates UNIX socket at /tmp/ultimate-repl but you can configure it in `config/{development,heroku,production}.json`. In order to connect to it, simply run:
+  This is helpful when you need to debug problems on the production server. You can connect to REPL of the running server via UNIX socket. By default, it creates UNIX socket at `/tmp/ultimate-repl.<PID>` but you can configure it in `config/{development,heroku,production}.json`. In order to connect to it, simply run:
 
-    $ nc -U /tmp/ultimate-repl
+    $ nc -U /tmp/ultimate-repl.<PID>
     ultimate>
 
   or if you want readline's line editing and persistent history (i.e. using up/down arrow key to see the command history), then install rlwrap (on Mac, `brew install rlwrap`) and run:
 
-    $ rlwrap nc -U /tmp/ultimate-repl
+    $ rlwrap nc -U /tmp/ultimate-repl.<PID>
     ultimate>
 
   Once you are connected, you can evaluate Javascript expression.
