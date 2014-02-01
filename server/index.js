@@ -8,7 +8,7 @@ var app = require('koa')(),
     middleware = require('require-all')(__dirname + '/lib/middleware');
 
 // App keys
-app.keys = ['13giervni03414tn', 'ewt02noq1m45y0nf1'];
+app.keys = ['UlTiMaTeSeCrEtKeY1', 'UlTiMaTeSeCrEtKeY2'];
 
 // CSRF
 require('koa-csrf')(app);
