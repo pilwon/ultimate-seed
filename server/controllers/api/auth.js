@@ -8,7 +8,7 @@ var _ = require('lodash'),
     S = require('string'),
     ultimate = require('ultimate');
 
-var app = require('../../app');
+var app = require('../..');
 
 function loginPOST(req, cb) {
   var errMsgs = [],

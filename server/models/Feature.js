@@ -10,7 +10,7 @@ var mongoose = ultimate.lib.mongoose,
     plugin = ultimate.db.mongoose.plugin;
     // type = ultimate.db.mongoose.type;
 
-// var app = require('../app');
+// var app = require('..');
 
 // Schema
 var schema = new mongoose.Schema({
@@ -63,10 +63,6 @@ var data = [
     url: 'https://github.com/substack/node-browserify'
   },
   {
-    text: 'Express',
-    url: 'http://expressjs.com/'
-  },
-  {
     text: 'Font Awesome',
     url: 'http://fortawesome.github.io/Font-Awesome/'
   },
@@ -89,6 +85,10 @@ var data = [
   {
     text: 'Karma w/ Mocha',
     url: 'http://karma-runner.github.io/'
+  },
+  {
+    text: 'Koa',
+    url: 'http://koajs.com/'
   },
   {
     text: 'LESS',

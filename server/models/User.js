@@ -14,7 +14,7 @@ var mongoose = ultimate.lib.mongoose,
     plugin = ultimate.db.mongoose.plugin,
     type = ultimate.db.mongoose.type;
 
-var app = require('../app');
+var app = require('..');
 
 // Schema
 var schema = new mongoose.Schema({

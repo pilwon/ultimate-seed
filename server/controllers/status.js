@@ -4,19 +4,19 @@
 
 'use strict';
 
-function index(req, res) {
-  res.render('status/index', {
+function *index() {
+  yield this.render('status/index', {
     layout: false
   });
 }
 
-function health(req, res) {
-  res.json({
+function *health() {
+  this.body = {
     memory: process.memoryUsage(),
     pid: process.pid,
     time: new Date(),
     uptime: process.uptime()
-  });
+  };
 }
 
 // Public API

@@ -12,7 +12,7 @@
 
 #### [Demo hosted on Heroku](http://ultimate-seed.herokuapp.com/)
 
-`ultimate-seed` is the ultimate full-stack AngularJS + Node.js/Express seed (batteries included!) that makes web developers insanely productive.
+`ultimate-seed` is the ultimate full-stack AngularJS + Node.js/Koa seed (batteries included!) that makes web developers insanely productive.
 
 This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency library.
 
@@ -28,13 +28,13 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   * [Bootstrap](http://getbootstrap.com/)
   * [Bower](http://bower.io)
   * [Browserify](https://github.com/substack/node-browserify)
-  * [Express](http://expressjs.com/)
   * [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
   * [Grunt](http://gruntjs.com/)
   * [Handlebars](http://handlebarsjs.com/)
   * [jQuery](http://jquery.com/)
   * [JSHint](http://www.jshint.com/)
   * [Karma](http://karma-runner.github.io/) w/ [Mocha](http://visionmedia.github.io/mocha/)
+  * [Koa](http://koajs.com/)
   * [LESS](http://lesscss.org/) w/ [LESS Hat](http://lesshat.com/)
   * [Livereload](http://livereload.com/)
   * [Lodash](http://lodash.com/) ([Underscore](http://underscorejs.org/))

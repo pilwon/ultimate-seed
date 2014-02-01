@@ -10,62 +10,62 @@ var ultimate = require('ultimate');
 
 var passport = ultimate.lib.passport;
 
-function facebook(req, res, next) {
-  req.session.ultimate.query = req.query;
+function *facebook(next) {
+  this.session.ultimate.query = this.query;
   passport.authenticate('facebook', {
     scope: [
       'email'
     ]
-  })(req, res, next);
+  }).call(this, next);
 }
 
-function facebookCallback(req, res, next) {
-  var qs = querystring.stringify(req.session.ultimate.query);
-  delete req.session.ultimate.query;
+function *facebookCallback(next) {
+  var qs = querystring.stringify(this.session.ultimate.query);
+  delete this.session.ultimate.query;
   passport.authenticate('facebook', {
     successRedirect: '/login' + (qs ? '?' + qs : ''),
     failureRedirect: '/login' + (qs ? '?' + qs : ''),
     failureFlash: true
-  })(req, res, next);
+  }).call(this, next);
 }
 
-function google(req, res, next) {
-  req.session.ultimate.query = req.query;
+function *google(next) {
+  this.session.ultimate.query = this.query;
   passport.authenticate('google', {
     scope: [
       'https://www.googleapis.com/auth/userinfo.profile',
       'https://www.googleapis.com/auth/userinfo.email'
     ]
-  })(req, res, next);
+  }).call(this, next);
 }
 
-function googleCallback(req, res, next) {
-  var qs = querystring.stringify(req.session.ultimate.query);
-  delete req.session.ultimate.query;
+function *googleCallback(next) {
+  var qs = querystring.stringify(this.session.ultimate.query);
+  delete this.session.ultimate.query;
   passport.authenticate('google', {
     successRedirect: '/login' + (qs ? '?' + qs : ''),
     failureRedirect: '/login' + (qs ? '?' + qs : ''),
     failureFlash: true
-  })(req, res, next);
+  })(next);
 }
 
-function twitter(req, res, next) {
-  req.session.ultimate.query = req.query;
+function *twitter(next) {
+  this.session.ultimate.query = this.query;
   passport.authenticate('twitter', {
     scope: [
       'email'
     ]
-  })(req, res, next);
+  }).call(this, next);
 }
 
-function twitterCallback(req, res, next) {
-  var qs = querystring.stringify(req.session.ultimate.query);
-  delete req.session.ultimate.query;
+function *twitterCallback(next) {
+  var qs = querystring.stringify(this.session.ultimate.query);
+  delete this.session.ultimate.query;
   passport.authenticate('twitter', {
     successRedirect: '/login' + (qs ? '?' + qs : ''),
     failureRedirect: '/login' + (qs ? '?' + qs : ''),
     failureFlash: true
-  })(req, res, next);
+  }).call(this, next);
 }
 
 // Public API
