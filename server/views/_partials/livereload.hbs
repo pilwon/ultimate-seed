@@ -1,3 +1,6 @@
 {{#if livereload}}
-  <script src="http://localhost:{{livereload}}/livereload.js?snipver=1"></script>
+  <script>document.write('<script src="http://'
+      + (location.host || 'localhost').split(':')[0]
+      + ':35729/livereload.js"></'
+      + 'script>')</script>
 {{/if}}
