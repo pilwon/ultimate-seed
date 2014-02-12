@@ -29,11 +29,6 @@ function _onDestroy() {
   _o.$timeout.cancel(_fetchIntervalId);
 }
 
-function setFetchInterval(fetchInterval) {
-  _o.$scope.fetchInterval = fetchInterval;
-  _fetch();
-}
-
 exports = module.exports = function (ngModule) {
   ngModule.controller('StatusCtrl', function ($http, $scope, $timeout) {
     _o = {
@@ -44,7 +39,6 @@ exports = module.exports = function (ngModule) {
 
     _.assign($scope, {
       fetchInterval: DEFAULT_FETCH_INTERVAL,
-      setFetchInterval: setFetchInterval,
       status: []
     });
 
