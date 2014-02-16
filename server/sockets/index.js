@@ -8,7 +8,7 @@ function _onInfo(socket, data) {
   console.info('[%s] %s', socket.address, JSON.stringify(data, null, 2));
 }
 
-function _regiser(socket) {
+function _register(socket) {
   socket.on('info', function (data) {
     _onInfo(socket, data);
   });
@@ -18,7 +18,7 @@ function _regiser(socket) {
 }
 
 function onConnect(socket) {
-  _regiser(socket);
+  _register(socket);
 }
 
 function onDisconnect(/*socket*/) {

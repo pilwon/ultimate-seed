@@ -26,7 +26,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   * [AngularUI](http://angular-ui.github.io/)
   * [Barbeque](https://github.com/pilwon/barbeque)
   * [Bootstrap](http://getbootstrap.com/)
-  * [Bower](http://bower.io)
+  * [Bower](http://bower.io/)
   * [Browserify](https://github.com/substack/node-browserify)
   * [Express](http://expressjs.com/)
   * [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
@@ -120,7 +120,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
     $ grunt                    # start server
     $ grunt build              # jshint & build
-    $ grunt clean              # clean grenerated files
+    $ grunt clean              # clean generated files
 
 * If you see the `Could not load the bindings file.` error message, please perform `npm rebuild` then try again.
 

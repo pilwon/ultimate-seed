@@ -36,6 +36,7 @@ function loginPOST(req, cb) {
     errMsgs.push('<strong>Username</strong> must be valid e-mail.');
     focus = focus || 'username';
   }
+
   if (_.isEmpty(req.body.password)) {
     errMsgs.push('<strong>Password</strong> is required.');
     focus = focus || 'password';
@@ -160,7 +161,7 @@ function registerPOST(req, cb) {
   req.body.firstName = S(req.body.firstName || '').trim().capitalize().s;
   req.body.lastName = S(req.body.lastName || '').trim().capitalize().s;
 
-  // Registeration.
+  // Registration.
   app.models.User.findOrCreateLocal(req.body, function (err, user) {
     if (err) { return _sendError(err); }
     req.logIn(user, function (err) {
