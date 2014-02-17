@@ -59,10 +59,10 @@ schema.restify = {
     'user': ['name.first']
   },
   'post': {
-    'admin': '*',
+    'admin': '*'
   },
   'put': {
-    'admin': '*',
+    'admin': '*'
   },
   'delete': {
     'admin': '*'

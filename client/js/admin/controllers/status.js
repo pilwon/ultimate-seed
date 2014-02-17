@@ -6,7 +6,7 @@
 
 var _ = require('lodash');
 
-var DEFAULT_FETCH_INTEVAL = 5000;
+var DEFAULT_FETCH_INTERVAL = 5000;
 
 var _fetchIntervalId,
     _o;
@@ -43,7 +43,7 @@ exports = module.exports = function (ngModule) {
     };
 
     _.assign($scope, {
-      fetchInterval: DEFAULT_FETCH_INTEVAL,
+      fetchInterval: DEFAULT_FETCH_INTERVAL,
       setFetchInterval: setFetchInterval,
       status: []
     });
