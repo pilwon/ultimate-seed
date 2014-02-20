@@ -60,7 +60,7 @@
     "winston"
   ],
   "dependencies": {
-    "async": "0.2.9",
+    "async": "0.2.10",
     "barbeque": "0.2.1",
     "bcrypt": "0.7.7",
     "colors": "0.6.2",
