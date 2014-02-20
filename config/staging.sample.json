@@ -1,4 +1,5 @@
 {
+  "url": "http://@@@@@",
   "api": {
     "aws": {
       "key": "@@@@@",
@@ -28,17 +29,17 @@
   },
   "db": {
     "mongo": {
-      "host": "localhost",
+      "host": "@@@@@",
       "port": 27017,
       "username": null,
       "password": null,
-      "db": "ultimate-seed-test"
+      "db": "ultimate-seed"
     },
     "redis": {
-      "host": "localhost",
+      "host": "@@@@@",
       "port": 6379,
       "password": null,
-      "namespace": "ultimate-seed-test"
+      "namespace": "ultimate-seed"
     }
   },
   "log": {
@@ -85,7 +86,7 @@
         "collection": "sessions"
       },
       "redis": {
-        "prefix": "ultimate-seed-test:sessions"
+        "prefix": "ultimate-seed:sessions"
       }
     }
   },

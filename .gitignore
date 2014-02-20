@@ -9,9 +9,8 @@
 /client/js/node_modules/bower_components/
 /client-built/
 /config/development.json
-/config/heroku.json
 /config/production.json
-/config/testing.json
+/config/staging.json
 /log/
 /node_modules/
 /npm-debug.log

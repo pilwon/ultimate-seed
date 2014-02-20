@@ -426,7 +426,7 @@ module.exports = function (grunt) {
       'express',
       'open'
     ]);
-    if (process.env.NODE_ENV !== 'heroku' && process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'staging') {
       grunt.task.run('watch');
     }
   });

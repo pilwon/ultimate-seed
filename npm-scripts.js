@@ -24,7 +24,7 @@ var commands = {
 
 var grey = function (text) {
   return '\x1B[90m' + text + '\x1B[39m';
-}
+};
 
 function prepublish() {
   console.log(grey('npm prepublish script executed'));
@@ -40,7 +40,7 @@ function preinstall() {
 
 function postinstall() {
   // Generate config files from samples if they don't already exist.
-  ['development', 'heroku', 'production'].forEach(function (env) {
+  ['development', 'production', 'staging'].forEach(function (env) {
     var from = path.join(project.path.config, env + '.sample.json'),
         to = path.join(project.path.config, env + '.json');
     if (!fs.existsSync(to)) {

@@ -65,11 +65,11 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 | [Bower](http://twitter.github.com/bower/) | `npm install bower -g`                       |
 | [Grunt](http://gruntjs.com/)              | `npm install grunt-cli -g`                   |
 
-  Make sure both `MongoDB` and `Redis` servers running somewhere. (You can use free hosting services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/) for `MongoDB` and [Redis To Go](http://redistogo.com/) or [RedisCloud](http://redis-cloud.com/) for `Redis`.) Then, update configuration information in `config/{development,heroku,production}.json`.
+  Make sure both `MongoDB` and `Redis` servers running somewhere. (You can use free hosting services such as [MongoHQ](https://www.mongohq.com/) or [MongoLab](https://mongolab.com/) for `MongoDB` and [Redis To Go](http://redistogo.com/) or [RedisCloud](http://redis-cloud.com/) for `Redis`.) Then, update configuration information in `config/{development,production,staging}.json`.
 
   If you find any reason not to use `Redis` in your project, you can easily achieve it by following this instruction:
 
-  1. Change the value of `session.store._use` to `mongo` in `config/{development,heroku,production}.json`. (This lets `ultimate-seed` use MongoDB as session backend.)
+  1. Change the value of `session.store._use` to `mongo` in `config/{development,production,staging}.json`. (This lets `ultimate-seed` use MongoDB as session backend.)
   2. Comment out the line `ultimate.db.redis.connect(app.config.db.redis);` in `server/app.js`. (This prevents server connecting to `Redis` server.)
 
 
@@ -130,7 +130,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 #### End-to-End (E2E) Testing with [Protractor](https://github.com/angular/protractor)
 
   Protractor wraps around [WebDriverJS](https://code.google.com/p/selenium/wiki/WebDriverJs), which is a javascript binding for Selenium-Webdriver.
-  
+
   > Selenium-Webdriver is a browser automation framework. Tests are written with the WebDriver API, which communicates with a Selenium server to control the browser under test. - [Protractor Getting Started Guide](https://github.com/angular/protractor/blob/master/docs/getting-started.md)
 
   Therefore, you need to first download and install Selenium standalone server. If you successfully performed `npm install`, you will have `./node_modules/.bin/webdriver-manager`. You can download and install Selenium standalone server by the following command:
@@ -156,32 +156,32 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 ### Deployment
 
-#### Production Server (`config/production.json`)
+#### Production/Staging Server (`config/{production|stging}.json`)
 
-  First, prepare and optimize all files used in production environment:
+  First, prepare and optimize all files used in production/staging environment:
 
     $ grunt build
 
-  Then your app can be started in production mode using this command:
+  Then your app can be started in production/staging mode using this command:
 
-    $ NODE_ENV=production node server
+    $ NODE_ENV={production|staging} node server
 
   It is recommended to use a tool like [forever](https://github.com/nodejitsu/forever) to ensure your app running continuously:
 
     $ npm install forever -g
-    $ NODE_ENV=production PORT=3000 forever start server
+    $ NODE_ENV={production|staging} PORT=3000 forever start server
 
   You can alternatively use a system-wide process control system such as [Supervisor](http://supervisord.org/) with the following configuration (`supervisord.conf`):
 
     [program:ultimate-3000]
     directory = <absolute-path-of-project-root>
-    environment = NODE_ENV=production, PORT=3000
+    environment = NODE_ENV={production|staging}, PORT=3000
     command = node server
     autostart = true
     autorestart = true
 
 
-#### Heroku (`config/heroku.json`)
+#### Heroku
 
   `ultimate-seed` supports deployment of your app to [Heroku](https://www.heroku.com/) servers.
 
@@ -197,7 +197,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   5. Add git remote pointing to Heroku:
     * New Heroku app: `heroku create APPID`
     * Existing Heroku app: `heroku git:remote -a APPID`
-  6. Set the environment variable: `heroku config:set NODE_ENV=heroku ERROR_PAGE_URL=http://APPID.herokuapp.com/404.html`
+  6. Set the environment variable: `heroku config:set NODE_ENV={production|staging} ERROR_PAGE_URL=http://APPID.herokuapp.com/404.html`
   7. Enable websocket support: `heroku labs:enable websockets`
   8. (Optional) Install MongoDB and Redis add-ons to the Heroku app. `ultimate-seed` reads environment variables attached by these add-ons. (Note: Add-on environment variables will override MongoDB/Redis configuration values in `config/heroku.json`):
     * Mongo: `heroku addons:add mongohq:sandbox` or `heroku addons:add mongolab:sandbox`
@@ -218,7 +218,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 ### Using REPL (read-eval-print loop)
 
-  This is helpful when you need to debug problems on the production server. You can connect to REPL of the running server via UNIX socket. By default, it creates UNIX socket at `/tmp/ultimate-repl.<PID>` but you can configure it in `config/{development,heroku,production}.json`. In order to connect to it, simply run:
+  This is helpful when you need to debug problems on the production server. You can connect to REPL of the running server via UNIX socket. By default, it creates UNIX socket at `/tmp/ultimate-repl.<PID>` but you can configure it in `config/{development,production,staging}.json`. In order to connect to it, simply run:
 
     $ nc -U /tmp/ultimate-repl.<PID>
     ultimate>
@@ -272,10 +272,15 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 │       ├── lesshat/
 │       └── social-buttons/
 ├── config/
+│   ├── server/
+│   │   └── nginx.conf
+│   ├── test/
+│   │   ├── karma-e2e.conf.js
+│   │   ├── karma-unit.conf.js
+│   │   └── protractor-e2e.conf.js
 │   ├── development.json
-│   ├── heroku.json
-│   ├── nginx.conf
-│   └── production.json
+│   ├── production.json
+│   └── staging.json
 ├── log/
 ├── node_modules/
 ├── server/
@@ -323,7 +328,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 ## FAQ
 
 #### How do I fix the error `EMFILE: Too many opened files.`?
-    
+
   This is an issue with [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch). You can fix it by increasing your system's max opened file limit. See [this answer](https://github.com/gruntjs/grunt-contrib-watch#how-do-i-fix-the-error-emfile-too-many-opened-files)
   NOTE: Even if `ulimit` command on the shell gives you 'unlimited', you might still need to increase the max opened file limit.
 
