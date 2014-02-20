@@ -102,7 +102,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   Merge `seed` to `master` branch by squashing commit log:
 
     $ git checkout master
-    $ git merge seed --squash
+    $ git merge seed
     $ npm install && bower install
 
   Resolve merge conflicts then push to `origin/master`:
