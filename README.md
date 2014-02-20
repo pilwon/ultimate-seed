@@ -99,14 +99,10 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
     $ git fetch seed
     $ git checkout -b seed seed/master
 
-  Push a copy of `seed` to `origin/seed`:
-
-    $ git push origin seed
-
-  Merge `seed` to `master` branch:
+  Merge `seed` to `master` branch by squashing commit log:
 
     $ git checkout master
-    $ git merge seed
+    $ git merge seed --squash
     $ npm install && bower install
 
   Resolve merge conflicts then push to `origin/master`:
