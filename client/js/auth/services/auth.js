@@ -193,10 +193,10 @@ function register(formData) {
 
 // Public API
 exports = module.exports = function (ngModule) {
-  ngModule.provider('auth', {
-    initUser: _setUser,
+  ngModule.provider('auth', function () {
+    this.initUser = _setUser;
 
-    $get: ['$rootScope', '$state', '$stateParams', 'Restangular', 'util', function ($rootScope, $state, $stateParams, Restangular, util) {
+    this.$get = ['$rootScope', '$state', '$stateParams', 'Restangular', 'util', function ($rootScope, $state, $stateParams, Restangular, util) {
       _o = {
         $rootScope: $rootScope,
         $state: $state,
@@ -217,6 +217,6 @@ exports = module.exports = function (ngModule) {
         logout: logout,
         register: register
       };
-    }]
+    }];
   });
 };
