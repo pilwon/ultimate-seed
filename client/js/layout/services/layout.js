@@ -55,11 +55,11 @@ exports = module.exports = function (ngModule) {
     getViews: getViews,
     setViews: setViews,
 
-    $get: function () {
+    $get: [function () {
       return {
         startSpinner: startSpinner,
         stopSpinner: stopSpinner
       };
-    }
+    }]
   });
 };
