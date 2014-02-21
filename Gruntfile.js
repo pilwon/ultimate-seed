@@ -46,7 +46,13 @@ module.exports = function (grunt) {
         },
         afterHook: function (source) {
           source = ngmin.annotate(source);
-          source = uglify.minify(source, { fromString: true }).code;
+          source = uglify.minify(source, {
+            fromString: true,
+            mangle: false,
+            output: {
+              semicolons: true
+            }
+          }).code;
           return source;
         }
       }
