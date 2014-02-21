@@ -3,7 +3,6 @@
 #
 
 /config/development.json
-/config/production.json
 /node_modules/coffeeify/
 /node_modules/grunt/
 /node_modules/grunt-browserify2/
