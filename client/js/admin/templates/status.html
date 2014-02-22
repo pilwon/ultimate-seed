@@ -2,13 +2,8 @@
   <article class="content">
     <header class="page-header">
       <div class="pull-right">
-        <ul class="dropdown-menu" role="menu">
-          <li ng-repeat="value in _.range(1, 11)">
-            <a href="" ng-click="setFetchInterval(1000 * value)">
-              Fetch Interval: <strong>{{ value }}s</strong>
-            </a>
-          </li>
-        </ul>
+        <select class="form-control" ng-model="fetchInterval" ng-options="('Fetch Interval: ' + value / 1000 + 's') for value in _.range(1000, 11000, 1000)">
+        </select>
       </div>
       <h2>
         Status

@@ -21,17 +21,8 @@ function _fetch() {
   _fetchIntervalId = _o.$timeout(_fetch, _o.$scope.fetchInterval);
 }
 
-function _onCreate() {
-  _fetch();
-}
-
 function _onDestroy() {
   _o.$timeout.cancel(_fetchIntervalId);
-}
-
-function setFetchInterval(fetchInterval) {
-  _o.$scope.fetchInterval = fetchInterval;
-  _fetch();
 }
 
 exports = module.exports = function (ngModule) {
@@ -44,11 +35,10 @@ exports = module.exports = function (ngModule) {
 
     _.assign($scope, {
       fetchInterval: DEFAULT_FETCH_INTERVAL,
-      setFetchInterval: setFetchInterval,
       status: []
     });
 
+    $scope.$watch('fetchInterval', function () { _fetch(); });
     $scope.$on('$destroy', _onDestroy);
-    _onCreate();
   });
 };
