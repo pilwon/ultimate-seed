@@ -72,6 +72,8 @@ app.attachMiddlewares = function () {
 
   // Custom
   app.servers.express.getServer().use(function (req, res, next) {
+    req._routeWhitelists.req = ['ip'];
+
     if (process.env.NODE_ENV === 'development') {
       res.locals.livereload = app.project.server.livereload;
     }
