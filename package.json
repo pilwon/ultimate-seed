@@ -2,7 +2,6 @@
   "name": "ultimate-seed",
   "description": "The ultimate full-stack AngularJS + Node.js/Express seed (batteries included!) that makes web developers insanely productive.",
   "version": "0.3.9",
-  "private": true,
   "license": "MIT",
   "author": "Pilwon Huh <pilwon@gmail.com>",
   "contributors": [
