@@ -59,10 +59,7 @@ app.attachMiddlewares = function () {
   app.servers.express.getServer().use(ultimate.lib.passport.session());
 
   // Passport strategies
-  ultimate.server.middleware.passport.facebook.attach(app);
-  ultimate.server.middleware.passport.google.attach(app);
   ultimate.server.middleware.passport.local.attach(app);
-  ultimate.server.middleware.passport.twitter.attach(app);
 
   // Hide Powered-by header
   ultimate.server.middleware.hidePoweredByHeader.attach(app);

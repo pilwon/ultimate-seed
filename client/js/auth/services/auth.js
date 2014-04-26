@@ -4,8 +4,6 @@
 
 'use strict';
 
-var querystring = require('querystring');
-
 var _ = require('lodash'),
     $ = require('jquery');
 
@@ -153,21 +151,6 @@ function login(formData, redirect) {
   );
 }
 
-function loginFacebook() {
-  var qs = querystring.stringify(_o.$stateParams);
-  global.location.href = '/auth/facebook' + (qs ? '?' + qs : '');
-}
-
-function loginGoogle() {
-  var qs = querystring.stringify(_o.$stateParams);
-  global.location.href = '/auth/google' + (qs ? '?' + qs : '');
-}
-
-function loginTwitter() {
-  var qs = querystring.stringify(_o.$stateParams);
-  global.location.href = '/auth/twitter' + (qs ? '?' + qs : '');
-}
-
 function logout() {
   return _o.Restangular.all('logout').post().then(
     function () {
@@ -211,9 +194,6 @@ exports = module.exports = function (ngModule) {
         hasRole: hasRole,
         isAuthenticated: isAuthenticated,
         login: login,
-        loginFacebook: loginFacebook,
-        loginGoogle: loginGoogle,
-        loginTwitter: loginTwitter,
         logout: logout,
         register: register
       };
