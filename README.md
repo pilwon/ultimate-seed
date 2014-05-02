@@ -44,7 +44,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   * [Passport-Facebook](https://github.com/jaredhanson/passport-facebook)
   * [Passport-Google](https://github.com/jaredhanson/passport-google-oauth)
   * [Passport-Twitter](https://github.com/jaredhanson/passport-twitter)
-  * [Redis](http://redis.io/) w/ [Hiredis](https://github.com/redis/hiredis)
+  * [Redis](http://redis.io/)
   * [SocketIO](http://socket.io/)
   * [Source Maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/)
   * [Uglify](http://lisperator.net/uglifyjs/)

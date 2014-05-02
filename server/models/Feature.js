@@ -131,7 +131,7 @@ var data = [
     url: 'https://github.com/jaredhanson/passport-twitter'
   },
   {
-    text: 'Redis w/ Hiredis',
+    text: 'Redis',
     url: 'http://redis.io/'
   },
   {
