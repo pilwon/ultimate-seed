@@ -116,6 +116,7 @@
     "postuninstall": "node npm-scripts postuninstall",
     "preupdate": "node npm-scripts preupdate",
     "postupdate": "node npm-scripts postupdate",
-    "start": "node server"
+    "start": "node server",
+    "test": "node test"
   }
 }
