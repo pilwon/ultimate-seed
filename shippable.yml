@@ -31,7 +31,7 @@ script:
   - npm test
 
 after_success:
-  # - git push git@heroku.com:test-shippable.git master
+  # - git push git@heroku.com:ultimate-seed.git master
 
 after_failure:
   # -
