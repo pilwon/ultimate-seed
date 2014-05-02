@@ -3,9 +3,16 @@ language: node_js
 node_js:
   - '0.11'
   - '0.10'
-
 env:
   # - NODE_ENV=production
+
+git:
+  submodules: false
+
+branches:
+  only:
+    - dev
+    - master
 
 before_install:
   - npm install -g bower
@@ -39,6 +46,3 @@ notifications:
       - pilwon@gmail.com
     on_success: change
     on_failure: always
-
-git:
-  submodules: false
