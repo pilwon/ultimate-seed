@@ -211,7 +211,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   1. Install [Docker](http://docker.io/).
   2. Download `ultimate-seed`: `git clone https://github.com/pilwon/ultimate-seed.git && cd $_`
   3. Build container: `docker build -t="<app-id>" .`
-  4. Run the container: `CID=$(docker run -d -e NODE_ENV="production" <app-id>)`
+  4. Run the container: `CID=$(docker run -d -p 80:80 <app-id>)`
   5. Check logs: `docker logs $CID`
 
 
