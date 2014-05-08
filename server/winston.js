@@ -113,11 +113,11 @@ function attach(app) {
     mongodb: 'error'
   };
 
-  var host = _vcapMongo.hostname || _app.config.db.mongo.host || 'localhost',
-      port = _vcapMongo.port || _app.config.db.mongo.port || 27017,
-      username = _vcapMongo.username || _app.config.db.mongo.username || null,
-      password = _vcapMongo.password || _app.config.db.mongo.password || null,
-      db = _vcapMongo.db || _app.config.db.mongo.db || 'ultimate-seed';
+  // var host = _vcapMongo.hostname || _app.config.db.mongo.host || 'localhost',
+  //     port = _vcapMongo.port || _app.config.db.mongo.port || 27017,
+  //     username = _vcapMongo.username || _app.config.db.mongo.username || null,
+  //     password = _vcapMongo.password || _app.config.db.mongo.password || null,
+  //     db = _vcapMongo.db || _app.config.db.mongo.db || 'ultimate-seed';
 
   if (process.env.NODE_ENV === 'development') {
     logLevels.console = 'debug';
