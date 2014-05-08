@@ -7,8 +7,8 @@
 var path = require('path');
 
 var expressWinston = require('express-winston'),
-    winston = require('winston'),
-    winstonMongoDB = require('winston-mongodb');
+    winston = require('winston');//,
+    // winstonMongoDB = require('winston-mongodb');
 
 var _app = null;
 
@@ -52,16 +52,16 @@ function _attachExpressLogger() {
         level: logLevels.file,
         filename: path.join(_app.project.path.log, 'express.log'),
         timestamp: true
-      }),
-      new (winstonMongoDB.MongoDB)({
-        level: logLevels.mongodb,
-        host: _vcapMongo.hostname || _app.config.db.mongo.host || 'localhost',
-        port: _vcapMongo.port || _app.config.db.mongo.port || 27017,
-        username: _vcapMongo.username || _app.config.db.mongo.username || null,
-        password: _vcapMongo.password || _app.config.db.mongo.password || null,
-        db: _vcapMongo.db || _app.config.db.mongo.db || 'ultimate-seed',
-        collection: 'log-express'
-      })
+      })//,
+      // new (winstonMongoDB.MongoDB)({
+      //   level: logLevels.mongodb,
+      //   host: _vcapMongo.hostname || _app.config.db.mongo.host || 'localhost',
+      //   port: _vcapMongo.port || _app.config.db.mongo.port || 27017,
+      //   username: _vcapMongo.username || _app.config.db.mongo.username || null,
+      //   password: _vcapMongo.password || _app.config.db.mongo.password || null,
+      //   db: _vcapMongo.db || _app.config.db.mongo.db || 'ultimate-seed',
+      //   collection: 'log-express'
+      // })
     ]
   }));
 }
@@ -90,16 +90,16 @@ function _attachExpressErrorLogger() {
         level: logLevels.file,
         filename: path.join(_app.project.path.log, 'express-error.log'),
         timestamp: true
-      }),
-      new (winstonMongoDB.MongoDB)({
-        level: logLevels.mongodb,
-        host: _vcapMongo.hostname || _app.config.db.mongo.host || 'localhost',
-        port: _vcapMongo.port || _app.config.db.mongo.port || 27017,
-        username: _vcapMongo.username || _app.config.db.mongo.username || null,
-        password: _vcapMongo.password || _app.config.db.mongo.password || null,
-        db: _vcapMongo.db || _app.config.db.mongo.db || 'ultimate-seed',
-        collection: 'log-express-error'
-      })
+      })//,
+      // new (winstonMongoDB.MongoDB)({
+      //   level: logLevels.mongodb,
+      //   host: _vcapMongo.hostname || _app.config.db.mongo.host || 'localhost',
+      //   port: _vcapMongo.port || _app.config.db.mongo.port || 27017,
+      //   username: _vcapMongo.username || _app.config.db.mongo.username || null,
+      //   password: _vcapMongo.password || _app.config.db.mongo.password || null,
+      //   db: _vcapMongo.db || _app.config.db.mongo.db || 'ultimate-seed',
+      //   collection: 'log-express-error'
+      // })
     ]
   }));
 }
@@ -132,16 +132,16 @@ function attach(app) {
         level: logLevels.file,
         filename: path.join(_app.project.path.log, 'exceptions.log'),
         timestamp: true
-      }),
-      new (winstonMongoDB.MongoDB)({
-        level: logLevels.mongodb,
-        host: host,
-        port: port,
-        username: username,
-        password: password,
-        db: db,
-        collection: 'log-exceptions'
-      })
+      })//,
+      // new (winstonMongoDB.MongoDB)({
+      //   level: logLevels.mongodb,
+      //   host: host,
+      //   port: port,
+      //   username: username,
+      //   password: password,
+      //   db: db,
+      //   collection: 'log-exceptions'
+      // })
     ],
     transports: [
       new (winston.transports.Console)({
@@ -153,16 +153,16 @@ function attach(app) {
         level: logLevels.file,
         filename: path.join(_app.project.path.log, 'app.log'),
         timestamp: true
-      }),
-      new (winstonMongoDB.MongoDB)({
-        level: logLevels.mongodb,
-        host: host,
-        port: port,
-        username: username,
-        password: password,
-        db: db,
-        collection: 'log-app'
-      })
+      })//,
+      // new (winstonMongoDB.MongoDB)({
+      //   level: logLevels.mongodb,
+      //   host: host,
+      //   port: port,
+      //   username: username,
+      //   password: password,
+      //   db: db,
+      //   collection: 'log-app'
+      // })
     ]
   });
 
