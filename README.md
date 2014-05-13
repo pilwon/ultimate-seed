@@ -217,8 +217,8 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   7. Run redis and mongodb containers:
     - MongoDB: `docker run -d --name mongodb dockerfile/mongodb`
     - Redis: `docker run -d --name redis dockerfile/redis`
-  8. Run the project container: `docker run -d -p 3000:80 --link redis:redis --link mongodb:mongodb --name ultimate-seed ultimate-seed`
-  9. Check logs: `docker logs ultimate-seed`
+  8. Run the project container: `CID=$(docker run -d -p 3000:80 --link redis:redis --link mongodb:mongodb ultimate-seed)`
+  9. Check logs: `docker logs $CID`
   10. Open in the browser: [http://localhost:3000/](http://localhost:3000/)
 
 
