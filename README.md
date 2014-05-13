@@ -219,7 +219,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
     - Redis: `docker run -d --name redis dockerfile/redis`
   8. Run the project container: `docker run -d -p 3000:80 --link redis:redis --link mongodb:mongodb --name ultimate-seed ultimate-seed`
   9. Check logs: `docker logs ultimate-seed`
-  10. Open in the browser: http://localhost:3000/
+  10. Open in the browser: [http://localhost:3000/](http://localhost:3000/)
 
 
 ### Using REPL (read-eval-print loop)
