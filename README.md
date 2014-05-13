@@ -206,19 +206,20 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   10. Deployed at [http://APPID.herokuapp.com/](http://ultimate-seed.herokuapp.com/)
 
 
-#### Using Docker Container
+#### Using Docker
 
   1. Install [Docker](http://docker.io/).
-  2. Download `ultimate-seed`: `git clone https://github.com/pilwon/ultimate-seed.git && cd $_`
+  2. Download the seed project: `git clone https://github.com/pilwon/ultimate-seed.git && cd $_`
   3. Install dependencies: `bower install && npm install`
-  4. Build the project: `grunt build`
-  5. Build Docker image: `docker build -t ultimate-seed .`
-  6. Run redis and mongodb containers:
+  4. Make code changes if desired.
+  5. Build the project: `grunt build`
+  6. Build Docker image: `docker build -t ultimate-seed .`
+  7. Run redis and mongodb containers:
     - MongoDB: `docker run -d --name mongodb dockerfile/mongodb`
     - Redis: `docker run -d --name redis dockerfile/redis`
-  7. Run the project container: `docker run -d -p 3000:80 --link redis:redis --link mongodb:mongodb --name ultimate-seed ultimate-seed`
-  8. Check logs: `docker logs ultimate-seed`
-  9. Open in the browser: http://localhost:3000/
+  8. Run the project container: `docker run -d -p 3000:80 --link redis:redis --link mongodb:mongodb --name ultimate-seed ultimate-seed`
+  9. Check logs: `docker logs ultimate-seed`
+  10. Open in the browser: http://localhost:3000/
 
 
 ### Using REPL (read-eval-print loop)
