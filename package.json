@@ -33,6 +33,7 @@
     "bootstrap",
     "bower",
     "browserify",
+    "docker",
     "font-awesome",
     "express",
     "grunt",

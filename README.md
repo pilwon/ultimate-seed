@@ -28,6 +28,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   * [Bootstrap](http://getbootstrap.com/)
   * [Bower](http://bower.io/)
   * [Browserify](https://github.com/substack/node-browserify)
+  * [Docker](https://www.docker.io)
   * [Express](http://expressjs.com/)
   * [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
   * [Grunt](http://gruntjs.com/)
