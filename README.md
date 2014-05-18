@@ -124,10 +124,6 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
 
 ### Testing
 
-#### Unit Testing with [Karma](https://github.com/karma-runner/karma)
-
-  **TODO**
-
 #### End-to-End (E2E) Testing with [Protractor](https://github.com/angular/protractor)
 
   Protractor wraps around [WebDriverJS](https://code.google.com/p/selenium/wiki/WebDriverJs), which is a javascript binding for Selenium-Webdriver.
@@ -151,8 +147,6 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
     $ grunt test
 
   Enjoy watching your tests running inside a real browser (Chrome by default). If you'd like to change Protractor configuration, check out `config/test/protractor-e2e.conf.js`.
-
-  ** TODO: Simplify the above steps so that it can be all done using one grunt command. **
 
 
 ### Deployment
