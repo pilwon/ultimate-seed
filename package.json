@@ -71,7 +71,8 @@
     "ultimate": "0.3.12",
     "winston": "0.7.2",
     "winston-mongodb": "0.4.2",
-    "wrench": "1.5.4"
+    "wrench": "1.5.4",
+    "commander": "2.2.0"
   },
   "devDependencies": {
     "chai": "1.8.1",

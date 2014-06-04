@@ -45,6 +45,7 @@ var schema = new mongoose.Schema({
       profile: { type: type.Mixed }
     }
   },
+  ban: { type: Date, default: null },
   roles: [{ type: String }]
 });
 
@@ -155,6 +156,61 @@ schema.methods.getSafeJSON = function () {
   }
 
   return user;
+};
+
+/*
+ * findAll Users
+ * */
+schema.statics.FindAllUser = function(options, cb) {
+  app.models.User.find(null, null, options, cb);
+};
+
+/*
+ * findOneById User
+ * */
+schema.statics.FindOneByIdUser = function(_id, cb) {
+  app.models.User.findById(_id, cb);
+};
+
+/*
+ * Create One User
+ * */
+schema.statics.CreateOneUser = function(data, cb) {
+  data = _.omit(data, ['_id']);
+  app.models.User.create(data, cb);
+};
+
+/*
+ * findOneAndUpdate User
+ * */
+schema.statics.findOneAndUpdateUser = function(_id, data, cb) {
+  data = _.omit(data, ['_id']);
+  app.models.User.findOneAndUpdate({
+    '_id': _id
+  }, data, function (err, user) {
+    if (err) { return cb(err); }
+    if (user) {
+      // Update User.
+      return cb(null, user);
+    } else {
+      // Create new User.
+      app.models.User.create(data, cb);
+    }
+  });
+};
+
+/*
+ * findOneAndDelete User
+ * */
+schema.statics.FindOneAndDeleteUser = function(_id, cb) {
+  app.models.User.remove({_id: _id}, cb);
+};
+
+/*
+ * count Users
+ * */
+schema.statics.CountUser = function(query, cb) {
+  app.models.User.count(query, cb);
 };
 
 /**

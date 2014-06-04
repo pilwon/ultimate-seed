@@ -3,4 +3,203 @@
     {{ $state.current.data.title }}
     <small>{{ $state.current.data.menuTitle }}</small>
   </h2>
+
+    <section class="wrapper retracted scrollable">
+      <div class="row">
+      
+        <!-- <div class="col-md-2">
+          <button ng-click="procedure='save'" type="button" class="btn btn-link" data-toggle="modal" data-target="#modal">
+            Add {{ $state.current.data.title }}
+          </button>
+        </div> -->
+      
+        <div class="col-md-2">
+          <select ng-model="limit" ng-options="limit for limit in limitList" ng-change="page = 1; UserList();" class="form-control">
+          </select>
+        </div>
+      
+        <div class="col-md-12">
+          <pagination 
+            ng-change="UserList()" 
+            total-items="countUser" 
+            items-per-page="limit"
+            ng-model="page"
+            class="pagination-sm"
+            max-size="5" 
+            previous-text="<"
+            next-text=">"
+            first-text="<<"
+            last-text=">>"
+            boundary-links="true">
+          </pagination>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default panel-block">
+            <div class="list-group">
+              <div class="list-group-item" id="basic-table">
+                <div class="form-group">
+                  <table class="table table-striped">
+                    <thead class="">
+                      <tr>
+                        <th>#</th>
+                        <th>
+                          <a ng-href="#" ng-click="goList('email');">
+                            Email
+                            <span ng-hide="sortCourse !== null && sortField === 'email'" class="glyphicon glyphicon-sort"></span>
+                            <span ng-hide="sortCourse !== 1 && sortField === 'email' || sortField !== 'email'" class="glyphicon glyphicon-chevron-up"></span>
+                            <span ng-hide="sortCourse !== -1 && sortField === 'email' || sortField !== 'email'" class="glyphicon glyphicon-chevron-down"></span>
+                          </a>
+                        </th>
+                        <th>
+                          <a ng-href="#" ng-click="goList('roles');">
+                            Roles
+                            <span ng-hide="sortCourse !== null && sortField === 'roles'" class="glyphicon glyphicon-sort"></span>
+                            <span ng-hide="sortCourse !== 1 && sortField === 'roles' || sortField !== 'roles'" class="glyphicon glyphicon-chevron-up"></span>
+                            <span ng-hide="sortCourse !== -1 && sortField === 'roles' || sortField !== 'roles'" class="glyphicon glyphicon-chevron-down"></span>
+                          </a>
+                        </th>
+                        <th>
+                          <a ng-href="#" ng-click="goList('name.first');">
+                            FirstName
+                            <span ng-hide="sortCourse !== null && sortField === 'name.first'" class="glyphicon glyphicon-sort"></span>
+                            <span ng-hide="sortCourse !== 1 && sortField === 'name.first' || sortField !== 'name.first'" class="glyphicon glyphicon-chevron-up"></span>
+                            <span ng-hide="sortCourse !== -1 && sortField === 'name.first' || sortField !== 'name.first'" class="glyphicon glyphicon-chevron-down"></span>
+                          </a>
+                        </th>
+                        <th>
+                          <a ng-href="#" ng-click="goList('name.last');">
+                            LastName
+                            <span ng-hide="sortCourse !== null && sortField === 'name.last'" class="glyphicon glyphicon-sort"></span>
+                            <span ng-hide="sortCourse !== 1 && sortField === 'name.last' || sortField !== 'name.last'" class="glyphicon glyphicon-chevron-up"></span>
+                            <span ng-hide="sortCourse !== -1 && sortField === 'name.last' || sortField !== 'name.last'" class="glyphicon glyphicon-chevron-down"></span>
+                          </a>
+                        </th>
+                        <th>
+                          <a ng-href="#" ng-click="goList('ban');">
+                            Ban
+                            <span ng-hide="sortCourse !== null && sortField === 'ban'" class="glyphicon glyphicon-sort"></span>
+                            <span ng-hide="sortCourse !== 1 && sortField === 'ban' || sortField !== 'ban'" class="glyphicon glyphicon-chevron-up"></span>
+                            <span ng-hide="sortCourse !== -1 && sortField === 'ban' || sortField !== 'ban'" class="glyphicon glyphicon-chevron-down"></span>
+                          </a>
+                        </th>
+                        <th>Auth</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="item in userList track by $index">
+                        <td>{{ $index }}</td>
+                        <td>{{ item.email }}</td>
+                        <td>
+                          <p ng-repeat="role in item.roles">
+                            <span class="label label-default">{{ role }}</span>
+                          </p>
+                        </td>
+                        <td>{{ item.name.first }}</td>
+                        <td>{{ item.name.last }}</td>
+                        <td>
+                          <span ng-hide="!item.ban" ng-class="getClassBan(item.ban)" class="label">{{item.ban | date:'yyyy-MM-dd HH:mm:ss Z'}}</span>
+                        </td>
+                        <td>
+                          <p ng-repeat="(name, itemAuth) in item.auth">
+                            <span class="label label-default">{{name}}</span>
+                          </p>
+                        </td>
+                        <td>
+                          <a ng-href="#" ng-click="goChange(item)" data-toggle="modal" data-target="#modal">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                          </a>
+                        </td>
+                        <td>
+                          <a ng-href="#" ng-click="goDelete(item)" data-toggle="modal" data-target="#modal">
+                            <span class="glyphicon glyphicon-remove"></span>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <div id="modal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 ng-hide="procedure !== 'save'" class="modal-title">Add new {{ $state.current.data.title }}</h4>
+            <h4 ng-hide="procedure !== 'modify'" class="modal-title">Modify {{ $state.current.data.title }}</h4>
+            <h4 ng-hide="procedure !== 'delete'" class="modal-title">Delete {{ $state.current.data.title }}</h4>
+          </div>
+          <div class="modal-body">
+            <form role="form">
+              <div class="row">
+                <div class="input-group input-group-sm">
+                  <span class="input-group-addon">Email</span>
+                  <input ng-model="currentUser.email" type="email" class="form-control" placeholder="email">
+                </div>
+                <br />
+                <div class="input-group input-group-sm">
+                  <span class="input-group-addon">Name First</span>
+                  <input ng-model="currentUser.name.first" type="text" class="form-control" placeholder="Name First">
+                </div>
+                <br />
+                <div class="input-group input-group-sm">
+                  <span class="input-group-addon">Name Last</span>
+                  <input ng-model="currentUser.name.last" type="text" class="form-control" placeholder="Name Last">
+                </div>
+                <br />
+                <div class="input-group input-group-sm">
+                  <span class="input-group-addon">Ban</span>
+                  <input type="text" class="form-control" 
+                    datepicker-popup="{{format}}" 
+                    ng-model="currentUser.ban" 
+                    is-open="opened" 
+                    min-date="minDate" 
+                    ng-required="true" 
+                    close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="openDatepicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+                <div class="input-group input-group-sm">
+                  <timepicker ng-model="currentUser.ban" hour-step="1" minute-step="15" show-meridian="false"></timepicker>
+                </div>
+                <br />
+                <div class="input-group input-group-sm">
+                  <span class="input-group-addon">Push role</span>
+                  <input ng-model="addrole" type="text" class="form-control">
+                  <span class="input-group-btn">
+                    <button ng-click="addRole(addrole)" class="btn btn-default" type="button">Go!</button>
+                  </span>
+                </div>
+                <br />
+                <label class="col-sm-2 control-label">Roles</label>
+                <div class="col-sm-4">
+                  <p ng-repeat="role in currentUser.roles">
+                    <span class="label label-default">
+                      <button ng-click="removeRole(role)" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      {{ role }}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button ng-click="UserSave(currentUser)" ng-hide="procedure !== 'save'" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+            <button ng-click="UserPut(currentUser)" ng-hide="procedure !== 'modify'" type="button" class="btn btn-primary" data-dismiss="modal">Change</button>
+            <button ng-click="UserDelete(currentUser)" ng-hide="procedure !== 'delete'" type="button" class="btn btn-primary" data-dismiss="modal">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
