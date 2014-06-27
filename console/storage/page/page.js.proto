@@ -1,0 +1,119 @@
+/*
+ * client/js/admin/controllers//*module_name_l*/.js
+ */
+
+'use strict';
+
+exports = module.exports = function (ngModule) {
+  ngModule.controller('/*module_name_f_u*/Ctrl', function ($scope, $resource, /*model_name_l*/) {
+
+    $scope.procedure = 'save';
+    $scope.count/*model_name_f_u*/ = 0;
+    $scope.sortCourse = 1;
+    $scope.sortField = 'testfield';
+    $scope.limitList = [10, 20, 30];
+    $scope.limit = $scope.limitList[0];
+    $scope.page = 1;
+
+    $scope.current/*model_name_f_u*/ = {
+      _id : null,
+      testfield : null
+    };
+
+    $scope./*model_name_l*/List = [];
+
+    $scope.goChange = function(item) {
+      $scope.current/*model_name_f_u*/ = item;
+      $scope.procedure = 'modify';
+    };
+
+    $scope.goDelete = function(item) {
+      $scope.current/*model_name_f_u*/ = item;
+      $scope.procedure = 'delete';
+    };
+
+    $scope.goList = function(sortField) {
+      if ($scope.sortField === sortField) {
+        $scope.sortCourse = $scope.sortCourse * -1;
+      } else {
+        $scope.sortField = sortField;
+        $scope.sortCourse = 1;
+      }
+      $scope./*model_name_f_u*/List();
+    };
+
+    var /*model_name_f_u*/ = /*model_name_l*/;
+
+    $scope./*model_name_f_u*/Save = function(/*model_name_l*/) {
+      /*model_name_f_u*/.save({
+          role : 'any'
+        },
+        {
+          testfield : /*model_name_l*/.testfield
+        },
+        function() {
+          $scope.current/*model_name_f_u*/._id = null;
+          $scope.current/*model_name_f_u*/.testfield = null;
+          $scope./*model_name_f_u*/List();
+        },
+        function(errResp) {
+          console.log(errResp);
+        }
+      );
+    };
+
+    $scope./*model_name_f_u*/Put = function(/*model_name_l*/) {
+      /*model_name_f_u*/.modify({
+          role : 'any',
+          _id : /*model_name_l*/._id
+        },
+        {
+          testfield : /*model_name_l*/.testfield
+        },
+        function() {
+          $scope.current/*model_name_f_u*/._id = null;
+          $scope.current/*model_name_f_u*/.testfield = null;
+          $scope./*model_name_f_u*/List();
+        },
+        function(errResp) {
+          console.log(errResp);
+        }
+      );
+    };
+
+    $scope./*model_name_f_u*/Delete = function(/*model_name_l*/) {
+      /*model_name_f_u*/.remove({
+          role : 'any',
+          _id : /*model_name_l*/._id
+        },
+        function() {
+          $scope./*model_name_f_u*/List();
+        },
+        function(errResp) {
+          console.log(errResp);
+        }
+      );
+    };
+
+    $scope./*model_name_f_u*/List = function() {
+      /*model_name_f_u*/.get({
+          role : 'any',
+          sortfield : $scope.sortField,
+          sortcourse : $scope.sortCourse,
+          limit : $scope.limit,
+          page : $scope.page - 1
+        },
+        function(data) {
+          $scope.count/*model_name_f_u*/ = data.result.count;
+          $scope./*model_name_l*/List = data.result.list;
+        },
+        function(errResp) {
+          console.log(errResp);
+        }
+      );
+    };
+
+    $scope./*model_name_f_u*/List();
+
+  });
+};

@@ -1,0 +1,24 @@
+/*
+ * client/js/shared/services/resource//*model_name_l*/.js
+ */
+
+'use strict';
+
+// Public API
+exports = module.exports = function (ngModule) {
+  ngModule.service('/*model_name_l*/', function ($resource) {
+    return $resource('/api//*model_name_l*//:role/:_id', {
+      '_id': '@_id',
+      'role': '@role'
+    },
+    {
+      modify: {
+        method: 'PUT'
+      },
+      get: {
+        method: 'GET'
+        //        cache : true
+      }
+    });
+  });
+};

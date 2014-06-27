@@ -1,0 +1,48 @@
+/*
+ * client/js//*module_name_l*//index.js
+ */
+
+'use strict';
+
+var angular = require('angular'),
+    rhtml = require('rhtml');
+
+var ngModule = angular.module('app./*module_name_l*/', []);
+
+// Controllers
+require('./controllers/_layout')(ngModule);
+require('./controllers/main')(ngModule);
+
+
+// Routes
+ngModule.config(function ($stateProvider) {
+  $stateProvider
+    .state('app./*module_name_l*/', {
+      abstract: true,
+      url: '//*module_name_l*/',
+      views: {
+        '@': {
+          controller: '_LayoutCtrl',
+          template: rhtml('./templates/_layout.html')
+        }
+      },
+      data: {
+        menuTitle: '/*module_name_f_u*/'
+      }
+    })
+    .state('app./*module_name_l*/.main', {
+      url: '/main',
+      controller: 'MainCtrl',
+      template: rhtml('./templates/main.html'),
+      data: {
+        title: 'Main'
+      }
+    });
+});
+
+// Redirections
+ngModule.run(function (route) {
+  route.redirect({
+    '//*module_name_l*/': 'app./*module_name_l*/.main'
+  });
+});

@@ -71,7 +71,8 @@
     "ultimate": "0.3.12",
     "winston": "0.7.2",
     "winston-mongodb": "0.4.2",
-    "wrench": "1.5.4"
+    "wrench": "1.5.4",
+    "q": "1.0.1"
   },
   "devDependencies": {
     "chai": "1.8.1",
@@ -104,8 +105,10 @@
     "protractor": "0.20.1",
     "rfile": "1.0.0",
     "rfileify": "1.3.1",
-    "rhtml": "1.0.0",
-    "uglify-js": "2.4.3"
+    "rhtml": "1.1.0",
+    "uglify-js": "2.4.3",
+    "commander": "2.2.0",
+    "prompt": "0.2.13"
   },
   "scripts": {
     "prepublish": "node npm-scripts prepublish",
