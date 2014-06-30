@@ -6,26 +6,20 @@
 
     <section class="wrapper retracted scrollable">
       <div class="row">
-      
-        <!-- <div class="col-md-2">
-          <button ng-click="procedure='save'" type="button" class="btn btn-link" data-toggle="modal" data-target="#modal">
-            Add {{ $state.current.data.title }}
-          </button>
-        </div> -->
-      
+
         <div class="col-md-2">
           <select ng-model="limit" ng-options="limit for limit in limitList" ng-change="page = 1; UserList();" class="form-control">
           </select>
         </div>
-      
+
         <div class="col-md-12">
-          <pagination 
-            ng-change="UserList()" 
-            total-items="countUser" 
+          <pagination
+            ng-change="UserList()"
+            total-items="countUser"
             items-per-page="limit"
             ng-model="page"
             class="pagination-sm"
-            max-size="5" 
+            max-size="5"
             previous-text="<"
             next-text=">"
             first-text="<<"
@@ -134,7 +128,6 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 ng-hide="procedure !== 'save'" class="modal-title">Add new {{ $state.current.data.title }}</h4>
             <h4 ng-hide="procedure !== 'modify'" class="modal-title">Modify {{ $state.current.data.title }}</h4>
             <h4 ng-hide="procedure !== 'delete'" class="modal-title">Delete {{ $state.current.data.title }}</h4>
           </div>
@@ -195,7 +188,6 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button ng-click="UserSave(currentUser)" ng-hide="procedure !== 'save'" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
             <button ng-click="UserPut(currentUser)" ng-hide="procedure !== 'modify'" type="button" class="btn btn-primary" data-dismiss="modal">Change</button>
             <button ng-click="UserDelete(currentUser)" ng-hide="procedure !== 'delete'" type="button" class="btn btn-primary" data-dismiss="modal">Delete</button>
           </div>

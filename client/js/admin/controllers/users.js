@@ -4,6 +4,8 @@
 
 'use strict';
 
+var _ = require('lodash');
+
 exports = module.exports = function (ngModule) {
   ngModule.controller('UsersCtrl', function ($scope, user) {
 
@@ -58,26 +60,8 @@ exports = module.exports = function (ngModule) {
     };
 
     $scope.getClassBan = function (dt) {
-      dt = new Date(dt).getTime()
+      dt = new Date(dt).getTime();
       return dt <= $scope.minDate ? 'label-default' : 'label-danger';
-    }
-
-    $scope.UserSave = function(tmodel) {
-      User.save({
-          role : 'admin'
-        },
-        {
-          email : user.email
-        },
-        function() {
-          $scope.user._id = null;
-          $scope.user.testfield = null;
-          $scope.UserList();
-        },
-        function(errResp) {
-          console.log(errResp);
-        }
-      );
     };
 
     $scope.UserPut = function(user) {
