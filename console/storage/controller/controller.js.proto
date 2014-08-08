@@ -1,0 +1,87 @@
+/*
+ * server/controllers/api//*model_name_l*/.js
+ */
+
+'use strict';
+
+var _ = require('lodash'),
+    ultimate = require('ultimate');
+
+var app = require('../../app');
+
+function LIST(req, cb) {
+  var options = null;
+  if (req.query.sortfield && req.query.sortcourse) {
+    options = {};
+    options.sort = {};
+    options.sort[req.query.sortfield] = parseInt(req.query.sortcourse);
+  }
+  if (req.query.limit) {
+    options = options ? options : {};
+    options.limit = req.query.limit;
+  }
+  if (req.query.page) {
+    options = options ? options : {};
+    options.skip = req.query.page;
+  }
+  app.models./*model_name_f_u*/.FindAll/*model_name_f_u*/(options, function (err, /*model_name_l*/) {
+    if (err) {
+      cb(new Error('Not Elements /*model_name_f_u*/.'));
+    } else {
+      app.models./*model_name_f_u*/.Count/*model_name_f_u*/(null, function (err, count/*model_name_f_u*/) {
+        if (err) {
+          cb(new Error('Not Elements /*model_name_f_u*/.'));
+        } else {
+          return cb(null, {count: count/*model_name_f_u*/, list: /*model_name_l*/});
+        }
+      });
+    }
+  });
+}
+
+function GET(req, id, cb) {
+  app.models./*model_name_f_u*/.FindOneById/*model_name_f_u*/(id, function (err, /*model_name_l*/) {
+    if (err) {
+      cb(new Error('Not Element /*model_name_f_u*/.'));
+    } else {
+      return cb(null, /*model_name_l*/);
+    }
+  });
+}
+
+function POST(req, cb) {
+  app.models./*model_name_f_u*/.CreateOne/*model_name_f_u*/(req.body, function (err, /*model_name_l*/) {
+    if (err) {
+      cb(new Error('Not create /*model_name_f_u*/.'));
+    } else {
+      return cb(null, /*model_name_l*/);
+    }
+  });
+}
+
+function PUT(req, id, cb) {
+  app.models./*model_name_f_u*/.findOneAndUpdate/*model_name_f_u*/(id, req.body, function (err, /*model_name_l*/) {
+    if (err) {
+      cb(new Error('Not update /*model_name_f_u*/.'));
+    } else {
+      return cb(null, /*model_name_l*/);
+    }
+  });
+}
+
+function DELETE(req, id, cb) {
+    app.models./*model_name_f_u*/.FindOneAndDelete/*model_name_f_u*/(id, function (err, /*model_name_l*/) {
+      if (err) {
+        cb(new Error('Not delete /*model_name_f_u*/.'));
+      } else {
+        return cb(null, /*model_name_l*/);
+      }
+    });
+}
+
+// Public API
+exports.LIST = LIST;
+exports.GET = GET;
+exports.POST = POST;
+exports.PUT = PUT;
+exports.DELETE = DELETE;

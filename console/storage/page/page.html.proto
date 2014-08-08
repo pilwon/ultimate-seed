@@ -1,0 +1,115 @@
+<div class="page-header">
+  <h2>
+    {{ $state.current.data.title }}
+    <small>{{ $state.current.data.menuTitle }}</small>
+  </h2>
+
+  <section class="wrapper retracted scrollable">
+    <div class="row">
+
+      <div class="col-md-2">
+        <button ng-click="procedure='save'" type="button" class="btn btn-link" data-toggle="modal" data-target="#modal">
+          Add {{ $state.current.data.title }}
+        </button>
+      </div>
+
+      <div class="col-md-2">
+        <select ng-model="limit" ng-options="limit for limit in limitList" ng-change="page = 1; /*model_name_f_u*/List();" class="form-control">
+        </select>
+      </div>
+
+      <div class="col-md-12">
+        <pagination 
+          ng-change="/*model_name_f_u*/List()" 
+          total-items="count/*model_name_f_u*/" 
+          items-per-page="limit"
+          ng-model="page"
+          class="pagination-sm"
+          max-size="5" 
+          previous-text="<"
+          next-text=">"
+          first-text="<<"
+          last-text=">>"
+          boundary-links="true">
+        </pagination>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default panel-block">
+          <div class="list-group">
+            <div class="list-group-item" id="basic-table">
+              <div class="form-group">
+                <table class="table table-striped">
+                  <thead class="">
+                    <tr>
+                      <th>#</th>
+                      <th>
+                        <a ng-href="#" ng-click="goList('testfield');">
+                          Testfield
+                          <span ng-hide="sortCourse !== null && sortField === 'testfield'" class="glyphicon glyphicon-sort"></span>
+                          <span ng-hide="sortCourse !== 1 && sortField === 'testfield' || sortField !== 'testfield'" class="glyphicon glyphicon-chevron-up"></span>
+                          <span ng-hide="sortCourse !== -1 && sortField === 'testfield' || sortField !== 'testfield'" class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                      </th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="item in /*model_name_l*/List">
+                      <td>{{ $index }}</td>
+                      <td>{{ item.testfield }}</td>
+                      <td>
+                        <a ng-href="#" ng-click="goChange(item)" data-toggle="modal" data-target="#modal">
+                          <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                      </td>
+                      <td>
+                        <a ng-href="#" ng-click="goDelete(item)" data-toggle="modal" data-target="#modal">
+                          <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="modal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 ng-hide="procedure !== 'save'" class="modal-title">Add new {{ $state.current.data.title }}</h4>
+          <h4 ng-hide="procedure !== 'modify'" class="modal-title">Modify {{ $state.current.data.title }}</h4>
+          <h4 ng-hide="procedure !== 'delete'" class="modal-title">Delete {{ $state.current.data.title }}</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form">
+            <div class="row">
+              <label class="col-sm-2 control-label">Testfield</label>
+              <div class="col-sm-10">
+                <input ng-model="current/*model_name_f_u*/.testfield" type="text" class="form-control" placeholder="text">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button ng-click="/*model_name_f_u*/Save(current/*model_name_f_u*/)" ng-hide="procedure !== 'save'" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+          <button ng-click="/*model_name_f_u*/Put(current/*model_name_f_u*/)" ng-hide="procedure !== 'modify'" type="button" class="btn btn-primary" data-dismiss="modal">Change</button>
+          <button ng-click="/*model_name_f_u*/Delete(current/*model_name_f_u*/)" ng-hide="procedure !== 'delete'" type="button" class="btn btn-primary" data-dismiss="modal">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,102 @@
+/*
+ * server/models//*model_name_f_u*/.js
+ */
+
+'use strict';
+
+var util = require('util');
+
+var _ = require('lodash'),
+    ultimate = require('ultimate');
+
+var mongoose = ultimate.lib.mongoose,
+    plugin = ultimate.db.mongoose.plugin,
+    type = ultimate.db.mongoose.type;
+
+var app = require('../app');
+
+// Schema
+var schema = new mongoose.Schema({
+  testfield: { type: String, required: true }
+});
+
+// Restify
+schema.restify = {
+  'list': '*',
+  'get': '*',
+  'post': '*',
+  'put': '*',
+  'delete': '*'
+};
+
+// Indexes
+//schema.path('textfield').index({ unique: true });
+
+// Plugins
+schema.plugin(plugin.findOrCreate);
+//schema.plugin(plugin.timestamp);
+
+/*
+ * findAll /*model_name_f_u*/
+ * */
+schema.statics.FindAll/*model_name_f_u*/ = function(options, cb) {
+  app.models./*model_name_f_u*/.find(null, null, options, cb);
+};
+
+/*
+ * findOneById /*model_name_f_u*/
+ * */
+schema.statics.FindOneById/*model_name_f_u*/ = function(_id, cb) {
+  app.models./*model_name_f_u*/.findById(_id, cb);
+};
+
+
+/*
+ * Create One /*model_name_f_u*/
+ * */
+schema.statics.CreateOne/*model_name_f_u*/ = function(data, cb) {
+  data = _.omit(data, ['_id']);
+  app.models./*model_name_f_u*/.create(data, cb);
+};
+
+
+/*
+ * findOneAndUpdate /*model_name_f_u*/
+ * */
+schema.statics.findOneAndUpdate/*model_name_f_u*/ = function(_id, data, cb) {
+  data = _.omit(data, ['_id']);
+  app.models./*model_name_f_u*/.findOneAndUpdate({
+    '_id': _id
+  }, data, function (err, /*model_name_l*/) {
+    if (err) { return cb(err); }
+    if (/*model_name_l*/) {
+      // Update /*model_name_f_u*/.
+      return cb(null, /*model_name_l*/);
+    } else {
+      // Create new /*model_name_f_u*/.
+      app.models./*model_name_f_u*/.create(data, cb);
+    }
+  });
+};
+
+/*
+ * findOneAndDelete /*model_name_f_u*/
+ * */
+schema.statics.FindOneAndDelete/*model_name_f_u*/ = function(_id, cb) {
+  app.models./*model_name_f_u*/.remove({_id: _id}, cb);
+};
+
+
+/*
+ * count /*model_name_f_u*/
+ * */
+schema.statics.Count/*model_name_f_u*/ = function(query, cb) {
+  app.models./*model_name_f_u*/.count(query, cb);
+};
+
+
+// Model
+var model = mongoose.model('/*model_name_f_u*/', schema);
+
+// Public API
+exports = module.exports = model;

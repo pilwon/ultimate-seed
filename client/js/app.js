@@ -11,6 +11,7 @@ var _ = require('lodash'),
     socketio = require('socketio');
 
 var ngModule = angular.module('app', [
+  'ngResource',
   'ngAnimate',
   'ngCookies',
   'ngSanitize',
