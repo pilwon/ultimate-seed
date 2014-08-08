@@ -5,10 +5,7 @@
 #
 
 # Pull base image.
-FROM dockerfile/nodejs
-
-# Install tools
-RUN npm install -g bower grunt-cli
+FROM dockerfile/nodejs-bower-grunt
 
 # Add app directory.
 ADD . /app
