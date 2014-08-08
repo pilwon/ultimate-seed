@@ -28,4 +28,4 @@ WORKDIR /app
 CMD ["node", "server"]
 
 # Expose ports.
-EXPOSE 6379
+EXPOSE 80
