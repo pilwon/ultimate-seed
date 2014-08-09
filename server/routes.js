@@ -27,6 +27,7 @@ exports.register = function (app, restify) {
   restify.any  ('/api/test/any', c.api.test, ['list', 'get']);
   restify.user ('/api/test/user', c.api.test, ['list', 'get']);
   restify.admin('/api/test/admin', c.api.test);
+  restify.admin('/api/user/admin', c.api.users);
   s.get(/^\/api(?:[\/#?].*)?$/, error404);
 
   // Home

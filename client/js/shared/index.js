@@ -30,3 +30,6 @@ require('./services/alert')(ngModule);
 require('./services/app')(ngModule);
 require('./services/route')(ngModule);
 require('./services/util')(ngModule);
+
+// Resource
+require('./services/resource/user')(ngModule);
