@@ -28,7 +28,10 @@ var ngModule = angular.module('app', [
 
 // Enable HTML5 Mode.
 ngModule.config(function ($locationProvider) {
-  $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+  });
 });
 
 // Set Restangular base URL.
@@ -62,15 +65,15 @@ ngModule.config(function (authProvider) {
 });
 
 // Attach variables to $rootScope.
-ngModule.run(function ($location, $rootScope, $state, $stateParams, app, auth) {
+ngModule.run(function ($location, $rootScope, $state, $stateParams, auth) {
   _.assign($rootScope, {
     _: _,
     $: $,
     $location: $location,
     $state: $state,
     $stateParams: $stateParams,
-    app: app,
-    config: app.config,
+    app: ngModule,
+    config: ngModule.config,
     moment: moment,
     user: auth.getUser()
   });
