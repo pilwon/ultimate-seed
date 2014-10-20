@@ -2,7 +2,6 @@
 # .gitignore
 #
 
-/.idea/*
 /.cachebust
 /.git.*/
 /.gitignore.*
