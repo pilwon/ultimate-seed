@@ -11,6 +11,7 @@ require('bootstrap');
 require('jquery.center');
 require('jquery.spin');
 require('restangular');
+require('angular-socketio');
 
 // Register modules.
 require('./account');
