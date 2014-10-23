@@ -7,8 +7,7 @@
 var _ = require('lodash'),
     $ = require('jquery'),
     angular = require('angular'),
-    moment = require('moment'),
-    socketio = require('socketio');
+    moment = require('moment');
 
 var ngModule = angular.module('app', [
   'ngAnimate',
@@ -18,6 +17,7 @@ var ngModule = angular.module('app', [
   'restangular',
   'ui.bootstrap',
   'ui.router',
+  'btford.socket-io',
   'app.shared',
   'app.layout',
   'app.account',
@@ -90,42 +90,4 @@ ngModule.run(function ($rootScope, layout) {
   $rootScope.$on('$stateChangeError', _.wrap(layout.stopSpinner, commonFunc));
 });
 
-// Connect to socket.io server.
-ngModule.run(function () {
-  var retryInterval = 5000,
-      retryTimer;
 
-  (function connect() {
-    clearInterval(retryTimer);
-
-    var socket = global.socket = socketio.connect('', {
-      'force new connection': true,
-      'max reconnection attempts': Infinity,
-      'reconnection limit': 10 * 1000
-    });
-
-    socket.on('connect', function () {
-      socket.emit('info', {
-        // modernizr: Modernizr,
-        navigator: _.transform(navigator, function (result, val, key) {
-          if (_.isString(val)) {
-            result[key] = val;
-          }
-        })
-      });
-    });
-
-    socket.on('test', function (data) {
-      console.log(data);
-      socket.emit('test', { hello: 'from browser world' });
-    });
-
-    retryTimer = setInterval(function () {
-      if (!socket.socket.connected &&
-          !socket.socket.connecting &&
-          !socket.socket.reconnecting) {
-        connect();
-      }
-    }, retryInterval);
-  }());
-});
