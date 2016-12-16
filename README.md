@@ -35,7 +35,7 @@ This project uses [ultimate](https://github.com/pilwon/node-ultimate) dependency
   * [Handlebars](http://handlebarsjs.com/)
   * [jQuery](http://jquery.com/)
   * [JSHint](http://www.jshint.com/)
-  * [Karma](http://karma-runner.github.io/) w/ [Mocha](http://visionmedia.github.io/mocha/)
+  * [Karma](http://karma-runner.github.io/) w/ [Mocha](http://mochajs.org/)
   * [LESS](http://lesscss.org/) w/ [LESS Hat](http://lesshat.com/)
   * [Livereload](http://livereload.com/)
   * [Lodash](http://lodash.com/) ([Underscore](http://underscorejs.org/))
